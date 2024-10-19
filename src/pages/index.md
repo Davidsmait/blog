@@ -1,11 +1,11 @@
 ---
 layout: '@/layouts/LandingLayout.astro'
-title: David 
+title: David
 background: true
 logo: true
 ---
 
-A minimal Astro blog theme.\
-Ideal for a personal [blog](/posts) and showcasing a [projects](/projects) portfolio.\
-Fully customizable, dark mode & built-in color schemes.\
-Read more in the [about](/about) section.
+Desarrollador Full Stack.\
+Explora los [proyectos](/projects) en los que he trabajado.\
+Si te interesa, también puedes visitar mi [blog](/posts) donde comparto artículos y documentación sobre mis experiencias y aprendizajes.\
+Para conocer más acerca de mi trayectoria y habilidades, visita la sección [sobre mi](/about).

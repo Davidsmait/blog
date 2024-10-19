@@ -2,9 +2,9 @@ import { defineThemeConfig } from './types'
 
 export default defineThemeConfig({
   site: 'https://nordlys.fjelloverflow.dev',
-  title: 'Nordlys',
+  title: 'David San Luis Aguirre',
   description: 'A minimal Astro blog theme',
-  author: 'FjellOverflow',
+  author: 'DavidSmait',
   navbarItems: [
     { label: 'Blog', href: '/posts' },
     { label: 'Projects', href: '/projects' },
@@ -14,14 +14,14 @@ export default defineThemeConfig({
   footerItems: [
     {
       icon: 'tabler--brand-github',
-      href: 'https://github.com/FjellOverflow/nordlys',
+      href: 'https://github.com/Davidsmait',
       label: 'Github'
     },
     {
       icon: 'tabler--rss',
       href: '/feed.xml',
       label: 'RSS feed'
-    }
+    },
   ],
 
   // optional settings
