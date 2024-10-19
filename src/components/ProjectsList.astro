@@ -1,0 +1,61 @@
+---
+import TagsBar from '@/components/TagsBar.astro'
+import { toMonthString } from '@/util'
+import { sortProjects } from '@/util/projects'
+import { resolveTags } from '@/util/tags'
+import type { CollectionEntry } from 'astro:content'
+import Separator from './layout/Separator.astro'
+
+export interface Props {
+  projects: CollectionEntry<'projects'>[]
+}
+
+const { projects } = Astro.props
+
+projects.sort(sortProjects)
+
+const renderedProjects = await Promise.all(
+  projects.map(async (project) => {
+    const { Content } = await project.render()
+
+    return {
+      ...project,
+      Content
+    }
+  })
+)
+---
+
+<ul class="p-0">
+  {
+    renderedProjects.map(({ data, Content }, index) => (
+      <li class="flex flex-col">
+        <div class="flex flex-col justify-between sm:flex-row sm:items-center">
+          {data.url && (
+            <a
+              class="mb-2 text-xl font-normal no-underline"
+              href={data.url}
+              target={!data.url.startsWith('/') ? '_blank' : '_self'}
+            >
+              <span class="underline">{data.title}</span>
+              {data.url && !data.url.startsWith('/') && (
+                <span class="iconify align-middle tabler--external-link" />
+              )}
+            </a>
+          )}
+          {!data.url && <span class="mb-2 text-xl">{data.title}</span>}
+          <div class="my-2 text-sm opacity-75 sm:my-0">
+            <time>{toMonthString(data.startDate)}</time> -
+            {data.endDate && <time>{toMonthString(data.endDate)}</time>}
+            {!data.endDate && 'Now'}
+          </div>
+        </div>
+        <TagsBar tags={resolveTags(data.tags)} />
+        <div class="opacity-75">
+          <Content />
+        </div>
+        {index !== projects.length - 1 && <Separator class="my-2" />}
+      </li>
+    ))
+  }
+</ul>

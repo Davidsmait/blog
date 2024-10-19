@@ -1,0 +1,69 @@
+---
+import logo from '@/assets/logo.svg'
+import MobileNavToggle from '@/components/layout/MobileNavToggle.astro'
+import NavItem from '@/components/layout/NavItem.astro'
+import Separator from '@/components/layout/Separator.astro'
+import ModeToggle from '@/components/mode/ModeToggle.astro'
+import config from '@/theme.config'
+import { Image } from 'astro:assets'
+
+export interface Props {
+  activeHeaderLink?: string
+}
+
+const { activeHeaderLink } = Astro.props
+---
+
+<header>
+  <div class="flex justify-between py-4 sm:py-8">
+    <a href="/" class="flex gap-2 text-2xl font-semibold text-accent">
+      <Image alt="Nordlys logo" src={logo} height={24} loading="eager" />
+      {config.title}
+    </a>
+    <nav class="hidden flex-col justify-end sm:flex">
+      <ul class="flex gap-6">
+        {
+          config.navbarItems.map((item) => (
+            <li class="flex flex-col justify-center">
+              <NavItem
+                {item}
+                isActive={
+                  activeHeaderLink === item.label ||
+                  activeHeaderLink === item.href
+                }
+              />
+            </li>
+          ))
+        }
+        <li class="text-2xl">
+          {config.modeToggle && <ModeToggle />}
+        </li>
+      </ul>
+    </nav>
+    <div class="flex items-center justify-center gap-4 text-2xl sm:hidden">
+      {config.modeToggle && <ModeToggle />}
+      <MobileNavToggle />
+    </div>
+  </div>
+  <Separator />
+  <div id="mobile-nav" class="hidden">
+    <nav class="flex-col justify-end py-6">
+      <ul class="flex flex-col items-center gap-2">
+        {
+          config.navbarItems.map((item) => (
+            <li class="flex flex-col justify-center">
+              <NavItem
+                {item}
+                isActive={
+                  activeHeaderLink === item.label ||
+                  activeHeaderLink === item.href
+                }
+              />
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+    <Separator />
+  </div>
+</header>

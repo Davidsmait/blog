@@ -1,0 +1,42 @@
+---
+import Footer from '@/components/layout/Footer.astro'
+import Header from '@/components/layout/Header.astro'
+import Prose from '@/components/layout/Prose.astro'
+import BaseLayout, {
+  type Props as BaseLayoutProps
+} from '@/layouts/BaseLayout.astro'
+import ScrollProgressPlugin from '@/plugins/ScrollProgressPlugin.astro'
+import ScrollToTopPlugin from '@/plugins/ScrollToTopPlugin.astro'
+import config from '@/theme.config'
+
+export type Props = BaseLayoutProps & {
+  frontmatter: Partial<{
+    scrollProgress: boolean
+    activeHeaderLink: string
+    scrollToTop: boolean
+  }>
+}
+
+const { frontmatter } = Astro.props
+
+const {
+  scrollProgress = config.scrollProgress,
+  scrollToTop = config.scrollToTop,
+  activeHeaderLink
+} = frontmatter
+---
+
+<BaseLayout frontmatter={frontmatter}>
+  <div id="page-wrapper">
+    <Header activeHeaderLink={activeHeaderLink} />
+    <main class="mt-6 sm:mt-12">
+      <Prose>
+        <slot />
+      </Prose>
+    </main>
+    <slot name="bottom" />
+    <Footer />
+  </div>
+  {scrollProgress && <ScrollProgressPlugin />}
+  {scrollToTop && <ScrollToTopPlugin />}
+</BaseLayout>

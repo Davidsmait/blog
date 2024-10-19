@@ -1,0 +1,46 @@
+---
+import TagsBar from '@/components/TagsBar.astro'
+import PageLayout, {
+  type Props as PageLayoutProps
+} from '@/layouts/PageLayout.astro'
+import HeadingAnchorsPlugin from '@/plugins/HeadingAnchorsPlugin.astro'
+import { toDateString } from '@/util'
+import { resolveTags } from '@/util/tags'
+import type { CollectionEntry } from 'astro:content'
+
+export interface Props {
+  post: CollectionEntry<'posts'>
+}
+
+const { post } = Astro.props
+
+const {
+  Content,
+  remarkPluginFrontmatter: { readingTime }
+} = await post.render()
+
+const frontmatter: PageLayoutProps['frontmatter'] = {
+  ...post.data,
+  openGraphImage: post.data.openGraphImage || `/posts/${post.slug}.png`,
+  activeHeaderLink: 'Blog',
+  scrollProgress: true
+}
+
+const publishedStr = toDateString(post.data.publishedDate)
+---
+
+<PageLayout {frontmatter}>
+  <h1 class="my-2 sm:my-4">{frontmatter.title}</h1>
+  <TagsBar tags={resolveTags(post.data.tags)} />
+
+  <div class="mt-4">
+    <span class="opacity-75">Published on <time>{publishedStr}</time> by</span>
+    <a class="clickable" href={`/authors/${post.data.author}`}
+      >{post.data.author}</a
+    > · <span class="whitespace-nowrap opacity-75">{readingTime} </span>
+  </div>
+  <article>
+    <Content />
+  </article>
+  <HeadingAnchorsPlugin />
+</PageLayout>
