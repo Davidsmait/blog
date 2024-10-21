@@ -1,14 +1,65 @@
 ---
-title: Ionic SQLite
+title: Ionic SQLite TypeORM
 description: Integra SQLite en tu aplicación de ionic
 publishedDate: 2024-10-18
 tags:
   - documentation
 ---
 
-Adding content in Nordlys is as easy as creating a new Markdown (or [MDX](https://docs.astro.build/en/guides/integrations-guide/mdx/)) file and starting to write. For projects and blog posts, `src/content/config.ts` contains the schema definitions, thus defines what properties need to and can be set in the frontmatter.
+En este documento se explica como poder integrar SQLite a tu aplicación de Ionic junto con TypeORM, solamente para las plataformas iOS y Android, si te interesa saber como implementarlo en otras plataformas como Web o Electron revisa la [documentación](https://github.com/capacitor-community/sqlite/blob/master/docs/TypeORM-Usage-From-5.6.0.md) oficial
 
-## Adding a New Page
+## Dependencias necesarias
+Estas son las dependencias necesarias para poder hacer la integración
+```shell
+npm install @capacitor-community/sqlite 
+npm install typeorm@latest
+npm install sqlite3
+
+
+npm install @types/node --save-dev 
+npm install @types/es6-shim
+npm install @types/events
+npm install es6-shim  
+
+```
+Habilita los decoradores como @Injectable(), @Entity(), @Column() y la manipulación de metadatos en tiempo de ejecución. En TypeORM, se usa para definir la estructura de entidades y columnas que representan las tablas de la base de datos.
+
+
+
+```shell 
+
+npm install reflect-metadata --save
+
+```
+Agrega reflect-metadata en el archivo principal de tu aplicación o en algún lugar que se ejecute antes de cualquier otro código
+```javascript
+import "reflect-metadata"
+```
+Si en algun punto encuentras problemas instala alguna de las siguientes dependencias
+```shell
+npm install @types/node --save-dev 
+npm install @types/es6-shim
+npm install @types/events
+npm install es6-shim  
+```
+
+```shell tsconfig.ts
+"compilerOptions": {
+	"types": ["node"],
+	"skipLibCheck": true,
+	"emitDecoratorMetadata": true,
+  "experimentalDecorators": true,
+
+}
+```
+
+
+
+## Estructura de carpetas 
+La estructura del directorio para TypeOrm puede ser elaborada de la siguiente manera, independientemente del framework usado
+
+![DavidSan logo](@/assets/screenshots/sqlite-typeorm-structure.png)
+
 
 To add a new page to Nordlys, navigate to the `src/pages` and create a new Markdown file. Most likely you'll want the page to use the default layout, so set that in the frontmatter. After that, you can start writing your content.
 
