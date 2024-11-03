@@ -37,7 +37,9 @@ export default defineThemeConfig({
   tagIcons: {
     tailwindcss: 'tabler--brand-tailwind',
     astro: 'tabler--brand-astro',
-    documentation: 'tabler--book'
+    documentation: 'tabler--book',
+    angular: 'tabler--brand-angular',
+    typescript: 'tabler--brand-typescript'
   },
   shikiThemes: {
     light: 'vitesse-light',

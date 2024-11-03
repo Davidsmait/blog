@@ -1,8 +1,8 @@
 ---
 layout: '@/layouts/LandingLayout.astro'
-title: David
-background: true
-logo: true
+title: David San Luis Aguirre
+background: false
+logo: false
 ---
 
 Desarrollador Full Stack.\
