@@ -46,6 +46,10 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: astro-dist
+          path: ./dist
+
+      - name: Verify build output
+        run: ls -la ./dist
 
       - name: Verify dist directory dist
         run: ls -la
@@ -60,7 +64,7 @@ jobs:
         id: netlify_deploy
         run: |
           netlify deploy \
-            --dir . \
+            --dir ./dist \
             --site ${{ secrets.NETLIFY_SITE_ID }} \
             --auth ${{ secrets.NETLIFY_API_TOKEN }}
 
