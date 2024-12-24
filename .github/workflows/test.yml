@@ -1,4 +1,4 @@
-name: Test Project
+name: Deploy to Netlify
 
 on:
   push:
@@ -47,14 +47,17 @@ jobs:
         with:
           name: astro-dist
 
+      - name: Verify dist directory
+        run: ls -la ./dist
+
       - name: Install Netlify
         run: npm install netlify-cli@17.10.1 -g
 
       - name: Deploy to Netlify
-        uses: nwtgck/actions-netlify@v1.2
-        with:
-          publish-dir: ./dist
-          production-deploy: true
-          netlify-auth-token: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          netlify-site-id: ${{ secrets.NETLIFY_SITE_ID }}
+        id: netlify_deploy
+        run: |
+          netlify deploy \
+            --dir dist \
+            --site ${{ secrets.NETLIFY_SITE_ID }} \
+            --auth ${{ secrets.NETLIFY_API_TOKEN }}
 
