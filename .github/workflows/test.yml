@@ -51,7 +51,7 @@ jobs:
         run: ls -la
 
       - name: Verify files
-        run: cd .. && ls -la /dist
+        run: cd .. && ls -la
 
       - name: Install Netlify
         run: npm install netlify-cli@17.10.1 -g
