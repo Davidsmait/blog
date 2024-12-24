@@ -22,6 +22,12 @@ jobs:
       - name: Run Astro build
         run: npx astro build
 
+      - name: Upload build as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: astro-dist
+          path: ./dist
+
       - name: Verify build output
         run: |
           if [ ! -d "./dist" ]; then
@@ -29,6 +35,7 @@ jobs:
             exit 1
           fi
           echo "Build completed successfully"
+          
 
   deploy:
     runs-on: ubuntu-latest
