@@ -48,13 +48,10 @@ jobs:
           name: astro-dist
 
       - name: Verify dist directory dist
-        run: ls -la dist
+        run: ls -la
 
-      - name: Verify dist directory /dist
-        run: ls -la /dist
-
-      - name: Verify dist directory ./dist
-        run: ls -la ./dist
+      - name: Verify files
+        run: cd .. && ls -la /dist
 
       - name: Install Netlify
         run: npm install netlify-cli@17.10.1 -g
