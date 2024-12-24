@@ -15,9 +15,10 @@ jobs:
         uses: actions/checkout@v3
         with:
           node-version: 20
+          cache: "npm"
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
       - name: Run Astro build
         run: npx astro build
@@ -46,10 +47,14 @@ jobs:
         with:
           name: astro-dist
 
+      - name: Install Netlify
+        run: npm install netlify-cli@17.10.1 -g
+
       - name: Deploy to Netlify
-        uses: nwtgck/actions-netlify@v1.2
-        with:
-          publish-dir: ./dist
-          production-deploy: true
-          netlify-auth-token: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          netlify-site-id: ${{ secrets.NETLIFY_BLOG_SITE_ID }}
+        id: netlify_deploy
+        run: |
+          netlify deploy \
+            --dir dist \
+            --site ${{ secrets.NETLIFY_BLOG_SITE_ID }} \
+            --auth ${{ secrets.NETLIFY_AUTH_TOKEN }}  
+
