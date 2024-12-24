@@ -47,9 +47,6 @@ jobs:
         with:
           name: astro-dist
 
-      - name: Build project
-        run: npm run build
-
       - name: Verify dist directory dist
         run: ls -la dist
 
