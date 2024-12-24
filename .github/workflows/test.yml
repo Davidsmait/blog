@@ -1,0 +1,33 @@
+name: Test Project
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    container:
+      image: node:20
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run Astro build
+        run: npx astro build
+
+      - name: Verify build output
+        run: |
+          if [ ! -d "./dist" ]; then
+            echo "Build failed: 'dist' directory not found"
+            exit 1
+          fi
+          echo "Build completed successfully"
+    
+
