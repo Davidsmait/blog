@@ -96,7 +96,7 @@ Genera metadatos de tipo para decoradores en tiempo de compilación. Librerías 
 ---
 
 ## Estructura de carpetas 
-La estructura del directorio para TypeOrm puede ser elaborada de la siguiente manera, independientemente del framework usado
+La estructura del directorio para TypeOrm puede ser elaborada de la siguiente manera, independientemente del framework usado. Para más detalles, consulta la [documentación oficial](https://github.com/capacitor-community/sqlite/blob/master/docs/TypeORM-Usage-From-5.6.0.md).
 
 ![DavidSan logo](@/assets/screenshots/sqlite-typeorm-structure.png)
 
@@ -236,11 +236,11 @@ const sqliteParams = {
 export default sqliteParams;
 
 ```
-Para más detalles, consulta la [documentación oficial](https://github.com/capacitor-community/sqlite/blob/master/docs/TypeORM-Usage-From-5.6.0.md) para mas detalles 
+
 
 ### 5. **Repositorios**
 
-Los repositorios proporcionan una manera sencilla de interactuar con las entidades. En este ejemplo, el repositorio para la entidad Author está configurado.
+Los repositorios proporcionan una manera sencilla de interactuar con las entidades. En este ejemplo, el repositorio para la entidad ProyectoEntity está configurado.
 
 ```typescript
 import {Injectable} from "@angular/core";
@@ -277,5 +277,105 @@ export class OperacionesRepository {
                 'unidades',]
         })
     }
+}
+```
+
+## Inicialización de la Base de Datos en Ionic con SQLite
+
+Este servicio se encarga de inicializar la base de datos SQLite, ejecutar las migraciones necesarias y crear las tablas correspondientes en una aplicación basada en Ionic y Angular. El código que se muestra a continuación realiza las siguientes tareas clave:
+
+1. **Comprobar la existencia de la base de datos**
+2. **Inicializar las conexiones y las fuentes de datos**
+3. **Ejecutar las migraciones**
+4. **Crear las tablas necesarias**
+5. **Cargar y ejecutar los scripts SQL desde archivos locales**
+
+### Código del Servicio `SqliteService`
+
+```typescript
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { lastValueFrom } from 'rxjs';
+import db from "../../../database/datasources/DataSource";
+import sqliteParams from "../../../database/sqliteParams";
+
+@Injectable({
+    providedIn: 'root'
+})
+export class SqliteService {
+
+    constructor(private http: HttpClient) { }
+
+    // Método principal para inicializar la base de datos
+    async initDatabase() {
+        await this.initializeDataSources();  // Inicializa las conexiones de la base de datos
+        await this.initTables();  // Crea las tablas necesarias
+    }
+
+    // Método para inicializar las fuentes de datos y verificar las conexiones
+    private async initializeDataSources() {
+        // Verifica si la base de datos existe
+        await this.checkDatabaseExists();
+        console.log("Verificación de conexiones en proceso...");
+
+        // Comprueba la consistencia de la conexión SQLite
+        await sqliteParams.connection.checkConnectionsConsistency()
+            .catch((e) => {
+                console.log(e);
+                return {};
+            });
+
+        // Inicializa la fuente de datos
+        console.log("Inicializando base de datos...");
+        await db.dataSource.initialize();
+        console.log("Base de datos inicializada.");
+
+        // Si la base de datos se ha inicializado correctamente, ejecuta las migraciones
+        if (db.dataSource.isInitialized) {
+            await db.dataSource.runMigrations();
+        }
+
+        // Si la plataforma es web, guarda la base de datos en el almacenamiento local
+        if (sqliteParams.platform === 'web') {
+            await sqliteParams.connection.saveToStore(db.dbName);
+        }
+    }
+
+    // Método para comprobar si la base de datos ya existe
+    async checkDatabaseExists(): Promise<boolean> {
+        try {
+            const result = await sqliteParams.connection.isDatabase(db.dbName);
+            console.log("¿La base de datos existe? ", result.result);
+            return result.result ?? false;
+        } catch (error) {
+            console.error('Error al verificar la existencia de la base de datos:', error);
+            return false;
+        }
+    }
+
+    // Método para inicializar las tablas en la base de datos
+    private async initTables() {
+        console.log("Iniciando creación de tablas");
+
+        // Obtiene la cadena SQL para crear las tablas
+        const createTablesSQL = await this.getDbSQLString();
+        console.log("SQL para crear tablas: ", createTablesSQL);
+
+        // Ejecuta el query para crear las tablas
+        const database = await db.dataSource.query(createTablesSQL);
+        console.log("Resultado de la creación de tablas: ", database);
+
+        // Ejemplo de pruebas de consultas
+        db.dataSource.query(`SELECT * FROM types`)
+            .then((result) => {
+                console.log("Tipos disponibles:", result.length);
+            });
+    }
+
+    // Método para obtener el script SQL para crear las tablas de la base de datos
+    private getDbSQLString() {
+        return lastValueFrom(this.http.get('assets/scripts/0.0.2.sql', { responseType: 'text' }));
+    }
+
 }
 ```
