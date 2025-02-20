@@ -107,7 +107,9 @@ El proyecto está organizado en varios archivos clave, como se muestra a continu
 2. **Entidades** - Define las entidades de *Author*, *Category* y *Post*.
 3. **Migraciones** - Configura las migraciones de la base de datos.
 4. **Parametros SQLite** - Configura la conexión SQLite utilizando Capacitor.
-5. **Utilidades** - Funciones auxiliares como contar elementos en las tablas.
+5. **Repositorios** - Proporciona los repositorios para interactuar con las entidades en la base de datos.
+
+[//]: # (5. **Utilidades** - Funciones auxiliares como contar elementos en las tablas.)
 
 ## Archivos Clave
 
@@ -203,4 +205,77 @@ export class UnidadEntity {
 
 }
 
+```
+
+### 4 **Migraciones**
+El archivo de migraciones se utiliza para mantener la base de datos sincronizada con las entidades definidas. En este ejemplo, el archivo index.ts está vacío y se debe completar según las necesidades de migración de la base de datos.
+
+```typescript index.ts
+export {};
+```
+
+### 4. **Parametros SQLite: sqliteParams.ts**
+
+Configura la conexión SQLite utilizando el plugin de Capacitor.
+
+
+```typescript sqliteParams.ts
+import { Capacitor } from '@capacitor/core';
+import { CapacitorSQLite, SQLiteConnection } from '@capacitor-community/sqlite';
+
+const sqliteConnection: SQLiteConnection = new SQLiteConnection(CapacitorSQLite);
+const sqlitePlugin = CapacitorSQLite;
+const platform: string = Capacitor.getPlatform();
+
+const sqliteParams = {
+  connection: sqliteConnection,
+  plugin: sqlitePlugin,
+  platform: platform
+}
+
+export default sqliteParams;
+
+```
+Para más detalles, consulta la [documentación oficial](https://github.com/capacitor-community/sqlite/blob/master/docs/TypeORM-Usage-From-5.6.0.md) para mas detalles 
+
+### 5. **Repositorios**
+
+Los repositorios proporcionan una manera sencilla de interactuar con las entidades. En este ejemplo, el repositorio para la entidad Author está configurado.
+
+```typescript
+import {Injectable} from "@angular/core";
+import {Repository} from "typeorm";
+import {ProyectoEntity} from "../entities/Operaciones/Proyecto.entity";
+import db from "../datasources/DataSource";
+import {Proyecto} from "../../app/shared/models/GetProyectResponse.model";
+
+@Injectable({
+  providedIn: 'root'
+})
+export class OperacionesRepository {
+    proyectosRepository: Repository<ProyectoEntity>
+
+    constructor() {
+        this.proyectosRepository = db.dataSource.getRepository(ProyectoEntity)
+    }
+
+    async saveProyectos(proyectos: Proyecto[]){
+        const proyectosEntities = proyectos.map(proyecto => {
+            const proyectoEntity = new ProyectoEntity();
+            proyectoEntity.proyecto_id = proyecto.idproyecto;
+            proyectoEntity.proyecto = proyecto.proyecto;
+
+            return proyectoEntity;
+        });
+
+        await this.proyectosRepository.save(proyectosEntities);
+    }
+
+    getIncidencias(){
+        return this.proyectosRepository.find({
+            relations: [
+                'unidades',]
+        })
+    }
+}
 ```
