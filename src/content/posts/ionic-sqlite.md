@@ -10,6 +10,8 @@ En este documento se explica como poder integrar SQLite a tu aplicación de Ioni
 
 ## Dependencias necesarias
 Estas son las dependencias necesarias para poder hacer la integración
+
+
 ```shell
 npm install @capacitor-community/sqlite 
 npm install typeorm@latest
@@ -25,25 +27,41 @@ npm install es6-shim
 Habilita los decoradores como @Injectable(), @Entity(), @Column() y la manipulación de metadatos en tiempo de ejecución. En TypeORM, se usa para definir la estructura de entidades y columnas que representan las tablas de la base de datos.
 
 
-
 ```shell 
 
 npm install reflect-metadata --save
 
 ```
 Agrega reflect-metadata en el archivo principal de tu aplicación o en algún lugar que se ejecute antes de cualquier otro código
+
 ```javascript
 import "reflect-metadata"
 ```
-Si en algun punto encuentras problemas instala alguna de las siguientes dependencias
-```shell
-npm install @types/node --save-dev 
-npm install @types/es6-shim
-npm install @types/events
-npm install es6-shim  
-```
+
+[//]: # (Si en algun punto encuentras problemas instala alguna de las siguientes dependencias)
+
+[//]: # (```shell)
+
+[//]: # (npm install @types/node --save-dev )
+
+[//]: # (npm install @types/es6-shim)
+
+[//]: # (npm install @types/events)
+
+[//]: # (npm install es6-shim  )
+
+[//]: # (```)
+
+Al integrar **SQLite** con **Capacitor** en un proyecto TypeScript, ciertas opciones en `tsconfig.json` son esenciales para evitar errores y habilitar funcionalidades clave. Este documento explica cada configuración y su relevancia.
+
+---
+
+## **Opciones Clave en `compilerOptions`**
+
+Al integrar **SQLite** con **Capacitor** en un proyecto TypeScript, ciertas opciones en `tsconfig.json` son esenciales para evitar errores y habilitar funcionalidades clave. Este documento explica cada configuración y su relevancia.
 
 ```shell tsconfig.ts
+
 "compilerOptions": {
 	"types": ["node"],
 	"skipLibCheck": true,
@@ -53,7 +71,29 @@ npm install es6-shim
 }
 ```
 
+### `"types": ["node"]`
+Incluye los tipos de Node.js en el proyecto. Capacitor utiliza APIs nativas que dependen de módulos como `fs`, `path`, o `Buffer`, incluso en entornos móviles. Sin esta opción, TypeScript mostrará errores como:
 
+### `"skipLibCheck": true`
+Omite la verificación de tipos en archivos de declaración (*.d.ts). Librerías como SQLite o plugins de Capacitor pueden tener tipos conflictivos con otras dependencias. Esta opción acelera la compilación y evita errores irrelevantes.
+
+### `"experimentalDecorators": true`
+Habilita el uso de decoradores en el código.  Si usas TypeORM para definir entidades de SQLite o frameworks como Ionic/Angular, los decoradores son esenciales:  
+
+```bash
+  @Entity()
+export class Product {
+  @PrimaryGeneratedColumn()
+  id: number;
+
+  @Column()
+  name: string;
+}
+  ```
+### `"emitDecoratorMetadata": true`
+Genera metadatos de tipo para decoradores en tiempo de compilación. Librerías como TypeORM o InversifyJS requieren metadatos para funcionar correctamente (ej: inferir tipos de columnas en SQLite).
+
+---
 
 ## Estructura de carpetas 
 La estructura del directorio para TypeOrm puede ser elaborada de la siguiente manera, independientemente del framework usado
@@ -61,96 +101,106 @@ La estructura del directorio para TypeOrm puede ser elaborada de la siguiente ma
 ![DavidSan logo](@/assets/screenshots/sqlite-typeorm-structure.png)
 
 
-To add a new page to Nordlys, navigate to the `src/pages` and create a new Markdown file. Most likely you'll want the page to use the default layout, so set that in the frontmatter. After that, you can start writing your content.
+El proyecto está organizado en varios archivos clave, como se muestra a continuación:
 
-```markdown src/pages/faq.md
----
-layout: '@/layouts/PageLayout.astro'
-title: FAQ
----
+1. **DataSource Configuración** - Configura la conexión con la base de datos.
+2. **Entidades** - Define las entidades de *Author*, *Category* y *Post*.
+3. **Migraciones** - Configura las migraciones de la base de datos.
+4. **Parametros SQLite** - Configura la conexión SQLite utilizando Capacitor.
+5. **Utilidades** - Funciones auxiliares como contar elementos en las tablas.
 
-## How can I contact you?
+## Archivos Clave
 
-You can contact me at ...
+### 1. **DataSource: AuthorDataSource.ts**
+
+Configura la conexión de TypeORM para la base de datos SQLite utilizando Capacitor.
+
+```typescript DataSource.ts
+import { DataSource , type DataSourceOptions} from 'typeorm';
+import sqliteParams from '../sqliteParams';
+import * as entities from '../entities/author';
+import * as migrations from '../migrations/author';
+
+const dbName = "YOUR_DATABASE_NAME";
+
+const dataSourceConfig: DataSourceOptions = {
+    name: 'authorConnection',
+    type: 'capacitor',
+    driver: sqliteParams.connection,
+    database: dbName,
+    mode: 'no-encryption',
+    entities: entities,
+    migrations: migrations, //["../migrations/author/*{.ts,.js}"]
+    subscribers: [],
+    logging: [/*'query',*/ 'error','schema'],
+    synchronize: false,     // !!!You will lose all data in database if set to `true`
+    migrationsRun: false  // Required with capacitor type
+};
+export const dataSourceAuthor = new DataSource(dataSourceConfig);
+const authorDataSource = {
+    dataSource: dataSourceAuthor,
+    dbName: dbName
+};
+
+export default authorDataSource;
 ```
 
-Go to `localhost:4321/faq` in your browser, and you will now see your newly created FAQ page! The frontmatter of a page is defined as follows.
+### 2. **Entidades**
 
-```ts
-// non-set properties default to the properties set in the theme config
-type PageFrontmatter = {
-  title?: string // tab title
-  author?: string // meta
-  description?: string // meta
-  canonicalURL?: string // meta
-  openGraphImage?: string | HTMLAttributes<'img'> // relative URL to image in public folder or local asset
-  publishedDate?: Date // meta
-  scrollProgress?: boolean // bar indicating scroll location on top of page
-  activeHeaderLink?: string // title or href of the active header link
-  scrollToTop?: boolean // "Back to top" button when having scrolled far down
+A continuación, se define un ejemplo de cómo estructurar las entidades y sus relaciones a partir de un diagrama. Revisa el siguiente diagrama para obtener más detalles sobre la estructura de las entidades.
+
+![Diagrama de Entidades](@/assets/screenshots/diagrama-entidades-ejemplo1.png)
+
+En este diagrama, se muestran las entidades clave y las relaciones que existen entre ellas. Utiliza este ejemplo como referencia para crear las entidades necesarias en tu propio modelo de datos.
+
+```typescript Proyecto.entity.ts
+import {Entity, PrimaryGeneratedColumn, Column, OneToMany, PrimaryColumn} from 'typeorm';
+
+import {UnidadEntity} from "./Unidad.entity";
+
+@Entity('proyectos')
+export class ProyectoEntity {
+  @PrimaryColumn()
+  proyecto_id!: number;
+
+  @Column({ type: 'text', nullable: true })
+  proyecto!: string;
+
+  @OneToMany(() => UnidadEntity, (unidad) => unidad.proyecto)
+  unidades!: UnidadEntity[];
 }
+
 ```
 
-## Writing a Blog Post
 
-Writing a blog post is essentially the same as adding a new page, with slightly different frontmatter. You can follow the same procedure, except you'll create the file in the `src/content/posts` directory.
+```typescript Unidad.entity.ts
+import {
+    Entity,
+    PrimaryGeneratedColumn,
+    Column,
+    ManyToOne,
+    JoinColumn,
+    Relation,
+    PrimaryColumn,
+    OneToMany
+} from 'typeorm';
+import {ProyectoEntity} from "./Proyecto.entity";
 
-```markdown src/content/posts/i-learned-today.md
----
-title: I learned something
-description: A quick update on the new things I learned
-publishedDate: 2024-10-06
-tags:
-  - programming
-  - TIL
----
+@Entity('unidades')
+export class UnidadEntity {
+    @PrimaryColumn()
+    unidad_id!: number;
 
-So today, I started learning a new programming language. It is really cool because ...
-```
+    @PrimaryColumn()
+    proyecto_id!: number;
 
-Navigate to `localhost:4321/posts`, and your new post will have appear there. Clicking on it will show the content you wrote, nicely rendered as text! The frontmatter of a post is defined as follows.
+    @Column({ type: 'text', nullable: false })
+    nombre!: string;
 
-```ts
-type PostFrontmatter = {
-  title: string
-  author?: string // defaults author set in theme config
-  description: string
-  publishedDate: Date
-  draft?: boolean // defaults to false
-  canonicalURL?: string // meta
-  openGraphImage?: string | HTMLAttributes<'img'> // either URL to image in public folder or local asset
-  tags?: string[] // defaults to []
+    @ManyToOne(() => ProyectoEntity, (proyecto) => proyecto.unidades)
+    @JoinColumn({ name: 'proyecto_id'})
+    proyecto!: Relation<ProyectoEntity>;
+
 }
+
 ```
-
-## Adding a New Project
-
-To add a new project in Nordlys, simply create a file in the `src/content/projects` directory. Set the project properties, write a short description, and you're done!
-
-```markdown src/content/projects/awesome-app.md
----
-title: Awesome App
-startDate: 2023-10-06
-endDate: 2024-10-06
-tags:
-  - HTML
-  - CSS
-  - TypeScript
----
-
-I developed an awesome app, using `HTML`, `CSS` and `TypeScript`! The app can ...
-```
-
-Take a look at `localhost:4321/projects`, and your new project should be listed there! The frontmatter of a project is defined as follows.
-
-```ts
-type ProjectFrontmatter = {
-  title: string
-  url?: string // can be relative or absolute
-  startDate: Date
-  endDate?: Date // shows "Now" if not set
-  tags?: string[] // defaults to []
-}
-```
-
-Note that projects don't generate a dedicated page, but are just listed on the `/projects` page.
