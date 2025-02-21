@@ -2,6 +2,7 @@
 title: Ionic SQLite TypeORM
 description: Integra SQLite en tu aplicación de ionic
 publishedDate: 2024-10-18
+author: "David San Luis Aguirre"
 tags:
   - documentation
 ---

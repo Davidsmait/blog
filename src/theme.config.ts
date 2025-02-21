@@ -4,7 +4,7 @@ export default defineThemeConfig({
   site: 'https://nordlys.fjelloverflow.dev',
   title: 'David San Luis Aguirre',
   description: 'A minimal Astro blog theme',
-  author: 'DavidSmait',
+  author: 'David San Luis',
   navbarItems: [
     { label: 'Blog', href: '/posts' },
     { label: 'Projects', href: '/projects' },
