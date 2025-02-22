@@ -104,17 +104,18 @@ La estructura del directorio para TypeOrm puede ser elaborada de la siguiente ma
 
 El proyecto está organizado en varios archivos clave, como se muestra a continuación:
 
-1. **DataSource Configuración** - Configura la conexión con la base de datos.
-2. **Entidades** - Define las entidades de *Author*, *Category* y *Post*.
-3. **Migraciones** - Configura las migraciones de la base de datos.
-4. **Parametros SQLite** - Configura la conexión SQLite utilizando Capacitor.
-5. **Repositorios** - Proporciona los repositorios para interactuar con las entidades en la base de datos.
+1. [**DataSource Configuración**](#1-datasource-authordatasourcets) - Configura la conexión con la base de datos.
+2. [**Entidades**](#2-entidades) - Define las entidades de *Author*, *Category* y *Post*.
+3. [**Migraciones**](#3-migraciones) - Configura las migraciones de la base de datos.
+4. [**Parametros SQLite**](#4-parametros-sqlite-sqliteparamsts) - Configura la conexión SQLite utilizando Capacitor.
+5. [**Repositorios**](#5-repositorios) - Proporciona los repositorios para interactuar con las entidades en la base de datos.
+
 
 [//]: # (5. **Utilidades** - Funciones auxiliares como contar elementos en las tablas.)
 
 ## Archivos Clave
 
-### 1. **DataSource: AuthorDataSource.ts**
+### 1. **DataSource: AuthorDataSource.ts** 
 
 Configura la conexión de TypeORM para la base de datos SQLite utilizando Capacitor.
 
@@ -133,7 +134,7 @@ const dataSourceConfig: DataSourceOptions = {
     database: dbName,
     mode: 'no-encryption',
     entities: entities,
-    migrations: migrations, //["../migrations/author/*{.ts,.js}"]
+    migrations: migrations, //["../migrations/your_file/*{.ts,.js}"]
     subscribers: [],
     logging: [/*'query',*/ 'error','schema'],
     synchronize: false,     // !!!You will lose all data in database if set to `true`
@@ -208,7 +209,7 @@ export class UnidadEntity {
 
 ```
 
-### 4 **Migraciones**
+### 3 **Migraciones**
 El archivo de migraciones se utiliza para mantener la base de datos sincronizada con las entidades definidas. En este ejemplo, el archivo index.ts está vacío y se debe completar según las necesidades de migración de la base de datos.
 
 ```typescript index.ts
@@ -380,3 +381,15 @@ export class SqliteService {
 
 }
 ```
+
+## Ejemplo de consulta usando el DataSource
+
+Para ejecutar una consulta en tu base de datos usando el `datasource` que creamos anterirormente puedes hacer, puedes hacer lo siguiente:
+
+```typescript
+// Ejemplo de consulta SQL
+db.dataSource.query('SELECT * FROM resultados;').then((resultados) => {
+  console.log('Query ejecutada:', resultados);
+}).catch((error) => {
+  console.error('Error al ejecutar la query:', error);
+});
