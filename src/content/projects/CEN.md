@@ -1,7 +1,7 @@
 ---
 title: Lead Engineer - Muri / CEN
 startDate: 2024-08-29
-endDate: 2024-09-28
+endDate: 2025-01-25
 tags:
   - Angular
   - typescript
