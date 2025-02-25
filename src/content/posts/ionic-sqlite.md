@@ -1,6 +1,6 @@
 ---
-title: Ionic SQLite TypeORM
-description: Integra SQLite en tu aplicación de ionic
+title: 🚀 Integración de SQLite con TypeORM en Ionic
+description: Aprende a integrar SQLite en tu aplicación Ionic con TypeORM para iOS y Android. Este documento te guiará paso a paso en la configuración y uso de SQLite en tu app. Si necesitas compatibilidad con Web o Electron, consulta la documentación oficial.
 publishedDate: 2024-10-18
 author: "David San Luis Aguirre"
 tags:

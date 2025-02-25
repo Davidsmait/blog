@@ -1,7 +1,7 @@
 import { defineThemeConfig } from './types'
 
 export default defineThemeConfig({
-  site: 'https://nordlys.fjelloverflow.dev',
+  site: 'https://davidsanluisaguirre.com',
   title: 'David San Luis Aguirre',
   description: 'A minimal Astro blog theme',
   author: 'David San Luis',
@@ -32,7 +32,7 @@ export default defineThemeConfig({
   openGraphImage: undefined,
   postsPerPage: 4,
   projectsPerPage: 3,
-  scrollProgress: false,
+  scrollProgress: true,
   scrollToTop: true,
   tagIcons: {
     tailwindcss: 'tabler--brand-tailwind',
