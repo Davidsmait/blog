@@ -11,6 +11,7 @@
 <p align="center">
   <strong>Astro Blog</strong> – Un blog creado con Astro
 </p>
+
 ![Preview](./public/preview.png)
 
 ## Documentation
