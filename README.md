@@ -14,10 +14,6 @@
 
 ![Preview](./public/preview.png)
 
-## Documentation
-
-The theme is self-documenting. Just head over to [nordlys.fjelloverflow.dev](https://nordlys.fjelloverflow.dev/posts/) for examples and tutorials on how to use and customize the theme.
-
 ## Stack
 
 - **Language**: TypeScript
