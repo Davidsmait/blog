@@ -105,6 +105,7 @@ La estructura del directorio para TypeOrm puede ser elaborada de la siguiente ma
 El proyecto está organizado en varios archivos clave, como se muestra a continuación:
 
 1. [**DataSource Configuración**](#1-datasource-authordatasourcets) - Configura la conexión con la base de datos.
+1. [**DataSource Configuración**](#1-datasource-authordatasourcets) - Configura la conexión con la base de datos.
 2. [**Entidades**](#2-entidades) - Define las entidades de *Author*, *Category* y *Post*.
 3. [**Migraciones**](#3-migraciones) - Configura las migraciones de la base de datos.
 4. [**Parametros SQLite**](#4-parametros-sqlite-sqliteparamsts) - Configura la conexión SQLite utilizando Capacitor.
@@ -115,7 +116,7 @@ El proyecto está organizado en varios archivos clave, como se muestra a continu
 
 ## Archivos Clave
 
-### 1. **DataSource: AuthorDataSource.ts** 
+### 1. **DataSource: DataSource.ts** 
 
 Configura la conexión de TypeORM para la base de datos SQLite utilizando Capacitor.
 
