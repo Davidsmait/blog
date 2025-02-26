@@ -384,7 +384,7 @@ export class SqliteService {
 
 ## Ejemplo de consulta usando el DataSource
 
-Para ejecutar una consulta en tu base de datos usando el `datasource` que creamos anterirormente puedes hacer, puedes hacer lo siguiente:
+Para ejecutar una consulta en tu base de datos usando el `datasource` que creamos anterirormente puedes hacer lo siguiente:
 
 ```typescript
 // Ejemplo de consulta SQL
