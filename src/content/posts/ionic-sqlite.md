@@ -394,3 +394,14 @@ db.dataSource.query('SELECT * FROM resultados;').then((resultados) => {
 }).catch((error) => {
   console.error('Error al ejecutar la query:', error);
 });
+```
+
+## 🧩 [Template Base SQLite + Ionic/Capacitor](https://github.com/Davidsmait/sqlite-capacitor-ionic-skeleton)
+[![GitHub stars](https://img.shields.io/github/stars/Davidsmait/sqlite-capacitor-ionic-skeleton?style=for-the-badge)](https://github.com/Davidsmait/sqlite-capacitor-ionic-skeleton/stargazers)
+
+**¿Para qué sirve?**  
+Este skeleton es tu punto de partida para apps móviles con:  
+✅ Base de datos offline lista para usar  
+✅ Configuración de Capacitor pre-deploy (iOS/Android)  
+✅ Estructura de carpetas según mejores prácticas
+
