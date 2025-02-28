@@ -396,7 +396,7 @@ db.dataSource.query('SELECT * FROM resultados;').then((resultados) => {
 });
 ```
 
-## 🧩 [Template Base SQLite + Ionic/Capacitor](https://github.com/Davidsmait/sqlite-capacitor-ionic-skeleton)
+## 🧩 [Template Base SQLite + Ionic/Capacitor](https://github.com/Davidsmait/sqlite-capacitor-ionic-skeleton) <span style="color: #2ecc71;">(Nuevo!)</span>
 [![GitHub stars](https://img.shields.io/github/stars/Davidsmait/sqlite-capacitor-ionic-skeleton?style=for-the-badge)](https://github.com/Davidsmait/sqlite-capacitor-ionic-skeleton/stargazers)
 
 **¿Para qué sirve?**  
