@@ -28,7 +28,7 @@ Antes de comenzar, asegúrese de contar con:
 
 2. **Seleccionar Tipo de Fuente de Datos**
    - En el wizard de creación:
-      - **Tipo**: Selecciona **JSON File** (última opción en la lista)
+      - **Tipo**: Selecciona **JSON File**
       - **Nombre**: `JSON_Adapter_iNVOICE` (usar nombre descriptivo)
 
 3. **Configurar Ruta del JSON** 🗂️
@@ -117,7 +117,7 @@ Para incluir tablas con estructuras complejas (ej: lista de ítems dentro de `in
       | Variable | Expresión | Cálculo | Uso |
       |----------|-----------|---------|-----|
       | TotalItems | `$F{quantity}` | Sum | Pie de tabla |
-      | SubTotal | `$F{quantity * $F{unit_price} | Sum | Sección totales |
+      | SubTotal | `$F{quantity * $F{unit_price}` | Sum | Sección totales |
       | GranTotal | `$F{quantity} * $F{unit_price} * (1 + $F{tax_rate})` | Sum | Resumen final |
 
 3. **Integración de variables en diseño**
