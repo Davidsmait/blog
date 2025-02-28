@@ -18,9 +18,9 @@ Antes de comenzar, asegúrese de contar con:
 - [**Jaspersoft Studio**](https://community.jaspersoft.com/download-jaspersoft/community-edition/) instalado para diseñar el reporte. En este tutorial se usara la version 6.21.3.
 - Un archivo [**JSON**](/jsons/invoices-json-examples) que sirva como fuente de datos.
 
-### Paso 1: Diseñar el reporte en Jaspersoft Studio
+## Sección 1: Diseñar el reporte en Jaspersoft Studio
 
-#### 1.1 Configurar el Origen de Datos JSON
+### Paso 1. **Configurar el Origen de Datos JSON**
 
 1. **Acceder al Administrador de Data Adapters**
    - En la barra lateral izquierda, localiza **Repository Explorer**
@@ -153,7 +153,7 @@ Para incluir tablas con estructuras complejas (ej: lista de ítems dentro de `in
         - Requerido para la generación de reportes en tiempo de ejecución.
 
 
-## Paso 2: Configurar el proyecto Scala
+## Sección 2: Configurar el proyecto Scala
 
 Agregue las siguientes dependencias en su archivo `build.sbt`:
 
