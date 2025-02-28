@@ -5,4 +5,4 @@ title: CEN
 
 ## CEN
 
-About...
+🚧 ¡Este sitio está en construcción! 🚧
