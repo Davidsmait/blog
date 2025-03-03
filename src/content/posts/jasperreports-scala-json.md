@@ -153,16 +153,154 @@ Para incluir tablas con estructuras complejas (ej: lista de ítems dentro de `in
         - Requerido para la generación de reportes en tiempo de ejecución.
 
 
-## Sección 2: Configurar el proyecto Scala
+## Sección 2: Configuración del Proyecto Scala
 
-Agregue las siguientes dependencias en su archivo `build.sbt`:
+### 2.1 Agregar Dependencias
+Incluye JasperReports en tu `build.sbt` (usa siempre la última versión estable):
 
 ```scala
+val jasperReportsVersion = "6.21.4"  // Versión con soporte para JSON y Java 11+
+
 libraryDependencies ++= Seq(
-  "net.sf.jasperreports" % "jasperreports" % "6.20.0",
-  "com.fasterxml.jackson.core" % "jackson-databind" % "2.15.0"
+  "net.sf.jasperreports" % "jasperreports" % jasperReportsVersion
 )
 ```
 
-🚧 ¡Este sitio está en construcción! 🚧
+### 2.2 Cargar Datos JSON desde Recursos
 
+```scala
+import scala.io.Source
+
+def readJsonFile(fileName: String): String = {
+  // Carga archivo desde src/main/resources
+  val source = Source.fromResource(fileName)
+  try {
+    source.mkString  // Convierte a String
+  } finally {
+    source.close()  // Importante: Cierra el recurso
+  }
+}
+
+// Uso: carga tu archivo JSON de ejemplo
+val jsonData = readJsonFile("invoice1.json")
+```
+
+### 2.3 Crear DataSource para JasperReports
+
+```scala
+import java.io.ByteArrayInputStream
+import net.sf.jasperreports.engine.data.JsonDataSource
+
+// Convierte el String JSON a InputStream
+val jsonStream = new ByteArrayInputStream(jsonData.getBytes("UTF-8"))
+
+// Crea DataSource usando JSONPath (aquí "invoice" es el nodo raíz)
+val dataSource = new JsonDataSource(jsonStream, "invoice")
+```
+### 2.4 Configurar Entradas/Salidas
+
+```scala
+import java.io.{FileInputStream, FileOutputStream}
+
+// Plantilla compilada (.jasper)
+val template = new FileInputStream("src/main/resources/invoice.jasper")
+
+// Archivo PDF de salida
+val outputPdf = new FileOutputStream("src/main/resources/invoice1.pdf")
+```
+
+### 2.5 Definir Parámetros del Reporte
+
+
+```scala
+import scala.collection.mutable.Map
+
+val parameters = Map[String, AnyRef]()
+// Parámetros que coinciden con los definidos en el diseño .jrxml
+parameters.put("Company_Name", "Mi Empresa S.A.")  // Ejemplo de parámetro estático
+```
+
+### 2.6 Clases Esenciales para la Generación
+
+Modelo de Parámetros
+
+
+```scala
+import net.sf.jasperreports.engine.JRDataSource
+import java.io.{InputStream, OutputStream}
+
+// Trait base para diferentes tipos de plantillas
+sealed trait JasperTemplateParameters
+
+// Implementación específica para JSON
+case class JsonTemplateParameters(
+                                   datasource: JRDataSource,      
+                                   // Fuente de datos JSON
+                                   template: InputStream,         // Plantilla .jasper
+                                   outputStream: OutputStream,    // Destino del PDF
+                                   reportParameters: Map[String, AnyRef] = Map.empty  // Parámetros adicionales
+                                 ) extends JasperTemplateParameters
+
+```
+Generador de PDFs
+
+```scala
+
+import com.yourproject.reports.models.JsonTemplateParameters
+import net.sf.jasperreports.engine.{JRException, JasperExportManager, JasperFillManager, JasperPrint}
+
+import java.io.OutputStream
+import scala.jdk.CollectionConverters.*
+import scala.util.{Failure, Success, Try}
+
+
+class JasperPdfCreator {
+
+  override def writePdf(templateParameters: JasperTemplateParameters): Either[JRException, Unit] = {
+    templateParameters match
+    case templateParameters: JsonTemplateParameters =>
+      for {
+        jasperPrint <- fillReport(templateParameters)
+        _ <- generatePdf(jasperPrint, templateParameters.outputStream)
+      } yield()
+  }
+
+  private def fillReport(jsonTemplateParameters: JsonTemplateParameters): Either[JRException, JasperPrint] = {
+    val datasource = jsonTemplateParameters.datasource
+    Try {
+      JasperFillManager.fillReport(jsonTemplateParameters.template, jsonTemplateParameters.reportParameters.asJava, datasource)
+    } match {
+      case Success(jasperPrint) => Right(jasperPrint)
+      case Failure(exception: JRException) => Left(exception)
+      case Failure(other) => Left(new JRException("Unexpected error", other))
+    }
+  }
+
+  private def generatePdf(jasperPrint: JasperPrint, pdfOutputStream: OutputStream) : Either[JRException, Unit] = {
+    try {
+      Right(JasperExportManager.exportReportToPdfStream(jasperPrint, pdfOutputStream))
+    } catch
+    case e : JRException => Left(e)
+  }
+}
+
+```
+
+### 2.7 Ejecutar Generación de Reporte
+
+
+```scala
+val pdfGenerator = new JasperPdfCreator()
+
+pdfGenerator.generateReport(
+  JsonTemplateParameters(
+    datasource = dataSource,
+    template = template,
+    outputStream = outputPdf,
+    reportParameters = parameters
+  )
+) match {
+  case Right(_) => println("✅ Reporte generado exitosamente")
+  case Left(error) => println(s"❌ Error crítico: $error")
+}
+```
