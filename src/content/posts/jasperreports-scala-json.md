@@ -114,11 +114,12 @@ Para incluir tablas con estructuras complejas (ej: lista de ítems dentro de `in
       $F{precio} * $F{cantidad}
       ```
 Tipos comunes:
-| Variable | Expresión | Cálculo | Uso |
-|----------|-----------|---------|-----|
-| TotalItems | `$F{quantity}` | Sum | Pie de tabla |
-| SubTotal | `$F{quantity * $F{unit_price}` | Sum | Sección totales |
-| GranTotal | `$F{quantity} * $F{unit_price} * (1 + $F{tax_rate})` | Sum | Resumen final |
+| Variable  | Expresión                                          | Cálculo |
+|-----------|----------------------------------------------------|---------|
+| TotalItems| `$F{quantity}`                                     | Sum     |
+| SubTotal  | `$F{quantity * $F{unit_price}`                      | Sum     |
+| GranTotal | `$F{quantity} * $F{unit_price} * (1 + $F{tax_rate})` | Sum     |
+
 
 3. **Integración de variables en diseño**
    ```java
