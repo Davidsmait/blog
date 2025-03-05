@@ -6,7 +6,7 @@ title: CEN
 
 # Proceso de Desarrollo
 
-El proceso se estructuró en varias fases, comenzando por un exhaustivo análisis de los requerimientos, lo que permitió definir una solución que maximizara la experiencia de usuario y la integración con el sistema ERP existente.
+El proceso se estructuró en varias fases, comenzando por un análisis de los requerimientos, lo que permitió definir una solución que maximizara la experiencia de usuario y la integración con el sistema ERP existente.
 
 ## Análisis de Requerimientos
 
@@ -39,7 +39,7 @@ Se adoptó una arquitectura híbrida **offline-first** para garantizar funcional
 
 1. **Almacenamiento Local Inmediato:**
     - Los datos se guardan inmediatamente en una base de datos embebida (SQLite) en el dispositivo.
-    - Se han implementado métodos en el repositorio de las entidades para identificar y recuperar los registros que aún no se han enviado al servidor.
+    - Se implemenatron métodos en el repositorio de las entidades para identificar y recuperar los registros que aún no se han enviado al servidor.
 
 2. **Sincronización con el Servidor:**
     - Cuando la aplicación detecta que hay conexión a internet, utiliza el cliente HTTP de Angular para enviar los registros pendientes al servidor.
@@ -55,5 +55,23 @@ Este enfoque garantiza que la aplicación pueda recolectar y almacenar datos de 
 |-----------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------|
 | **Sincronización offline de datos críticos**                                | Implementación de capa de sincronización con:<br>- `SQLite` para almacenamiento local<br>- `TypeORM` para mapeo objeto-relacional<br>- Lógica de reintentos exponenciales con backoff inteligente | 99.8% de operaciones exitosas<br>en condiciones de conectividad intermitente             |
 | **Rechazo de imágenes por tamaño excesivo<br>(especialmente en dispositivos iOS)** | Integración de sistema de compresión en tiempo real:<br>- Reducción de calidad al 50%                                                                                                             | Reducción del 100% en peso de archivos<br>sin pérdida perceptible de calidad             |
-| **Validación de despachos/incidencias<br>dependientes de hardware**         | Flujo de permisos adaptativo:<br>1. Solicitud contextual con explicación UX<br>2. Fallback a configuración nativa<br>3. Mockeo de datos para desarrollo<br>4. Polyfills para API faltantes        | 100% de cumplimiento en:<br>- GPS activado<br>- Cámara accesible<br>- Permisos otorgados |
+| **Validación de despachos/incidencias<br>dependientes de hardware**         | Flujo de permisos adaptativo:<br>- Solicitud contextual con explicación UX<br>- Fallback a configuración nativa                                                                                   | 100% de cumplimiento en:<br>- GPS activado<br>- Cámara accesible<br>- Permisos otorgados |
 ---
+
+##  Diseño de Interfaz (UI/UX)
+### **Alineación con el ERP Existente**
+- **Auditoría Visual**:
+    - Análisis detallado del sistema ERP para extraer patrones de diseño (paleta de colores, tipografía, jerarquía visual).
+    - Replicamos el esquema de colores corporativos 
+
+<img
+src="/screenshots/login.png"
+alt="App modules screenshot"
+style=" height: auto; margin: 0 auto;"
+/>
+
+<img
+src="/screenshots/modulos.png"
+alt="App modules screenshot"
+style=" height: auto; margin: 0 auto;"
+/>
