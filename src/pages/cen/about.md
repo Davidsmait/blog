@@ -51,11 +51,12 @@ Este enfoque garantiza que la aplicación pueda recolectar y almacenar datos de 
 
 # Desafíos Técnicos y Soluciones
 
-| **Desafío**                                                                 | **Solución Implementada**                                                                                                                                                                         | **Resultado**                                                                            |
-|-----------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------|
-| **Sincronización offline de datos críticos**                                | Implementación de capa de sincronización con:<br>- `SQLite` para almacenamiento local<br>- `TypeORM` para mapeo objeto-relacional<br>- Lógica de reintentos exponenciales con backoff inteligente | 99.8% de operaciones exitosas<br>en condiciones de conectividad intermitente             |
-| **Rechazo de imágenes por tamaño excesivo<br>(especialmente en dispositivos iOS)** | Integración de sistema de compresión en tiempo real:<br>- Reducción de calidad al 50%                                                                                                             | Reducción del 100% en peso de archivos<br>sin pérdida perceptible de calidad             |
-| **Validación de despachos/incidencias<br>dependientes de hardware**         | Flujo de permisos adaptativo:<br>- Solicitud contextual con explicación UX<br>- Fallback a configuración nativa                                                                                   | 100% de cumplimiento en:<br>- GPS activado<br>- Cámara accesible<br>- Permisos otorgados |
+| **Desafío**                                                                 | **Solución Implementada**                                                                                                                                                                         |
+|-----------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Sincronización offline de datos críticos**                                | Implementación de capa de sincronización con:<br>- `SQLite` para almacenamiento local<br>- `TypeORM` para mapeo objeto-relacional<br>- Lógica de reintentos exponenciales con backoff inteligente |
+| **Rechazo de imágenes por tamaño excesivo<br>(especialmente en dispositivos iOS)** | Integración de sistema de compresión en tiempo real:<br>- Reducción de calidad al 50%                                                                                                             |
+| **Validación de despachos/incidencias<br>dependientes de hardware**         | Flujo de permisos adaptativo:<br>- Solicitud contextual con explicación UX<br>- Fallback a configuración nativa                                                                                   |
+
 ---
 
 ##  Diseño de Interfaz (UI/UX)
