@@ -53,8 +53,6 @@ import "reflect-metadata"
 
 [//]: # (```)
 
-Al integrar **SQLite** con **Capacitor** en un proyecto TypeScript, ciertas opciones en `tsconfig.json` son esenciales para evitar errores y habilitar funcionalidades clave. Este documento explica cada configuración y su relevancia.
-
 ---
 
 ## **Opciones Clave en `compilerOptions`**
