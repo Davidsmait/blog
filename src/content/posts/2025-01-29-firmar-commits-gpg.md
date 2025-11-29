@@ -1,7 +1,7 @@
 ---
 title: 'Cómo firmar automáticamente tus commits en Git con GPG'
 description: 'Guía completa para generar tu clave GPG, configurarla en Git y activar el firmado automático de commits.'
-publishedDate: 2025-11-29
+publishedDate: 2025-05-27
 author: 'David San Luis Aguirre'
 tags:
   - git
