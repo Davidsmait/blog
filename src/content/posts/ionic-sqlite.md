@@ -71,7 +71,7 @@ Al integrar **SQLite** con **Capacitor** en un proyecto TypeScript, ciertas opci
 ```
 
 ### `"types": ["node"]`
-Incluye los tipos de Node.js en el proyecto. Capacitor utiliza APIs nativas que dependen de módulos como `fs`, `path`, o `Buffer`, incluso en entornos móviles. Sin esta opción, TypeScript mostrará errores como:
+Incluye los tipos de Node.js en el proyecto. Capacitor utiliza APIs nativas que dependen de módulos como `fs`, `path`, o `Buffer`, incluso en entornos móviles. Sin esta opción, TypeScript mostrará errores.
 
 ### `"skipLibCheck": true`
 Omite la verificación de tipos en archivos de declaración (*.d.ts). Librerías como SQLite o plugins de Capacitor pueden tener tipos conflictivos con otras dependencias. Esta opción acelera la compilación y evita errores irrelevantes.
