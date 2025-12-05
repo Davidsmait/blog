@@ -7,11 +7,45 @@ activeHeaderLink: About
 ### Sobre Mí
 
 <img
-  src="/me/me5.jpeg"
-  alt="David San Luis Aguirre, desarrollador de software"
-  title="David San Luis Aguirre"
-  style="width: 300px; height: 300px; object-fit: cover; margin: 0 auto; border-radius: 50%"
+  src="/me/me6.JPG"
+  alt="David San Luis Aguirre"
+  loading="lazy"
+  decoding="async"
+  style="
+    width: 280px;
+    height: 280px;
+    object-fit: cover;
+    margin: 0 auto;
+    border-radius: 50%;
+    display: block;
+    transition:
+      transform 0.15s ease,
+      filter 0.35s ease,
+      box-shadow 0.35s ease;
+    filter: saturate(0.7) brightness(0.95);
+    box-shadow: 0 0 0 rgba(0,0,0,0);
+    cursor: pointer;
+  "
+  onmousemove="
+    const rect = this.getBoundingClientRect();
+    const x = (event.clientX - rect.left) / rect.width - 0.5;
+    const y = (event.clientY - rect.top) / rect.height - 0.5;
+    this.style.transform = 
+      'scale(1.12) translate(' + x * 12 + 'px, ' + y * 12 + 'px)';
+    this.style.filter = 'saturate(1.15) brightness(1.05)';
+    this.style.boxShadow = '0 14px 30px rgba(0,0,0,0.18)';
+  "
+  onmouseover="
+    this.style.transition = 'transform 0.1s ease';
+  "
+  onmouseout="
+    this.style.transform='scale(1)';
+    this.style.filter='saturate(0.7) brightness(0.95)';
+    this.style.boxShadow='0 0 0 rgba(0,0,0,0)';
+  "
 />
+
+
 
 Hola, soy **David San Luis Aguirre**, desarrollador Full Stack  con más de **3 años de experiencia** en el desarrollo de aplicaciones web y móviles.  
 He participado tanto en la construcción de interfaces como en la implementación de APIs y servicios backend, trabajando con tecnologías modernas a lo largo de todo el ciclo de desarrollo.
