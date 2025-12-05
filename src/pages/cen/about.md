@@ -3,7 +3,6 @@ layout: '@/layouts/PageLayout.astro'
 title: CEN
 ---
 
-
 # Proceso de Desarrollo
 
 El proceso se estructuró en varias fases, comenzando por un análisis de los requerimientos, lo que permitió definir una solución que maximizara la experiencia de usuario y la integración con el sistema ERP existente.
@@ -26,11 +25,13 @@ El proceso se estructuró en varias fases, comenzando por un análisis de los re
 Se adoptó una arquitectura híbrida **offline-first** para garantizar funcionalidad sin conexión, lo que significa que la aplicación puede funcionar sin conexión al almacenar los datos localmente y sincronizarlos con el servidor cuando se disponga de internet.
 
 ## **Arquitectura Técnica**
+
 ### **Frontend**
+
 - **Framework**: `Ionic + Angular` (aplicación híbrida Android/iOS).
 - **Gestión de Estado**: `NgRx` (con Store, Actions, Reducers y Effects para flujo unidireccional).
 - **Módulos de Hardware**:
-    - Escaneo de QR/códigos de barras: `capacitor barcode-scanner` + personalización para tolerancia a errores.
+  - Escaneo de QR/códigos de barras: `capacitor barcode-scanner` + personalización para tolerancia a errores.
 - **Persistencia local**: Base de datos embebida para almacenamiento offline seguro con `sqlite`.
 
 ### Backend (Integrado, desarrollado por el cliente )
@@ -38,12 +39,13 @@ Se adoptó una arquitectura híbrida **offline-first** para garantizar funcional
 ## Flujo de Trabajo
 
 1. **Almacenamiento Local Inmediato:**
-    - Los datos se guardan inmediatamente en una base de datos embebida (SQLite) en el dispositivo.
-    - Se implemenatron métodos en el repositorio de las entidades para identificar y recuperar los registros que aún no se han enviado al servidor.
+
+   - Los datos se guardan inmediatamente en una base de datos embebida (SQLite) en el dispositivo.
+   - Se implemenatron métodos en el repositorio de las entidades para identificar y recuperar los registros que aún no se han enviado al servidor.
 
 2. **Sincronización con el Servidor:**
-    - Cuando la aplicación detecta que hay conexión a internet, utiliza el cliente HTTP de Angular para enviar los registros pendientes al servidor.
-    - Una vez confirmado el envío, cada registro se marca como "enviado", de modo que solo se vuelven a procesar aquellos que siguen pendientes.
+   - Cuando la aplicación detecta que hay conexión a internet, utiliza el cliente HTTP de Angular para enviar los registros pendientes al servidor.
+   - Una vez confirmado el envío, cada registro se marca como "enviado", de modo que solo se vuelven a procesar aquellos que siguen pendientes.
 
 Este enfoque garantiza que la aplicación pueda recolectar y almacenar datos de manera confiable, sin importar la disponibilidad de conexión, y luego sincronizarlos automáticamente cuando sea posible.
 
@@ -51,19 +53,21 @@ Este enfoque garantiza que la aplicación pueda recolectar y almacenar datos de 
 
 # Desafíos Técnicos y Soluciones
 
-| **Desafío**                                                                 | **Solución Implementada**                                                                                                                                                                         |
-|-----------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Sincronización offline de datos críticos**                                | Implementación de capa de sincronización con:<br>- `SQLite` para almacenamiento local<br>- `TypeORM` para mapeo objeto-relacional<br>- Lógica de reintentos exponenciales con backoff inteligente |
+| **Desafío**                                                                        | **Solución Implementada**                                                                                                                                                                         |
+| ---------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Sincronización offline de datos críticos**                                       | Implementación de capa de sincronización con:<br>- `SQLite` para almacenamiento local<br>- `TypeORM` para mapeo objeto-relacional<br>- Lógica de reintentos exponenciales con backoff inteligente |
 | **Rechazo de imágenes por tamaño excesivo<br>(especialmente en dispositivos iOS)** | Integración de sistema de compresión en tiempo real:<br>- Reducción de calidad al 50%                                                                                                             |
-| **Validación de despachos/incidencias<br>dependientes de hardware**         | Flujo de permisos adaptativo:<br>- Solicitud contextual con explicación UX<br>- Fallback a configuración nativa                                                                                   |
+| **Validación de despachos/incidencias<br>dependientes de hardware**                | Flujo de permisos adaptativo:<br>- Solicitud contextual con explicación UX<br>- Fallback a configuración nativa                                                                                   |
 
 ---
 
-##  Diseño de Interfaz (UI/UX)
+## Diseño de Interfaz (UI/UX)
+
 ### **Alineación con el ERP Existente**
+
 - **Auditoría Visual**:
-    - Análisis detallado del sistema ERP para extraer patrones de diseño (paleta de colores, tipografía, jerarquía visual).
-    - Replicamos el esquema de colores corporativos 
+  - Análisis detallado del sistema ERP para extraer patrones de diseño (paleta de colores, tipografía, jerarquía visual).
+  - Replicamos el esquema de colores corporativos
 
 <img
 src="/screenshots/login.png"
