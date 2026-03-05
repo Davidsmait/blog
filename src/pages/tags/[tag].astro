@@ -4,6 +4,7 @@ import ProjectsList from '@/components/ProjectsList.astro'
 import PageLayout, {
   type Props as PageLayoutProps
 } from '@/layouts/PageLayout.astro'
+import { getCafePosts } from '@/util/cafe'
 import { getPosts } from '@/util/posts'
 import { getProjects } from '@/util/projects'
 import { generateTags } from '@/util/tags'
@@ -26,6 +27,8 @@ export async function getStaticPaths() {
 
 const posts = await getPosts(tag)
 
+const cafePosts = await getCafePosts(tag)
+
 const projects = await getProjects(tag)
 
 const frontmatter: PageLayoutProps['frontmatter'] = {
@@ -41,6 +44,8 @@ const frontmatter: PageLayoutProps['frontmatter'] = {
   </h1>
   {!!posts.length && <h2>Posts</h2>}
   <PostsList {posts} />
+  {!!cafePosts.length && <h2>Cafe</h2>}
+  <PostsList posts={cafePosts} />
   {!!projects.length && <h2>Projects</h2>}
   <ProjectsList {projects} />
 </PageLayout>

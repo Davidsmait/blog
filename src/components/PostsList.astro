@@ -1,37 +1,53 @@
 ---
 import TagsBar from '@/components/TagsBar.astro'
 import { toDateString } from '@/util'
-import { sortPosts } from '@/util/posts'
 import { resolveTags } from '@/util/tags'
 import type { CollectionEntry } from 'astro:content'
 
+type PostEntry = CollectionEntry<'posts'> | CollectionEntry<'cafe'>
+
 export interface Props {
-  posts: CollectionEntry<'posts'>[]
+  posts: PostEntry[]
+  featured?: boolean
 }
 
-const { posts } = Astro.props
+const { posts, featured = false } = Astro.props
 
-posts.sort(sortPosts)
+posts.sort((a, b) => b.data.publishedDate.getTime() - a.data.publishedDate.getTime())
 ---
 
-<ul class="p-0">
+<ul class="flex flex-col gap-4 p-0">
   {
-    posts.map(({ data, slug }) => (
-      <li class="mt-4 flex flex-col gap-2 sm:mt-0">
-        <div class="flex flex-col justify-between sm:flex-row sm:items-center">
-          <a
-            class="text-xl font-normal"
-            href={`/posts/${slug}`}
-            data-astro-prefetch
-          >
-            <span>{data.title}</span>
-          </a>
-          <time class="mt-4 text-sm opacity-75 sm:mt-0">
-            {toDateString(data.publishedDate)}
-          </time>
-        </div>
-        <TagsBar tags={resolveTags(data.tags)} />
-        <div class="opacity-75">{data.description}</div>
+    posts.map((post, index) => (
+      <li class:list={[
+        'group list-none rounded-xl border border-accent/10 bg-accent/[0.03] p-5 transition-all duration-300 hover:border-accent/30 hover:bg-accent/[0.06] hover:shadow-lg hover:shadow-accent/5',
+        { 'border-accent/20 bg-accent/[0.05] p-6': featured && index === 0 }
+      ]}>
+        <a
+          class="block no-underline"
+          href={`/${post.collection === 'cafe' ? 'cafe' : 'posts'}/${post.slug}`}
+          data-astro-prefetch
+        >
+          <div class="flex flex-col gap-3">
+            <div class="flex flex-col justify-between gap-2 sm:flex-row sm:items-center">
+              <h3 class:list={[
+                'm-0 font-semibold text-accent transition-colors duration-300 group-hover:text-accent',
+                featured && index === 0 ? 'text-2xl' : 'text-xl'
+              ]}>
+                {post.data.title}
+              </h3>
+              <time class="shrink-0 text-sm opacity-50">
+                {toDateString(post.data.publishedDate)}
+              </time>
+            </div>
+            <div class="pointer-events-none">
+              <TagsBar tags={resolveTags(post.data.tags)} />
+            </div>
+            <p class="m-0 text-base leading-relaxed opacity-60">
+              {post.data.description}
+            </p>
+          </div>
+        </a>
       </li>
     ))
   }

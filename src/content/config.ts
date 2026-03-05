@@ -16,6 +16,21 @@ const posts = defineCollection({
     })
 })
 
+const cafe = defineCollection({
+  type: 'content',
+  schema: ({ image }) =>
+    z.object({
+      title: z.string(),
+      author: z.string().default(config.author),
+      description: z.string(),
+      publishedDate: z.date(),
+      draft: z.boolean().optional().default(false),
+      canonicalURL: z.string().optional(),
+      openGraphImage: image().or(z.string()).optional(),
+      tags: z.array(z.string()).default([])
+    })
+})
+
 const projects = defineCollection({
   type: 'content',
   schema: () =>
@@ -28,4 +43,4 @@ const projects = defineCollection({
     })
 })
 
-export const collections = { posts, projects }
+export const collections = { posts, cafe, projects }

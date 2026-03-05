@@ -9,7 +9,7 @@ import { resolveTags } from '@/util/tags'
 import type { CollectionEntry } from 'astro:content'
 
 export interface Props {
-  post: CollectionEntry<'posts'>
+  post: CollectionEntry<'posts'> | CollectionEntry<'cafe'>
 }
 
 const { post } = Astro.props
@@ -21,8 +21,8 @@ const {
 
 const frontmatter: PageLayoutProps['frontmatter'] = {
   ...post.data,
-  openGraphImage: post.data.openGraphImage || `/posts/${post.slug}.png`,
-  activeHeaderLink: 'Blog',
+  openGraphImage: post.data.openGraphImage || `/${post.collection}/${post.slug}.png`,
+  activeHeaderLink: post.collection === 'cafe' ? 'Cafe' : 'Blog',
   scrollProgress: true
 }
 

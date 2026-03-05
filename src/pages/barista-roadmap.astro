@@ -1,0 +1,204 @@
+---
+import PageLayout from '@/layouts/PageLayout.astro'
+---
+
+<PageLayout frontmatter={{ title: 'Mi Roadmap Barista', activeHeaderLink: 'Cafe' }}>
+  <!-- Hero -->
+  <div class="mb-8 text-center">
+    <h1 class="mb-2 text-4xl font-bold text-accent sm:text-5xl">Mi Roadmap Barista</h1>
+    <p class="mx-auto max-w-xl text-base opacity-60">
+      Documentando mi camino de entusiasta del cafe a barista profesional — y eventualmente, abrir mi propia cafeteria.
+    </p>
+    <div class="mx-auto mt-6 max-w-md">
+      <div class="mb-2 flex justify-between text-sm opacity-50">
+        <span>Progreso general</span>
+        <span>Fase 1 de 6</span>
+      </div>
+      <div class="h-2 overflow-hidden rounded-full bg-accent/10">
+        <div class="h-full w-[18%] rounded-full bg-accent/75 transition-all duration-700"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Roadmap Timeline -->
+  <div class="relative ml-4 border-l-2 border-accent/20 pl-8 sm:ml-6 sm:pl-10">
+
+    <!-- Fase 1 -->
+    <div class="group relative mb-10">
+      <div class="absolute -left-[calc(2rem+5px)] top-1 flex h-5 w-5 items-center justify-center rounded-full border-2 border-accent bg-accent/10 shadow-md shadow-accent/20 sm:-left-[calc(2.5rem+5px)]">
+        <div class="h-2 w-2 animate-pulse rounded-full bg-accent"></div>
+      </div>
+      <div class="cursor-pointer rounded-xl border border-accent/30 bg-accent/[0.05] p-5 transition-all duration-300 hover:bg-accent/[0.08]" data-phase-card>
+        <div class="mb-3 flex flex-wrap items-center gap-3">
+          <span class="text-2xl">🔥</span>
+          <span class="text-lg font-semibold text-accent">Fase 1 — Fundamentos solidos</span>
+          <span class="ml-auto rounded-full border border-accent/30 bg-accent/10 px-3 py-0.5 text-xs font-medium text-accent">En progreso</span>
+        </div>
+        <p class="mb-3 text-sm leading-relaxed opacity-60">
+          Consolidar las bases de extraccion de espresso, dominar el Chemex y construir el habito de practica diaria. Entender la relacion entre molienda, dosis, tiempo y yield.
+        </p>
+        <p class="text-xs opacity-30">Clic para ver habilidades</p>
+        <div class="skills-grid mt-3 hidden flex-wrap gap-2" style="display: none;">
+          <span class="rounded-md border border-green-500/20 bg-green-500/10 px-2.5 py-1 text-xs text-green-400">Chemex</span>
+          <span class="rounded-md border border-green-500/20 bg-green-500/10 px-2.5 py-1 text-xs text-green-400">Espresso basico</span>
+          <span class="rounded-md border border-accent/15 bg-accent/5 px-2.5 py-1 text-xs opacity-60">Dial-in de grinder</span>
+          <span class="rounded-md border border-accent/15 bg-accent/5 px-2.5 py-1 text-xs opacity-60">Ratios de extraccion</span>
+          <span class="rounded-md border border-accent/15 bg-accent/5 px-2.5 py-1 text-xs opacity-60">Temperatura del agua</span>
+          <span class="rounded-md border border-accent/15 bg-accent/5 px-2.5 py-1 text-xs opacity-60">Limpieza de equipo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Fase 2 -->
+    <div class="group relative mb-10">
+      <div class="absolute -left-[calc(2rem+5px)] top-1 flex h-5 w-5 items-center justify-center rounded-full border-2 border-accent/30 bg-accent-bg sm:-left-[calc(2.5rem+5px)]">
+        <div class="h-2 w-2 rounded-full bg-accent/30"></div>
+      </div>
+      <div class="cursor-pointer rounded-xl border border-accent/10 bg-accent/[0.02] p-5 transition-all duration-300 hover:border-accent/20 hover:bg-accent/[0.05]" data-phase-card>
+        <div class="mb-3 flex flex-wrap items-center gap-3">
+          <span class="text-2xl">🧪</span>
+          <span class="text-lg font-semibold text-accent">Fase 2 — Metodos y paladar</span>
+          <span class="ml-auto rounded-full border border-accent/15 bg-accent/5 px-3 py-0.5 text-xs font-medium opacity-50">Proxima</span>
+        </div>
+        <p class="mb-3 text-sm leading-relaxed opacity-60">
+          Expandir el repertorio con V60, Aeropress y otros metodos. Iniciar sesiones de catacion usando el protocolo SCA y desarrollar vocabulario sensorial con la rueda de sabores.
+        </p>
+        <p class="text-xs opacity-30">Clic para ver habilidades</p>
+        <div class="skills-grid mt-3 hidden flex-wrap gap-2" style="display: none;">
+          <span class="rounded-md border border-accent/15 bg-accent/5 px-2.5 py-1 text-xs opacity-60">V60</span>
+          <span class="rounded-md border border-accent/15 bg-accent/5 px-2.5 py-1 text-xs opacity-60">Aeropress</span>
+          <span class="rounded-md border border-accent/15 bg-accent/5 px-2.5 py-1 text-xs opacity-60">Catacion SCA</span>
+          <span class="rounded-md border border-accent/15 bg-accent/5 px-2.5 py-1 text-xs opacity-60">Rueda de sabores</span>
+          <span class="rounded-md border border-accent/15 bg-accent/5 px-2.5 py-1 text-xs opacity-60">Evaluacion de acidez</span>
+          <span class="rounded-md border border-accent/15 bg-accent/5 px-2.5 py-1 text-xs opacity-60">Notas de cata</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Fase 3 -->
+    <div class="group relative mb-10">
+      <div class="absolute -left-[calc(2rem+5px)] top-1 flex h-5 w-5 items-center justify-center rounded-full border-2 border-accent/30 bg-accent-bg sm:-left-[calc(2.5rem+5px)]">
+        <div class="h-2 w-2 rounded-full bg-accent/30"></div>
+      </div>
+      <div class="cursor-pointer rounded-xl border border-accent/10 bg-accent/[0.02] p-5 transition-all duration-300 hover:border-accent/20 hover:bg-accent/[0.05]" data-phase-card>
+        <div class="mb-3 flex flex-wrap items-center gap-3">
+          <span class="text-2xl">🎨</span>
+          <span class="text-lg font-semibold text-accent">Fase 3 — Latte art y servicio</span>
+          <span class="ml-auto rounded-full border border-accent/15 bg-accent/5 px-3 py-0.5 text-xs font-medium opacity-50">Pendiente</span>
+        </div>
+        <p class="mb-3 text-sm leading-relaxed opacity-60">
+          Dominar la texturizacion de leche, los patrones clasicos de latte art y el workflow profesional de barra. Velocidad, limpieza y consistencia bajo presion.
+        </p>
+        <p class="text-xs opacity-30">Clic para ver habilidades</p>
+        <div class="skills-grid mt-3 hidden flex-wrap gap-2" style="display: none;">
+          <span class="rounded-md border border-accent/15 bg-accent/5 px-2.5 py-1 text-xs opacity-60">Microespuma</span>
+          <span class="rounded-md border border-accent/15 bg-accent/5 px-2.5 py-1 text-xs opacity-60">Corazon</span>
+          <span class="rounded-md border border-accent/15 bg-accent/5 px-2.5 py-1 text-xs opacity-60">Rosetta</span>
+          <span class="rounded-md border border-accent/15 bg-accent/5 px-2.5 py-1 text-xs opacity-60">Tulipan</span>
+          <span class="rounded-md border border-accent/15 bg-accent/5 px-2.5 py-1 text-xs opacity-60">Workflow de barra</span>
+          <span class="rounded-md border border-accent/15 bg-accent/5 px-2.5 py-1 text-xs opacity-60">Servicio al cliente</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Fase 4 -->
+    <div class="group relative mb-10">
+      <div class="absolute -left-[calc(2rem+5px)] top-1 flex h-5 w-5 items-center justify-center rounded-full border-2 border-accent/30 bg-accent-bg sm:-left-[calc(2.5rem+5px)]">
+        <div class="h-2 w-2 rounded-full bg-accent/30"></div>
+      </div>
+      <div class="cursor-pointer rounded-xl border border-accent/10 bg-accent/[0.02] p-5 transition-all duration-300 hover:border-accent/20 hover:bg-accent/[0.05]" data-phase-card>
+        <div class="mb-3 flex flex-wrap items-center gap-3">
+          <span class="text-2xl">📜</span>
+          <span class="text-lg font-semibold text-accent">Fase 4 — Certificaciones SCA</span>
+          <span class="ml-auto rounded-full border border-accent/15 bg-accent/5 px-3 py-0.5 text-xs font-medium opacity-50">Pendiente</span>
+        </div>
+        <p class="mb-3 text-sm leading-relaxed opacity-60">
+          Obtener certificaciones oficiales de la Specialty Coffee Association: Barista Skills (Foundation, Intermediate, Professional), Brewing, Sensory Skills y eventualmente Roasting.
+        </p>
+        <p class="text-xs opacity-30">Clic para ver habilidades</p>
+        <div class="skills-grid mt-3 hidden flex-wrap gap-2" style="display: none;">
+          <span class="rounded-md border border-accent/15 bg-accent/5 px-2.5 py-1 text-xs opacity-60">SCA Barista Foundation</span>
+          <span class="rounded-md border border-accent/15 bg-accent/5 px-2.5 py-1 text-xs opacity-60">SCA Barista Intermediate</span>
+          <span class="rounded-md border border-accent/15 bg-accent/5 px-2.5 py-1 text-xs opacity-60">SCA Barista Professional</span>
+          <span class="rounded-md border border-accent/15 bg-accent/5 px-2.5 py-1 text-xs opacity-60">SCA Brewing</span>
+          <span class="rounded-md border border-accent/15 bg-accent/5 px-2.5 py-1 text-xs opacity-60">SCA Sensory</span>
+          <span class="rounded-md border border-accent/15 bg-accent/5 px-2.5 py-1 text-xs opacity-60">Coffee Skills Diploma</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Fase 5 -->
+    <div class="group relative mb-10">
+      <div class="absolute -left-[calc(2rem+5px)] top-1 flex h-5 w-5 items-center justify-center rounded-full border-2 border-accent/30 bg-accent-bg sm:-left-[calc(2.5rem+5px)]">
+        <div class="h-2 w-2 rounded-full bg-accent/30"></div>
+      </div>
+      <div class="cursor-pointer rounded-xl border border-accent/10 bg-accent/[0.02] p-5 transition-all duration-300 hover:border-accent/20 hover:bg-accent/[0.05]" data-phase-card>
+        <div class="mb-3 flex flex-wrap items-center gap-3">
+          <span class="text-2xl">🌱</span>
+          <span class="text-lg font-semibold text-accent">Fase 5 — Tueste y origen</span>
+          <span class="ml-auto rounded-full border border-accent/15 bg-accent/5 px-3 py-0.5 text-xs font-medium opacity-50">Pendiente</span>
+        </div>
+        <p class="mb-3 text-sm leading-relaxed opacity-60">
+          Entender la cadena completa del cafe: desde la finca hasta la taza. Aprender fundamentos de tueste, visitar productores y establecer relaciones de comercio directo.
+        </p>
+        <p class="text-xs opacity-30">Clic para ver habilidades</p>
+        <div class="skills-grid mt-3 hidden flex-wrap gap-2" style="display: none;">
+          <span class="rounded-md border border-accent/15 bg-accent/5 px-2.5 py-1 text-xs opacity-60">Perfiles de tueste</span>
+          <span class="rounded-md border border-accent/15 bg-accent/5 px-2.5 py-1 text-xs opacity-60">Primera / segunda crack</span>
+          <span class="rounded-md border border-accent/15 bg-accent/5 px-2.5 py-1 text-xs opacity-60">Cafe verde</span>
+          <span class="rounded-md border border-accent/15 bg-accent/5 px-2.5 py-1 text-xs opacity-60">Procesamiento</span>
+          <span class="rounded-md border border-accent/15 bg-accent/5 px-2.5 py-1 text-xs opacity-60">Comercio directo</span>
+          <span class="rounded-md border border-accent/15 bg-accent/5 px-2.5 py-1 text-xs opacity-60">Visitas a fincas</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Fase 6 -->
+    <div class="group relative mb-4">
+      <div class="absolute -left-[calc(2rem+5px)] top-1 flex h-5 w-5 items-center justify-center rounded-full border-2 border-accent/30 bg-accent-bg sm:-left-[calc(2.5rem+5px)]">
+        <div class="h-2 w-2 rounded-full bg-accent/30"></div>
+      </div>
+      <div class="cursor-pointer rounded-xl border border-accent/10 bg-accent/[0.02] p-5 transition-all duration-300 hover:border-accent/20 hover:bg-accent/[0.05]" data-phase-card>
+        <div class="mb-3 flex flex-wrap items-center gap-3">
+          <span class="text-2xl">🏪</span>
+          <span class="text-lg font-semibold text-accent">Fase 6 — Abrir mi cafeteria</span>
+          <span class="ml-auto rounded-full border border-accent/20 bg-accent/10 px-3 py-0.5 text-xs font-medium text-accent">Meta final</span>
+        </div>
+        <p class="mb-3 text-sm leading-relaxed opacity-60">
+          El objetivo final: crear un espacio con identidad propia donde el cafe de especialidad sea accesible. Concepto, marca, menu, operacion y experiencia del cliente.
+        </p>
+        <p class="text-xs opacity-30">Clic para ver habilidades</p>
+        <div class="skills-grid mt-3 hidden flex-wrap gap-2" style="display: none;">
+          <span class="rounded-md border border-accent/15 bg-accent/5 px-2.5 py-1 text-xs opacity-60">Concepto y marca</span>
+          <span class="rounded-md border border-accent/15 bg-accent/5 px-2.5 py-1 text-xs opacity-60">Diseno de menu</span>
+          <span class="rounded-md border border-accent/15 bg-accent/5 px-2.5 py-1 text-xs opacity-60">Costos y margenes</span>
+          <span class="rounded-md border border-accent/15 bg-accent/5 px-2.5 py-1 text-xs opacity-60">Operacion diaria</span>
+          <span class="rounded-md border border-accent/15 bg-accent/5 px-2.5 py-1 text-xs opacity-60">Experiencia del cliente</span>
+          <span class="rounded-md border border-accent/15 bg-accent/5 px-2.5 py-1 text-xs opacity-60">Q Grader (opcional)</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Footer note -->
+  <div class="mt-8 text-center text-sm opacity-40">
+    <p>Ultima actualizacion: Marzo 2026 · <a class="clickable underline" href="/posts/2025-03-05-mi-camino-barista-especialidad">Leer el blog post completo</a></p>
+  </div>
+</PageLayout>
+
+<script>
+  function initRoadmap() {
+    document.querySelectorAll('[data-phase-card]').forEach(card => {
+      card.addEventListener('click', () => {
+        const grid = card.querySelector('.skills-grid') as HTMLElement;
+        if (grid) {
+          const isHidden = grid.style.display === 'none';
+          grid.style.display = isHidden ? 'flex' : 'none';
+        }
+      });
+    });
+  }
+  initRoadmap();
+  document.addEventListener('astro:after-swap', initRoadmap);
+</script>

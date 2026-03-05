@@ -1,0 +1,20 @@
+---
+import PostLayout from '@/layouts/PostLayout.astro'
+import { getCafePosts } from '@/util/cafe'
+import type { InferGetStaticPropsType } from 'astro'
+
+const { post } = Astro.props
+
+type Props = InferGetStaticPropsType<typeof getStaticPaths>
+
+export async function getStaticPaths() {
+  const posts = await getCafePosts()
+
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post }
+  }))
+}
+---
+
+<PostLayout post={post} />

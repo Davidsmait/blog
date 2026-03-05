@@ -38,7 +38,7 @@
     "@iconify/tailwind": "^1.1.3",
     "@resvg/resvg-js": "^2.6.2",
     "@tailwindcss/typography": "^0.5.15",
-    "astro": "^5.17.1",
+    "astro": "^5.18.0",
     "mdast-util-to-string": "^4.0.0",
     "reading-time": "^1.5.0",
     "satori": "^0.11.2",

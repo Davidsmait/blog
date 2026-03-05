@@ -20,7 +20,8 @@ const Modes = ['dark', 'light'] as const
 export const ColorSchemes = [
   'scheme-mono',
   'scheme-nord',
-  'scheme-aurora'
+  'scheme-aurora',
+  'scheme-warm'
 ] as const
 
 export type Mode = (typeof Modes)[number]
@@ -66,30 +67,9 @@ const defaults = {
 
 type PartialThemeConfig = SetOptional<ThemeConfig, keyof typeof defaults>
 
-export const defineThemeConfig = (config: {
-  footerItems: ({ icon: string; href: string; label: string } | { icon: string; href: string; label: string })[];
-  scrollProgress: boolean;
-  author: string;
-  navbarItems: ({ label: string; href: string } | { label: string; href: string } | { label: string; href: string } | {
-    label: string;
-    href: string
-  })[];
-  modeToggle: boolean;
-  description: string;
-  title: string;
-  locale: string;
-  shikiThemes: { light: string; dark: string };
-  mode: string;
-  projectsPerPage: number;
-  site: string;
-  scrollToTop: boolean;
-  postsPerPage: number;
-  tagIcons: { astro: string; documentation: string; tailwindcss: string };
-  openGraphImage: undefined;
-  colorScheme: string
-}): ThemeConfig => {
+export const defineThemeConfig = (config: PartialThemeConfig): ThemeConfig => {
   return {
     ...defaults,
     ...config
-  }
+  } as ThemeConfig
 }

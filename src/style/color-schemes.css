@@ -28,4 +28,14 @@
       --accent-bg: 35, 39, 48;
     }
   }
+
+  .scheme-warm {
+    --accent: 158, 107, 58;
+    --accent-bg: 252, 249, 244;
+
+    &[data-mode='dark'] {
+      --accent: 200, 149, 108;
+      --accent-bg: 15, 13, 11;
+    }
+  }
 }

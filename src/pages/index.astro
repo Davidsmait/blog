@@ -1,0 +1,106 @@
+---
+import PostsList from '@/components/PostsList.astro'
+import FooterItem from '@/components/layout/FooterItem.astro'
+import Separator from '@/components/layout/Separator.astro'
+import ModeToggle from '@/components/mode/ModeToggle.astro'
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import config from '@/theme.config'
+import { getCollection } from 'astro:content'
+
+const allPosts = await getCollection('posts')
+const recentPosts = allPosts
+  .sort((a, b) => b.data.publishedDate.getTime() - a.data.publishedDate.getTime())
+  .slice(0, 3)
+---
+
+<BaseLayout frontmatter={{ title: config.title, description: config.description }}>
+  <div id="page-wrapper">
+    <div class="mt-12 px-4 sm:mt-24 sm:px-12">
+      <main>
+        <!-- Hero Section -->
+        <section class="flex flex-col items-center gap-8 sm:flex-row sm:items-start sm:gap-12">
+          <div class="shrink-0">
+            <img
+              src="/me/me4.jpeg"
+              alt="David San Luis Aguirre"
+              width="140"
+              height="140"
+              loading="eager"
+              class="rounded-full object-cover ring-2 ring-accent/20 transition-all duration-500 hover:ring-accent/50 hover:shadow-lg hover:shadow-accent/10"
+              style="width: 140px; height: 140px;"
+            />
+          </div>
+          <div class="text-center sm:text-left">
+            <h1 class="mb-2 text-4xl font-bold tracking-tight text-accent sm:text-5xl">
+              David San Luis
+            </h1>
+            <p class="mb-4 text-lg opacity-60">
+              Software Engineer
+            </p>
+            <p class="max-w-lg text-base leading-relaxed opacity-50">
+              Construyo aplicaciones web y moviles con tecnologias modernas.
+            </p>
+            <!-- Social Icons -->
+            <div class="mt-5 flex items-center justify-center gap-4 text-2xl sm:justify-start">
+              <a href="https://github.com/Davidsmait" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="clickable">
+                <span class="iconify tabler--brand-github" />
+              </a>
+              <a href="https://www.linkedin.com/in/davidsanluisaguirre" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="clickable">
+                <span class="iconify tabler--brand-linkedin" />
+              </a>
+              <a href="https://www.instagram.com/davidsanluisaguirre/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="clickable">
+                <span class="iconify tabler--brand-instagram" />
+              </a>
+              <a href="mailto:david_sanluis@outlook.com" aria-label="Email" class="clickable">
+                <span class="iconify tabler--mail" />
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <!-- Quick Links -->
+        <section class="mt-12 grid grid-cols-2 gap-3 sm:grid-cols-4">
+          <a href="/posts" class="group flex flex-col items-center gap-2 rounded-xl border border-accent/10 bg-accent/[0.03] p-4 no-underline transition-all duration-300 hover:border-accent/30 hover:bg-accent/[0.06]">
+            <span class="iconify tabler--article text-2xl text-accent opacity-60 transition-opacity group-hover:opacity-100" />
+            <span class="text-sm font-medium opacity-70 group-hover:opacity-100">Blog</span>
+          </a>
+          <a href="/projects" class="group flex flex-col items-center gap-2 rounded-xl border border-accent/10 bg-accent/[0.03] p-4 no-underline transition-all duration-300 hover:border-accent/30 hover:bg-accent/[0.06]">
+            <span class="iconify tabler--code text-2xl text-accent opacity-60 transition-opacity group-hover:opacity-100" />
+            <span class="text-sm font-medium opacity-70 group-hover:opacity-100">Proyectos</span>
+          </a>
+          <a href="/cafe" class="group flex flex-col items-center gap-2 rounded-xl border border-accent/10 bg-accent/[0.03] p-4 no-underline transition-all duration-300 hover:border-accent/30 hover:bg-accent/[0.06]">
+            <span class="iconify tabler--coffee text-2xl text-accent opacity-60 transition-opacity group-hover:opacity-100" />
+            <span class="text-sm font-medium opacity-70 group-hover:opacity-100">Cafe</span>
+          </a>
+          <a href="/about" class="group flex flex-col items-center gap-2 rounded-xl border border-accent/10 bg-accent/[0.03] p-4 no-underline transition-all duration-300 hover:border-accent/30 hover:bg-accent/[0.06]">
+            <span class="iconify tabler--user text-2xl text-accent opacity-60 transition-opacity group-hover:opacity-100" />
+            <span class="text-sm font-medium opacity-70 group-hover:opacity-100">Sobre mi</span>
+          </a>
+        </section>
+
+        <!-- Recent Posts -->
+        <section class="mt-12">
+          <div class="mb-6 flex items-center justify-between">
+            <h2 class="text-2xl font-bold tracking-tight text-accent">
+              Posts recientes
+            </h2>
+            <a href="/posts" class="clickable text-sm font-medium">
+              Ver todos &rarr;
+            </a>
+          </div>
+          <PostsList posts={recentPosts} featured={true} />
+        </section>
+      </main>
+
+      <footer class="mt-12">
+        <Separator />
+        <div class="flex items-center justify-between gap-2 py-4 text-2xl sm:py-8">
+          <span class="text-sm opacity-50">Dev + Coffee lover desde Mexico</span>
+          <div class="grow"></div>
+          {config.footerItems.map((item) => <FooterItem {item} />)}
+          {config.modeToggle && <ModeToggle />}
+        </div>
+      </footer>
+    </div>
+  </div>
+</BaseLayout>

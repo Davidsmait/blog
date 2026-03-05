@@ -1,5 +1,6 @@
 import config from '@/theme.config'
 import type { ResolvedTag } from '@/types'
+import { getCafePosts } from '@/util/cafe'
 import { getPosts } from '@/util/posts'
 import { getProjects } from '@/util/projects'
 
@@ -22,7 +23,7 @@ export const resolveTags = (rawTags: string[]): ResolvedTag[] => {
 }
 
 export const generateTags = async (): Promise<ResolvedTag[]> => {
-  const allTags = [...(await getPosts()), ...(await getProjects())].flatMap(
+  const allTags = [...(await getPosts()), ...(await getCafePosts()), ...(await getProjects())].flatMap(
     (p) => p.data.tags
   )
 
@@ -30,4 +31,4 @@ export const generateTags = async (): Promise<ResolvedTag[]> => {
 }
 
 export const getTagUsage = async (tag: string): Promise<number> =>
-  (await getPosts(tag)).length + (await getProjects(tag)).length
+  (await getPosts(tag)).length + (await getCafePosts(tag)).length + (await getProjects(tag)).length
