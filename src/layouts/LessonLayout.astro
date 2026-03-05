@@ -8,10 +8,17 @@ import { getCollection } from 'astro:content'
 import type { CollectionEntry } from 'astro:content'
 
 export interface Props {
-  post: CollectionEntry<'cafe'>
+  post: CollectionEntry<'cafe'> | CollectionEntry<'cafe-en'>
+  collection?: 'cafe' | 'cafe-en'
 }
 
-const { post } = Astro.props
+const { post, collection: collectionProp } = Astro.props
+
+// Detect language from URL or prop
+const isEnglish = collectionProp === 'cafe-en' || Astro.url.pathname.startsWith('/en/')
+const lessonBasePath = isEnglish ? '/en/cafe-en' : '/cafe'
+const roadmapPath = isEnglish ? '/en/barista-roadmap' : '/barista-roadmap'
+const lang = isEnglish ? 'en' : 'es'
 
 const {
   Content,
@@ -23,7 +30,9 @@ const frontmatter: BaseLayoutProps['frontmatter'] = {
   openGraphImage: post.data.openGraphImage || `/cafe/${post.slug}.png`,
 }
 
-const allCafe = await getCollection('cafe')
+const allCafe = isEnglish
+  ? await getCollection('cafe-en')
+  : await getCollection('cafe')
 const phase = post.data.phase
 const totalInPhase = phase
   ? allCafe
@@ -35,7 +44,7 @@ const currentIdx = totalInPhase.findIndex(p => p.slug === post.slug)
 const prev = currentIdx > 0 ? totalInPhase[currentIdx - 1] : null
 const next = currentIdx < totalInPhase.length - 1 ? totalInPhase[currentIdx + 1] : null
 
-const phaseNames: Record<number, string> = {
+const phaseNamesEs: Record<number, string> = {
   1: 'Fundamentos',
   2: 'Espresso',
   3: 'Filtrado',
@@ -45,8 +54,24 @@ const phaseNames: Record<number, string> = {
   7: 'Metodología Rao',
   8: 'Física',
 }
+const phaseNamesEn: Record<number, string> = {
+  1: 'Fundamentals',
+  2: 'Espresso',
+  3: 'Filter methods',
+  4: 'Cupping',
+  5: 'Latte art',
+  6: 'Roasting',
+  7: 'Rao Methodology',
+  8: 'Physics',
+}
+const phaseNames = isEnglish ? phaseNamesEn : phaseNamesEs
 const phaseName = phase ? phaseNames[phase] : null
 const lessonNum = post.data.lessonOrder ?? (currentIdx + 1)
+
+// i18n labels
+const labels = isEnglish
+  ? { lesson: 'Lesson', of: 'of', prev: 'Previous', next: 'Next', phaseComplete: 'Phase complete', backToRoadmap: 'Back to roadmap' }
+  : { lesson: 'Lección', of: 'de', prev: 'Anterior', next: 'Siguiente', phaseComplete: 'Fase completada', backToRoadmap: 'Volver al roadmap' }
 
 const jsonLd = JSON.stringify({
   "@context": "https://schema.org",
@@ -55,15 +80,15 @@ const jsonLd = JSON.stringify({
   "description": post.data.description,
   "provider": {
     "@type": "Organization",
-    "name": "Roadmap Barista de Especialidad",
-    "url": new URL('/barista-roadmap', Astro.site).href
+    "name": isEnglish ? "Specialty Barista Roadmap" : "Roadmap Barista de Especialidad",
+    "url": new URL(roadmapPath, Astro.site).href
   },
   "courseCode": phase ? `BARISTA-${phase}.${lessonNum}` : undefined,
-  "inLanguage": "es",
+  "inLanguage": lang,
   "isPartOf": {
     "@type": "Course",
-    "name": `Fase ${phase}: ${phaseName}`,
-    "url": new URL('/barista-roadmap', Astro.site).href
+    "name": isEnglish ? `Phase ${phase}: ${phaseName}` : `Fase ${phase}: ${phaseName}`,
+    "url": new URL(roadmapPath, Astro.site).href
   },
   "hasCourseInstance": {
     "@type": "CourseInstance",
@@ -83,9 +108,9 @@ const jsonLd = JSON.stringify({
     <main class="lesson-main">
       <!-- Top pill + reading time -->
       <div class="lesson-top">
-        <a href="/barista-roadmap" class="lesson-pill">
+        <a href={roadmapPath} class="lesson-pill">
           {phaseName && <span class="pill-phase">{phaseName}</span>}
-          <span class="pill-num">Leccion {lessonNum} de {totalInPhase.length}</span>
+          <span class="pill-num">{labels.lesson} {lessonNum} {labels.of} {totalInPhase.length}</span>
         </a>
         <span class="lesson-reading">{readingTime}</span>
       </div>
@@ -115,10 +140,10 @@ const jsonLd = JSON.stringify({
       <!-- Prev / Next -->
       <nav class="lesson-nav">
         {prev ? (
-          <a href={`/cafe/${prev.slug}`} class="nav-card">
+          <a href={`${lessonBasePath}/${prev.slug}`} class="nav-card">
             <span class="nav-arrow">&larr;</span>
             <span class="nav-info">
-              <span class="nav-label">Anterior</span>
+              <span class="nav-label">{labels.prev}</span>
               <span class="nav-name">{prev.data.title}</span>
             </span>
           </a>
@@ -126,18 +151,18 @@ const jsonLd = JSON.stringify({
           <div></div>
         )}
         {next ? (
-          <a href={`/cafe/${next.slug}`} class="nav-card nav-card--next">
+          <a href={`${lessonBasePath}/${next.slug}`} class="nav-card nav-card--next">
             <span class="nav-info">
-              <span class="nav-label">Siguiente</span>
+              <span class="nav-label">{labels.next}</span>
               <span class="nav-name">{next.data.title}</span>
             </span>
             <span class="nav-arrow">&rarr;</span>
           </a>
         ) : (
-          <a href="/barista-roadmap" class="nav-card nav-card--next">
+          <a href={roadmapPath} class="nav-card nav-card--next">
             <span class="nav-info">
-              <span class="nav-label">Fase completada</span>
-              <span class="nav-name">Volver al roadmap</span>
+              <span class="nav-label">{labels.phaseComplete}</span>
+              <span class="nav-name">{labels.backToRoadmap}</span>
             </span>
             <span class="nav-arrow">&rarr;</span>
           </a>
