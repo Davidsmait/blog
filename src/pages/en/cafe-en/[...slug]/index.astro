@@ -1,6 +1,6 @@
 ---
 import LessonLayout from '@/layouts/LessonLayout.astro'
-import { getCafePosts } from '@/util/cafe'
+import { getCollection } from 'astro:content'
 import type { InferGetStaticPropsType } from 'astro'
 
 const { post } = Astro.props
@@ -8,7 +8,7 @@ const { post } = Astro.props
 type Props = InferGetStaticPropsType<typeof getStaticPaths>
 
 export async function getStaticPaths() {
-  const posts = await getCafePosts()
+  const posts = await getCollection('cafe-en', (p) => !p.data.draft)
 
   return posts.map((post) => ({
     params: { slug: post.slug },
@@ -17,4 +17,4 @@ export async function getStaticPaths() {
 }
 ---
 
-<LessonLayout post={post} />
+<LessonLayout post={post as any} />

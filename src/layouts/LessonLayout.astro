@@ -1,0 +1,458 @@
+---
+import Footer from '@/components/layout/Footer.astro'
+import Header from '@/components/layout/Header.astro'
+import BaseLayout, { type Props as BaseLayoutProps } from '@/layouts/BaseLayout.astro'
+import HeadingAnchorsPlugin from '@/plugins/HeadingAnchorsPlugin.astro'
+import ScrollProgressPlugin from '@/plugins/ScrollProgressPlugin.astro'
+import { getCollection } from 'astro:content'
+import type { CollectionEntry } from 'astro:content'
+
+export interface Props {
+  post: CollectionEntry<'cafe'>
+}
+
+const { post } = Astro.props
+
+const {
+  Content,
+  remarkPluginFrontmatter: { readingTime }
+} = await post.render()
+
+const frontmatter: BaseLayoutProps['frontmatter'] = {
+  ...post.data,
+  openGraphImage: post.data.openGraphImage || `/cafe/${post.slug}.png`,
+}
+
+const allCafe = await getCollection('cafe')
+const phase = post.data.phase
+const totalInPhase = phase
+  ? allCafe
+      .filter(p => p.data.phase === phase && !p.data.draft)
+      .sort((a, b) => (a.data.lessonOrder ?? 0) - (b.data.lessonOrder ?? 0))
+  : []
+
+const currentIdx = totalInPhase.findIndex(p => p.slug === post.slug)
+const prev = currentIdx > 0 ? totalInPhase[currentIdx - 1] : null
+const next = currentIdx < totalInPhase.length - 1 ? totalInPhase[currentIdx + 1] : null
+
+const phaseNames: Record<number, string> = {
+  1: 'Fundamentos',
+  2: 'Espresso',
+  3: 'Filtrado',
+  4: 'Catación',
+  5: 'Latte art',
+  6: 'Tueste',
+  7: 'Metodología Rao',
+  8: 'Física',
+}
+const phaseName = phase ? phaseNames[phase] : null
+const lessonNum = post.data.lessonOrder ?? (currentIdx + 1)
+
+const jsonLd = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Course",
+  "name": frontmatter.title,
+  "description": post.data.description,
+  "provider": {
+    "@type": "Organization",
+    "name": "Roadmap Barista de Especialidad",
+    "url": new URL('/barista-roadmap', Astro.site).href
+  },
+  "courseCode": phase ? `BARISTA-${phase}.${lessonNum}` : undefined,
+  "inLanguage": "es",
+  "isPartOf": {
+    "@type": "Course",
+    "name": `Fase ${phase}: ${phaseName}`,
+    "url": new URL('/barista-roadmap', Astro.site).href
+  },
+  "hasCourseInstance": {
+    "@type": "CourseInstance",
+    "courseMode": "online",
+    "courseWorkload": readingTime
+  }
+})
+---
+
+<BaseLayout frontmatter={frontmatter}>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,300;1,8..60,400;1,8..60,500&display=swap" rel="stylesheet" slot="head" />
+  <script type="application/ld+json" set:html={jsonLd} slot="head" />
+
+  <div class="lesson-page">
+    <Header activeHeaderLink="Cafe" />
+
+    <main class="lesson-main">
+      <!-- Top pill + reading time -->
+      <div class="lesson-top">
+        <a href="/barista-roadmap" class="lesson-pill">
+          {phaseName && <span class="pill-phase">{phaseName}</span>}
+          <span class="pill-num">Leccion {lessonNum} de {totalInPhase.length}</span>
+        </a>
+        <span class="lesson-reading">{readingTime}</span>
+      </div>
+
+      <!-- Title -->
+      <h1 class="lesson-title">{frontmatter.title}</h1>
+
+      <!-- Description -->
+      {post.data.description && (
+        <p class="lesson-desc">{post.data.description}</p>
+      )}
+
+      <!-- Progress steps -->
+      {totalInPhase.length > 1 && (
+        <div class="lesson-steps" aria-hidden="true">
+          {totalInPhase.map((_, i) => (
+            <span class:list={['step', { done: i <= currentIdx, current: i === currentIdx }]} />
+          ))}
+        </div>
+      )}
+
+      <!-- Content -->
+      <article class="lesson-body">
+        <Content />
+      </article>
+
+      <!-- Prev / Next -->
+      <nav class="lesson-nav">
+        {prev ? (
+          <a href={`/cafe/${prev.slug}`} class="nav-card">
+            <span class="nav-arrow">&larr;</span>
+            <span class="nav-info">
+              <span class="nav-label">Anterior</span>
+              <span class="nav-name">{prev.data.title}</span>
+            </span>
+          </a>
+        ) : (
+          <div></div>
+        )}
+        {next ? (
+          <a href={`/cafe/${next.slug}`} class="nav-card nav-card--next">
+            <span class="nav-info">
+              <span class="nav-label">Siguiente</span>
+              <span class="nav-name">{next.data.title}</span>
+            </span>
+            <span class="nav-arrow">&rarr;</span>
+          </a>
+        ) : (
+          <a href="/barista-roadmap" class="nav-card nav-card--next">
+            <span class="nav-info">
+              <span class="nav-label">Fase completada</span>
+              <span class="nav-name">Volver al roadmap</span>
+            </span>
+            <span class="nav-arrow">&rarr;</span>
+          </a>
+        )}
+      </nav>
+    </main>
+
+    <Footer />
+  </div>
+
+  <ScrollProgressPlugin />
+  <HeadingAnchorsPlugin />
+</BaseLayout>
+
+<style>
+  /* ── Page ── */
+  .lesson-page {
+    display: flex;
+    flex-direction: column;
+    min-height: 100svh;
+    max-width: 90%;
+    width: 100%;
+    margin: 0 auto;
+  }
+  @media (min-width: 768px) {
+    .lesson-page { max-width: 38rem; }
+  }
+
+  .lesson-main {
+    flex: 1;
+    padding: 2.5rem 0 5rem;
+  }
+
+  /* ── Top bar ── */
+  .lesson-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+  }
+  .lesson-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.35rem 0.85rem;
+    border-radius: 9999px;
+    background: color-mix(in srgb, var(--color-accent) 8%, transparent);
+    text-decoration: none;
+    color: var(--color-accent);
+    font-size: 0.75rem;
+    font-weight: 500;
+    transition: background 0.15s;
+  }
+  .lesson-pill:hover {
+    background: color-mix(in srgb, var(--color-accent) 14%, transparent);
+  }
+  .pill-phase {
+    font-weight: 600;
+  }
+  .pill-num {
+    opacity: 0.6;
+  }
+  .lesson-reading {
+    font-size: 0.75rem;
+    opacity: 0.3;
+  }
+
+  /* ── Title ── */
+  .lesson-title {
+    font-family: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+    font-size: 2rem;
+    font-weight: 600;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    margin: 0 0 1rem 0;
+  }
+  @media (min-width: 640px) {
+    .lesson-title { font-size: 2.5rem; }
+  }
+
+  /* ── Description ── */
+  .lesson-desc {
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    opacity: 0.5;
+    margin-bottom: 1.5rem;
+    max-width: 34rem;
+  }
+
+  /* ── Progress steps ── */
+  .lesson-steps {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 3rem;
+  }
+  .step {
+    flex: 1;
+    height: 3px;
+    border-radius: 9999px;
+    background: color-mix(in srgb, var(--color-accent) 8%, transparent);
+    transition: background 0.3s;
+    max-width: 4rem;
+  }
+  .step.done {
+    background: color-mix(in srgb, var(--color-accent) 35%, transparent);
+  }
+  .step.current {
+    background: var(--color-accent);
+  }
+
+  /* ── Body prose ── */
+  .lesson-body {
+    font-family: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+    font-size: 1.0625rem;
+    line-height: 1.9;
+    color: inherit;
+  }
+  @media (min-width: 640px) {
+    .lesson-body { font-size: 1.125rem; }
+  }
+
+  .lesson-body :global(h2) {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    font-size: 1.375rem;
+    font-weight: 650;
+    letter-spacing: -0.01em;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+    line-height: 1.3;
+  }
+  .lesson-body :global(h3) {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-top: 2.25rem;
+    margin-bottom: 0.75rem;
+    line-height: 1.35;
+  }
+  .lesson-body :global(p) {
+    margin-bottom: 1.5rem;
+    opacity: 0.82;
+  }
+  .lesson-body :global(strong) {
+    font-weight: 600;
+    opacity: 1;
+  }
+  .lesson-body :global(em) {
+    font-style: italic;
+  }
+  .lesson-body :global(a) {
+    color: var(--color-accent);
+    text-decoration: underline;
+    text-decoration-color: color-mix(in srgb, var(--color-accent) 30%, transparent);
+    text-underline-offset: 3px;
+    transition: text-decoration-color 0.15s;
+  }
+  .lesson-body :global(a:hover) {
+    text-decoration-color: var(--color-accent);
+  }
+
+  .lesson-body :global(ul),
+  .lesson-body :global(ol) {
+    margin-bottom: 1.5rem;
+    padding-left: 1.5rem;
+  }
+  .lesson-body :global(li) {
+    margin-bottom: 0.5rem;
+    opacity: 0.82;
+    line-height: 1.8;
+  }
+  .lesson-body :global(li strong) {
+    opacity: 1;
+  }
+  .lesson-body :global(li::marker) {
+    color: color-mix(in srgb, var(--color-accent) 40%, transparent);
+  }
+
+  .lesson-body :global(blockquote) {
+    border-left: 3px solid color-mix(in srgb, var(--color-accent) 20%, transparent);
+    padding: 0.75rem 0 0.75rem 1.25rem;
+    margin: 2rem 0;
+    background: color-mix(in srgb, var(--color-accent) 3%, transparent);
+    border-radius: 0 8px 8px 0;
+  }
+  .lesson-body :global(blockquote p) {
+    opacity: 0.65;
+    margin-bottom: 0;
+    font-style: italic;
+  }
+
+  .lesson-body :global(code) {
+    font-size: 0.85em;
+    background: color-mix(in srgb, var(--color-accent) 6%, transparent);
+    padding: 0.15em 0.4em;
+    border-radius: 5px;
+    font-family: ui-monospace, monospace;
+  }
+  .lesson-body :global(pre) {
+    margin: 1.75rem 0;
+    padding: 1.25rem;
+    border-radius: 10px;
+    overflow-x: auto;
+    font-size: 0.8125rem;
+    line-height: 1.7;
+  }
+  .lesson-body :global(pre code) {
+    background: none;
+    padding: 0;
+  }
+
+  .lesson-body :global(hr) {
+    border: none;
+    height: 1px;
+    background: color-mix(in srgb, var(--color-accent) 8%, transparent);
+    margin: 3rem auto;
+    max-width: 5rem;
+  }
+
+  .lesson-body :global(img) {
+    border-radius: 10px;
+    margin: 2rem 0;
+    max-width: 100%;
+  }
+
+  .lesson-body :global(table) {
+    width: 100%;
+    font-size: 0.9375rem;
+    margin: 2rem 0;
+    border-collapse: collapse;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  }
+  .lesson-body :global(th),
+  .lesson-body :global(td) {
+    padding: 0.625rem 0.875rem;
+    text-align: left;
+    border-bottom: 1px solid color-mix(in srgb, var(--color-accent) 8%, transparent);
+  }
+  .lesson-body :global(th) {
+    font-weight: 600;
+    font-size: 0.8125rem;
+    opacity: 0.5;
+  }
+  .lesson-body :global(td) {
+    opacity: 0.75;
+  }
+
+  /* ── Prev / Next nav ── */
+  .lesson-nav {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid color-mix(in srgb, var(--color-accent) 6%, transparent);
+  }
+  @media (max-width: 480px) {
+    .lesson-nav {
+      grid-template-columns: 1fr;
+    }
+  }
+  .nav-card {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 1.125rem;
+    border-radius: 12px;
+    border: 1px solid color-mix(in srgb, var(--color-accent) 8%, transparent);
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.15s, background 0.15s;
+  }
+  .nav-card:hover {
+    border-color: color-mix(in srgb, var(--color-accent) 20%, transparent);
+    background: color-mix(in srgb, var(--color-accent) 3%, transparent);
+  }
+  .nav-card--next {
+    text-align: right;
+    justify-content: flex-end;
+  }
+  .nav-arrow {
+    font-size: 1.125rem;
+    opacity: 0.25;
+    flex-shrink: 0;
+    transition: opacity 0.15s;
+  }
+  .nav-card:hover .nav-arrow {
+    opacity: 0.5;
+    color: var(--color-accent);
+  }
+  .nav-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    min-width: 0;
+  }
+  .nav-label {
+    font-size: 0.6875rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    opacity: 0.3;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  }
+  .nav-name {
+    font-size: 0.875rem;
+    font-weight: 500;
+    opacity: 0.65;
+    transition: opacity 0.12s, color 0.12s;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .nav-card:hover .nav-name {
+    opacity: 1;
+    color: var(--color-accent);
+  }
+</style>

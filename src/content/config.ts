@@ -16,19 +16,30 @@ const posts = defineCollection({
     })
 })
 
+const cafeSchema = ({ image }: { image: Function }) =>
+  z.object({
+    title: z.string(),
+    author: z.string().default(config.author),
+    description: z.string(),
+    publishedDate: z.date(),
+    draft: z.boolean().optional().default(false),
+    canonicalURL: z.string().optional(),
+    openGraphImage: image().or(z.string()).optional(),
+    tags: z.array(z.string()).default([]),
+    // Roadmap fields
+    phase: z.number().min(1).max(8).optional(),
+    lessonOrder: z.number().optional(),
+    isPremium: z.boolean().optional().default(false)
+  })
+
 const cafe = defineCollection({
   type: 'content',
-  schema: ({ image }) =>
-    z.object({
-      title: z.string(),
-      author: z.string().default(config.author),
-      description: z.string(),
-      publishedDate: z.date(),
-      draft: z.boolean().optional().default(false),
-      canonicalURL: z.string().optional(),
-      openGraphImage: image().or(z.string()).optional(),
-      tags: z.array(z.string()).default([])
-    })
+  schema: cafeSchema
+})
+
+const cafeEn = defineCollection({
+  type: 'content',
+  schema: cafeSchema
 })
 
 const projects = defineCollection({
@@ -43,4 +54,4 @@ const projects = defineCollection({
     })
 })
 
-export const collections = { posts, cafe, projects }
+export const collections = { posts, cafe, 'cafe-en': cafeEn, projects }

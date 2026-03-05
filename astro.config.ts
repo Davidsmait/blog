@@ -9,6 +9,13 @@ import config from './src/theme.config'
 
 export default defineConfig({
   site: config.site,
+  i18n: {
+    defaultLocale: 'es',
+    locales: ['es', 'en'],
+    routing: {
+      prefixDefaultLocale: false,
+    }
+  },
   integrations: [tailwind(), mdx(), sitemap()],
   markdown: {
     shikiConfig: {
