@@ -28,6 +28,7 @@ const phases = [
   { num: 6, title: 'Tueste y negocio', desc: 'Reacciones químicas, curvas de tueste, cadena de suministro y abrir tu cafetería.', totalLessons: 4 },
   { num: 7, title: 'Profesional — Metodología Rao', desc: 'Grooming avanzado, pressure profiling, refractómetro, TDS, Rao Spin y turbo shots.', totalLessons: 4 },
   { num: 8, title: 'Física de la extracción', desc: 'Distribución de partículas, ley de Darcy, geometría de drippers, dinámica del puck y flow profiling.', totalLessons: 4 },
+  { num: 9, title: 'Carrera profesional', desc: 'Gestión de cafetería, barismo competitivo, certificación Q Grader y marca personal.', totalLessons: 4 },
 ]
 
 const plannedLessons: Record<number, string[]> = {}
@@ -58,7 +59,7 @@ function getPhaseState(phaseNum: number) {
   <div class="rm-header">
     <div class="rm-top-row">
       <span class="rm-label">Roadmap</span>
-      <a href="/en/barista-roadmap" class="rm-lang-switch" aria-label="Switch to English">EN</a>
+      <a href="/en/barista-roadmap" class="rm-lang-switch" aria-label="Switch to English" data-astro-reload>EN</a>
     </div>
     <h1 class="rm-title">Barista de Especialidad</h1>
     <p class="rm-desc">
@@ -119,13 +120,7 @@ function getPhaseState(phaseNum: number) {
               aria-label={`Fase ${phase.num}: ${phase.title}`}
             >
               <div class="tl-title-group">
-                <span class="tl-title">
-                  {phase.title}
-                  {phase.num <= 2
-                    ? <span class="rm-tier rm-tier-free">Gratis</span>
-                    : <span class="rm-tier rm-tier-pro">Pro</span>
-                  }
-                </span>
+                <span class="tl-title">{phase.title}</span>
                 <span class="tl-desc">{phase.desc}</span>
               </div>
               <span class="tl-meta">
@@ -229,6 +224,7 @@ function getPhaseState(phaseNum: number) {
             <p><strong>Fase 6</strong> (Tueste y negocio): Rao (Roaster's Companion), Hoos, SCA, Perfect Daily Grind</p>
             <p><strong>Fase 7</strong> (Metodología Rao): Rao (Barista's Handbook, Espresso Extraction), Münchow et al., SCA Brewing Control Chart</p>
             <p><strong>Fase 8</strong> (Física de la extracción): Gagné (Physics of Filter Coffee, Physics of Espresso), Folmer (Craft &amp; Science of Coffee), Rao (Everything But Espresso)</p>
+            <p><strong>Fase 9</strong> (Carrera profesional): SCA Coffee Skills Program, CQI Q Grader, World Barista Championship, Rao (Barista's Handbook)</p>
           </div>
         </div>
 
@@ -339,6 +335,7 @@ function getPhaseState(phaseNum: number) {
   .tl-phase:nth-child(6) { animation-delay: 0.38s; }
   .tl-phase:nth-child(7) { animation-delay: 0.44s; }
   .tl-phase:nth-child(8) { animation-delay: 0.50s; }
+  .tl-phase:nth-child(9) { animation-delay: 0.56s; }
 
   @keyframes rm-phase-in {
     from { opacity: 0; transform: translateX(-6px); }
@@ -585,29 +582,6 @@ function getPhaseState(phaseNum: number) {
   }
   .tl-lesson-pending span {
     opacity: 0.22;
-  }
-
-  /* ── Tier badges ── */
-  .rm-tier {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.25rem;
-    font-size: 0.5625rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    padding: 0.125rem 0.375rem;
-    border-radius: 9999px;
-    margin-left: 0.5rem;
-    vertical-align: middle;
-  }
-  .rm-tier-free {
-    background: color-mix(in srgb, #22c55e 10%, transparent);
-    color: #22c55e;
-  }
-  .rm-tier-pro {
-    background: color-mix(in srgb, var(--color-accent) 10%, transparent);
-    color: var(--color-accent);
   }
 
   /* ── Footer ── */

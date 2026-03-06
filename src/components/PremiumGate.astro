@@ -1,0 +1,479 @@
+---
+import { premiumConfig } from '@/config/premium'
+
+export interface Props {
+  lang?: 'es' | 'en'
+}
+
+const { lang = 'es' } = Astro.props
+const priceDisplay = premiumConfig.price.display[lang]
+const isPaymentEnabled = premiumConfig.enabled
+
+const labels = lang === 'en'
+  ? {
+      badge: 'Pro content',
+      title: 'Unlock all advanced lessons',
+      desc: 'Get access to 30 professional lessons on filter methods, cupping, latte art, roasting, Rao methodology, extraction physics, and career development.',
+      cta: 'Unlock Pro',
+      or: 'or',
+      emailPlaceholder: 'your@email.com',
+      emailBtn: 'Notify me when it launches',
+      emailSuccess: 'Done! We\'ll notify you.',
+      already: 'Already purchased?',
+      activate: 'Activate license',
+      licenseTitle: 'Enter your license key',
+      licensePlaceholder: 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx',
+      licenseBtn: 'Activate',
+      licenseError: 'Invalid license key. Check and try again.',
+      licenseCancel: 'Cancel',
+    }
+  : {
+      badge: 'Contenido Pro',
+      title: 'Desbloquea todas las lecciones avanzadas',
+      desc: 'Accede a 30 lecciones profesionales sobre filtrado, catación, latte art, tueste, metodología Rao, física de extracción y carrera profesional.',
+      cta: 'Desbloquear Pro',
+      or: 'o',
+      emailPlaceholder: 'tu@email.com',
+      emailBtn: 'Avisarme cuando lance',
+      emailSuccess: '¡Listo! Te avisaremos.',
+      already: '¿Ya compraste?',
+      activate: 'Activar licencia',
+      licenseTitle: 'Ingresa tu license key',
+      licensePlaceholder: 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx',
+      licenseBtn: 'Activar',
+      licenseError: 'License key inválida. Revisa e intenta de nuevo.',
+      licenseCancel: 'Cancelar',
+    }
+---
+
+<div class="pg-gate" data-premium-gate>
+  <!-- Blurred content backdrop -->
+  <div class="pg-blur-bg" aria-hidden="true"></div>
+
+  <!-- Gate card -->
+  <div class="pg-card">
+    <span class="pg-badge">
+      <svg viewBox="0 0 16 16" fill="currentColor" width="12" height="12">
+        <path d="M8 1a4 4 0 0 0-4 4v3H3a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1h-1V5a4 4 0 0 0-4-4Zm2 7H6V5a2 2 0 1 1 4 0v3Z"/>
+      </svg>
+      {labels.badge}
+    </span>
+
+    <h3 class="pg-title">{labels.title}</h3>
+    <p class="pg-desc">{labels.desc}</p>
+
+    <!-- CTA Button -->
+    {isPaymentEnabled ? (
+      <button class="pg-cta" data-premium-buy data-checkout-url={premiumConfig.checkoutUrl}>
+        {labels.cta} — {priceDisplay}
+      </button>
+    ) : (
+      <button class="pg-cta pg-cta-soon" disabled>
+        {lang === 'en' ? 'Coming soon' : 'Próximamente'}
+      </button>
+    )}
+
+    <div class="pg-divider">
+      <span>{labels.or}</span>
+    </div>
+
+    <!-- Email capture (Netlify Forms) -->
+    <form
+      class="pg-email-form"
+      data-premium-email-form
+      name="barista-waitlist"
+      method="POST"
+      data-netlify="true"
+      netlify-honeypot="bot-field"
+    >
+      <input type="hidden" name="form-name" value="barista-waitlist" />
+      <input type="hidden" name="bot-field" />
+      <input type="hidden" name="lang" value={lang} />
+      <div class="pg-email-row">
+        <input
+          type="email"
+          name="email"
+          required
+          placeholder={labels.emailPlaceholder}
+          class="pg-email-input"
+          data-premium-email-input
+        />
+        <button type="submit" class="pg-email-btn">{labels.emailBtn}</button>
+      </div>
+    </form>
+
+    <!-- Email success message (hidden by default) -->
+    <p class="pg-email-success hidden" data-premium-email-success>{labels.emailSuccess}</p>
+
+    <!-- Already purchased link -->
+    <div class="pg-already">
+      <span>{labels.already}</span>
+      <button class="pg-activate-link" data-premium-activate-btn>{labels.activate}</button>
+    </div>
+
+    <!-- License key form (hidden by default) -->
+    <div class="pg-license-form hidden" data-premium-license-form>
+      <p class="pg-license-title">{labels.licenseTitle}</p>
+      <div class="pg-email-row">
+        <input
+          type="text"
+          placeholder={labels.licensePlaceholder}
+          class="pg-email-input pg-license-input"
+          data-premium-license-input
+          spellcheck="false"
+          autocomplete="off"
+        />
+        <button class="pg-email-btn" data-premium-license-btn>{labels.licenseBtn}</button>
+      </div>
+      <p class="pg-license-error hidden" data-premium-license-error>{labels.licenseError}</p>
+      <button class="pg-cancel-link" data-premium-license-cancel>{labels.licenseCancel}</button>
+    </div>
+  </div>
+</div>
+
+<style>
+  .pg-gate {
+    position: relative;
+    margin: 2rem -1.25rem;
+    padding: 0 1.25rem;
+    min-height: 24rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .pg-blur-bg {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      color-mix(in srgb, var(--color-bg, #fff) 85%, transparent) 15%,
+      color-mix(in srgb, var(--color-bg, #fff) 95%, transparent) 100%
+    );
+    backdrop-filter: blur(2px);
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .pg-card {
+    position: relative;
+    z-index: 2;
+    max-width: 26rem;
+    width: 100%;
+    padding: 2rem;
+    border-radius: 16px;
+    border: 1px solid color-mix(in srgb, var(--color-accent) 12%, transparent);
+    background: var(--color-bg, #fff);
+    box-shadow:
+      0 4px 24px color-mix(in srgb, var(--color-accent) 4%, transparent),
+      0 1px 4px color-mix(in srgb, #000 4%, transparent);
+    text-align: center;
+  }
+
+  .pg-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    background: color-mix(in srgb, var(--color-accent) 10%, transparent);
+    color: var(--color-accent);
+    font-size: 0.6875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 1rem;
+  }
+
+  .pg-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 0.5rem;
+  }
+
+  .pg-desc {
+    font-size: 0.8125rem;
+    line-height: 1.6;
+    opacity: 0.5;
+    margin-bottom: 1.5rem;
+  }
+
+  .pg-cta {
+    display: block;
+    width: 100%;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 10px;
+    background: var(--color-accent);
+    color: white;
+    font-family: inherit;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.15s, transform 0.15s;
+  }
+  .pg-cta:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+  }
+  .pg-cta:active {
+    transform: translateY(0);
+  }
+  .pg-cta-soon {
+    opacity: 0.5;
+    cursor: default;
+  }
+  .pg-cta-soon:hover {
+    opacity: 0.5;
+    transform: none;
+  }
+
+  .pg-divider {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin: 1.25rem 0;
+  }
+  .pg-divider::before,
+  .pg-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: color-mix(in srgb, var(--color-accent) 8%, transparent);
+  }
+  .pg-divider span {
+    font-size: 0.6875rem;
+    opacity: 0.3;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 500;
+  }
+
+  .pg-email-row {
+    display: flex;
+    gap: 0.5rem;
+  }
+  @media (max-width: 480px) {
+    .pg-email-row {
+      flex-direction: column;
+    }
+  }
+
+  .pg-email-input {
+    flex: 1;
+    padding: 0.625rem 0.875rem;
+    border: 1.5px solid color-mix(in srgb, var(--color-accent) 12%, transparent);
+    border-radius: 8px;
+    background: transparent;
+    font-family: inherit;
+    font-size: 0.8125rem;
+    color: inherit;
+    outline: none;
+    transition: border-color 0.15s;
+  }
+  .pg-email-input:focus {
+    border-color: color-mix(in srgb, var(--color-accent) 40%, transparent);
+  }
+  .pg-email-input::placeholder {
+    opacity: 0.35;
+  }
+
+  .pg-email-btn {
+    padding: 0.625rem 1rem;
+    border: 1.5px solid color-mix(in srgb, var(--color-accent) 15%, transparent);
+    border-radius: 8px;
+    background: color-mix(in srgb, var(--color-accent) 5%, transparent);
+    color: var(--color-accent);
+    font-family: inherit;
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.15s, border-color 0.15s;
+  }
+  .pg-email-btn:hover {
+    background: color-mix(in srgb, var(--color-accent) 10%, transparent);
+    border-color: color-mix(in srgb, var(--color-accent) 25%, transparent);
+  }
+
+  .pg-email-success {
+    color: #22c55e;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    margin-top: 0.5rem;
+    animation: pg-fade-in 0.3s ease-out;
+  }
+
+  .pg-already {
+    margin-top: 1.25rem;
+    font-size: 0.75rem;
+    opacity: 0.4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.375rem;
+  }
+
+  .pg-activate-link,
+  .pg-cancel-link {
+    background: none;
+    border: none;
+    color: var(--color-accent);
+    font-family: inherit;
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    padding: 0;
+  }
+  .pg-activate-link:hover,
+  .pg-cancel-link:hover {
+    opacity: 0.7;
+  }
+
+  .pg-license-form {
+    margin-top: 1rem;
+    animation: pg-fade-in 0.3s ease-out;
+  }
+  .pg-license-title {
+    font-size: 0.8125rem;
+    font-weight: 500;
+    opacity: 0.6;
+    margin-bottom: 0.5rem;
+  }
+  .pg-license-input {
+    font-family: ui-monospace, monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.02em;
+  }
+  .pg-license-error {
+    color: #ef4444;
+    font-size: 0.75rem;
+    margin-top: 0.375rem;
+    animation: pg-fade-in 0.2s ease-out;
+  }
+  .pg-cancel-link {
+    margin-top: 0.5rem;
+    opacity: 0.5;
+  }
+
+  .hidden { display: none !important; }
+
+  @keyframes pg-fade-in {
+    from { opacity: 0; transform: translateY(4px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
+
+<script>
+  import { isPurchased, saveLicense, validateLicense, unlockPageContent, saveEmail } from '@/scripts/premium'
+  import { openCheckout, getCheckoutUrl } from '@/scripts/lemonSqueezy'
+
+  function initPremiumGates() {
+    // If already purchased, unlock all gates immediately
+    if (isPurchased()) {
+      unlockPageContent()
+      return
+    }
+
+    document.querySelectorAll('[data-premium-gate]').forEach(gate => {
+      const el = gate as HTMLElement
+
+      // Buy button → open Lemon Squeezy checkout
+      const buyBtn = el.querySelector('[data-premium-buy]') as HTMLButtonElement
+      buyBtn?.addEventListener('click', async () => {
+        const checkoutUrl = buyBtn.dataset.checkoutUrl || ''
+        if (!checkoutUrl) return
+        const emailInput = el.querySelector('[data-premium-email-input]') as HTMLInputElement
+        const email = emailInput?.value || undefined
+
+        try {
+          await openCheckout(
+            getCheckoutUrl(checkoutUrl, email),
+            () => {
+              // Purchase success — save a temporary key and unlock
+              saveLicense('purchased-' + Date.now())
+              unlockPageContent()
+            }
+          )
+        } catch {
+          // Fallback: open checkout URL directly
+          window.open(checkoutUrl, '_blank')
+        }
+      })
+
+      // Email form → Netlify Forms submission via fetch
+      const emailForm = el.querySelector('[data-premium-email-form]') as HTMLFormElement
+      const emailSuccess = el.querySelector('[data-premium-email-success]') as HTMLElement
+      emailForm?.addEventListener('submit', async (e) => {
+        e.preventDefault()
+        const formData = new FormData(emailForm)
+        const email = formData.get('email') as string
+
+        try {
+          await fetch('/', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: new URLSearchParams(formData as any).toString()
+          })
+          saveEmail(email)
+          emailForm.classList.add('hidden')
+          emailSuccess?.classList.remove('hidden')
+        } catch {
+          // If fetch fails, let the form submit normally
+          emailForm.submit()
+        }
+      })
+
+      // Activate license → show license form
+      const activateBtn = el.querySelector('[data-premium-activate-btn]') as HTMLButtonElement
+      const licenseForm = el.querySelector('[data-premium-license-form]') as HTMLElement
+      const alreadyDiv = el.querySelector('.pg-already') as HTMLElement
+      activateBtn?.addEventListener('click', () => {
+        licenseForm?.classList.remove('hidden')
+        alreadyDiv?.classList.add('hidden')
+      })
+
+      // Cancel license form
+      const cancelBtn = el.querySelector('[data-premium-license-cancel]') as HTMLButtonElement
+      cancelBtn?.addEventListener('click', () => {
+        licenseForm?.classList.add('hidden')
+        alreadyDiv?.classList.remove('hidden')
+      })
+
+      // Validate and activate license
+      const licenseBtn = el.querySelector('[data-premium-license-btn]') as HTMLButtonElement
+      const licenseInput = el.querySelector('[data-premium-license-input]') as HTMLInputElement
+      const licenseError = el.querySelector('[data-premium-license-error]') as HTMLElement
+      licenseBtn?.addEventListener('click', async () => {
+        const key = licenseInput?.value?.trim()
+        if (!key) return
+
+        licenseBtn.disabled = true
+        licenseBtn.textContent = '...'
+        licenseError?.classList.add('hidden')
+
+        const valid = await validateLicense(key)
+        if (valid) {
+          saveLicense(key)
+          unlockPageContent()
+        } else {
+          licenseError?.classList.remove('hidden')
+          licenseBtn.disabled = false
+          licenseBtn.textContent = licenseBtn.dataset.originalText || 'Activate'
+        }
+      })
+
+      // Store original button text
+      if (licenseBtn) {
+        licenseBtn.dataset.originalText = licenseBtn.textContent || ''
+      }
+    })
+  }
+
+  initPremiumGates()
+  document.addEventListener('astro:after-swap', initPremiumGates)
+</script>

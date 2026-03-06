@@ -1,0 +1,275 @@
+---
+interface Props {
+  lang?: 'en' | 'es';
+}
+
+const { lang = 'en' } = Astro.props;
+
+const labels = {
+  en: {
+    'Brew Ratio (g/L)': 'Brew Ratio (g/L)',
+    'Extraction %': 'Extraction %',
+    'Under-extracted': 'Under-extracted',
+    'Sour, thin, weak': 'Sour, thin, weak',
+    'Ideal': 'Ideal',
+    'Balanced, complex, clean': 'Balanced, complex, clean',
+    'Over-extracted': 'Over-extracted',
+    'Bitter, dry, astringent': 'Bitter, dry, astringent',
+  },
+  es: {
+    'Brew Ratio (g/L)': 'Proporción de Preparación (g/L)',
+    'Extraction %': 'Extracción %',
+    'Under-extracted': 'Subextraído',
+    'Sour, thin, weak': 'Ácido, delgado, débil',
+    'Ideal': 'Ideal',
+    'Balanced, complex, clean': 'Equilibrado, complejo, limpio',
+    'Over-extracted': 'Sobrextraído',
+    'Bitter, dry, astringent': 'Amargo, seco, astringente',
+  }
+};
+
+const t = (key: string) => labels[lang][key as keyof typeof labels['en']] || key;
+
+const xScale = (ratio: number) => 40 + (ratio / 180) * 300;
+const yScale = (extraction: number) => 330 - ((extraction - 14) / 12) * 270;
+---
+
+<div class="diagram-extraction" aria-label={`Extraction Chart (${lang})`}>
+  <svg viewBox="0 0 380 360" xmlns="http://www.w3.org/2000/svg" role="img">
+    <!-- Under-extracted zone -->
+    <rect x="40" y="50" width="140" height="280" fill="#d4a574" opacity="0.15" class="zone-underextracted"/>
+    <text x="110" y="30" text-anchor="middle" font-size="12" font-weight="600" fill="color-mix(in srgb, var(--color-accent) 60%, transparent)">
+      {t('Under-extracted')}
+    </text>
+    <text x="110" y="200" text-anchor="middle" font-size="11" fill="color-mix(in srgb, var(--color-accent) 50%, transparent)" opacity="0.6">
+      {t('Sour, thin, weak')}
+    </text>
+
+    <!-- Ideal zone -->
+    <rect x="180" y="80" width="100" height="200" fill="color-mix(in srgb, var(--color-accent) 50%, transparent)" opacity="0.2" rx="3" class="zone-ideal"/>
+    <text x="230" y="65" text-anchor="middle" font-size="13" font-weight="700" fill="color-mix(in srgb, var(--color-accent) 80%, transparent)">
+      {t('Ideal')}
+    </text>
+    <text x="230" y="190" text-anchor="middle" font-size="11" fill="color-mix(in srgb, var(--color-accent) 70%, transparent)" font-weight="500">
+      {t('Balanced, complex, clean')}
+    </text>
+
+    <!-- Over-extracted zone -->
+    <rect x="280" y="50" width="100" height="280" fill="#8b4513" opacity="0.15" class="zone-overextracted"/>
+    <text x="330" y="30" text-anchor="middle" font-size="12" font-weight="600" fill="color-mix(in srgb, var(--color-accent) 60%, transparent)">
+      {t('Over-extracted')}
+    </text>
+    <text x="330" y="200" text-anchor="middle" font-size="11" fill="color-mix(in srgb, var(--color-accent) 50%, transparent)" opacity="0.6">
+      {t('Bitter, dry, astringent')}
+    </text>
+
+    <!-- Axes -->
+    <line x1="40" y1="330" x2="380" y2="330" stroke="color-mix(in srgb, var(--color-accent) 30%, transparent)" stroke-width="1.5"/>
+    <line x1="40" y1="50" x2="40" y2="330" stroke="color-mix(in srgb, var(--color-accent) 30%, transparent)" stroke-width="1.5"/>
+
+    <!-- Grid lines -->
+    {[60, 90, 120, 150, 180].map((ratio) => (
+      <line
+        key={`x-grid-${ratio}`}
+        x1={xScale(ratio)}
+        y1="50"
+        x2={xScale(ratio)}
+        y2="330"
+        stroke="color-mix(in srgb, var(--color-accent) 5%, transparent)"
+        stroke-width="0.5"
+      />
+    ))}
+    {[16, 18, 20, 22, 24].map((extraction) => (
+      <line
+        key={`y-grid-${extraction}`}
+        x1="40"
+        y1={yScale(extraction)}
+        x2="380"
+        y2={yScale(extraction)}
+        stroke="color-mix(in srgb, var(--color-accent) 5%, transparent)"
+        stroke-width="0.5"
+      />
+    ))}
+
+    <!-- X-axis labels (Brew Ratio) -->
+    {[60, 90, 120, 150, 180].map((ratio) => (
+      <g key={`label-x-${ratio}`}>
+        <line x1={xScale(ratio)} y1="330" x2={xScale(ratio)} y2="335" stroke="color-mix(in srgb, var(--color-accent) 20%, transparent)" stroke-width="1"/>
+        <text x={xScale(ratio)} y="350" text-anchor="middle" font-size="11" fill="color-mix(in srgb, var(--color-accent) 50%, transparent)">
+          {ratio}
+        </text>
+      </g>
+    ))}
+
+    <!-- Y-axis labels (Extraction %) -->
+    {[16, 18, 20, 22, 24].map((extraction) => (
+      <g key={`label-y-${extraction}`}>
+        <line x1="35" y1={yScale(extraction)} x2="40" y2={yScale(extraction)} stroke="color-mix(in srgb, var(--color-accent) 20%, transparent)" stroke-width="1"/>
+        <text x="32" y={yScale(extraction) + 4} text-anchor="end" font-size="11" fill="color-mix(in srgb, var(--color-accent) 50%, transparent)">
+          {extraction}%
+        </text>
+      </g>
+    ))}
+
+    <!-- Axis labels -->
+    <text x="210" y="365" text-anchor="middle" font-size="12" font-weight="bold" fill="color-mix(in srgb, var(--color-accent) 60%, transparent)">
+      {t('Brew Ratio (g/L)')}
+    </text>
+    <text x="15" y="190" text-anchor="middle" font-size="12" font-weight="bold" fill="color-mix(in srgb, var(--color-accent) 60%, transparent)" transform="rotate(-90 15 190)">
+      {t('Extraction %')}
+    </text>
+
+    <!-- Animated tracking dot -->
+    <circle cx={xScale(120)} cy={yScale(20)} r="5" fill="color-mix(in srgb, var(--color-accent) 70%, transparent)" class="tracker-dot" opacity="0.7"/>
+    <circle cx={xScale(120)} cy={yScale(20)} r="8" fill="none" stroke="color-mix(in srgb, var(--color-accent) 70%, transparent)" stroke-width="1.5" class="tracker-ring" opacity="0.5"/>
+
+    <!-- Zone boundary lines (subtle) -->
+    <line x1={xScale(60)} y1={yScale(14)} x2={xScale(60)} y2={yScale(26)} stroke="color-mix(in srgb, var(--color-accent) 20%, transparent)" stroke-width="1" stroke-dasharray="2"/>
+    <line x1={xScale(180)} y1={yScale(14)} x2={xScale(180)} y2={yScale(26)} stroke="color-mix(in srgb, var(--color-accent) 20%, transparent)" stroke-width="1" stroke-dasharray="2"/>
+  </svg>
+
+  <div class="info-box">
+    <div class="info-item">
+      <span class="label">TDS Range (Ideal):</span>
+      <span class="value">1.15 - 1.35%</span>
+    </div>
+    <div class="info-item">
+      <span class="label">Target Extraction:</span>
+      <span class="value">18 - 22%</span>
+    </div>
+  </div>
+</div>
+
+<style>
+  :root {
+    --color-accent: #8b6f47;
+  }
+
+  .diagram-extraction {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  svg {
+    width: 100%;
+    height: auto;
+    display: block;
+    font-family: inherit;
+  }
+
+  .zone-underextracted,
+  .zone-ideal,
+  .zone-overextracted {
+    transition: opacity 0.3s ease;
+  }
+
+  .zone-ideal {
+    animation: pulseIdeal 3s ease-in-out infinite;
+  }
+
+  .tracker-dot {
+    animation: trackDot 6s ease-in-out infinite;
+  }
+
+  .tracker-ring {
+    animation: trackRing 6s ease-in-out infinite;
+  }
+
+  .info-box {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+    padding: 16px;
+    background: color-mix(in srgb, var(--color-accent) 8%, transparent);
+    border-radius: 6px;
+    border: 1px solid color-mix(in srgb, var(--color-accent) 15%, transparent);
+  }
+
+  .info-item {
+    flex: 1;
+    text-align: center;
+  }
+
+  .info-item .label {
+    display: block;
+    font-size: 11px;
+    color: color-mix(in srgb, var(--color-accent) 50%, transparent);
+    margin-bottom: 6px;
+    font-weight: 500;
+  }
+
+  .info-item .value {
+    display: block;
+    font-weight: 700;
+    font-size: 14px;
+    color: color-mix(in srgb, var(--color-accent) 85%, transparent);
+  }
+
+  @keyframes pulseIdeal {
+    0%, 100% {
+      opacity: 0.2;
+    }
+    50% {
+      opacity: 0.3;
+    }
+  }
+
+  @keyframes trackDot {
+    0% {
+      cx: 160;
+      cy: 200;
+    }
+    25% {
+      cx: 200;
+      cy: 120;
+    }
+    50% {
+      cx: 270;
+      cy: 160;
+    }
+    75% {
+      cx: 220;
+      cy: 240;
+    }
+    100% {
+      cx: 160;
+      cy: 200;
+    }
+  }
+
+  @keyframes trackRing {
+    0%, 100% {
+      r: 8;
+      opacity: 0.5;
+    }
+    50% {
+      r: 12;
+      opacity: 0;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .info-box {
+      flex-direction: column;
+      gap: 12px;
+    }
+  }
+</style>
+
+<script>
+  const svg = document.querySelector('svg');
+  if (svg) {
+    // Enable hover states on zones
+    const zones = svg.querySelectorAll('[class*="zone-"]');
+    zones.forEach(zone => {
+      zone.addEventListener('mouseenter', function() {
+        zones.forEach(z => z.style.opacity = '0.1');
+        this.style.opacity = this.classList.contains('zone-ideal') ? '0.3' : '0.2';
+      });
+      zone.addEventListener('mouseleave', function() {
+        zones.forEach(z => z.style.opacity = '');
+      });
+    });
+  }
+</script>

@@ -1,0 +1,228 @@
+---
+interface Props {
+  lang?: 'en' | 'es';
+}
+
+const { lang = 'en' } = Astro.props;
+
+const labels = {
+  en: {
+    Fruity: 'Fruity',
+    'Sour/Fermented': 'Sour/Fermented',
+    'Green/Vegetative': 'Green/Vegetative',
+    Other: 'Other',
+    Roasted: 'Roasted',
+    Spices: 'Spices',
+    'Nutty/Cocoa': 'Nutty/Cocoa',
+    Sweet: 'Sweet',
+    Floral: 'Floral',
+    Berry: 'Berry', Citrus: 'Citrus', Stone: 'Stone',
+    Fermented: 'Fermented', Sour: 'Sour',
+    Herb: 'Herb', Grass: 'Grass', Vegetable: 'Vegetable',
+    Chemical: 'Chemical', Musty: 'Musty',
+    Tobacco: 'Tobacco', Ashy: 'Ashy', Smoky: 'Smoky',
+    Cinnamon: 'Cinnamon', Clove: 'Clove', Nutmeg: 'Nutmeg',
+    Peanut: 'Peanut', Almond: 'Almond', Cocoa: 'Cocoa',
+    Sugary: 'Sugary', Caramel: 'Caramel', Honey: 'Honey',
+    Rose: 'Rose', Jasmine: 'Jasmine', Floral: 'Floral',
+  },
+  es: {
+    Fruity: 'Afrutado',
+    'Sour/Fermented': 'Ácido/Fermentado',
+    'Green/Vegetative': 'Verde/Vegetal',
+    Other: 'Otro',
+    Roasted: 'Tostado',
+    Spices: 'Especias',
+    'Nutty/Cocoa': 'Nuez/Cacao',
+    Sweet: 'Dulce',
+    Floral: 'Floral',
+    Berry: 'Baya', Citrus: 'Cítrico', Stone: 'Frutas de hueso',
+    Fermented: 'Fermentado', Sour: 'Agrio',
+    Herb: 'Hierba', Grass: 'Pasto', Vegetable: 'Vegetal',
+    Chemical: 'Químico', Musty: 'Mohoso',
+    Tobacco: 'Tabaco', Ashy: 'Ceniza', Smoky: 'Ahumado',
+    Cinnamon: 'Canela', Clove: 'Clavo', Nutmeg: 'Nuez moscada',
+    Peanut: 'Maní', Almond: 'Almendra', Cocoa: 'Cacao',
+    Sugary: 'Azucarado', Caramel: 'Caramelo', Honey: 'Miel',
+    Rose: 'Rosa', Jasmine: 'Jazmín', Floral: 'Floral',
+  }
+};
+
+const categories = [
+  { name: 'Fruity', color: 0, subs: ['Berry', 'Citrus', 'Stone'] },
+  { name: 'Sour/Fermented', color: 40, subs: ['Fermented', 'Sour'] },
+  { name: 'Green/Vegetative', color: 80, subs: ['Herb', 'Grass', 'Vegetable'] },
+  { name: 'Other', color: 120, subs: ['Chemical', 'Musty'] },
+  { name: 'Roasted', color: 160, subs: ['Tobacco', 'Ashy', 'Smoky'] },
+  { name: 'Spices', color: 200, subs: ['Cinnamon', 'Clove', 'Nutmeg'] },
+  { name: 'Nutty/Cocoa', color: 240, subs: ['Peanut', 'Almond', 'Cocoa'] },
+  { name: 'Sweet', color: 280, subs: ['Sugary', 'Caramel', 'Honey'] },
+  { name: 'Floral', color: 320, subs: ['Rose', 'Jasmine'] },
+];
+
+const t = (key: string) => labels[lang][key as keyof typeof labels['en']] || key;
+---
+
+<div class="diagram-flavor-wheel" aria-label={`Coffee Flavor Wheel (${lang})`}>
+  <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" role="img">
+    <!-- Background -->
+    <circle cx="200" cy="200" r="195" fill="color-mix(in srgb, var(--color-accent) 5%, transparent)" stroke="color-mix(in srgb, var(--color-accent) 15%, transparent)" stroke-width="1"/>
+
+    <!-- Grid circles -->
+    <circle cx="200" cy="200" r="80" fill="none" stroke="color-mix(in srgb, var(--color-accent) 10%, transparent)" stroke-width="0.5"/>
+    <circle cx="200" cy="200" r="140" fill="none" stroke="color-mix(in srgb, var(--color-accent) 10%, transparent)" stroke-width="0.5"/>
+
+    <!-- Segments -->
+    {categories.map((cat, i) => {
+      const angle = (360 / categories.length) * i;
+      const startAngle = angle - 20;
+      const endAngle = angle + 20;
+
+      // Inner segment (primary)
+      const r1 = 50, r2 = 95;
+      const x1s = 200 + r1 * Math.cos((startAngle - 90) * Math.PI / 180);
+      const y1s = 200 + r1 * Math.sin((startAngle - 90) * Math.PI / 180);
+      const x1e = 200 + r1 * Math.cos((endAngle - 90) * Math.PI / 180);
+      const y1e = 200 + r1 * Math.sin((endAngle - 90) * Math.PI / 180);
+      const x2s = 200 + r2 * Math.cos((startAngle - 90) * Math.PI / 180);
+      const y2s = 200 + r2 * Math.sin((startAngle - 90) * Math.PI / 180);
+      const x2e = 200 + r2 * Math.cos((endAngle - 90) * Math.PI / 180);
+      const y2e = 200 + r2 * Math.sin((endAngle - 90) * Math.PI / 180);
+
+      const pathData = `M ${x1s} ${y1s} A ${r1} ${r1} 0 0 1 ${x1e} ${y1e} L ${x2e} ${y2e} A ${r2} ${r2} 0 0 0 ${x2s} ${y2s} Z`;
+      const hsl = `hsl(${cat.color}, 65%, 65%)`;
+
+      return (
+        <g key={`${cat.name}-inner`} class={`segment segment-${i}`} data-category={cat.name}>
+          <path d={pathData} fill={hsl} opacity="0.7" class="segment-path"/>
+          <text x="200" y="200" text-anchor="middle" dominant-baseline="middle" transform={`rotate(${angle} 200 200)`} class="segment-label">
+            {t(cat.name)}
+          </text>
+        </g>
+      );
+    })}
+
+    <!-- Outer subcategories -->
+    {categories.map((cat, i) => {
+      const angle = (360 / categories.length) * i;
+      return cat.subs.map((sub, si) => {
+        const subAngle = angle - 20 + (40 / (cat.subs.length + 1)) * (si + 1);
+        const r1 = 100, r2 = 180;
+        const startAngle = subAngle - 12;
+        const endAngle = subAngle + 12;
+
+        const x1s = 200 + r1 * Math.cos((startAngle - 90) * Math.PI / 180);
+        const y1s = 200 + r1 * Math.sin((startAngle - 90) * Math.PI / 180);
+        const x1e = 200 + r1 * Math.cos((endAngle - 90) * Math.PI / 180);
+        const y1e = 200 + r1 * Math.sin((endAngle - 90) * Math.PI / 180);
+        const x2s = 200 + r2 * Math.cos((startAngle - 90) * Math.PI / 180);
+        const y2s = 200 + r2 * Math.sin((startAngle - 90) * Math.PI / 180);
+        const x2e = 200 + r2 * Math.cos((endAngle - 90) * Math.PI / 180);
+        const y2e = 200 + r2 * Math.sin((endAngle - 90) * Math.PI / 180);
+
+        const pathData = `M ${x1s} ${y1s} A ${r1} ${r1} 0 0 1 ${x1e} ${y1e} L ${x2e} ${y2e} A ${r2} ${r2} 0 0 0 ${x2s} ${y2s} Z`;
+        const hsl = `hsl(${cat.color + si * 8}, 55%, 75%)`;
+
+        return (
+          <g key={`${cat.name}-${sub}`} class={`segment segment-outer`} data-subcategory={sub}>
+            <path d={pathData} fill={hsl} opacity="0.6" class="segment-path"/>
+            <text x="200" y="200" text-anchor="middle" dominant-baseline="middle" font-size="11" transform={`rotate(${subAngle} 200 200)`} class="segment-label-sub">
+              {t(sub)}
+            </text>
+          </g>
+        );
+      });
+    })}
+
+    <!-- Center circle -->
+    <circle cx="200" cy="200" r="45" fill="color-mix(in srgb, var(--color-accent) 8%, transparent)" stroke="color-mix(in srgb, var(--color-accent) 20%, transparent)" stroke-width="1"/>
+    <text x="200" y="200" text-anchor="middle" dominant-baseline="middle" font-weight="bold" font-size="14">
+      {lang === 'en' ? 'Coffee' : 'Café'}
+    </text>
+  </svg>
+
+  <div class="tooltip" id="flavor-tooltip"></div>
+</div>
+
+<style>
+  :root {
+    --color-accent: #8b6f47;
+  }
+
+  .diagram-flavor-wheel {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  svg {
+    width: 100%;
+    height: auto;
+    display: block;
+    font-family: inherit;
+  }
+
+  .segment-path {
+    transition: opacity 0.2s ease;
+    cursor: pointer;
+  }
+
+  .segment:hover .segment-path {
+    opacity: 1 !important;
+    filter: brightness(1.1);
+  }
+
+  .segment-label,
+  .segment-label-sub {
+    fill: color-mix(in srgb, var(--color-accent) 30%, transparent);
+    font-size: 12px;
+    font-weight: 500;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .segment-label-sub {
+    font-size: 10px;
+    opacity: 0.8;
+  }
+
+  .tooltip {
+    position: absolute;
+    background: color-mix(in srgb, var(--color-accent) 90%, transparent);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 12px;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    z-index: 10;
+  }
+
+  .tooltip.visible {
+    opacity: 1;
+  }
+</style>
+
+<script>
+  const segments = document.querySelectorAll('.segment');
+  const tooltip = document.getElementById('flavor-tooltip');
+
+  segments.forEach(segment => {
+    segment.addEventListener('mouseenter', (e) => {
+      const category = segment.dataset.category || segment.dataset.subcategory;
+      if (category && tooltip) {
+        tooltip.textContent = category;
+        tooltip.classList.add('visible');
+        const rect = (e.target as SVGElement).getBoundingClientRect();
+        tooltip.style.left = rect.left + 'px';
+        tooltip.style.top = (rect.top - 30) + 'px';
+      }
+    });
+
+    segment.addEventListener('mouseleave', () => {
+      tooltip?.classList.remove('visible');
+    });
+  });
+</script>

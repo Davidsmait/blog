@@ -27,7 +27,7 @@ const cafeSchema = ({ image }: { image: Function }) =>
     openGraphImage: image().or(z.string()).optional(),
     tags: z.array(z.string()).default([]),
     // Roadmap fields
-    phase: z.number().min(1).max(8).optional(),
+    phase: z.number().min(1).max(9).optional(),
     lessonOrder: z.number().optional(),
     isPremium: z.boolean().optional().default(false)
   })

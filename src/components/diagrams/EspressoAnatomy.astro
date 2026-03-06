@@ -1,0 +1,314 @@
+---
+interface Props {
+  lang?: 'en' | 'es';
+}
+
+const { lang = 'en' } = Astro.props;
+
+const labels = {
+  en: {
+    Crema: 'Crema',
+    Body: 'Body',
+    Heart: 'Heart',
+    'Golden foam layer': 'Golden foam layer with oils and gases',
+    'Main espresso body': 'Main espresso body with balanced flavors',
+    'Concentrated essence': 'Concentrated essence and intense flavors',
+    'Ratio': 'Ratio',
+    '1:2-1:3': '1:2 - 1:3',
+    'Time': 'Time',
+    '25-30s': '25-30s',
+    'Pressure': 'Pressure',
+    '9 bar': '9 bar',
+    'Temperature': 'Temperature',
+    '90-93°C': '90-93°C',
+  },
+  es: {
+    Crema: 'Crema',
+    Body: 'Cuerpo',
+    Heart: 'Corazón',
+    'Golden foam layer': 'Capa de espuma dorada con aceites y gases',
+    'Main espresso body': 'Cuerpo principal del espresso con sabores equilibrados',
+    'Concentrated essence': 'Esencia concentrada y sabores intensos',
+    'Ratio': 'Proporción',
+    '1:2-1:3': '1:2 - 1:3',
+    'Time': 'Tiempo',
+    '25-30s': '25-30s',
+    'Pressure': 'Presión',
+    '9 bar': '9 bar',
+    'Temperature': 'Temperatura',
+    '90-93°C': '90-93°C',
+  }
+};
+
+const t = (key: string) => labels[lang][key as keyof typeof labels['en']] || key;
+---
+
+<div class="diagram-espresso" aria-label={`Espresso Anatomy (${lang})`}>
+  <div class="diagram-container">
+    <svg viewBox="0 0 300 400" xmlns="http://www.w3.org/2000/svg" role="img" class="espresso-glass">
+      <!-- Glass -->
+      <path
+        d="M 80 100 L 75 380 Q 75 390 85 390 L 175 390 Q 185 390 185 380 L 180 100 Z"
+        fill="color-mix(in srgb, var(--color-accent) 3%, transparent)"
+        stroke="color-mix(in srgb, var(--color-accent) 25%, transparent)"
+        stroke-width="1.5"
+      />
+
+      <!-- Glass rim -->
+      <ellipse cx="130" cy="100" rx="50" ry="12" fill="none" stroke="color-mix(in srgb, var(--color-accent) 25%, transparent)" stroke-width="1.5"/>
+
+      <!-- Crema layer -->
+      <g class="layer layer-crema" data-layer="Crema">
+        <rect x="75" y="110" width="110" height="35" fill="#d4a574" opacity="0.85" rx="3"/>
+        <path d="M 75 130 Q 90 125 130 128 Q 170 131 185 128 L 185 145 Q 170 140 130 145 Q 90 148 75 145 Z" fill="#e8c9a0" opacity="0.6"/>
+        <text x="130" y="133" text-anchor="middle" dominant-baseline="middle" font-weight="bold" font-size="13" fill="color-mix(in srgb, var(--color-accent) 80%, transparent)">
+          {t('Crema')}
+        </text>
+      </g>
+
+      <!-- Body layer -->
+      <g class="layer layer-body" data-layer="Body">
+        <rect x="75" y="145" width="110" height="65" fill="#8b6f47" opacity="0.75" rx="3"/>
+        <text x="130" y="180" text-anchor="middle" dominant-baseline="middle" font-weight="bold" font-size="13" fill="color-mix(in srgb, var(--color-accent) 20%, transparent)">
+          {t('Body')}
+        </text>
+      </g>
+
+      <!-- Heart layer -->
+      <g class="layer layer-heart" data-layer="Heart">
+        <rect x="75" y="210" width="110" height="160" fill="#4a3728" opacity="0.8" rx="3"/>
+        <text x="130" y="295" text-anchor="middle" dominant-baseline="middle" font-weight="bold" font-size="13" fill="#f5f1e8">
+          {t('Heart')}
+        </text>
+      </g>
+
+      <!-- Guide lines for labels -->
+      <line x1="185" y1="127" x2="220" y2="127" stroke="color-mix(in srgb, var(--color-accent) 40%, transparent)" stroke-width="1" stroke-dasharray="2"/>
+      <line x1="185" y1="177" x2="220" y2="177" stroke="color-mix(in srgb, var(--color-accent) 40%, transparent)" stroke-width="1" stroke-dasharray="2"/>
+      <line x1="185" y1="290" x2="220" y2="290" stroke="color-mix(in srgb, var(--color-accent) 40%, transparent)" stroke-width="1" stroke-dasharray="2"/>
+
+      <!-- Label circles -->
+      <circle cx="225" cy="127" r="4" fill="color-mix(in srgb, var(--color-accent) 60%, transparent)"/>
+      <circle cx="225" cy="177" r="4" fill="color-mix(in srgb, var(--color-accent) 60%, transparent)"/>
+      <circle cx="225" cy="290" r="4" fill="color-mix(in srgb, var(--color-accent) 60%, transparent)"/>
+    </svg>
+
+    <!-- Labels and descriptions -->
+    <div class="labels">
+      <div class="label crema-label">
+        <strong>{t('Crema')}</strong>
+        <p>{t('Golden foam layer')}</p>
+      </div>
+      <div class="label body-label">
+        <strong>{t('Body')}</strong>
+        <p>{t('Main espresso body')}</p>
+      </div>
+      <div class="label heart-label">
+        <strong>{t('Heart')}</strong>
+        <p>{t('Concentrated essence')}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Metrics panel -->
+  <div class="metrics">
+    <div class="metric">
+      <span class="label">{t('Ratio')}</span>
+      <span class="value">{t('1:2-1:3')}</span>
+    </div>
+    <div class="metric">
+      <span class="label">{t('Time')}</span>
+      <span class="value">{t('25-30s')}</span>
+    </div>
+    <div class="metric">
+      <span class="label">{t('Pressure')}</span>
+      <span class="value">{t('9 bar')}</span>
+    </div>
+    <div class="metric">
+      <span class="label">{t('Temperature')}</span>
+      <span class="value">{t('90-93°C')}</span>
+    </div>
+  </div>
+
+  <div class="tooltip" id="espresso-tooltip"></div>
+</div>
+
+<style>
+  :root {
+    --color-accent: #8b6f47;
+  }
+
+  .diagram-espresso {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .diagram-container {
+    position: relative;
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+
+  svg {
+    flex: 1;
+    height: auto;
+    display: block;
+    font-family: inherit;
+  }
+
+  .layer {
+    transition: opacity 0.3s ease, filter 0.3s ease;
+    cursor: pointer;
+  }
+
+  .layer:hover {
+    opacity: 1 !important;
+    filter: brightness(1.15) drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
+  }
+
+  .layer rect {
+    transition: filter 0.3s ease;
+  }
+
+  .labels {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+
+  .label {
+    padding: 12px;
+    border-left: 3px solid color-mix(in srgb, var(--color-accent) 50%, transparent);
+    background: color-mix(in srgb, var(--color-accent) 5%, transparent);
+    border-radius: 4px;
+    transition: all 0.3s ease;
+  }
+
+  .label strong {
+    display: block;
+    color: color-mix(in srgb, var(--color-accent) 80%, transparent);
+    margin-bottom: 4px;
+    font-size: 13px;
+  }
+
+  .label p {
+    margin: 0;
+    font-size: 12px;
+    color: color-mix(in srgb, var(--color-accent) 60%, transparent);
+    line-height: 1.4;
+  }
+
+  .label.active {
+    background: color-mix(in srgb, var(--color-accent) 15%, transparent);
+    border-left-color: color-mix(in srgb, var(--color-accent) 80%, transparent);
+  }
+
+  .metrics {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-top: 20px;
+  }
+
+  .metric {
+    text-align: center;
+    padding: 12px;
+    background: color-mix(in srgb, var(--color-accent) 8%, transparent);
+    border-radius: 6px;
+    border: 1px solid color-mix(in srgb, var(--color-accent) 15%, transparent);
+  }
+
+  .metric .label {
+    border: none;
+    padding: 0;
+    background: transparent;
+    display: block;
+    font-size: 11px;
+    color: color-mix(in srgb, var(--color-accent) 50%, transparent);
+    margin-bottom: 6px;
+  }
+
+  .metric .value {
+    display: block;
+    font-weight: 600;
+    font-size: 13px;
+    color: color-mix(in srgb, var(--color-accent) 85%, transparent);
+  }
+
+  .tooltip {
+    position: fixed;
+    background: color-mix(in srgb, var(--color-accent) 90%, transparent);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 12px;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    z-index: 10;
+  }
+
+  .tooltip.visible {
+    opacity: 1;
+  }
+
+  @media (max-width: 600px) {
+    .diagram-container {
+      flex-direction: column;
+    }
+
+    .metrics {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>
+
+<script>
+  const layers = document.querySelectorAll('.layer');
+  const labels = document.querySelectorAll('.label');
+  const tooltip = document.getElementById('espresso-tooltip');
+
+  const descriptions = {
+    'Crema': 'Golden foam layer with oils and gases. Creates the signature crema head.',
+    'Body': 'Main espresso body with balanced flavors. Where most of the taste comes from.',
+    'Heart': 'Concentrated essence and intense flavors. The darkest, most concentrated part.'
+  };
+
+  layers.forEach((layer) => {
+    layer.addEventListener('mouseenter', (e) => {
+      const layerName = layer.dataset.layer as keyof typeof descriptions;
+
+      // Highlight this layer
+      layers.forEach(l => {
+        if (l === layer) l.classList.add('highlighted');
+        else l.style.opacity = '0.5';
+      });
+
+      // Highlight corresponding label
+      labels.forEach(l => {
+        if (l.textContent.includes(layerName)) {
+          l.classList.add('active');
+        }
+      });
+
+      // Show tooltip
+      if (tooltip) {
+        tooltip.textContent = descriptions[layerName] || layerName;
+        tooltip.classList.add('visible');
+        const rect = (e.target as SVGElement).getBoundingClientRect();
+        tooltip.style.left = rect.left + rect.width / 2 - 50 + 'px';
+        tooltip.style.top = rect.top - 40 + 'px';
+      }
+    });
+
+    layer.addEventListener('mouseleave', () => {
+      layers.forEach(l => l.classList.remove('highlighted'));
+      layers.forEach(l => l.style.opacity = '');
+      labels.forEach(l => l.classList.remove('active'));
+      tooltip?.classList.remove('visible');
+    });
+  });
+</script>
