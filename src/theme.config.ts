@@ -7,8 +7,8 @@ export default defineThemeConfig({
   author: 'David San Luis',
   navbarItems: [
     { label: 'Blog', href: '/posts', icon: 'tabler--article' },
-    { label: 'Cafe', href: '/barista-roadmap', icon: 'tabler--coffee' },
     { label: 'Projects', href: '/projects', icon: 'tabler--code' },
+    { label: 'Cafe', href: '/barista-roadmap', icon: 'tabler--coffee' },
     { label: 'Tags', href: '/tags', icon: 'tabler--tags' },
     { label: 'About', href: '/about', icon: 'tabler--user' }
   ],
