@@ -41,7 +41,7 @@ const sortedPosts = [...posts].sort((a, b) => b.data.publishedDate.getTime() - a
               </time>
             </div>
             <div class="pointer-events-none">
-              <TagsBar tags={resolveTags(post.data.tags)} />
+              <TagsBar tags={resolveTags(post.data.tags)} maxVisible={3} />
             </div>
             <p class="m-0 text-base leading-relaxed opacity-60">
               {post.data.description}

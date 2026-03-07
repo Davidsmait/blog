@@ -58,7 +58,7 @@ const renderedProjects = await Promise.all(
             {!data.endDate && nowLabel}
           </div>
         </div>
-        <TagsBar tags={resolveTags(data.tags)} />
+        <TagsBar tags={resolveTags(data.tags)} maxVisible={3} />
         <div class="opacity-75">
           <Content />
         </div>

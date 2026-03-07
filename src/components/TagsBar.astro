@@ -3,21 +3,30 @@ import type { ResolvedTag } from '@/types'
 
 export interface Props {
   tags: ResolvedTag[]
+  maxVisible?: number
 }
 
-const { tags } = Astro.props
+const { tags, maxVisible = 0 } = Astro.props
+
+const visibleTags = maxVisible > 0 ? tags.slice(0, maxVisible) : tags
+const remainingCount = maxVisible > 0 ? tags.length - maxVisible : 0
 ---
 
-<div class="flex flex-wrap gap-2 text-sm">
+<div class="flex flex-wrap items-center gap-1.5 text-xs">
   {
-    tags.map(({ tag, icon }) => (
+    visibleTags.map(({ tag, icon }) => (
       <a
-        class="flex items-center gap-1 rounded-md border border-accent/10 bg-accent/5 px-3 py-2 sm:px-2 sm:py-0.5 min-h-[44px] sm:min-h-0 no-underline opacity-70 transition-all duration-300 hover:border-accent/30 hover:bg-accent/10 hover:opacity-100"
+        class="flex items-center gap-1 rounded-full bg-accent/8 px-2 py-0.5 no-underline opacity-60 transition-all duration-200 hover:bg-accent/15 hover:opacity-100"
         href={`/tags/${tag}`}
       >
-        <span class={`iconify text-base ${icon}`} />
-        <span class="font-normal">{tag}</span>
+        <span class={`iconify text-[0.7rem] ${icon}`} />
+        <span class="font-medium">{tag}</span>
       </a>
     ))
   }
+  {remainingCount > 0 && (
+    <span class="rounded-full bg-accent/5 px-2 py-0.5 text-xs opacity-40">
+      +{remainingCount}
+    </span>
+  )}
 </div>
