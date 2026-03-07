@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 const PLACEHOLDER = '$CODE_HEADER_PLACEHOLDER$'
 
 const iconMap: Record<string, string> = {
@@ -55,6 +54,18 @@ const iconMap: Record<string, string> = {
   xml: 'tabler--file-type-xml'
 }
 
+interface ShikiElement {
+  type: string
+  tagName: string
+  properties: { style: string; class?: string; [key: string]: unknown }
+  children: unknown[]
+}
+
+interface ShikiOptions {
+  meta?: { __raw?: string }
+  lang?: string
+}
+
 function getLabel(label?: string) {
   if (!label) return ''
 
@@ -77,11 +88,11 @@ function generateHeader(label?: string, lang?: string) {
 }
 
 export default {
-  postprocess: (html: string, options: any) => {
+  postprocess: (html: string, options: ShikiOptions) => {
     const codeHeader = generateHeader(options.meta?.__raw, options.lang)
     return html.replace(PLACEHOLDER, codeHeader)
   },
-  pre: (pre: any): any => {
+  pre: (pre: ShikiElement): ShikiElement => {
     const styles = parseStyleProps(pre.properties.style)
 
     const color = styles['color']
@@ -111,14 +122,13 @@ export default {
 }
 
 function parseStyleProps(style: string): Record<string, string> {
-  const propArr = style.split(';')
-
   const propMap: Record<string, string> = {}
 
-  propArr.forEach((prop) => {
-    const [key, val] = prop.split(':')
-    propMap[key] = val
-  })
+  for (const prop of style.split(';')) {
+    const idx = prop.indexOf(':')
+    if (idx === -1) continue
+    propMap[prop.slice(0, idx).trim()] = prop.slice(idx + 1).trim()
+  }
 
   return propMap
 }

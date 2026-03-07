@@ -3,7 +3,8 @@ import { defineThemeConfig } from './types'
 export default defineThemeConfig({
   site: 'https://davidsanluisaguirre.com',
   title: 'David San Luis Aguirre',
-  description: 'A minimal Astro blog theme',
+  description:
+    'Blog personal de David San Luis Aguirre — desarrollo web, proyectos y café de especialidad.',
   author: 'David San Luis',
   navbarItems: [
     { label: 'Blog', href: '/posts', icon: 'tabler--article' },
@@ -37,7 +38,7 @@ export default defineThemeConfig({
       icon: 'tabler--rss',
       href: '/feed.xml',
       label: 'RSS feed'
-    },
+    }
   ],
 
   // optional settings
@@ -56,7 +57,7 @@ export default defineThemeConfig({
     documentation: 'tabler--book',
     cafe: 'tabler--coffee',
     barista: 'tabler--coffee',
-    especialidad: 'tabler--star',
+    especialidad: 'tabler--star'
   },
   shikiThemes: {
     light: 'vitesse-light',

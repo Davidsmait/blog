@@ -6,25 +6,35 @@ export interface Props {
 }
 
 const { page } = Astro.props
+
+const isSpanish = !Astro.url.pathname.startsWith('/en/')
+const prevLabel = isSpanish ? 'Anterior' : 'Previous'
+const nextLabel = isSpanish ? 'Siguiente' : 'Next'
 ---
 
 {
   page.lastPage > 1 && (
-    <nav class="mb-8 flex w-full grow items-end justify-center">
+    <nav class="mb-8 flex w-full grow items-end justify-center" aria-label={isSpanish ? 'Paginación' : 'Pagination'}>
       <div class="flex gap-4">
-        <a
-          class={!page.url.prev ? 'no-underline opacity-25' : 'clickable'}
-          href={page.url.prev}
-        >
-          Previous
-        </a>
-        {page.currentPage} / {page.lastPage}
-        <a
-          class={!page.url.next ? 'no-underline opacity-25' : 'clickable'}
-          href={page.url.next}
-        >
-          Next
-        </a>
+        {page.url.prev ? (
+          <a class="clickable" href={page.url.prev}>
+            {prevLabel}
+          </a>
+        ) : (
+          <span class="no-underline opacity-25 cursor-default" aria-disabled="true">
+            {prevLabel}
+          </span>
+        )}
+        <span aria-current="page">{page.currentPage} / {page.lastPage}</span>
+        {page.url.next ? (
+          <a class="clickable" href={page.url.next}>
+            {nextLabel}
+          </a>
+        ) : (
+          <span class="no-underline opacity-25 cursor-default" aria-disabled="true">
+            {nextLabel}
+          </span>
+        )}
       </div>
     </nav>
   )

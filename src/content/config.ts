@@ -1,5 +1,5 @@
 import config from '@/theme.config'
-import { defineCollection, z } from 'astro:content'
+import { defineCollection, z, type SchemaContext } from 'astro:content'
 
 const posts = defineCollection({
   type: 'content',
@@ -16,7 +16,7 @@ const posts = defineCollection({
     })
 })
 
-const cafeSchema = ({ image }: { image: Function }) =>
+const cafeSchema = ({ image }: SchemaContext) =>
   z.object({
     title: z.string(),
     author: z.string().default(config.author),

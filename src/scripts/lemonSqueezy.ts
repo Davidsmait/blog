@@ -47,10 +47,15 @@ let scriptLoading = false
 export function loadLemonSqueezy(): Promise<void> {
   if (scriptLoaded) return Promise.resolve()
   if (scriptLoading) {
-    return new Promise((resolve) => {
+    return new Promise((resolve, reject) => {
+      const timeout = setTimeout(() => {
+        clearInterval(check)
+        reject(new Error('Lemon Squeezy script loading timeout'))
+      }, 10000)
       const check = setInterval(() => {
         if (scriptLoaded) {
           clearInterval(check)
+          clearTimeout(timeout)
           resolve()
         }
       }, 100)

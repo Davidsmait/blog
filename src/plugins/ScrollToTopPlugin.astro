@@ -1,12 +1,35 @@
 <button
   id="scroll-to-top-btn"
-  title="Scroll to top"
-  class="!fixed bottom-20 right-2 z-10 hidden sm:bottom-28 lg:bottom-8"
+  title="Volver arriba"
+  aria-label="Volver arriba"
+  class="scroll-to-top-btn"
 >
   <div class="clickable flex items-center gap-2 pr-2">
-    <span class="iconify text-4xl tabler--arrow-up"></span>
+    <span class="iconify text-4xl tabler--arrow-up" aria-hidden="true"></span>
   </div>
 </button>
+
+<style>
+  .scroll-to-top-btn {
+    position: fixed;
+    bottom: max(1rem, env(safe-area-inset-bottom, 0px) + 1rem);
+    right: 0.5rem;
+    z-index: 10;
+    opacity: 0;
+    transform: translateY(8px);
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    border: none;
+    background: none;
+    cursor: pointer;
+  }
+  .scroll-to-top-btn.visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+</style>
+
 <script>
   document.addEventListener('astro:page-load', () => {
     document.addEventListener('scroll', onScroll)
@@ -31,9 +54,9 @@
       document.body.scrollTop || document.documentElement.scrollTop
 
     if (scrollTop > minHeight) {
-      scrollToTopBtn.classList.remove('hidden')
+      scrollToTopBtn.classList.add('visible')
     } else {
-      scrollToTopBtn.classList.add('hidden')
+      scrollToTopBtn.classList.remove('visible')
     }
   }
 </script>

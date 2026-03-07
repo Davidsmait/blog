@@ -103,7 +103,7 @@ const labels = lang === 'en'
     </form>
 
     <!-- Email success message (hidden by default) -->
-    <p class="pg-email-success hidden" data-premium-email-success>{labels.emailSuccess}</p>
+    <p class="pg-email-success hidden" data-premium-email-success role="alert">{labels.emailSuccess}</p>
 
     <!-- Already purchased link -->
     <div class="pg-already">
@@ -125,7 +125,7 @@ const labels = lang === 'en'
         />
         <button class="pg-email-btn" data-premium-license-btn>{labels.licenseBtn}</button>
       </div>
-      <p class="pg-license-error hidden" data-premium-license-error>{labels.licenseError}</p>
+      <p class="pg-license-error hidden" data-premium-license-error role="alert">{labels.licenseError}</p>
       <button class="pg-cancel-link" data-premium-license-cancel>{labels.licenseCancel}</button>
     </div>
   </div>
@@ -413,17 +413,31 @@ const labels = lang === 'en'
         const formData = new FormData(emailForm)
         const email = formData.get('email') as string
 
+        // Loading feedback (3.4)
+        const submitBtn = emailForm.querySelector('button[type="submit"]') as HTMLButtonElement
+        const originalBtnText = submitBtn?.textContent || ''
+        if (submitBtn) {
+          submitBtn.disabled = true
+          submitBtn.textContent = '...'
+          submitBtn.setAttribute('aria-busy', 'true')
+        }
+
         try {
           await fetch('/', {
             method: 'POST',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body: new URLSearchParams(formData as any).toString()
+            body: new URLSearchParams(formData as unknown as Record<string, string>).toString()
           })
           saveEmail(email)
           emailForm.classList.add('hidden')
           emailSuccess?.classList.remove('hidden')
         } catch {
-          // If fetch fails, let the form submit normally
+          // If fetch fails, restore button and let the form submit normally
+          if (submitBtn) {
+            submitBtn.disabled = false
+            submitBtn.textContent = originalBtnText
+            submitBtn.removeAttribute('aria-busy')
+          }
           emailForm.submit()
         }
       })
@@ -448,12 +462,17 @@ const labels = lang === 'en'
       const licenseBtn = el.querySelector('[data-premium-license-btn]') as HTMLButtonElement
       const licenseInput = el.querySelector('[data-premium-license-input]') as HTMLInputElement
       const licenseError = el.querySelector('[data-premium-license-error]') as HTMLElement
+
+      // Store original button text before event listeners (3.7)
+      const licenseBtnOriginalText = licenseBtn?.textContent || (lang === 'en' ? 'Activate' : 'Activar')
+
       licenseBtn?.addEventListener('click', async () => {
         const key = licenseInput?.value?.trim()
         if (!key) return
 
         licenseBtn.disabled = true
         licenseBtn.textContent = '...'
+        licenseBtn.setAttribute('aria-busy', 'true')
         licenseError?.classList.add('hidden')
 
         const valid = await validateLicense(key)
@@ -463,14 +482,11 @@ const labels = lang === 'en'
         } else {
           licenseError?.classList.remove('hidden')
           licenseBtn.disabled = false
-          licenseBtn.textContent = licenseBtn.dataset.originalText || 'Activate'
+          licenseBtn.textContent = licenseBtnOriginalText
+          licenseBtn.removeAttribute('aria-busy')
         }
       })
 
-      // Store original button text
-      if (licenseBtn) {
-        licenseBtn.dataset.originalText = licenseBtn.textContent || ''
-      }
     })
   }
 

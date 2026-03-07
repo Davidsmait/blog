@@ -5,9 +5,12 @@
 <button
   id="mobile-nav-toggle"
   class="flex items-center"
-  title="Mobile nav toggle"
+  title="Menú de navegación"
+  aria-label="Menú de navegación"
+  aria-expanded="false"
+  aria-controls="mobile-nav"
 >
-  <span class="clickable iconify tabler--menu-2"></span>
+  <span class="clickable iconify tabler--menu-2" aria-hidden="true"></span>
 </button>
 
 <script>
@@ -15,25 +18,45 @@
   const iconClosed = 'tabler--menu-2'
 
   function setupMobileNavClickHandler() {
-    const button = document.querySelector('#mobile-nav-toggle')
-    const nav = document.querySelector('#mobile-nav')
+    const button = document.querySelector('#mobile-nav-toggle') as HTMLButtonElement | null
+    const nav = document.querySelector('#mobile-nav') as HTMLElement | null
     const icon = button?.children[0]
-    if (!icon || !nav) return
+    if (!icon || !nav || !button) return
 
-    button?.addEventListener('click', () => {
-      if (icon.className.includes(iconOpen)) {
+    button.addEventListener('click', () => {
+      const isOpen = button.getAttribute('aria-expanded') === 'true'
+
+      if (isOpen) {
         icon.classList.remove(iconOpen)
         icon.classList.add(iconClosed)
         nav.classList.add('hidden')
+        button.setAttribute('aria-expanded', 'false')
       } else {
         icon.classList.remove(iconClosed)
         icon.classList.add(iconOpen)
         nav.classList.remove('hidden')
+        button.setAttribute('aria-expanded', 'true')
       }
     })
+  }
+
+  // Close mobile nav on navigation (3.8)
+  function closeMobileNav() {
+    const button = document.querySelector('#mobile-nav-toggle') as HTMLButtonElement | null
+    const nav = document.querySelector('#mobile-nav') as HTMLElement | null
+    const icon = button?.children[0]
+    if (!button || !nav || !icon) return
+
+    if (button.getAttribute('aria-expanded') === 'true') {
+      nav.classList.add('hidden')
+      icon.classList.remove(iconOpen)
+      icon.classList.add(iconClosed)
+      button.setAttribute('aria-expanded', 'false')
+    }
   }
 
   document.addEventListener('astro:page-load', () => {
     setupMobileNavClickHandler()
   })
+  document.addEventListener('astro:before-swap', closeMobileNav)
 </script>

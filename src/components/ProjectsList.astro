@@ -12,10 +12,13 @@ export interface Props {
 
 const { projects } = Astro.props
 
-projects.sort(sortProjects)
+const sortedProjects = [...projects].sort(sortProjects)
+
+const isSpanish = !Astro.url.pathname.startsWith('/en/')
+const nowLabel = isSpanish ? 'Ahora' : 'Now'
 
 const renderedProjects = await Promise.all(
-  projects.map(async (project) => {
+  sortedProjects.map(async (project) => {
     const { Content } = await project.render()
 
     return {
@@ -25,6 +28,10 @@ const renderedProjects = await Promise.all(
   })
 )
 ---
+
+{renderedProjects.length === 0 && (
+  <p class="text-sm opacity-40 py-8 text-center">{isSpanish ? 'No hay proyectos todavía.' : 'No projects yet.'}</p>
+)}
 
 <ul class="p-0">
   {
@@ -36,25 +43,26 @@ const renderedProjects = await Promise.all(
               class="mb-2 text-xl font-normal no-underline"
               href={data.url}
               target={!data.url.startsWith('/') ? '_blank' : '_self'}
+              rel={!data.url.startsWith('/') ? 'noopener noreferrer' : undefined}
             >
               <span class="underline">{data.title}</span>
               {data.url && !data.url.startsWith('/') && (
-                <span class="iconify align-middle tabler--external-link" />
+                <span class="iconify align-middle tabler--external-link" aria-hidden="true" />
               )}
             </a>
           )}
           {!data.url && <span class="mb-2 text-xl">{data.title}</span>}
           <div class="my-2 text-sm opacity-75 sm:my-0">
-            <time>{toMonthString(data.startDate)}</time> -
-            {data.endDate && <time>{toMonthString(data.endDate)}</time>}
-            {!data.endDate && 'Ahora'}
+            <time datetime={data.startDate.toISOString()}>{toMonthString(data.startDate)}</time> -
+            {data.endDate && <time datetime={data.endDate.toISOString()}>{toMonthString(data.endDate)}</time>}
+            {!data.endDate && nowLabel}
           </div>
         </div>
         <TagsBar tags={resolveTags(data.tags)} />
         <div class="opacity-75">
           <Content />
         </div>
-        {index !== projects.length - 1 && <Separator class="my-2" />}
+        {index !== sortedProjects.length - 1 && <Separator class="my-2" />}
       </li>
     ))
   }

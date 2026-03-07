@@ -1,5 +1,5 @@
-<div class="fixed top-0 w-full">
-  <div id="scroll-progress-bar" class="h-1 w-0 bg-accent"></div>
+<div class="fixed top-0 w-full z-50" role="progressbar" aria-label="Progreso de lectura">
+  <div id="scroll-progress-bar" class="h-1 w-0 bg-accent" style="transition: width 0.1s ease-out; will-change: width;"></div>
 </div>
 <script>
   document.addEventListener('astro:page-load', () => {

@@ -57,11 +57,12 @@ export async function validateLicense(key: string): Promise<boolean> {
       const data = await res.json()
       return data.valid === true
     }
+    // Server responded with error — reject
+    return false
   } catch {
-    // Netlify Function not available — accept the key based on format
+    // Netlify Function not available — reject (don't accept by default)
+    return false
   }
-
-  return true
 }
 
 /**

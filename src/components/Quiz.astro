@@ -18,25 +18,26 @@ const labels = lang === 'en'
   ? { title: 'Quiz', check: 'Check answer', next: 'Next', retry: 'Retry', result: 'Result', of: 'of', correct: 'correct', perfect: 'Perfect score!', great: 'Great job!', good: 'Good, review the missed ones.', tryAgain: 'Review the lesson and try again.' }
   : { title: 'Quiz', check: 'Verificar', next: 'Siguiente', retry: 'Reintentar', result: 'Resultado', of: 'de', correct: 'correctas', perfect: '¡Puntuación perfecta!', great: '¡Muy bien!', good: 'Bien, repasa las que fallaste.', tryAgain: 'Repasa la lección e inténtalo de nuevo.' }
 
-const quizId = `quiz-${Math.random().toString(36).slice(2, 8)}`
+// Deterministic ID based on first question content (1.8)
+const quizId = `quiz-${questions.length > 0 ? questions[0].question.slice(0, 20).replace(/\W/g, '-').toLowerCase() : 'empty'}`
 ---
 
-<div class="quiz" id={quizId} data-quiz data-questions={JSON.stringify(questions)} data-lang={lang}>
+<div class="quiz" id={quizId} data-quiz data-questions={JSON.stringify(questions)} data-lang={lang} role="region" aria-label={title || labels.title}>
   <div class="quiz-header">
-    <span class="quiz-icon">
+    <span class="quiz-icon" aria-hidden="true">
       <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16">
         <path fill-rule="evenodd" d="M18 10a8 8 0 1 1-16 0 8 8 0 0 1 16 0ZM8.94 6.94a.75.75 0 1 1-1.061-1.061 3.75 3.75 0 1 1 0 5.304.75.75 0 0 1 1.06-1.06 2.25 2.25 0 1 0 0-3.183Zm2.12 2.12a.75.75 0 0 1 0 1.061l-.53.53.53.53a.75.75 0 1 1-1.06 1.06l-.53-.53-.53.53a.75.75 0 0 1-1.061-1.06l.53-.53-.53-.53a.75.75 0 0 1 1.06-1.061l.53.53.53-.53a.75.75 0 0 1 1.061 0Z" clip-rule="evenodd"/>
       </svg>
     </span>
     <span class="quiz-title">{title || labels.title}</span>
-    <span class="quiz-progress" data-quiz-progress>1/{questions.length}</span>
+    <span class="quiz-progress" data-quiz-progress aria-live="polite">1/{questions.length}</span>
   </div>
 
   <!-- Question area -->
   <div class="quiz-body" data-quiz-body>
     <p class="quiz-question" data-quiz-question></p>
-    <div class="quiz-options" data-quiz-options></div>
-    <p class="quiz-explanation hidden" data-quiz-explanation></p>
+    <div class="quiz-options" data-quiz-options role="radiogroup"></div>
+    <div class="quiz-explanation hidden" data-quiz-explanation aria-live="polite" role="status"></div>
   </div>
 
   <!-- Actions -->
@@ -46,7 +47,7 @@ const quizId = `quiz-${Math.random().toString(36).slice(2, 8)}`
   </div>
 
   <!-- Result screen -->
-  <div class="quiz-result hidden" data-quiz-result>
+  <div class="quiz-result hidden" data-quiz-result aria-live="assertive">
     <div class="quiz-result-circle" data-quiz-circle>
       <span class="quiz-result-score" data-quiz-score></span>
     </div>
@@ -330,16 +331,21 @@ const quizId = `quiz-${Math.random().toString(36).slice(2, 8)}`
         answered = false
 
         optionsEl.innerHTML = ''
+        optionsEl.setAttribute('aria-label', q.question)
         q.options.forEach((opt: string, i: number) => {
           const btn = document.createElement('button')
           btn.className = 'quiz-option'
           btn.type = 'button'
+          btn.setAttribute('role', 'radio')
+          btn.setAttribute('aria-checked', 'false')
+          btn.setAttribute('aria-label', `${letters[i]}: ${opt}`)
           btn.innerHTML = `<span class="quiz-option-letter">${letters[i]}</span><span>${opt}</span>`
           btn.addEventListener('click', () => {
             if (answered) return
             selected = i
             optionsEl.querySelectorAll('.quiz-option').forEach((b, j) => {
               b.classList.toggle('quiz-option--selected', j === i)
+              b.setAttribute('aria-checked', String(j === i))
             })
             checkBtn.disabled = false
           })

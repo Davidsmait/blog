@@ -5,17 +5,33 @@
 <script is:inline>
   function setupCopyOnClick() {
     document.querySelectorAll('.astro-code-header .copy-btn').forEach((btn) => {
-      btn.addEventListener('click', async () => {
+      btn.setAttribute('aria-label', 'Copiar código')
+      btn.setAttribute('title', 'Copiar código')
+      btn.setAttribute('role', 'button')
+      btn.setAttribute('tabindex', '0')
+
+      async function handleCopy() {
         const code =
           btn.parentNode?.parentNode?.querySelector('.astro-code code')
+        if (!code) return
 
         await navigator.clipboard.writeText(code.innerText)
 
         btn.className = 'copy-success'
+        btn.setAttribute('aria-label', '¡Copiado!')
 
         setTimeout(() => {
           btn.className = 'copy-btn'
+          btn.setAttribute('aria-label', 'Copiar código')
         }, 1000)
+      }
+
+      btn.addEventListener('click', handleCopy)
+      btn.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault()
+          handleCopy()
+        }
       })
     })
   }

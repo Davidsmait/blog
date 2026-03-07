@@ -2,9 +2,25 @@
 import PageLayout, {
   type Props as PageLayoutProps
 } from '@/layouts/PageLayout.astro'
-import { generateTags, getTagUsage } from '@/util/tags'
+import { generateTags } from '@/util/tags'
+import { getPosts } from '@/util/posts'
+import { getCafePosts } from '@/util/cafe'
+import { getProjects } from '@/util/projects'
 
 const tags = await generateTags()
+
+// Pre-compute tag usage to avoid N+1 queries in template
+const [posts, cafePosts, projects] = await Promise.all([
+  getPosts(), getCafePosts(), getProjects()
+])
+const allItems = [...posts, ...cafePosts, ...projects]
+const tagUsages = new Map<string, number>()
+for (const { tag } of tags) {
+  tagUsages.set(
+    tag,
+    allItems.filter(p => p.data.tags.some(t => t.toLowerCase() === tag)).length
+  )
+}
 
 const frontmatter: PageLayoutProps['frontmatter'] = {
   title: 'Tags',
@@ -25,7 +41,7 @@ const frontmatter: PageLayoutProps['frontmatter'] = {
           <span class={`iconify text-4xl sm:text-5xl ${icon}`} />
 
           <span class="text-base font-normal sm:text-lg">
-            {tag} ({getTagUsage(tag)})
+            {tag} ({tagUsages.get(tag) ?? 0})
           </span>
         </a>
       ))

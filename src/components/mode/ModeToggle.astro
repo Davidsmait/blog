@@ -6,21 +6,34 @@
       'dark-light-toggle',
       class extends HTMLElement {
         connectedCallback() {
+          const isDark = document.documentElement.dataset.mode === 'dark'
           this.innerHTML = `
             <button
               id="dark-light-toggle"
               class="flex items-center"
-              title="Dark Light toggle"
+              title="${isDark ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro'}"
+              aria-label="Cambiar tema"
+              aria-pressed="${isDark}"
             >
-              <span class="clickable iconify tabler--moon dark:tabler--sun"></span>
+              <span class="clickable iconify tabler--moon dark:tabler--sun" aria-hidden="true"></span>
             </button>
           `
-          this.querySelector('#dark-light-toggle').addEventListener(
-            'click',
-            () => {
-              mode.setMode(mode.getMode() === 'light' ? 'dark' : 'light')
-            }
-          )
+          const btn = this.querySelector('#dark-light-toggle')
+          btn.addEventListener('click', () => {
+            const newMode = mode.getMode() === 'light' ? 'dark' : 'light'
+            // Smooth theme transition (C.1)
+            document.documentElement.style.transition =
+              'background-color 0.3s ease, color 0.3s ease'
+            mode.setMode(newMode)
+            btn.setAttribute('aria-pressed', String(newMode === 'dark'))
+            btn.title =
+              newMode === 'dark'
+                ? 'Cambiar a modo claro'
+                : 'Cambiar a modo oscuro'
+            setTimeout(() => {
+              document.documentElement.style.transition = ''
+            }, 350)
+          })
         }
       }
     )
