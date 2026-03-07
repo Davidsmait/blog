@@ -71,6 +71,12 @@ function getPhaseState(phaseNum: number) {
       </div>
       <span class="rm-progress-text">{completedLessons}/{totalLessons}</span>
     </div>
+    <div class="rm-user-progress" data-user-progress style="display:none">
+      <div class="rm-progress-track" role="progressbar" aria-label="Your reading progress">
+        <div class="rm-user-progress-fill" data-user-progress-fill></div>
+      </div>
+      <span class="rm-progress-text" data-user-progress-text></span>
+    </div>
   </div>
 
   <!-- Timeline -->
@@ -89,25 +95,32 @@ function getPhaseState(phaseNum: number) {
         <div class={`tl-phase tl-${state}`} data-phase={phase.num} data-state={state}>
           {/* Node + connector line */}
           <div class="tl-track">
-            <span class="tl-node">
-              {isComplete ? (
-                <svg viewBox="0 0 16 16" fill="currentColor" class="tl-node-icon tl-node-check">
-                  <path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.75.75 0 0 1 1.06-1.06L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"/>
-                </svg>
-              ) : isActive ? (
-                <span class="tl-node-pulse">
-                  <span class="tl-pulse-ring"></span>
-                  <span class="tl-pulse-dot"></span>
-                </span>
-              ) : isLocked ? (
-                <svg viewBox="0 0 16 16" fill="currentColor" class="tl-node-icon tl-node-lock">
-                  <path d="M8 1a4 4 0 0 0-4 4v3H3a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1h-1V5a4 4 0 0 0-4-4Zm2 7H6V5a2 2 0 1 1 4 0v3Z"/>
-                </svg>
-              ) : (
-                <span class="tl-node-empty"></span>
-              )}
+            <span class="tl-node" data-phase-node>
+              {/* User-complete check (hidden by default, shown via JS) */}
+              <svg viewBox="0 0 16 16" fill="currentColor" class="tl-node-icon tl-node-check tl-node-user-check">
+                <path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.75.75 0 0 1 1.06-1.06L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"/>
+              </svg>
+              {/* Server-rendered state icons */}
+              <span class="tl-node-default">
+                {isComplete ? (
+                  <svg viewBox="0 0 16 16" fill="currentColor" class="tl-node-icon tl-node-check">
+                    <path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.75.75 0 0 1 1.06-1.06L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"/>
+                  </svg>
+                ) : isActive ? (
+                  <span class="tl-node-pulse">
+                    <span class="tl-pulse-ring"></span>
+                    <span class="tl-pulse-dot"></span>
+                  </span>
+                ) : isLocked ? (
+                  <svg viewBox="0 0 16 16" fill="currentColor" class="tl-node-icon tl-node-lock">
+                    <path d="M8 1a4 4 0 0 0-4 4v3H3a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1h-1V5a4 4 0 0 0-4-4Zm2 7H6V5a2 2 0 1 1 4 0v3Z"/>
+                  </svg>
+                ) : (
+                  <span class="tl-node-empty"></span>
+                )}
+              </span>
             </span>
-            {!isLast && <span class={`tl-line ${isComplete ? 'tl-line-done' : ''}`}></span>}
+            {!isLast && <span class={`tl-line ${isComplete ? 'tl-line-done' : ''}`} data-phase-line></span>}
           </div>
 
           {/* Content */}
@@ -137,10 +150,13 @@ function getPhaseState(phaseNum: number) {
             {hasContent && (
               <div class="tl-lessons hidden" data-lessons-panel>
                 {lessons.map((lesson) => (
-                  <a href={`/en/cafe-en/${lesson.slug}`} class="tl-lesson tl-lesson-done">
-                    <svg viewBox="0 0 16 16" fill="currentColor" class="tl-lesson-icon">
-                      <path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.75.75 0 0 1 1.06-1.06L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"/>
-                    </svg>
+                  <a href={`/en/cafe-en/${lesson.slug}`} class="tl-lesson tl-lesson-available" data-lesson-slug={lesson.slug}>
+                    <span class="tl-lesson-status-icon">
+                      <svg viewBox="0 0 16 16" fill="currentColor" class="tl-lesson-icon tl-lesson-icon-check" style="display:none">
+                        <path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.75.75 0 0 1 1.06-1.06L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"/>
+                      </svg>
+                      <span class="tl-lesson-icon-unread"></span>
+                    </span>
                     <span>{lesson.data.title}</span>
                   </a>
                 ))}
@@ -387,6 +403,27 @@ function getPhaseState(phaseNum: number) {
   .tl-node-check { color: #22c55e; }
   .tl-node-lock { opacity: 0.3; width: 0.625rem; height: 0.625rem; }
 
+  /* User-complete: hidden by default, shown when user reads all lessons in phase */
+  .tl-node-user-check {
+    display: none;
+  }
+  .tl-phase.user-phase-complete .tl-node-user-check {
+    display: block;
+  }
+  .tl-phase.user-phase-complete .tl-node-default {
+    display: none;
+  }
+  .tl-phase.user-phase-complete .tl-node {
+    background: color-mix(in srgb, #22c55e 12%, transparent);
+    transition: background 0.3s ease;
+  }
+  .tl-phase.user-phase-complete .tl-line {
+    background: color-mix(in srgb, #22c55e 20%, transparent);
+  }
+  .tl-phase.user-phase-complete .tl-title {
+    opacity: 0.55;
+  }
+
   .tl-node-empty {
     width: 0.5rem;
     height: 0.5rem;
@@ -554,22 +591,61 @@ function getPhaseState(phaseNum: number) {
     background: color-mix(in srgb, var(--color-accent) 4%, transparent);
   }
 
-  .tl-lesson-done .tl-lesson-icon {
+  /* Lesson status icons */
+  .tl-lesson-status-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 0.75rem;
+    height: 0.75rem;
+    flex-shrink: 0;
+  }
+  .tl-lesson-icon-check {
     width: 0.75rem;
     height: 0.75rem;
     color: color-mix(in srgb, #22c55e 55%, transparent);
-    flex-shrink: 0;
   }
-  .tl-lesson-done span {
+  .tl-lesson-icon-unread {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: color-mix(in srgb, var(--color-accent) 20%, transparent);
+  }
+  .tl-lesson-available.is-read .tl-lesson-icon-check { display: block !important; }
+  .tl-lesson-available.is-read .tl-lesson-icon-unread { display: none; }
+  .tl-lesson-available.is-read span:last-child {
     opacity: 0.55;
-    transition: opacity 0.12s ease, color 0.12s ease;
   }
-  a.tl-lesson-done:hover span {
+  .tl-lesson-available:not(.is-read) span:last-child {
+    opacity: 0.75;
+  }
+  .tl-lesson-available {
+    transition: background 0.12s ease, opacity 0.12s ease;
+  }
+  a.tl-lesson-available:hover span:last-child {
     opacity: 1;
     color: var(--color-accent);
   }
-  a.tl-lesson-done:hover .tl-lesson-icon {
+  a.tl-lesson-available:hover .tl-lesson-icon-check {
     color: var(--color-accent);
+  }
+  a.tl-lesson-available:hover .tl-lesson-icon-unread {
+    background: var(--color-accent);
+  }
+
+  /* User progress bar */
+  .rm-user-progress {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    margin-top: 0.375rem;
+    max-width: 16rem;
+  }
+  .rm-user-progress-fill {
+    height: 100%;
+    border-radius: 9999px;
+    background: color-mix(in srgb, #22c55e 50%, transparent);
+    transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .tl-lesson-dot {
@@ -684,6 +760,90 @@ function getPhaseState(phaseNum: number) {
 </style>
 
 <script>
+  // ── Cookie helpers ──
+  const COOKIE_NAME = 'roadmap_read'
+  const COOKIE_DAYS = 365
+
+  function getReadLessons(): Set<string> {
+    const match = document.cookie.match(new RegExp('(?:^|; )' + COOKIE_NAME + '=([^;]*)'))
+    if (!match) return new Set()
+    try {
+      return new Set(JSON.parse(decodeURIComponent(match[1])))
+    } catch {
+      return new Set()
+    }
+  }
+
+  function saveReadLessons(slugs: Set<string>) {
+    const expires = new Date(Date.now() + COOKIE_DAYS * 864e5).toUTCString()
+    const value = encodeURIComponent(JSON.stringify([...slugs]))
+    document.cookie = `${COOKIE_NAME}=${value}; expires=${expires}; path=/; SameSite=Lax`
+  }
+
+  function markLessonRead(slug: string) {
+    const read = getReadLessons()
+    if (!read.has(slug)) {
+      read.add(slug)
+      saveReadLessons(read)
+    }
+  }
+
+  // ── UI update ──
+  function updateProgressUI() {
+    const read = getReadLessons()
+    const allLessons = document.querySelectorAll<HTMLElement>('[data-lesson-slug]')
+    let totalAvailable = 0
+    let totalRead = 0
+
+    allLessons.forEach(el => {
+      const slug = el.dataset.lessonSlug!
+      totalAvailable++
+      if (read.has(slug)) {
+        el.classList.add('is-read')
+        totalRead++
+      } else {
+        el.classList.remove('is-read')
+      }
+    })
+
+    const userProgressEl = document.querySelector('[data-user-progress]') as HTMLElement | null
+    const userFill = document.querySelector('[data-user-progress-fill]') as HTMLElement | null
+    const userText = document.querySelector('[data-user-progress-text]') as HTMLElement | null
+
+    if (userProgressEl && userFill && userText && totalAvailable > 0) {
+      userProgressEl.style.display = 'flex'
+      const pct = Math.round((totalRead / totalAvailable) * 100)
+      userFill.style.width = pct + '%'
+      userText.textContent = `${totalRead}/${totalAvailable} read`
+    }
+
+    document.querySelectorAll<HTMLElement>('[data-phase]').forEach(phaseEl => {
+      const lessons = phaseEl.querySelectorAll<HTMLElement>('[data-lesson-slug]')
+      const readInPhase = [...lessons].filter(l => read.has(l.dataset.lessonSlug!)).length
+      const counterEl = phaseEl.querySelector('.tl-counter')
+      if (counterEl && lessons.length > 0) {
+        const total = counterEl.textContent?.split('/')[1] ?? String(lessons.length)
+        counterEl.textContent = `${readInPhase}/${total}`
+      }
+
+      // Show green check on phase node when all lessons are read
+      if (lessons.length > 0 && readInPhase === lessons.length) {
+        phaseEl.classList.add('user-phase-complete')
+      } else {
+        phaseEl.classList.remove('user-phase-complete')
+      }
+    })
+  }
+
+  function attachLessonTracking() {
+    document.querySelectorAll<HTMLElement>('[data-lesson-slug]').forEach(el => {
+      el.addEventListener('click', () => {
+        markLessonRead(el.dataset.lessonSlug!)
+      })
+    })
+  }
+
+  // ── Expand/collapse ──
   function initRoadmap() {
     document.querySelectorAll('[data-phase-toggle]').forEach(btn => {
       btn.addEventListener('click', () => {
@@ -695,17 +855,14 @@ function getPhaseState(phaseNum: number) {
         const isOpen = btn.getAttribute('aria-expanded') === 'true';
 
         if (isOpen) {
-          // Collapse: set max-height to current, then to 0
           panel.style.maxHeight = panel.scrollHeight + 'px';
           requestAnimationFrame(() => {
             panel.classList.add('hidden');
             panel.style.maxHeight = '0';
           });
         } else {
-          // Expand: measure, set max-height
           panel.classList.remove('hidden');
           panel.style.maxHeight = panel.scrollHeight + 'px';
-          // Clean up after transition
           const onEnd = () => {
             panel.style.maxHeight = '';
             panel.removeEventListener('transitionend', onEnd);
@@ -721,13 +878,11 @@ function getPhaseState(phaseNum: number) {
       });
     });
 
-    // Auto-open active phase or first complete phase
     const active = document.querySelector('[data-state="active"] [data-phase-toggle]') as HTMLElement | null;
     const firstComplete = document.querySelector('[data-state="complete"] [data-phase-toggle]') as HTMLElement | null;
     if (active) active.click();
     else if (firstComplete) firstComplete.click();
 
-    // Animate progress bar on load
     const fill = document.querySelector('.rm-progress-fill') as HTMLElement | null;
     if (fill) {
       const target = fill.style.width;
@@ -738,6 +893,9 @@ function getPhaseState(phaseNum: number) {
         });
       });
     }
+
+    updateProgressUI()
+    attachLessonTracking()
   }
 
   initRoadmap();
