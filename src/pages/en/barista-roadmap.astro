@@ -42,6 +42,7 @@ function getPhaseState(phaseNum: number) {
   const total = phases.find(p => p.num === phaseNum)!.totalLessons
   if (lessons.length >= total) return 'complete'
   if (lessons.length > 0) return 'active'
+  if (lessons.length === 0 && phaseNum !== 1) return 'locked'
   const prevLessons = lessonsByPhase[phaseNum - 1] ?? []
   const prevTotal = phases.find(p => p.num === phaseNum - 1)?.totalLessons ?? 0
   if (phaseNum === 1 || prevLessons.length >= prevTotal) return 'next'
