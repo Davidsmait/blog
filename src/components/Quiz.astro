@@ -15,8 +15,8 @@ export interface Props {
 const { questions, title, lang = 'es' } = Astro.props
 
 const labels = lang === 'en'
-  ? { title: 'Quiz', check: 'Check answer', next: 'Next', retry: 'Retry', result: 'Result', of: 'of', correct: 'correct', perfect: 'Perfect score!', great: 'Great job!', good: 'Good, review the missed ones.', tryAgain: 'Review the lesson and try again.' }
-  : { title: 'Quiz', check: 'Verificar', next: 'Siguiente', retry: 'Reintentar', result: 'Resultado', of: 'de', correct: 'correctas', perfect: '¡Puntuación perfecta!', great: '¡Muy bien!', good: 'Bien, repasa las que fallaste.', tryAgain: 'Repasa la lección e inténtalo de nuevo.' }
+  ? { title: 'Quiz', check: 'Check answer', next: 'Next', seeResult: 'See result', retry: 'Retry', result: 'Result', of: 'of', correct: 'correct', perfect: 'Perfect score!', great: 'Great job!', good: 'Good, review the missed ones.', tryAgain: 'Review the lesson and try again.' }
+  : { title: 'Quiz', check: 'Verificar', next: 'Siguiente', seeResult: 'Ver resultado', retry: 'Reintentar', result: 'Resultado', of: 'de', correct: 'correctas', perfect: '¡Puntuación perfecta!', great: '¡Muy bien!', good: 'Bien, repasa las que fallaste.', tryAgain: 'Repasa la lección e inténtalo de nuevo.' }
 
 // Deterministic ID based on first question content (1.8)
 const quizId = `quiz-${questions.length > 0 ? questions[0].question.slice(0, 20).replace(/\W/g, '-').toLowerCase() : 'empty'}`
@@ -125,18 +125,22 @@ const quizId = `quiz-${questions.length > 0 ? questions[0].question.slice(0, 20)
     color: inherit;
     text-align: left;
     width: 100%;
-    transition: border-color 0.15s, background 0.15s;
-    opacity: 0.7;
+    transition: border-color 0.2s, background 0.2s, box-shadow 0.2s, opacity 0.2s;
+    opacity: 0.65;
   }
   .quiz-option:hover:not(.quiz-option--locked) {
     border-color: color-mix(in srgb, var(--color-accent) 30%, transparent);
     background: color-mix(in srgb, var(--color-accent) 3%, transparent);
-    opacity: 1;
+    opacity: 0.85;
   }
   .quiz-option--selected {
-    border-color: var(--color-accent);
-    background: color-mix(in srgb, var(--color-accent) 5%, transparent);
-    opacity: 1;
+    border-color: var(--color-accent) !important;
+    background: color-mix(in srgb, var(--color-accent) 14%, transparent) !important;
+    opacity: 1 !important;
+    box-shadow: 0 0 0 2px var(--color-accent);
+  }
+  .quiz-option--dimmed {
+    opacity: 0.4;
   }
   .quiz-option--correct {
     border-color: #22c55e !important;
@@ -186,15 +190,23 @@ const quizId = `quiz-${questions.length > 0 ? questions[0].question.slice(0, 20)
     margin-top: 1rem;
     padding: 0.875rem 1rem;
     border-radius: 8px;
-    background: color-mix(in srgb, var(--color-accent) 4%, transparent);
     font-size: 0.8125rem;
     line-height: 1.6;
-    opacity: 0.65;
     animation: quiz-fade-in 0.3s ease-out;
+  }
+  .quiz-explanation--correct {
+    background: color-mix(in srgb, #22c55e 8%, transparent);
+    border-left: 3px solid #22c55e;
+    opacity: 0.8;
+  }
+  .quiz-explanation--wrong {
+    background: color-mix(in srgb, #ef4444 7%, transparent);
+    border-left: 3px solid #ef4444;
+    opacity: 0.8;
   }
   @keyframes quiz-fade-in {
     from { opacity: 0; transform: translateY(4px); }
-    to { opacity: 0.65; transform: translateY(0); }
+    to { opacity: 0.8; transform: translateY(0); }
   }
 
   .quiz-actions {
@@ -296,8 +308,8 @@ const quizId = `quiz-${questions.length > 0 ? questions[0].question.slice(0, 20)
       const questions = JSON.parse(quiz.dataset.questions || '[]')
       const lang = quiz.dataset.lang || 'es'
       const labels = lang === 'en'
-        ? { of: 'of', correct: 'correct', perfect: 'Perfect score!', great: 'Great job!', good: 'Good, review the missed ones.', tryAgain: 'Review the lesson and try again.' }
-        : { of: 'de', correct: 'correctas', perfect: '¡Puntuación perfecta!', great: '¡Muy bien!', good: 'Bien, repasa las que fallaste.', tryAgain: 'Repasa la lección e inténtalo de nuevo.' }
+        ? { of: 'of', correct: 'correct', perfect: 'Perfect score!', great: 'Great job!', good: 'Good, review the missed ones.', tryAgain: 'Review the lesson and try again.', correctAnswer: 'Correct!', wrongAnswer: 'Incorrect.', seeResult: 'See result' }
+        : { of: 'de', correct: 'correctas', perfect: '¡Puntuación perfecta!', great: '¡Muy bien!', good: 'Bien, repasa las que fallaste.', tryAgain: 'Repasa la lección e inténtalo de nuevo.', correctAnswer: '¡Correcto!', wrongAnswer: 'Incorrecto.', seeResult: 'Ver resultado' }
 
       let current = 0
       let selected = -1
@@ -324,6 +336,7 @@ const quizId = `quiz-${questions.length > 0 ? questions[0].question.slice(0, 20)
         progressEl.textContent = `${current + 1}/${questions.length}`
         questionEl.textContent = q.question
         explanationEl.classList.add('hidden')
+        explanationEl.classList.remove('quiz-explanation--correct', 'quiz-explanation--wrong')
         checkBtn.classList.remove('hidden')
         checkBtn.disabled = true
         nextBtn.classList.add('hidden')
@@ -345,6 +358,7 @@ const quizId = `quiz-${questions.length > 0 ? questions[0].question.slice(0, 20)
             selected = i
             optionsEl.querySelectorAll('.quiz-option').forEach((b, j) => {
               b.classList.toggle('quiz-option--selected', j === i)
+              b.classList.toggle('quiz-option--dimmed', j !== i)
               b.setAttribute('aria-checked', String(j === i))
             })
             checkBtn.disabled = false
@@ -363,26 +377,31 @@ const quizId = `quiz-${questions.length > 0 ? questions[0].question.slice(0, 20)
 
         optionsEl.querySelectorAll('.quiz-option').forEach((btn, i) => {
           btn.classList.add('quiz-option--locked')
-          btn.classList.remove('quiz-option--selected')
+          btn.classList.remove('quiz-option--selected', 'quiz-option--dimmed')
           if (i === q.correct) btn.classList.add('quiz-option--correct')
           else if (i === selected && !isCorrect) btn.classList.add('quiz-option--wrong')
         })
 
-        explanationEl.textContent = q.explanation
+        explanationEl.classList.remove('quiz-explanation--correct', 'quiz-explanation--wrong')
+        explanationEl.classList.add(isCorrect ? 'quiz-explanation--correct' : 'quiz-explanation--wrong')
+        explanationEl.innerHTML = `<strong>${isCorrect ? labels.correctAnswer : labels.wrongAnswer}</strong> ${q.explanation}`
         explanationEl.classList.remove('hidden')
         checkBtn.classList.add('hidden')
 
-        if (current < questions.length - 1) {
-          nextBtn.classList.remove('hidden')
-        } else {
-          // Show results after a brief pause
-          setTimeout(showResult, 800)
+        nextBtn.classList.remove('hidden')
+        if (current >= questions.length - 1) {
+          nextBtn.textContent = labels.seeResult
         }
       })
 
       nextBtn.addEventListener('click', () => {
-        current++
-        render()
+        if (current >= questions.length - 1) {
+          showResult()
+        } else {
+          current++
+          nextBtn.textContent = lang === 'en' ? 'Next' : 'Siguiente'
+          render()
+        }
       })
 
       function showResult() {

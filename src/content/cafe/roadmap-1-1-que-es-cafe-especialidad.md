@@ -57,7 +57,7 @@ Algunos hablan de una **cuarta ola** enfocada en la ciencia (refractómetros, pe
 Nada de equipo — solo curiosidad. Pero si quieres empezar a notar la diferencia por ti mismo:
 
 1. Compra dos cafés: uno del supermercado y uno de un tostador local de especialidad
-2. Prepáralos con el mismo método (Chemex, prensa francesa, lo que tengas)
+2. Prepáralos con el mismo método. Si tienes prensa francesa, es ideal para esto — es casi imposible equivocarte con ella. Solo necesitas controlar el ratio (café/agua) y la molienda, y obtienes un resultado consistente. Si tienes Chemex, también funciona, pero ahí la cosa se pone más interesante: el tamaño de molienda, la técnica de vertido, los tiempos — todo influye en el resultado, y acertar requiere más práctica. Ambos métodos son nobles, pero la prensa francesa te deja enfocarte en *probar* en vez de preocuparte por la técnica.
 3. Pruébalos lado a lado, dejándolos enfriar un poco — los sabores se revelan más conforme baja la temperatura
 4. Anota qué notas: ¿uno es más ácido? ¿más dulce? ¿más amargo? ¿cuál tiene más complejidad?
 
@@ -65,7 +65,7 @@ No necesitas vocabulario técnico todavía. Solo necesitas prestar atención.
 
 ## Ejercicio práctico
 
-Visita un tostador de especialidad cerca de ti (o pide en línea). Busca un café con puntuación SCA visible en la etiqueta. Lee toda la información: origen, variedad, altitud, proceso, fecha de tueste. Prepáralo y anota tus impresiones en un cuaderno. Este cuaderno va a ser tu diario de catación — lo usaremos mucho más adelante.
+Visita una cafetería de especialidad cerca de ti — una donde vendan granos, no solo bebidas. Pregunta por el origen, la variedad, el proceso y la fecha de tueste. El barista probablemente te va a preguntar qué tipo de perfil prefieres: ácido (frutal, cítrico, brillante) o no ácido (chocolate, nuez, caramelo). Si es tu primera vez, te recomiendo empezar con un perfil no ácido — es más cercano al sabor que la mayoría asocia con "café" y te va a resultar más familiar. Después, cuando ya tengas esa referencia, prueba uno ácido y compara. Prepáralo y anota tus impresiones en un cuaderno. Este cuaderno va a ser tu diario de catación — lo usaremos mucho más adelante.
 
 ## Conceptos clave de esta lección
 
