@@ -103,9 +103,9 @@ export const quizzes: Record<string, QuizData> = {
         question:
           '¿Cuántas capas tiene una cereza de café desde el exterior hacia el grano?',
         options: ['3 capas', '4 capas', '5 capas', '6 capas'],
-        correct: 2,
+        correct: 3,
         explanation:
-          'Una cereza de café tiene 5 capas: exocarpio (piel), mesocarpio (pulpa), parénquima, endocarpio (pergamino) y el grano de café con su película plateada.'
+          'Una cereza de café tiene 6 capas: piel (exocarpio), pulpa (mesocarpio), mucílago, pergamino (endocarpio), película plateada y el grano (endospermo).'
       },
       {
         question:
@@ -119,6 +119,19 @@ export const quizzes: Record<string, QuizData> = {
         correct: 1,
         explanation:
           'El procesamiento honey (o pulped natural) es un método intermedio donde se remueve la piel pero se mantiene el mucílago durante parte del secado, creando un balance único de sabores.'
+      },
+      {
+        question:
+          '¿Qué variedad de café ganó el Best of Panama en 2004 y es considerada la estrella del café de especialidad?',
+        options: [
+          'Bourbon',
+          'SL28',
+          'Gesha (Geisha)',
+          'Caturra'
+        ],
+        correct: 2,
+        explanation:
+          'La variedad Gesha, originaria de Etiopía, se hizo famosa cuando Hacienda La Esmeralda en Panamá ganó el Best of Panama en 2004. Es conocida por sus notas florales intensas (jazmín, bergamota) y su acidez tipo té.'
       }
     ],
     en: [
@@ -139,9 +152,9 @@ export const quizzes: Record<string, QuizData> = {
         question:
           'How many layers does a coffee cherry have from the outside to the bean?',
         options: ['3 layers', '4 layers', '5 layers', '6 layers'],
-        correct: 2,
+        correct: 3,
         explanation:
-          'A coffee cherry has 5 layers: exocarp (skin), mesocarp (pulp), parenchyma, endocarp (parchment), and the coffee bean with its silver skin.'
+          'A coffee cherry has 6 layers: skin (exocarp), pulp (mesocarp), mucilage, parchment (endocarp), silver skin, and the bean (endosperm).'
       },
       {
         question:
@@ -155,6 +168,19 @@ export const quizzes: Record<string, QuizData> = {
         correct: 1,
         explanation:
           'Honey processing (or pulped natural) is an intermediate method where the skin is removed but mucilage is retained during part of the drying, creating a unique flavor balance.'
+      },
+      {
+        question:
+          'Which coffee variety won the Best of Panama in 2004 and is considered the star of specialty coffee?',
+        options: [
+          'Bourbon',
+          'SL28',
+          'Gesha (Geisha)',
+          'Caturra'
+        ],
+        correct: 2,
+        explanation:
+          'The Gesha variety, originally from Ethiopia, became famous when Hacienda La Esmeralda in Panama won the Best of Panama in 2004. It is known for its intense floral notes (jasmine, bergamot) and tea-like acidity.'
       }
     ]
   },

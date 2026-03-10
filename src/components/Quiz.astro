@@ -110,11 +110,11 @@ const quizId = `quiz-${questions.length > 0 ? questions[0].question.slice(0, 20)
     gap: 0.5rem;
   }
 
-  .quiz-option {
+  .quiz :global(.quiz-option) {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     gap: 0.75rem;
-    padding: 0.75rem 1rem;
+    padding: 0.75rem 1.125rem;
     border: 1.5px solid color-mix(in srgb, var(--color-accent) 10%, transparent);
     border-radius: 10px;
     background: none;
@@ -128,35 +128,35 @@ const quizId = `quiz-${questions.length > 0 ? questions[0].question.slice(0, 20)
     transition: border-color 0.2s, background 0.2s, box-shadow 0.2s, opacity 0.2s;
     opacity: 0.65;
   }
-  .quiz-option:hover:not(.quiz-option--locked) {
+  .quiz :global(.quiz-option:hover:not(.quiz-option--locked)) {
     border-color: color-mix(in srgb, var(--color-accent) 30%, transparent);
     background: color-mix(in srgb, var(--color-accent) 3%, transparent);
     opacity: 0.85;
   }
-  .quiz-option--selected {
+  .quiz :global(.quiz-option--selected) {
     border-color: var(--color-accent) !important;
     background: color-mix(in srgb, var(--color-accent) 14%, transparent) !important;
     opacity: 1 !important;
     box-shadow: 0 0 0 2px var(--color-accent);
   }
-  .quiz-option--dimmed {
+  .quiz :global(.quiz-option--dimmed) {
     opacity: 0.4;
   }
-  .quiz-option--correct {
+  .quiz :global(.quiz-option--correct) {
     border-color: #22c55e !important;
     background: color-mix(in srgb, #22c55e 6%, transparent) !important;
     opacity: 1 !important;
   }
-  .quiz-option--wrong {
+  .quiz :global(.quiz-option--wrong) {
     border-color: #ef4444 !important;
     background: color-mix(in srgb, #ef4444 5%, transparent) !important;
     opacity: 0.6 !important;
   }
-  .quiz-option--locked {
+  .quiz :global(.quiz-option--locked) {
     cursor: default;
   }
 
-  .quiz-option-letter {
+  .quiz :global(.quiz-option-letter) {
     width: 1.5rem;
     height: 1.5rem;
     border-radius: 50%;
@@ -170,17 +170,20 @@ const quizId = `quiz-${questions.length > 0 ? questions[0].question.slice(0, 20)
     opacity: 0.6;
     transition: background 0.15s, color 0.15s;
   }
-  .quiz-option--selected .quiz-option-letter {
+  .quiz :global(.quiz-option-text) {
+    flex: 1;
+  }
+  .quiz :global(.quiz-option--selected .quiz-option-letter) {
     background: var(--color-accent);
     color: white;
     opacity: 1;
   }
-  .quiz-option--correct .quiz-option-letter {
+  .quiz :global(.quiz-option--correct .quiz-option-letter) {
     background: #22c55e;
     color: white;
     opacity: 1;
   }
-  .quiz-option--wrong .quiz-option-letter {
+  .quiz :global(.quiz-option--wrong .quiz-option-letter) {
     background: #ef4444;
     color: white;
     opacity: 1;
@@ -194,12 +197,12 @@ const quizId = `quiz-${questions.length > 0 ? questions[0].question.slice(0, 20)
     line-height: 1.6;
     animation: quiz-fade-in 0.3s ease-out;
   }
-  .quiz-explanation--correct {
+  .quiz :global(.quiz-explanation--correct) {
     background: color-mix(in srgb, #22c55e 8%, transparent);
     border-left: 3px solid #22c55e;
     opacity: 0.8;
   }
-  .quiz-explanation--wrong {
+  .quiz :global(.quiz-explanation--wrong) {
     background: color-mix(in srgb, #ef4444 7%, transparent);
     border-left: 3px solid #ef4444;
     opacity: 0.8;
@@ -352,7 +355,7 @@ const quizId = `quiz-${questions.length > 0 ? questions[0].question.slice(0, 20)
           btn.setAttribute('role', 'radio')
           btn.setAttribute('aria-checked', 'false')
           btn.setAttribute('aria-label', `${letters[i]}: ${opt}`)
-          btn.innerHTML = `<span class="quiz-option-letter">${letters[i]}</span><span>${opt}</span>`
+          btn.innerHTML = `<span class="quiz-option-letter">${letters[i]}</span><span class="quiz-option-text">${opt}</span>`
           btn.addEventListener('click', () => {
             if (answered) return
             selected = i

@@ -15,7 +15,7 @@ isPremium: false
 
 El café es el fruto de un arbusto del género *Coffea*. Hay más de 120 especies, pero solo dos dominan el mercado mundial: **Coffea arabica** (Arábica) y **Coffea canephora** (Robusta). Si vas a dedicarte al café de especialidad, tu mundo va a girar casi exclusivamente alrededor de Arábica — aunque Robusta de especialidad existe y está creciendo.
 
-**Arábica** crece entre 800 y 2,200 metros sobre el nivel del mar, en lo que se conoce como el "cinturón del café" (entre los trópicos de Cáncer y Capricornio). Es más susceptible a plagas y enfermedades, requiere más cuidado, produce menos rendimiento por planta, pero a cambio ofrece perfiles de sabor complejos: acidez, dulzura, notas frutales y florales.
+**Arábica** crece entre 1,000 y 2,200 metros sobre el nivel del mar, en lo que se conoce como el "cinturón del café" (entre los trópicos de Cáncer y Capricornio). Es más susceptible a plagas y enfermedades, requiere más cuidado, produce menos rendimiento por planta, pero a cambio ofrece perfiles de sabor complejos: acidez, dulzura, notas frutales y florales.
 
 **Robusta** crece a menor altitud, resiste más plagas, produce más fruto y tiene casi el doble de cafeína. Su perfil tiende a ser más amargo, terroso y con cuerpo pesado. Es la base de la mayoría del café instantáneo y de las mezclas comerciales de espresso italiano. No la descartes — un Robusta bien cultivado y procesado puede ser interesante, especialmente en blends de espresso.
 
@@ -27,9 +27,9 @@ Dentro de Arábica hay decenas de variedades, cada una con características gen�
 
 **Caturra y Catuai** son mutaciones/cruces de Bourbon y Typica, más compactas y productivas. Muy comunes en Latinoamérica. Perfiles sólidos, buena acidez y dulzura.
 
-**SL28 y SL34** fueron desarrolladas en Kenia en los años 1930s. Son famosas por su acidez intensa, notas de grosella negra y tomate — el perfil "Kenia" clásico que es inconfundible.
+**SL28 y SL34** fueron seleccionadas en Kenia en los años 1930s por los Scott Agricultural Laboratories (de ahí las siglas "SL"). Son famosas por su acidez intensa, notas de grosella negra y tomate — el perfil "Kenia" clásico que es inconfundible.
 
-**Gesha (o Geisha)** es la variedad estrella del café de especialidad. Originaria de Etiopía, se hizo famosa cuando la Finca La Esmeralda en Panamá la presentó en competencia. Notas florales intensas (jazmín, bergamota), acidez tipo té, complejidad extraordinaria. También extraordinariamente cara.
+**Gesha (o Geisha)** es la variedad estrella del café de especialidad. Originaria de Etiopía, se hizo famosa cuando Hacienda La Esmeralda en Panamá ganó el Best of Panama en 2004 con un lote 100% Gesha. Notas florales intensas (jazmín, bergamota), acidez tipo té, complejidad extraordinaria. También extraordinariamente cara.
 
 **Castillo y Colombia** son variedades resistentes a la roya del café, desarrolladas por Cenicafé en Colombia. Históricamente menospreciadas por puristas, pero las versiones modernas han mejorado significativamente en taza.
 
@@ -46,7 +46,7 @@ Lo que llamamos "grano de café" es en realidad la semilla dentro de un fruto �
 5. **Película plateada** — capa fina pegada al grano
 6. **Grano (endospermo)** — lo que tostamos y molemos
 
-Cada cereza normalmente contiene dos granos planos (cara contra cara). A veces solo se desarrolla uno, formando un **peaberry** (caracolillo) — redondo y generalmente con un sabor más concentrado.
+Cada cereza normalmente contiene dos granos planos (cara contra cara). A veces solo se desarrolla uno, formando un **peaberry** (caracolillo) — redondo y generalmente con un sabor más brillante en acidez y más complejo aromáticamente.
 
 ## Procesamiento: donde se define el perfil
 
@@ -54,7 +54,7 @@ Después de cosechar las cerezas, hay que separar el grano del fruto y secarlo. 
 
 ### Lavado (washed)
 
-El método más "limpio". Se despulpa la cereza mecánicamente, se fermenta en tanques de agua para disolver el mucílago (12-72 horas típicamente), se lava con agua limpia y se seca al sol o en secadoras mecánicas.
+El método más "limpio". Se despulpa la cereza mecánicamente, se fermenta en tanques de agua para disolver el mucílago (12-48 horas típicamente), se lava con agua limpia y se seca al sol o en secadoras mecánicas.
 
 **Perfil en taza:** Acidez brillante y definida, sabor limpio, notas claras del terroir. Cuando alguien dice que un café "sabe a su origen", probablemente es lavado. Los Etiopías lavados con notas a jazmín y limón, o los Colombias lavados con caramelo y manzana verde, son ejemplos clásicos.
 

@@ -1,0 +1,223 @@
+---
+interface Props {
+  lang?: 'en' | 'es';
+}
+
+const { lang = 'es' } = Astro.props;
+
+const labels = {
+  es: {
+    title: 'El cinturón del café',
+    subtitle: 'Zona entre los trópicos de Cáncer y Capricornio donde crece el café de especialidad',
+    tropicCancer: 'Trópico de Cáncer (23.5°N)',
+    tropicCapricorn: 'Trópico de Capricornio (23.5°S)',
+    equator: 'Ecuador',
+  },
+  en: {
+    title: 'The coffee belt',
+    subtitle: 'Zone between the Tropics of Cancer and Capricorn where specialty coffee grows',
+    tropicCancer: 'Tropic of Cancer (23.5°N)',
+    tropicCapricorn: 'Tropic of Capricorn (23.5°S)',
+    equator: 'Equator',
+  }
+};
+
+const t = labels[lang];
+
+// Key coffee origins with approximate positions (x%, y%) on a simplified world map
+const origins = [
+  { name: 'Colombia', x: 24, y: 52 },
+  { name: 'Brasil', x: 30, y: 62 },
+  { name: 'Guatemala', x: 18, y: 48 },
+  { name: 'Etiopía', x: 56, y: 53, nameEn: 'Ethiopia' },
+  { name: 'Kenia', x: 57, y: 57, nameEn: 'Kenya' },
+  { name: 'Indonesia', x: 76, y: 58 },
+  { name: 'Vietnam', x: 73, y: 48 },
+];
+---
+
+<div class="diagram-coffee-belt" role="img" aria-label={t.title}>
+  <div class="diagram-label">
+    <span class="diagram-title">{t.title}</span>
+    <span class="diagram-subtitle">{t.subtitle}</span>
+  </div>
+
+  <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg">
+    <!-- Background -->
+    <rect width="800" height="400" fill="none" />
+
+    <!-- Coffee belt zone -->
+    <rect x="0" y="130" width="800" height="155" fill="color-mix(in srgb, var(--color-accent) 10%, transparent)" class="belt-zone" />
+
+    <!-- Tropic lines -->
+    <line x1="0" y1="130" x2="800" y2="130" stroke="color-mix(in srgb, var(--color-accent) 25%, transparent)" stroke-width="1" stroke-dasharray="6 4" />
+    <line x1="0" y1="285" x2="800" y2="285" stroke="color-mix(in srgb, var(--color-accent) 25%, transparent)" stroke-width="1" stroke-dasharray="6 4" />
+
+    <!-- Equator -->
+    <line x1="0" y1="207" x2="800" y2="207" stroke="color-mix(in srgb, var(--color-accent) 15%, transparent)" stroke-width="0.75" stroke-dasharray="3 3" />
+
+    <!-- Tropic labels -->
+    <text x="795" y="125" text-anchor="end" font-size="9" fill="color-mix(in srgb, var(--color-accent) 40%, transparent)" font-weight="500">
+      {t.tropicCancer}
+    </text>
+    <text x="795" y="300" text-anchor="end" font-size="9" fill="color-mix(in srgb, var(--color-accent) 40%, transparent)" font-weight="500">
+      {t.tropicCapricorn}
+    </text>
+    <text x="795" y="202" text-anchor="end" font-size="9" fill="color-mix(in srgb, var(--color-accent) 30%, transparent)" font-weight="400" font-style="italic">
+      {t.equator}
+    </text>
+
+    <!-- Simplified continent outlines - Americas -->
+    <!-- North America (simplified) -->
+    <path d="M 100,80 Q 120,75 155,85 Q 170,95 175,120 Q 165,135 150,145 Q 130,140 115,130 Q 100,115 95,95 Z"
+      fill="color-mix(in srgb, var(--color-accent) 12%, transparent)"
+      stroke="color-mix(in srgb, var(--color-accent) 20%, transparent)"
+      stroke-width="0.75" />
+
+    <!-- Central America -->
+    <path d="M 130,145 Q 140,150 148,160 Q 155,175 160,185 Q 150,190 145,182 Q 138,170 130,160 Z"
+      fill="color-mix(in srgb, var(--color-accent) 12%, transparent)"
+      stroke="color-mix(in srgb, var(--color-accent) 20%, transparent)"
+      stroke-width="0.75" />
+
+    <!-- South America -->
+    <path d="M 180,185 Q 210,175 230,190 Q 250,210 260,240 Q 255,270 245,295 Q 230,315 215,325 Q 200,320 195,300 Q 185,270 180,245 Q 175,215 175,200 Z"
+      fill="color-mix(in srgb, var(--color-accent) 12%, transparent)"
+      stroke="color-mix(in srgb, var(--color-accent) 20%, transparent)"
+      stroke-width="0.75" />
+
+    <!-- Africa -->
+    <path d="M 420,140 Q 445,130 465,140 Q 475,165 475,195 Q 470,225 465,250 Q 455,275 440,290 Q 430,280 425,260 Q 420,235 418,210 Q 415,180 418,155 Z"
+      fill="color-mix(in srgb, var(--color-accent) 12%, transparent)"
+      stroke="color-mix(in srgb, var(--color-accent) 20%, transparent)"
+      stroke-width="0.75" />
+
+    <!-- Europe (small, north) -->
+    <path d="M 415,80 Q 440,70 465,78 Q 475,90 470,110 Q 455,120 435,125 Q 420,118 415,100 Z"
+      fill="color-mix(in srgb, var(--color-accent) 8%, transparent)"
+      stroke="color-mix(in srgb, var(--color-accent) 15%, transparent)"
+      stroke-width="0.5" />
+
+    <!-- Asia (simplified) -->
+    <path d="M 480,70 Q 540,60 600,75 Q 640,90 660,120 Q 650,140 620,148 Q 590,155 560,150 Q 530,140 510,125 Q 490,105 480,85 Z"
+      fill="color-mix(in srgb, var(--color-accent) 8%, transparent)"
+      stroke="color-mix(in srgb, var(--color-accent) 15%, transparent)"
+      stroke-width="0.5" />
+
+    <!-- Southeast Asia / Indonesia -->
+    <path d="M 580,180 Q 600,175 620,180 Q 635,190 630,200 Q 615,205 595,200 Q 580,195 578,188 Z"
+      fill="color-mix(in srgb, var(--color-accent) 12%, transparent)"
+      stroke="color-mix(in srgb, var(--color-accent) 20%, transparent)"
+      stroke-width="0.75" />
+    <path d="M 610,210 Q 630,205 650,210 Q 660,218 655,225 Q 640,230 620,225 Q 608,220 610,212 Z"
+      fill="color-mix(in srgb, var(--color-accent) 12%, transparent)"
+      stroke="color-mix(in srgb, var(--color-accent) 20%, transparent)"
+      stroke-width="0.75" />
+
+    <!-- Vietnam area -->
+    <path d="M 575,155 Q 585,150 590,160 Q 588,175 582,185 Q 575,180 572,170 Z"
+      fill="color-mix(in srgb, var(--color-accent) 12%, transparent)"
+      stroke="color-mix(in srgb, var(--color-accent) 20%, transparent)"
+      stroke-width="0.75" />
+
+    <!-- Origin dots and labels -->
+    {origins.map((origin) => {
+      const cx = origin.x * 8;
+      const cy = origin.y * 4;
+      const displayName = lang === 'en' && origin.nameEn ? origin.nameEn : origin.name;
+      return (
+        <g class="origin-group" data-origin={origin.name}>
+          <circle cx={cx} cy={cy} r="3.5" fill="var(--color-accent)" opacity="0.7" class="origin-dot" />
+          <circle cx={cx} cy={cy} r="7" fill="none" stroke="var(--color-accent)" stroke-width="0.75" opacity="0" class="origin-ring" />
+          <text x={cx} y={cy - 10} text-anchor="middle" font-size="9.5" font-weight="600" fill="color-mix(in srgb, var(--color-accent) 70%, transparent)" class="origin-label">
+            {displayName}
+          </text>
+        </g>
+      );
+    })}
+  </svg>
+</div>
+
+<style>
+  .diagram-coffee-belt {
+    width: 100%;
+    max-width: 680px;
+    margin: 2rem auto;
+  }
+
+  .diagram-label {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    margin-bottom: 1rem;
+  }
+
+  .diagram-title {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    opacity: 0.5;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .diagram-subtitle {
+    font-size: 0.8125rem;
+    opacity: 0.4;
+    line-height: 1.4;
+  }
+
+  svg {
+    width: 100%;
+    height: auto;
+    display: block;
+    font-family: inherit;
+  }
+
+  .belt-zone {
+    transition: opacity 0.4s ease;
+  }
+
+  .origin-dot {
+    transition: opacity 0.2s ease, r 0.2s ease;
+  }
+
+  .origin-ring {
+    transition: opacity 0.3s ease;
+  }
+
+  .origin-label {
+    transition: opacity 0.2s ease;
+    opacity: 0.8;
+  }
+
+  .origin-group:hover .origin-dot {
+    opacity: 1;
+  }
+
+  .origin-group:hover .origin-ring {
+    opacity: 0.4;
+  }
+
+  .origin-group:hover .origin-label {
+    opacity: 1;
+  }
+
+  @keyframes subtlePulse {
+    0%, 100% { opacity: 0.1; }
+    50% { opacity: 0.14; }
+  }
+
+  .belt-zone {
+    animation: subtlePulse 4s ease-in-out infinite;
+  }
+
+  @media (max-width: 600px) {
+    .diagram-coffee-belt {
+      margin: 1.5rem auto;
+    }
+
+    .origin-label {
+      font-size: 8px;
+    }
+  }
+</style>
