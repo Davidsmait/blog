@@ -1,4 +1,5 @@
 ---
+draft: true
 title: 'Certificación Q Grader y catación profesional'
 description: 'Conviértete en Q Grader: entiende el proceso de examen, cómo se calibra el paladar y el valor de la certificación en la industria.'
 publishedDate: 2026-03-05
@@ -11,7 +12,6 @@ tags:
 phase: 9
 lessonOrder: 3
 isPremium: false
-draft: false
 ---
 
 ## El sommelier del café: qué es un Q Grader

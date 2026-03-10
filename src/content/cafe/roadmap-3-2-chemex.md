@@ -1,4 +1,5 @@
 ---
+draft: true
 title: 'Chemex'
 description: 'Todo sobre tu Chemex: recetas, técnica de vertido, el impacto del filtro grueso y cómo sacarle el máximo a este método icónico.'
 publishedDate: 2026-03-05

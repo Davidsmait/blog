@@ -1,4 +1,5 @@
 ---
+draft: true
 title: 'Física de la molienda'
 description: 'Distribución de partículas, bimodalidad, alineación de fresas, materiales de corte y cómo la física del grinding determina tu extracción antes de que el agua toque el café.'
 publishedDate: 2026-03-05

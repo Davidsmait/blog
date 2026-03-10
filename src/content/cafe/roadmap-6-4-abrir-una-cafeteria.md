@@ -1,4 +1,5 @@
 ---
+draft: true
 title: 'Abrir una cafetería'
 description: 'La realidad de abrir y operar una cafetería de especialidad: modelo financiero, ubicación, equipo, menú, operaciones diarias, errores comunes y qué nadie te dice antes de empezar.'
 publishedDate: 2026-03-05

@@ -1,4 +1,5 @@
 ---
+draft: true
 title: 'Fundamentos del tueste'
 description: 'Qué pasa dentro del grano cuando se tuesta: reacciones de Maillard, caramelización, primer crack, desarrollo y por qué el tueste es el paso más transformador del café.'
 publishedDate: 2026-03-05

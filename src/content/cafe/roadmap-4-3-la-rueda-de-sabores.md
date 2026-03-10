@@ -1,4 +1,5 @@
 ---
+draft: true
 title: 'La rueda de sabores'
 description: 'Cómo usar la Coffee Taster''s Flavor Wheel de la SCA: navegar del centro hacia afuera, descriptores comunes, y por qué el vocabulario importa más de lo que crees.'
 publishedDate: 2026-03-05

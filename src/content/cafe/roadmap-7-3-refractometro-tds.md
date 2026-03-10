@@ -1,4 +1,5 @@
 ---
+draft: true
 title: 'Medición avanzada: refractómetro y TDS'
 description: 'Cómo usar un refractómetro para medir TDS y rendimiento de extracción, la técnica de las 3 gotas de Rao, y por qué medir no reemplaza al paladar sino que lo complementa.'
 publishedDate: 2026-03-05

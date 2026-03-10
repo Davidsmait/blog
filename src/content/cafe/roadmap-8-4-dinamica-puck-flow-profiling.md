@@ -1,4 +1,5 @@
 ---
+draft: true
 title: 'Dinámica del puck y flow profiling'
 description: 'La ciencia del espresso bajo presión: comportamiento del puck, erosión, compactación, flow profiling vs pressure profiling y cómo diseñar perfiles de extracción basados en física.'
 publishedDate: 2026-03-05

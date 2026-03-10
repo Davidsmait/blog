@@ -1,4 +1,5 @@
 ---
+draft: true
 title: 'Aeropress'
 description: 'El método más versátil y portátil del café: técnica estándar, método invertido, recetas de campeonato y por qué la Aeropress es el laboratorio perfecto para experimentar.'
 publishedDate: 2026-03-05

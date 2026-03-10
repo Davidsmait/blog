@@ -1,4 +1,5 @@
 ---
+draft: true
 title: 'Presión, temperatura y pre-infusión'
 description: 'Las variables de la máquina que afectan tu extracción: cómo funcionan los 9 bares, la estabilidad térmica y el poder de la pre-infusión.'
 publishedDate: 2026-03-05

@@ -1,4 +1,5 @@
 ---
+draft: true
 title: 'Cómo funciona tu paladar'
 description: 'La fisiología del gusto y el olfato aplicada al café: cómo percibimos sabores, qué son los retronasal y orthonasal, y por qué el café sabe diferente cuando se enfría.'
 publishedDate: 2026-03-05

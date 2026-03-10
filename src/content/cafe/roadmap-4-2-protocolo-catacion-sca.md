@@ -1,4 +1,5 @@
 ---
+draft: true
 title: 'Protocolo de catación SCA'
 description: 'El método estándar mundial para evaluar café: setup de mesa, formulario de catación, técnica de sorbo, y cómo aplicar el protocolo SCA en casa.'
 publishedDate: 2026-03-05

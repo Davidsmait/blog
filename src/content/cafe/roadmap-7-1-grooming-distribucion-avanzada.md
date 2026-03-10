@@ -1,4 +1,5 @@
 ---
+draft: true
 title: 'Grooming y distribución avanzada'
 description: 'La metodología de Scott Rao para preparar el lecho de café: WDT avanzado, técnicas de distribución, por qué el tamping importa menos de lo que crees y cómo eliminar el channeling.'
 publishedDate: 2026-03-05

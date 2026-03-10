@@ -1,4 +1,5 @@
 ---
+draft: true
 title: 'Diagnóstico de shots'
 description: 'Aprende a leer un espresso como un barista profesional: identificar channeling, sub-extracción y sobre-extracción por sabor y apariencia visual.'
 publishedDate: 2026-03-05

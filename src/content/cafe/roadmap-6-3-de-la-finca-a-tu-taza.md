@@ -1,4 +1,5 @@
 ---
+draft: true
 title: 'De la finca a tu taza'
 description: 'La cadena de suministro del café de especialidad: productor, beneficio, exportador, importador, tostador, barista. Comercio directo, trazabilidad y por qué tu café cuesta lo que cuesta.'
 publishedDate: 2026-03-05

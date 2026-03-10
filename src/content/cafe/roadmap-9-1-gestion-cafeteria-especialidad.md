@@ -1,4 +1,5 @@
 ---
+draft: true
 title: 'Gestión y operación de una cafetería de especialidad'
 description: 'Aprende a diseñar un menú rentable, controlar costos operativos y gestionar los KPIs clave para que tu cafetería prospere.'
 publishedDate: 2026-03-05
@@ -10,7 +11,6 @@ tags:
 phase: 9
 lessonOrder: 1
 isPremium: false
-draft: false
 ---
 
 ## De barista a emprendedor: entender el lado del negocio

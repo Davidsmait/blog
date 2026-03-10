@@ -1,4 +1,5 @@
 ---
+draft: true
 title: 'Brewing mathematics y Rao Spin'
 description: 'Matemáticas de extracción para filtrado e inmersión, la técnica del Rao Spin para V60, turbo shots, ratios extendidos y cómo integrar todo el conocimiento de Rao en tu flujo de trabajo.'
 publishedDate: 2026-03-05

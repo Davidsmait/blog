@@ -1,4 +1,5 @@
 ---
+draft: true
 title: 'Geometría de drippers y diseño de filtros'
 description: 'Cómo la forma cónica vs plana, el ángulo de las paredes, las costillas y el tipo de filtro determinan el flujo, la extracción y el sabor final de tu pour-over.'
 publishedDate: 2026-03-05

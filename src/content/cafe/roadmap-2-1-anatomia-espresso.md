@@ -1,4 +1,5 @@
 ---
+draft: true
 title: 'Anatomía de un espresso'
 description: 'Qué define un espresso, cómo se mide un buen shot y qué significan dosis, yield, ratio, tiempo y crema.'
 publishedDate: 2026-03-05

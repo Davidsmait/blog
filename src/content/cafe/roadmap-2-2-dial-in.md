@@ -1,4 +1,5 @@
 ---
+draft: true
 title: 'Dial-in: encontrar la receta'
 description: 'El proceso sistemático para calibrar tu espresso: cómo ajustar molienda, dosis y yield hasta encontrar el punto dulce de cada café.'
 publishedDate: 2026-03-05

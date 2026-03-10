@@ -1,4 +1,5 @@
 ---
+draft: true
 title: 'Barismo competitivo: WBC y campeonatos'
 description: 'Descubre cómo participar en la World Barista Championship y otras competencias, qué se evalúa y cómo entrenar para ganar.'
 publishedDate: 2026-03-05
@@ -10,7 +11,6 @@ tags:
 phase: 9
 lessonOrder: 2
 isPremium: false
-draft: false
 ---
 
 ## La copa más importante que probablemente nunca ganaste

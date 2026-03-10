@@ -1,4 +1,5 @@
 ---
+draft: true
 title: 'Patrones básicos de latte art'
 description: 'Los tres patrones fundamentales: corazón, rosetta y tulipán. Técnica de vertido, posición de la taza, velocidad y altura — todo lo que necesitas para tus primeros diseños.'
 publishedDate: 2026-03-05

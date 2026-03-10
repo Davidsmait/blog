@@ -1,4 +1,5 @@
 ---
+draft: true
 title: 'Mantenimiento del equipo'
 description: 'Rutinas de limpieza y mantenimiento para tu máquina de espresso y molino: backflush, descalcificación, purga y cuidado preventivo.'
 publishedDate: 2026-03-05

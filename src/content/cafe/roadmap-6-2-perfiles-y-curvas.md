@@ -1,4 +1,5 @@
 ---
+draft: true
 title: 'Perfiles y curvas de tueste'
 description: 'Cómo leer una curva de tueste, qué significan RoR, BT y ET, perfiles para diferentes orígenes y métodos de preparación, y por qué el mismo café puede tostarse de formas radicalmente distintas.'
 publishedDate: 2026-03-05

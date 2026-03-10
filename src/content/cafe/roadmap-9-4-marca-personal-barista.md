@@ -1,4 +1,5 @@
 ---
+draft: true
 title: 'Construyendo tu marca personal como barista'
 description: 'De barista anónimo a profesional conocido: crea un portfolio, domina redes sociales, haz networking y convierte tu pasión en carrera.'
 publishedDate: 2026-03-05
@@ -10,7 +11,6 @@ tags:
 phase: 9
 lessonOrder: 4
 isPremium: false
-draft: false
 ---
 
 ## De anónimo a indispensable

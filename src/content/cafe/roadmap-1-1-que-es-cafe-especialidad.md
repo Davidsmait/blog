@@ -36,9 +36,9 @@ Pero la puntuación no es solo un número — es un reflejo de toda la cadena. U
 
 **Frescura.** El café comercial puede tener meses (o años) desde su tueste. El café de especialidad se consume idealmente entre 7 y 30 días post-tueste para espresso, y entre 5 y 21 días para filtrado. Después de eso los compuestos aromáticos volátiles se degradan y pierdes complejidad.
 
-**Tueste.** El café comercial tiende a tostarse oscuro — esto enmascara defectos y produce un sabor "uniforme" (léase: amargo y plano). El café de especialidad generalmente se tuesta más claro para preservar las características de origen: la acidez frutal de un Kenia, las notas florales de un Etiopía, el chocolate del un Brasil.
+**Tueste.** El café comercial tiende a tostarse oscuro — esto enmascara defectos y produce un sabor "uniforme" (léase: amargo y plano). El café de especialidad generalmente se tuesta más claro para preservar las características de origen: la acidez frutal de un Kenia, las notas florales de un Etiopía, el chocolate de un Brasil.
 
-**Precio justo.** El café de especialidad generalmente paga precios significativamente superiores al precio C de la bolsa de Nueva York. Esto no es caridad — es el reflejo de un producto de mayor calidad que requiere más trabajo.
+**Precio justo.** El café de especialidad generalmente paga precios significativamente superiores al precio C de la bolsa de Nueva York (el precio de referencia mundial para café arábica). Esto no es caridad — es el reflejo de un producto de mayor calidad que requiere más trabajo.
 
 ## Las tres olas del café
 

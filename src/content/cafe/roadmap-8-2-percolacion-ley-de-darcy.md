@@ -1,4 +1,5 @@
 ---
+draft: true
 title: 'Percolación y ley de Darcy'
 description: 'Cómo el agua atraviesa una cama de café: ley de Darcy, resistencia hidráulica, migración de finos, channeling y cómo la física de fluidos explica tus problemas de extracción.'
 publishedDate: 2026-03-05

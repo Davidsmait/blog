@@ -1,4 +1,5 @@
 ---
+draft: true
 title: 'Patrones avanzados y etching'
 description: 'Combinaciones de patrones, diseños multi-capa, la técnica de etching con aguja, y cómo los baristas de competición llevan el latte art al siguiente nivel.'
 publishedDate: 2026-03-05

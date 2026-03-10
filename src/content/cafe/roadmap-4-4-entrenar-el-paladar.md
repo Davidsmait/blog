@@ -1,4 +1,5 @@
 ---
+draft: true
 title: 'Entrenar el paladar'
 description: 'Ejercicios prácticos y progresivos para desarrollar tu sensibilidad gustativa: triangulación, calibración con referencias, catación a ciegas y rutinas semanales.'
 publishedDate: 2026-03-05

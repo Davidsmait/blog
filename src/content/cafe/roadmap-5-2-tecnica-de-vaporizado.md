@@ -1,4 +1,5 @@
 ---
+draft: true
 title: 'Técnica de vaporizado'
 description: 'Domina la sonda de vapor: posicionamiento, fases de estiramiento y texturizado, diagnóstico de errores y cómo lograr microespuma consistente cada vez.'
 publishedDate: 2026-03-05

@@ -1,4 +1,5 @@
 ---
+draft: true
 title: 'Pressure profiling y pre-infusión estratégica'
 description: 'La técnica avanzada de manipular presión durante la extracción: pre-infusión larga, rampas de presión, perfiles descendentes y por qué 9 bares no siempre es la respuesta.'
 publishedDate: 2026-03-05
