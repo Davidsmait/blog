@@ -34,9 +34,9 @@ Pero la puntuación no es solo un número — es un reflejo de toda la cadena. U
 
 **Trazabilidad.** El café comercial se vende como "mezcla de Colombia" o "100% Arábica" sin más contexto. El café de especialidad te dice la finca, la variedad, la altitud, el procesamiento y la fecha de tueste. Cuando ves una etiqueta que dice "Finca El Paraíso, Cauca, Colombia. Variedad Gesha. Proceso anaeróbico. 1,950 msnm" — eso es trazabilidad.
 
-**Frescura.** El café comercial puede tener meses (o años) desde su tueste. El café de especialidad se consume idealmente entre 7 y 30 días post-tueste para espresso, y entre 5 y 21 días para filtrado. Después de eso los compuestos aromáticos volátiles se degradan y pierdes complejidad.
+**Frescura.** El café comercial puede tener meses (o años) desde su tueste. El café de especialidad se consume idealmente entre 5 y 21 días post-tueste para filtrado, y entre 10 y 35 días para espresso (necesita más reposo porque el CO₂ atrapado interfiere con la extracción a presión). Después de eso los compuestos aromáticos volátiles se degradan y pierdes complejidad.
 
-**Tueste.** El café comercial tiende a tostarse oscuro — esto enmascara defectos y produce un sabor "uniforme" (léase: amargo y plano). El café de especialidad generalmente se tuesta más claro para preservar las características de origen: la acidez frutal de un Kenia, las notas florales de un Etiopía, el chocolate de un Brasil.
+**Tueste.** El café comercial tiende a tostarse oscuro — esto enmascara defectos y produce un sabor "uniforme" (léase: amargo y plano). El café de especialidad generalmente se tuesta más claro para preservar las características de origen: la acidez frutal de un café keniano, las notas florales de uno etíope, el chocolate de uno brasileño.
 
 **Precio justo.** El café de especialidad generalmente paga precios significativamente superiores al precio C de la bolsa de Nueva York (el precio de referencia mundial para café arábica). Esto no es caridad — es el reflejo de un producto de mayor calidad que requiere más trabajo.
 
