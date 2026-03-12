@@ -1,134 +1,112 @@
 ---
-title: "Construyendo La Commune: una PWA para cafeteria independiente con Claude Code"
-description: "Como desarrolle una Progressive Web App completa para la cafeteria La Commune usando Next.js, Firebase y Claude Code como copiloto de desarrollo."
+title: "La Commune: la app de fidelidad que construí para una cafetería que todavía no existe"
+description: "Cómo construí una PWA completa con sistema de lealtad, menú digital y panel de admin para mi futura cafetería de especialidad — usando Next.js, Supabase y Claude Code."
 publishedDate: 2026-03-05
 tags:
   - pwa
   - nextjs
-  - firebase
   - claude-code
   - ia
   - desarrollo
 ---
 
-## La idea
+## El contexto
 
-La Commune es una cafeteria independiente en Mineral de la Reforma, Mexico. Como muchos negocios locales, necesitaba una forma de fidelizar a sus clientes sin depender de tarjetas fisicas que se pierden o se olvidan. La solucion: una **tarjeta de lealtad digital** que vive en el celular del cliente como una PWA.
+Estoy preparando todo para abrir una cafetería de especialidad. La Commune es el nombre del proyecto, y la app de fidelidad fue lo primero que construí.
 
-El proyecto esta desplegado en [lacommune.netlify.app](https://lacommune.netlify.app/).
+A mí me gustaría tener tarjetas físicas de sellos, pero eso todavía no es lo mío. Así que me enfoqué en lo que sí sé hacer: una PWA que vive en el celular del cliente, se instala como app nativa, y funciona aunque se caiga el internet.
 
-## Stack tecnologico
+Está desplegada en [lacommune.netlify.app](https://lacommune.netlify.app/).
 
-La aplicacion se construyo con un stack moderno enfocado en rendimiento y experiencia movil:
-
-- **Next.js 15** con App Router y React 19
-- **Firebase** (Firestore como base de datos, sin backend propio)
-- **TypeScript** para seguridad de tipos en todo el proyecto
-- **Tailwind CSS** + **Radix UI** para componentes accesibles
-- **Framer Motion** para animaciones fluidas
-- **Netlify** para el despliegue
-
-## Funcionalidades principales
+## Qué hace
 
 ### Para los clientes
 
-- **Tarjeta de lealtad digital** con sellos visuales y codigo QR unico
-- **Menu del cafe** dinamico con precios, ingredientes y disponibilidad
-- **Promociones activas** con filtros por dia de la semana
-- **Recuperacion de tarjeta** usando el numero de telefono
-- **Soporte offline completo** - la tarjeta funciona sin internet
+- Tarjeta de lealtad digital con sellos visuales y código QR único
+- Menú del café dinámico con precios y disponibilidad
+- Promociones activas con filtros por día
+- Recuperación de tarjeta con número de teléfono
+- Funciona offline — la tarjeta se ve sin internet
 
 ### Para el barista
 
-- **Panel de administracion** protegido con PIN (verificacion HMAC-SHA256 del lado del servidor)
-- **Escaner QR** para agregar sellos rapidamente
-- **Gestion de menu** - crear secciones, items, toggle de disponibilidad
-- **Dashboard de analiticas** con graficas de tendencias (Recharts)
-- **Directorio de clientes** con historial de visitas
+- Panel de admin protegido con PIN (verificación HMAC-SHA256)
+- Escáner QR para agregar sellos
+- Gestión de menú — secciones, productos, toggle de disponibilidad
+- Dashboard de analíticas con gráficas (Recharts)
+- Directorio de clientes con historial
+- Roles: admin, barista, camarero — cada uno ve lo que necesita
+
+## Stack
+
+El proyecto empezó con Firebase, pero a mitad de camino migré todo a **Supabase**. La razón: necesitaba compartir tablas con el POS que estoy construyendo por separado, y Supabase me da PostgreSQL real, RLS, funciones SQL y realtime.
+
+La migración fue completa — eliminé toda dependencia de Firebase. Cero imports, cero config, cero archivos muertos.
+
+Stack actual:
+
+- **Next.js** con App Router
+- **Supabase** (auth, base de datos, funciones PostgreSQL)
+- **TypeScript** en todo el proyecto
+- **Tailwind CSS** para estilos
+- **Netlify** para deploy (costo: $0)
 
 ## La parte PWA
 
-Este fue uno de los aspectos mas interesantes del proyecto. La app funciona como una aplicacion nativa instalable:
+Lo más interesante del proyecto. La app se instala como nativa y tiene soporte offline real.
 
-### Service Worker personalizado
+### Service Worker
 
-El `sw.js` implementa multiples estrategias de cache:
-
-```javascript
-// Cache-first para assets estaticos de Next.js
-// Stale-while-revalidate para paginas de tarjeta
-// Exclusion inteligente de videos (incompatibles con range requests)
-// Exclusion de peticiones Firebase y RSC
-```
-
-Cada deploy genera un nuevo `BUILD_ID` que invalida el cache automaticamente.
+El `sw.js` usa múltiples estrategias de cache: cache-first para assets estáticos, stale-while-revalidate para la tarjeta, y exclusiones para videos y peticiones de Supabase. Cada deploy genera un nuevo `BUILD_ID` que invalida el cache.
 
 ### Cola offline para sellos
 
-Cuando un barista agrega un sello sin conexion, el sistema:
+Cuando un barista agrega un sello sin conexión:
 
-1. Guarda el sello en `localStorage` con timestamp
-2. Registra un evento de Background Sync
-3. Al recuperar conexion, sincroniza automaticamente
-4. Envia un broadcast a todas las pestanas abiertas para actualizar la UI
+1. Se guarda en `localStorage` con timestamp
+2. Se registra un evento de Background Sync
+3. Al recuperar conexión, sincroniza automáticamente
+4. Hace broadcast a todas las pestañas abiertas para actualizar la UI
 
-### Manifest y experiencia nativa
+Suena simple, pero coordinar Background Sync, cache invalidation y broadcast entre pestañas tiene muchos edge cases.
 
-- Modo `standalone` (sin barra del navegador)
-- Iconos para home screen
-- Shortcuts directos a "Mi tarjeta" y "Menu"
-- Pagina offline dedicada con branding del cafe
+### Experiencia nativa
+
+Modo standalone (sin barra del navegador), iconos para home screen, shortcuts directos a "Mi tarjeta" y "Menú", y una página offline con el branding del café.
 
 ## Claude Code como copiloto
 
-Aqui es donde la historia se pone interesante. **Claude Code** fue mi herramienta principal de desarrollo durante todo el proyecto. No se trato de generar codigo y pegarlo - fue un flujo de trabajo colaborativo real.
+Claude Code fue mi herramienta principal durante todo el desarrollo. No es generar código y pegarlo — es un flujo de trabajo real donde el contexto lo es todo.
 
-### Como lo use
+El proyecto tiene un `CLAUDE.md` que documenta la estructura, el esquema de la base de datos, las convenciones, las decisiones de arquitectura y el estado de cada módulo. Eso permite que Claude entienda el proyecto completo y sugiera cambios coherentes.
 
-El proyecto tiene un archivo `CLAUDE.md` en la raiz que funciona como contexto persistente. Ahi documente:
+Donde más ayudó:
 
-- La estructura del proyecto y convenciones
-- El esquema de Firestore (colecciones, campos, relaciones)
-- Patrones especificos como el uso de `reactfire` con `suspense: false` para compatibilidad con React 19
-- Reglas de seguridad de Firestore
-- Decisiones de arquitectura
+- **Service Worker** — debuggear estrategias de cache con múltiples exclusiones es difícil. Tener un copiloto que entiende el contexto completo acelera mucho.
+- **Seguridad** — PIN con HMAC-SHA256, timing-safe comparison, rate limiting por IP. Cosas que quieres hacer bien desde el inicio.
+- **Migración Firebase → Supabase** — reescribir todos los servicios, auth, funciones PostgreSQL. Claude ayudó a no dejar rastros de Firebase en el código.
 
-Esto permitio que Claude Code entendiera el proyecto completo en cada sesion y sugiriera cambios coherentes con la arquitectura existente.
+El flujo es: describir qué necesito, Claude lee los archivos, implementa, ejecuta build/tests, itera si algo falla. Sigo revisando todo y guiando la dirección, pero la velocidad de iteración es otra.
 
-### Donde brillo
+## Tests
 
-- **Service Worker** - La logica de cache con multiples estrategias, exclusiones y versionamiento fue iterada directamente con Claude Code. Debuggear service workers es notoriamente dificil y tener un copiloto que entiende el contexto completo fue invaluable.
+No es un demo — tiene tests reales:
 
-- **Seguridad del panel admin** - La implementacion de verificacion de PIN con HMAC-SHA256, timing-safe comparison y rate limiting por IP fue desarrollada con atencion a mejores practicas de seguridad.
+- **25 tests unitarios** (Vitest) — servicios de tarjeta, menú, auth
+- **50 tests E2E** (Playwright) — landing, onboarding, admin PIN, tarjeta, menú
 
-- **Sistema offline** - La cola de sincronizacion con Background Sync, periodic sync y broadcast entre pestanas requirio coordinar multiples APIs del navegador. Claude Code ayudo a manejar los edge cases.
+## Lo que aprendí
 
-- **Transacciones de Firestore** - Los stamps se agregan dentro de `runTransaction()` para garantizar atomicidad, y Claude Code ayudo a estructurar la logica transaccional correctamente.
+1. **PWA sigue siendo viable en 2026** — para negocios locales que no quieren publicar en app stores, una PWA bien hecha ofrece experiencia nativa sin fricción de descarga.
 
-### El flujo de trabajo
+2. **Construir para tu propio negocio te enseña diferente** — no es lo mismo resolver un ejercicio que preguntarte "¿qué pasa si el WiFi se cae cuando el barista está agregando un sello?". Los problemas reales no aparecen en tutoriales.
 
-El archivo `.claude/settings.local.json` configura los permisos para que Claude Code pueda ejecutar comandos de npm, Firebase y otras herramientas del proyecto directamente. Esto permite un ciclo rapido de:
+3. **El contexto es todo con IA** — un `CLAUDE.md` bien mantenido marca la diferencia entre sugerencias genéricas y cambios que encajan en tu arquitectura.
 
-1. Describir la funcionalidad o el bug
-2. Claude Code lee los archivos relevantes
-3. Implementa los cambios
-4. Ejecuta el build o los tests
-5. Itera si algo falla
+4. **Migrar a mitad de proyecto no es el fin del mundo** — Firebase a Supabase fue un cambio grande, pero valió la pena. A veces la mejor decisión es cambiar de dirección cuando encuentras algo que se ajusta mejor.
 
-No es magia - sigue siendo necesario entender que esta pasando, revisar los cambios y guiar la direccion del desarrollo. Pero la velocidad de iteracion es dramaticamente mayor.
+5. **Nunca está terminada** — sigo buscando formas de romperla, encontrar fallas y mejorarla. El filósofo Daniel Dennett hablaba del *steel man* — lo contrario del *straw man*: en vez de atacar la versión débil de un argumento, enfrentas la más fuerte. Así trato a la app y en general a mi vida: buscar el problema más difícil, no el más fácil. Cada falla que encuentro antes de abrir es un problema menos el día que importe de verdad.
 
-## Lecciones aprendidas
+---
 
-1. **PWA en 2026 sigue siendo viable** - Para negocios locales que no necesitan (ni quieren) publicar en app stores, una PWA bien hecha ofrece una experiencia nativa sin la friccion de descarga.
-
-2. **Firebase sin backend funciona** - Para apps de este tamano, las transacciones de Firestore desde el cliente con reglas de seguridad bien escritas eliminan la necesidad de un servidor.
-
-3. **El contexto es todo con IA** - Un archivo `CLAUDE.md` bien mantenido hace la diferencia entre sugerencias genericas y cambios que realmente encajan en tu proyecto.
-
-4. **Offline-first es mas complejo de lo que parece** - Background Sync, cache invalidation, broadcast entre pestanas... cada pieza tiene sus edge cases. Pero el resultado vale la pena para una app que se usa en una cafeteria donde el WiFi puede fallar.
-
-## Resultado
-
-La Commune ahora tiene un sistema de lealtad digital funcional, instalable, que funciona offline y que se gestiona desde un panel de administracion protegido. Todo construido con tecnologias web estandar y desplegado en Netlify con costo cero de infraestructura (dentro del free tier de Firebase y Netlify).
-
-El codigo fuente refleja un proyecto real, no un demo - con manejo de errores, seguridad, accesibilidad y soporte offline pensados desde el inicio.
+*La cafetería todavía no abre, pero cuando lo haga, el día uno ya va a tener sistema de fidelidad.*
