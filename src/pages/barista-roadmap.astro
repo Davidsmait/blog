@@ -143,6 +143,25 @@ function getPhaseState(phaseNum: number) {
     </div>
   </div>
 
+  <!-- Intro -->
+  <div class="rm-intro">
+    <p class="rm-intro-text">
+      No soy barista profesional — soy un developer que se toma el café muy en serio.
+      Este roadmap lo armé a partir de libros de especialidad y el programa de la SCA.
+      El contenido lo construyo con la ayuda de Claude, yo lo valido, lo estudio, lo practico,
+      y cuando estoy seguro de que tiene sentido, lo publico.
+    </p>
+    <p class="rm-intro-text">
+      El objetivo es abrir <strong>La Commune</strong>, mi propia cafetería de especialidad.
+      Mientras ahorro para eso, estoy construyendo las herramientas
+      (<a href="/projects">POS</a>, app de fidelidad, menú digital) y aprendiendo todo lo que puedo.
+    </p>
+    <a href="/cafe/2025-03-05-mi-camino-barista-especialidad" class="rm-intro-link">
+      Leer la historia completa
+      <span class="iconify tabler--arrow-right" aria-hidden="true"></span>
+    </a>
+  </div>
+
   <!-- Timeline -->
   <div class="timeline">
     {
@@ -569,6 +588,59 @@ function getPhaseState(phaseNum: number) {
       opacity: 1;
       transform: translateY(0);
     }
+  }
+
+  /* ── Intro ── */
+  .rm-intro {
+    margin-bottom: 2.5rem;
+    padding: 1.25rem 1.5rem;
+    border-radius: 12px;
+    border: 1.5px solid color-mix(in srgb, var(--color-accent) 10%, transparent);
+    background: color-mix(in srgb, var(--color-accent) 3%, transparent);
+  }
+  .rm-intro-text {
+    font-size: 0.85rem;
+    line-height: 1.7;
+    opacity: 0.6;
+    margin: 0 0 0.6rem;
+  }
+  .rm-intro-text:last-of-type {
+    margin-bottom: 0.85rem;
+  }
+  .rm-intro-text strong {
+    opacity: 1;
+    color: var(--color-accent);
+    font-weight: 600;
+  }
+  .rm-intro-text a {
+    color: var(--color-accent);
+    text-decoration: none;
+    border-bottom: 1px solid color-mix(in srgb, var(--color-accent) 25%, transparent);
+    transition: border-color 0.2s ease;
+  }
+  .rm-intro-text a:hover {
+    border-color: var(--color-accent);
+  }
+  .rm-intro-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--color-accent);
+    text-decoration: none;
+    opacity: 0.65;
+    transition: opacity 0.2s ease;
+  }
+  .rm-intro-link:hover {
+    opacity: 1;
+  }
+  .rm-intro-link .iconify {
+    font-size: 0.85rem;
+    transition: transform 0.2s ease;
+  }
+  .rm-intro-link:hover .iconify {
+    transform: translateX(3px);
   }
 
   /* ── Timeline layout ── */

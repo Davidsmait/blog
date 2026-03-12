@@ -1,106 +1,63 @@
 ---
-title: 'Mi camino para convertirme en barista profesional de café de especialidad'
-description: 'Documento mi proceso de aprendizaje en el mundo del café de especialidad: desde mis primeros Chemex hasta la meta de abrir mi propia cafetería.'
+title: 'De developer a barista: preparando todo para abrir mi cafetería'
+description: 'Cómo pasé de la curiosidad por el café a construir un POS, una app de fidelidad y un roadmap de barismo — todo mientras ahorro para abrir La Commune.'
 publishedDate: 2026-03-05
 author: 'David San Luis Aguirre'
 tags:
   - café
   - barista
   - especialidad
-  - personal
   - aprendizaje
 ---
 
-## Por qué el café de especialidad
+## Cómo empezó todo
 
-Todo empezó como curiosidad. Un día preparé mi primer Chemex y algo cambió: dejé de ver el café como una bebida funcional y empecé a entenderlo como algo con profundidad, con origen, con historia. Después vino el espresso, el intentar (y fallar) hacer latte art, y la obsesión por entender qué hace que una taza sea realmente buena.
+Un día preparé mi primer Chemex y algo cambió. Dejé de ver el café como una bebida funcional y empecé a entenderlo como algo con origen, con proceso, con historia. Después vino el espresso, los primeros intentos de latte art (bastante malos), y la pregunta que no se me ha quitado de la cabeza: *¿y si abro mi propia cafetería?*
 
-Este post es mi forma de documentar ese camino. No soy un experto — soy alguien aprendiendo, y creo que compartir el proceso tiene tanto valor como compartir el resultado.
+Todavía no la abro. Pero llevo meses preparándome como si fuera mañana.
 
-## Dónde estoy hoy
+## La Commune — el proyecto
 
-Actualmente ya manejo con confianza algunos métodos y técnicas:
+**La Commune** es el nombre del café de especialidad que quiero abrir en Mineral de la Reforma, Hidalgo. Aún no existe físicamente, pero la infraestructura tecnológica ya está lista. Soy developer, y decidí aprovechar eso para construir todo lo que voy a necesitar:
 
-- **Chemex**: Mi método favorito para filtrado. Ya controlo ratios, temperatura y tiempos de vertido.
-- **Espresso**: Puedo extraer shots consistentes, ajustar la molienda y entender cuándo algo sale sub o sobre-extraído.
-- **Latte art**: Aquí va con honestidad — todavía me sale bastante feo. Pero la texturización de leche ya va mejorando.
+- **Sistema Punto de Venta** — un POS completo hecho a medida con Next.js y Supabase. Mesas, órdenes, cocina (KDS), cobros, cortes de caja, reportes. Todo en tiempo real, todo probado.
+- **App de fidelidad** — una PWA donde los clientes van a acumular sellos y canjear recompensas. Ya está desplegada en [lacommune.netlify.app](https://lacommune.netlify.app/).
+- **Menú digital** — integrado con el POS para que cuando un producto se agote o cambie de precio, se refleje automáticamente.
 
-## El plan: de aquí a barista profesional
+¿Es construir el software antes de tener el local? Sí. Pero prefiero llegar al día uno con las herramientas listas que improvisar después.
 
-Después de investigar bastante (especialmente el programa de la SCA — Specialty Coffee Association), armé un roadmap con las etapas que quiero cubrir. Lo dividí en fases que tienen sentido para mi nivel actual y mis metas.
+## Lo que sé hacer (y lo que no)
 
-### Fase 1: Fundamentos sólidos (donde estoy)
+Siendo honesto sobre dónde estoy como barista:
 
-Lo que estoy consolidando ahora mismo:
+**Ya lo manejo bien:**
+- Espresso — aquí ya encontré mi punto. Controlo grind size, dosis, yield y tiempo. Puedo diagnosticar shots sub o sobre-extraídos y sé exactamente qué perfil me gusta.
+- Chemex — mi método favorito, pero por una razón diferente: nunca termino de explorarlo. Filtro de papel, de metal, molienda más gruesa, más fina, vertidos distintos... cada variable cambia la taza. Todavía no encuentro *mi* sabor perfecto, y eso es lo que lo hace adictivo.
 
-- Dominar la extracción de espresso (grind size, dose, yield, tiempo)
-- Perfeccionar el Chemex y experimentar con recetas
-- Entender la relación entre tueste, origen y perfil de taza
-- Practicar texturización de leche diariamente
+**Sigo aprendiendo:**
+- Latte art — me salen rosetas deformes y de vez en cuando alguna flor exótica cuando hay suerte. La texturización va mejorando, pero el vertido es otra historia.
+- Catación — es un mundo que todavía no toco. Sé que existe el protocolo SCA y la rueda de sabores, pero no he hecho una catación formal nunca.
+- Tueste — solo he visto cómo lo hacen otros. No tengo idea de la teoría detrás ni he tostado yo mismo.
 
-### Fase 2: Expandir métodos y paladar
+No soy barista profesional. Soy un developer que se toma el café muy en serio y está trabajando para llegar ahí.
 
-El siguiente paso es ampliar mi repertorio de preparación y desarrollar mi paladar:
+## El roadmap
 
-- **V60**: El clásico del pour-over, más técnico que el Chemex
-- **Aeropress**: Versátil, ideal para experimentar con variables
-- **Catación (cupping)**: Aprender el protocolo SCA de catación para poder evaluar cafés sistemáticamente
-- **Vocabulario sensorial**: Usar la rueda de sabores de la SCA para describir lo que pruebo con precisión
+Armé un roadmap a partir de libros que encontré sobre café de especialidad y el programa de la SCA. El contenido lo construyo con la ayuda de Claude — yo lo valido, lo estudio, lo practico, y cuando estoy seguro de que tiene sentido, lo publico para que le sirva a alguien más.
 
-### Fase 3: Latte art y servicio profesional
+Puedes verlo completo en la [sección de Café](/barista-roadmap) de este blog. Lo voy liberando por fases conforme avanzo.
 
-Aquí es donde el barismo se vuelve arte y servicio:
+## Lo que viene
 
-- Dominar los patrones básicos: corazón, rosetta, tulipán
-- Entender la ciencia detrás de la microespuma
-- Workflow de barra: velocidad, limpieza y consistencia bajo presión
-- Atención al cliente en el contexto de café de especialidad
+- **Seguir ahorrando** — la realidad es que abrir un café cuesta dinero, y siendo developer en México los sueldos no ayudan mucho. Pero se va avanzando.
+- **Certificaciones SCA** — formalizar lo que ya sé y llenar los huecos.
+- **Más práctica** — no hay sustituto para esto. Cada día preparo café y trato de hacerlo mejor que ayer.
+- **Mejorar el POS** — un proyecto así nunca está "terminado". Siempre hay algo que agregar.
 
-### Fase 4: Certificaciones SCA
+## Para quien esté en algo similar
 
-La SCA tiene un programa modular con tres niveles (Foundation, Intermediate, Professional) en varias áreas:
-
-- **Barista Skills**: Foundation → Intermediate → Professional
-- **Brewing**: Entender la ciencia de la extracción a fondo
-- **Sensory Skills**: Entrenar el paladar de forma profesional
-- **Roasting**: Entender el tueste (y eventualmente tostar mi propio café)
-
-El objetivo final es el **SCA Coffee Skills Diploma**, que combina certificaciones de múltiples módulos.
-
-### Fase 5: Tueste y origen
-
-Para abrir una cafetería con identidad propia, necesito entender toda la cadena:
-
-- Aprender los fundamentos del tueste (perfiles, desarrollo, primera y segunda crack)
-- Visitar fincas o cooperativas si es posible — entender el café desde la planta
-- Relación directa con productores: comercio directo vs. comercio justo
-- Entender el café verde: procesamiento, secado, almacenamiento
-
-### Fase 6: El negocio — abrir mi cafetería
-
-La meta final. Esto ya no es solo café, es emprendimiento:
-
-- Desarrollar un concepto y una identidad de marca
-- Diseñar un menú que equilibre accesibilidad con especialidad
-- Entender costos, márgenes y operación diaria
-- Crear una experiencia, no solo vender bebidas
-
-## Recursos que estoy usando
-
-Algunos recursos que me han servido y que recomiendo a quien quiera empezar:
-
-- **SCA Coffee Skills Program** — el estándar de la industria para certificaciones
-- **James Hoffmann en YouTube** — probablemente el mejor contenido educativo de café en internet
-- **"The World Atlas of Coffee"** — el libro de Hoffmann que cubre orígenes, métodos y ciencia
-- **Comunidades locales** — buscar tostadores y baristas en tu ciudad que compartan conocimiento
-- **Práctica diaria** — no hay sustituto para esto
-
-## Lo que sigue
-
-Voy a ir actualizando este espacio conforme avance. La idea es documentar cada fase: qué aprendí, qué me costó trabajo, qué equipo compré, qué cursos tomé. Si estás en un camino similar, espero que te sirva de referencia.
-
-El café de especialidad es un mundo enorme, y apenas estoy rascando la superficie. Pero eso es exactamente lo que lo hace emocionante.
+Si tienes un proyecto que parece lejano: empieza por lo que puedes hacer hoy. Yo no puedo abrir el café todavía, pero puedo construir el software, estudiar barismo, practicar en casa y documentar todo. Cuando llegue el momento, no voy a estar empezando de cero.
 
 ---
 
-*¿Tienes recomendaciones o estás en un camino similar? Me encantaría saber de ti.*
+*Si estás en un camino similar o tienes preguntas, escríbeme.*
