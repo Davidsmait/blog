@@ -4,102 +4,502 @@ title: About
 activeHeaderLink: About
 ---
 
-### Sobre Mí
-
-<img
-  src="/me/me4.jpeg"
-  alt="David San Luis Aguirre"
-  loading="lazy"
-  decoding="async"
-  style="
-    width: 280px;
-    height: 280px;
+<style>{`
+  /* ── Hero ── */
+  .about-hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    text-align: center;
+    margin-bottom: 2.5rem;
+  }
+  .about-photo {
+    width: 180px;
+    height: 180px;
     object-fit: cover;
-    margin: 0 auto;
     border-radius: 50%;
     display: block;
-    transition:
-      transform 0.15s ease,
-      filter 0.35s ease,
-      box-shadow 0.35s ease;
-    filter: saturate(0.7) brightness(0.95);
-    box-shadow: 0 0 0 rgba(0,0,0,0);
+    transition: transform 0.4s ease, filter 0.4s ease, box-shadow 0.4s ease;
+    filter: saturate(0.75) brightness(0.95);
+    box-shadow: 0 0 0 3px color-mix(in srgb, rgb(var(--accent)) 15%, transparent);
     cursor: pointer;
-  "
-  onmousemove="
-    const rect = this.getBoundingClientRect();
-    const x = (event.clientX - rect.left) / rect.width - 0.5;
-    const y = (event.clientY - rect.top) / rect.height - 0.5;
-    this.style.transform = 
-      'scale(1.12) translate(' + x * 12 + 'px, ' + y * 12 + 'px)';
-    this.style.filter = 'saturate(1.15) brightness(1.05)';
-    this.style.boxShadow = '0 14px 30px rgba(0,0,0,0.18)';
-  "
-  onmouseover="
-    this.style.transition = 'transform 0.1s ease';
-  "
-  onmouseout="
-    this.style.transform='scale(1)';
-    this.style.filter='saturate(0.7) brightness(0.95)';
-    this.style.boxShadow='0 0 0 rgba(0,0,0,0)';
-  "
-/>
+  }
+  .about-photo:hover {
+    transform: scale(1.06);
+    filter: saturate(1.1) brightness(1.03);
+    box-shadow: 0 12px 32px color-mix(in srgb, rgb(var(--accent)) 18%, transparent),
+                0 0 0 3px color-mix(in srgb, rgb(var(--accent)) 30%, transparent);
+  }
+  .about-name {
+    font-size: 2rem;
+    font-weight: 700;
+    color: rgb(var(--accent));
+    margin: 0;
+    letter-spacing: -0.02em;
+  }
+  .about-title {
+    font-size: 0.95rem;
+    opacity: 0.55;
+    margin-top: 0.25rem;
+    font-weight: 500;
+  }
+  .about-bio {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    max-width: 560px;
+    opacity: 0.72;
+    margin: 0 auto;
+  }
 
+  /* ── Stats ── */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+    margin: 2rem 0;
+  }
+  .stat-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 1.1rem 0.75rem;
+    border-radius: 12px;
+    border: 1.5px solid color-mix(in srgb, rgb(var(--accent)) 10%, transparent);
+    background: color-mix(in srgb, rgb(var(--accent)) 3%, transparent);
+    transition: all 0.3s ease;
+  }
+  .stat-card:hover {
+    border-color: color-mix(in srgb, rgb(var(--accent)) 25%, transparent);
+    background: color-mix(in srgb, rgb(var(--accent)) 6%, transparent);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px color-mix(in srgb, rgb(var(--accent)) 8%, transparent);
+  }
+  .stat-number {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: rgb(var(--accent));
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    opacity: 0.5;
+    font-weight: 600;
+    text-align: center;
+  }
 
+  /* ── Section titles ── */
+  .section-title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    opacity: 0.45;
+    margin: 2.5rem 0 1rem;
+  }
+  .section-title .iconify {
+    font-size: 1.1rem;
+    opacity: 0.7;
+  }
 
-Hola, soy **David San Luis Aguirre**, Software Engineer con más de **3 años de experiencia** en el desarrollo de aplicaciones web y móviles.  
-He participado tanto en la construcción de interfaces como en la implementación de APIs y servicios backend, trabajando con tecnologías modernas a lo largo de todo el ciclo de desarrollo.
+  /* ── Experience ── */
+  .exp-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .exp-card {
+    padding: 1rem 1.25rem;
+    border-radius: 12px;
+    border: 1.5px solid color-mix(in srgb, rgb(var(--accent)) 10%, transparent);
+    background: color-mix(in srgb, rgb(var(--accent)) 3%, transparent);
+    transition: all 0.3s ease;
+  }
+  .exp-card:hover {
+    border-color: color-mix(in srgb, rgb(var(--accent)) 20%, transparent);
+    background: color-mix(in srgb, rgb(var(--accent)) 5%, transparent);
+  }
+  .exp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.4rem;
+  }
+  .exp-project {
+    font-size: 0.925rem;
+    font-weight: 600;
+    color: rgb(var(--accent));
+  }
+  .exp-badge {
+    font-size: 0.65rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.2rem 0.55rem;
+    border-radius: 6px;
+    background: color-mix(in srgb, rgb(var(--accent)) 12%, transparent);
+    color: rgb(var(--accent));
+    white-space: nowrap;
+  }
+  .exp-company {
+    font-size: 0.78rem;
+    opacity: 0.5;
+    margin-bottom: 0.5rem;
+  }
+  .exp-desc {
+    font-size: 0.825rem;
+    line-height: 1.6;
+    opacity: 0.65;
+  }
+  .exp-tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    margin-top: 0.6rem;
+  }
+  .exp-tech span {
+    font-size: 0.675rem;
+    padding: 0.15rem 0.5rem;
+    border-radius: 5px;
+    background: color-mix(in srgb, rgb(var(--accent)) 8%, transparent);
+    opacity: 0.6;
+    font-weight: 500;
+  }
 
-Actualmente estoy enfocado en **NestJS** y **Prisma**, creando servicios modulares, mantenibles y bien tipados.
+  /* ── Tech stack ── */
+  .tech-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.65rem;
+  }
+  .tech-card {
+    padding: 0.85rem 1rem;
+    border-radius: 10px;
+    border: 1.5px solid color-mix(in srgb, rgb(var(--accent)) 8%, transparent);
+    background: color-mix(in srgb, rgb(var(--accent)) 2%, transparent);
+    transition: all 0.3s ease;
+  }
+  .tech-card:hover {
+    border-color: color-mix(in srgb, rgb(var(--accent)) 18%, transparent);
+    background: color-mix(in srgb, rgb(var(--accent)) 5%, transparent);
+  }
+  .tech-card-title {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: rgb(var(--accent));
+    margin-bottom: 0.4rem;
+  }
+  .tech-card-title .iconify {
+    font-size: 0.95rem;
+  }
+  .tech-card-items {
+    font-size: 0.75rem;
+    line-height: 1.6;
+    opacity: 0.55;
+  }
 
----
+  /* ── Contact & CV ── */
+  .footer-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+    padding-top: 2rem;
+    border-top: 1.5px solid color-mix(in srgb, rgb(var(--accent)) 8%, transparent);
+  }
+  .footer-row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .footer-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    opacity: 0.4;
+  }
+  .footer-links {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .contact-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    text-decoration: none !important;
+    font-size: 0.8rem;
+    font-weight: 500;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1.5px solid color-mix(in srgb, rgb(var(--accent)) 12%, transparent);
+    background: color-mix(in srgb, rgb(var(--accent)) 4%, transparent);
+    color: rgb(var(--accent));
+    opacity: 0.75;
+  }
+  .contact-link:hover {
+    opacity: 1;
+    background: color-mix(in srgb, rgb(var(--accent)) 10%, transparent);
+    border-color: color-mix(in srgb, rgb(var(--accent)) 25%, transparent);
+    box-shadow: 0 4px 14px color-mix(in srgb, rgb(var(--accent)) 10%, transparent);
+    transform: translateY(-1px);
+  }
+  .contact-link:active { transform: translateY(0); }
+  .contact-link .iconify {
+    font-size: 1.05rem;
+    transition: transform 0.3s ease;
+  }
+  .contact-link:hover .iconify { transform: scale(1.12); }
 
-### Especialidades
+  .cv-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1.3rem;
+    border-radius: 10px;
+    text-decoration: none !important;
+    font-size: 0.825rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1.5px solid color-mix(in srgb, rgb(var(--accent)) 20%, transparent);
+    background: color-mix(in srgb, rgb(var(--accent)) 8%, transparent);
+    color: rgb(var(--accent));
+    box-shadow: 0 2px 8px color-mix(in srgb, rgb(var(--accent)) 6%, transparent);
+  }
+  .cv-btn:hover {
+    background: color-mix(in srgb, rgb(var(--accent)) 15%, transparent);
+    border-color: color-mix(in srgb, rgb(var(--accent)) 35%, transparent);
+    box-shadow: 0 8px 24px color-mix(in srgb, rgb(var(--accent)) 14%, transparent);
+    transform: translateY(-2px);
+  }
+  .cv-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px color-mix(in srgb, rgb(var(--accent)) 8%, transparent);
+  }
+  .cv-btn .iconify {
+    font-size: 1rem;
+    transition: transform 0.3s ease;
+  }
+  .cv-btn:hover .iconify { transform: scale(1.1); }
+  .cv-arrow {
+    font-size: 0.8rem;
+    opacity: 0;
+    transform: translateY(-3px);
+    transition: all 0.3s ease;
+  }
+  .cv-btn:hover .cv-arrow {
+    opacity: 0.6;
+    transform: translateY(0);
+  }
 
-- Arquitectura y desarrollo end-to-end.
-- Aplicaciones móviles con **Ionic + Angular**.
-- APIs escalables con **NestJS + Prisma** y también con **Scala/Akka** .
-- Integración, optimización y despliegue de aplicaciones modernas.
+  /* ── Responsive ── */
+  @media (max-width: 540px) {
+    .stats-grid { grid-template-columns: repeat(3, 1fr); gap: 0.5rem; }
+    .stat-card { padding: 0.85rem 0.5rem; }
+    .stat-number { font-size: 1.25rem; }
+    .tech-grid { grid-template-columns: 1fr; }
+    .exp-header { flex-direction: column; gap: 0.3rem; }
+  }
+`}</style>
 
----
+{/* ── Hero ── */}
+<div class="about-hero">
+  <img
+    src="/me/me4.jpeg"
+    alt="David San Luis Aguirre"
+    loading="lazy"
+    decoding="async"
+    class="about-photo"
+  />
+  <div>
+    <p class="about-name">David San Luis Aguirre</p>
+    <p class="about-title">Fullstack Developer · Angular · NestJS · TypeScript · AWS</p>
+  </div>
+  <p class="about-bio">
+    Desarrollador Fullstack con +3 años de experiencia construyendo aplicaciones web y móviles en producción.
+    Actualmente desarrollo una plataforma SaaS LegalTech con IA, integrando APIs de LLM con infraestructura cloud escalable.
+    He publicado apps multiplataforma en iOS App Store y Google Play.
+  </p>
+</div>
 
-### 🛠️ Stack Tecnológico
+{/* ── Stats ── */}
+<div class="stats-grid">
+  <div class="stat-card">
+    <span class="stat-number">3+</span>
+    <span class="stat-label">Años de experiencia</span>
+  </div>
+  <div class="stat-card">
+    <span class="stat-number">300+</span>
+    <span class="stat-label">Usuarios en producción</span>
+  </div>
+  <div class="stat-card">
+    <span class="stat-number">2</span>
+    <span class="stat-label">Apps en App Stores</span>
+  </div>
+</div>
 
-**Frontend**
+{/* ── Experience ── */}
+<div class="section-title">
+  <span class="iconify tabler--briefcase" aria-hidden="true"></span>
+  Experiencia
+</div>
 
-- `Angular 13+` · `Javascript` · `NgRx` · `HTML5` · `CSS3`
+<div class="exp-list">
+  <div class="exp-card">
+    <div class="exp-header">
+      <span class="exp-project">Grace AI — Plataforma SaaS LegalTech</span>
+      <span class="exp-badge">Proyecto actual</span>
+    </div>
+    <div class="exp-company">QRSof · Feb 2023 – Presente · Remoto</div>
+    <div class="exp-desc">
+      Desarrollo fullstack de una plataforma legal con IA que automatiza procesamiento de documentos y análisis legal.
+      Integración de APIs de LLM con backend NestJS, extracción vía OCR y generación de redacciones legales.
+      Infraestructura AWS (Lambda, S3, Cognito) con arquitectura multi-tenant.
+    </div>
+    <div class="exp-tech">
+      <span>Angular</span><span>NestJS</span><span>TypeScript</span><span>AWS</span><span>Prisma</span><span>PostgreSQL</span><span>LLM APIs</span>
+    </div>
+  </div>
 
-**Mobile**
+  <div class="exp-card">
+    <div class="exp-header">
+      <span class="exp-project">CEN — App Móvil ERP Multiplataforma</span>
+      <span class="exp-badge">Abr 2024 – Jun 2025</span>
+    </div>
+    <div class="exp-company">QRSof · Remoto</div>
+    <div class="exp-desc">
+      Construcción y publicación de una app ERP completa en iOS App Store y Google Play para +300 empleados.
+      Arquitectura offline-first con SQLite y NgRx. Gestión del ciclo completo de release.
+    </div>
+    <div class="exp-tech">
+      <span>Angular</span><span>Ionic</span><span>SQLite</span><span>NgRx</span><span>Capacitor</span><span>iOS</span><span>Android</span>
+    </div>
+  </div>
 
-- `Ionic 7` · `Capacitor`
+  <div class="exp-card">
+    <div class="exp-header">
+      <span class="exp-project">Slird — Networking Profesional con NFC</span>
+      <span class="exp-badge">Abr 2023 – Sep 2024</span>
+    </div>
+    <div class="exp-company">QRSof · Remoto</div>
+    <div class="exp-desc">
+      Plataforma fullstack que digitalizó el networking profesional con tecnología NFC.
+      Frontend con Angular/Ionic, backend con Scala (Akka HTTP + Slick).
+      Creé una librería de componentes que redujo el esfuerzo de desarrollo frontend en un 70%.
+    </div>
+    <div class="exp-tech">
+      <span>Angular</span><span>Ionic</span><span>Scala</span><span>Akka HTTP</span><span>Play Framework</span><span>PostgreSQL</span><span>NFC</span>
+    </div>
+  </div>
+</div>
 
-**Backend**
+{/* ── Tech Stack ── */}
+<div class="section-title">
+  <span class="iconify tabler--stack-2" aria-hidden="true"></span>
+  Stack Tecnológico
+</div>
 
-- `NestJS` · `Prisma ORM`
-- `Scala 2+` · `Slick`
-- `Play Framework`
-- `PostgreSQL`
+<div class="tech-grid">
+  <div class="tech-card">
+    <div class="tech-card-title">
+      <span class="iconify tabler--browser" aria-hidden="true"></span>
+      Frontend
+    </div>
+    <div class="tech-card-items">Angular · React · Next.js · NgRx · Tailwind CSS</div>
+  </div>
+  <div class="tech-card">
+    <div class="tech-card-title">
+      <span class="iconify tabler--server" aria-hidden="true"></span>
+      Backend
+    </div>
+    <div class="tech-card-items">NestJS · Node.js · Scala · Akka HTTP · Play Framework</div>
+  </div>
+  <div class="tech-card">
+    <div class="tech-card-title">
+      <span class="iconify tabler--device-mobile" aria-hidden="true"></span>
+      Mobile
+    </div>
+    <div class="tech-card-items">Ionic · Capacitor · iOS · Android</div>
+  </div>
+  <div class="tech-card">
+    <div class="tech-card-title">
+      <span class="iconify tabler--cloud" aria-hidden="true"></span>
+      Cloud & Data
+    </div>
+    <div class="tech-card-items">AWS · Firebase · Prisma · PostgreSQL · Docker</div>
+  </div>
+  <div class="tech-card">
+    <div class="tech-card-title">
+      <span class="iconify tabler--robot" aria-hidden="true"></span>
+      IA / ML
+    </div>
+    <div class="tech-card-items">LLM APIs · OCR · Claude Code · AI-assisted dev</div>
+  </div>
+  <div class="tech-card">
+    <div class="tech-card-title">
+      <span class="iconify tabler--layout-grid" aria-hidden="true"></span>
+      Arquitectura
+    </div>
+    <div class="tech-card-items">Microservicios · Clean Architecture · Offline-first · Scrum</div>
+  </div>
+</div>
 
-**Herramientas**
+{/* ── Contact & CV ── */}
+<div class="footer-section">
+  <div class="footer-row">
+    <span class="footer-label">Contacto</span>
+    <div class="footer-links">
+      <a class="contact-link" href="mailto:david_sanluis@outlook.com">
+        <span class="iconify tabler--mail" aria-hidden="true"></span>
+        Email
+      </a>
+      <a class="contact-link" href="https://www.linkedin.com/in/davidsanluisaguirre" target="_blank" rel="noopener noreferrer">
+        <span class="iconify tabler--brand-linkedin" aria-hidden="true"></span>
+        LinkedIn
+      </a>
+      <a class="contact-link" href="https://github.com/Davidsmait" target="_blank" rel="noopener noreferrer">
+        <span class="iconify tabler--brand-github" aria-hidden="true"></span>
+        GitHub
+      </a>
+      <a class="contact-link" href="https://www.instagram.com/davidsanluisaguirre" target="_blank" rel="noopener noreferrer">
+        <span class="iconify tabler--brand-instagram" aria-hidden="true"></span>
+        Instagram
+      </a>
+    </div>
+  </div>
 
-- `Cursor` · `IntelliJ IDEA` · `DBeaver` · `Xcode` · `Android Studio` · `Git`
-
-**Tecnologías**
-
-- `Docker` · `Apple Developer`
-
----
-
-### 🌎 Colaboración Global
-
-- Experiencia en entornos remotos.
-- Basado en México (CST).
-
----
-
-📬 **Contacto**  
-[✉️ Email](mailto:david_sanluis@outlook.com) ·  
-[🔗 LinkedIn](https://www.linkedin.com/in/davidsanluisaguirre) ·
-[Instagram](https://www.instagram.com/davidsanluisaguirre) 
-
-<a href="/files/Desarrollador Scala Fullstack Angular.pdf" download="CV_David_San_Luis_Aguirre.pdf">📄 Descargar mi CV</a>
+  <div class="footer-row">
+    <span class="footer-label">Descargar CV</span>
+    <div class="footer-links">
+      <a class="cv-btn" href="/files/David_San_Luis_Aguirre_CV_Espanol.pdf" download="David_San_Luis_Aguirre_CV_Espanol.pdf">
+        <span class="iconify tabler--file-text" aria-hidden="true"></span>
+        Español
+        <span class="iconify tabler--download cv-arrow" aria-hidden="true"></span>
+      </a>
+      <a class="cv-btn" href="/files/David_San_Luis_Aguirre_Resume.pdf" download="David_San_Luis_Aguirre_Resume.pdf">
+        <span class="iconify tabler--file-text" aria-hidden="true"></span>
+        English
+        <span class="iconify tabler--download cv-arrow" aria-hidden="true"></span>
+      </a>
+    </div>
+  </div>
+</div>
