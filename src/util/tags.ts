@@ -22,13 +22,17 @@ export const resolveTags = (rawTags: string[]): ResolvedTag[] => {
   return resolvedTags
 }
 
-export const generateTags = async (): Promise<ResolvedTag[]> => {
-  const allTags = [...(await getPosts()), ...(await getCafePosts()), ...(await getProjects())].flatMap(
-    (p) => p.data.tags
-  )
+export const generateTags = async (includeDrafts = false): Promise<ResolvedTag[]> => {
+  const allTags = [
+    ...(await getPosts(undefined, undefined, includeDrafts)),
+    ...(await getCafePosts(undefined, includeDrafts)),
+    ...(await getProjects())
+  ].flatMap((p) => p.data.tags)
 
   return resolveTags([...new Set(allTags)])
 }
 
 export const getTagUsage = async (tag: string): Promise<number> =>
-  (await getPosts(tag)).length + (await getCafePosts(tag)).length + (await getProjects(tag)).length
+  (await getPosts(tag, undefined, false)).length +
+  (await getCafePosts(tag, false)).length +
+  (await getProjects(tag)).length

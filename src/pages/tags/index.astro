@@ -6,12 +6,14 @@ import { generateTags } from '@/util/tags'
 import { getPosts } from '@/util/posts'
 import { getCafePosts } from '@/util/cafe'
 import { getProjects } from '@/util/projects'
+import type { ResolvedTag } from '@/types'
 
-const tags = await generateTags()
+const tags = await generateTags(false)
 
-// Pre-compute tag usage to avoid N+1 queries in template
 const [posts, cafePosts, projects] = await Promise.all([
-  getPosts(), getCafePosts(), getProjects()
+  getPosts(undefined, undefined, false),
+  getCafePosts(undefined, false),
+  getProjects()
 ])
 const allItems = [...posts, ...cafePosts, ...projects]
 const tagUsages = new Map<string, number>()
@@ -22,6 +24,47 @@ for (const { tag } of tags) {
   )
 }
 
+// Categorize tags based on their source content
+const cafeTagNames = new Set<string>()
+const techTagNames = new Set<string>()
+
+for (const item of cafePosts) {
+  for (const t of item.data.tags) cafeTagNames.add(t.toLowerCase())
+}
+for (const item of [...posts, ...projects]) {
+  for (const t of item.data.tags) techTagNames.add(t.toLowerCase())
+}
+
+type TagWithCount = ResolvedTag & { count: number }
+
+const cafeTags: TagWithCount[] = []
+const techTags: TagWithCount[] = []
+
+for (const t of tags) {
+  const count = tagUsages.get(t.tag) ?? 0
+  const entry = { ...t, count }
+  const isCafe = cafeTagNames.has(t.tag)
+  const isTech = techTagNames.has(t.tag)
+
+  if (isCafe && !isTech) {
+    cafeTags.push(entry)
+  } else if (isTech && !isCafe) {
+    techTags.push(entry)
+  } else {
+    // Tag appears in both — put in both
+    if (isCafe) cafeTags.push(entry)
+    if (isTech) techTags.push(entry)
+  }
+}
+
+const sortByCount = (a: TagWithCount, b: TagWithCount) => {
+  const diff = b.count - a.count
+  return diff !== 0 ? diff : a.tag.localeCompare(b.tag)
+}
+
+cafeTags.sort(sortByCount)
+techTags.sort(sortByCount)
+
 const frontmatter: PageLayoutProps['frontmatter'] = {
   title: 'Tags',
   activeHeaderLink: 'Tags'
@@ -29,22 +72,140 @@ const frontmatter: PageLayoutProps['frontmatter'] = {
 ---
 
 <PageLayout {frontmatter}>
-  <slot />
-  <div class="flex flex-wrap gap-4 sm:gap-8">
-    {
-      tags.map(({ tag, icon }) => (
-        <a
-          class="clickable flex flex-col items-center gap-1 no-underline"
-          href={`/tags/${tag}`}
-          data-astro-prefetch
-        >
-          <span class={`iconify text-4xl sm:text-5xl ${icon}`} />
+  {techTags.length > 0 && (
+    <section class="tag-group">
+      <div class="tag-group-header">
+        <span class="iconify tabler--code tag-group-icon" aria-hidden="true" />
+        <h2 class="tag-group-title">Desarrollo</h2>
+        <span class="tag-group-count">{techTags.length}</span>
+      </div>
+      <div class="tags-grid">
+        {techTags.map(({ tag, icon, count }) => (
+          <a class="tag-card" href={`/tags/${tag}`} data-astro-prefetch>
+            <span class={`iconify tag-icon ${icon}`} aria-hidden="true" />
+            <span class="tag-name">{tag}</span>
+            <span class="tag-count">{count}</span>
+          </a>
+        ))}
+      </div>
+    </section>
+  )}
 
-          <span class="text-base font-normal sm:text-lg">
-            {tag} ({tagUsages.get(tag) ?? 0})
-          </span>
-        </a>
-      ))
-    }
-  </div>
+  {cafeTags.length > 0 && (
+    <section class="tag-group">
+      <div class="tag-group-header">
+        <span class="iconify tabler--coffee tag-group-icon" aria-hidden="true" />
+        <h2 class="tag-group-title">Café</h2>
+        <span class="tag-group-count">{cafeTags.length}</span>
+      </div>
+      <div class="tags-grid">
+        {cafeTags.map(({ tag, icon, count }) => (
+          <a class="tag-card" href={`/tags/${tag}`} data-astro-prefetch>
+            <span class={`iconify tag-icon ${icon}`} aria-hidden="true" />
+            <span class="tag-name">{tag}</span>
+            <span class="tag-count">{count}</span>
+          </a>
+        ))}
+      </div>
+    </section>
+  )}
 </PageLayout>
+
+<style>
+  .tag-group {
+    margin-bottom: 2.5rem;
+  }
+  .tag-group-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1.5px solid color-mix(in srgb, rgb(var(--accent)) 10%, transparent);
+  }
+  .tag-group-icon {
+    font-size: 1.2rem;
+    color: rgb(var(--accent));
+  }
+  .tag-group-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin: 0;
+    color: rgb(var(--accent));
+  }
+  .tag-group-count {
+    font-size: 0.6rem;
+    font-weight: 600;
+    padding: 0.15rem 0.45rem;
+    border-radius: 6px;
+    background: color-mix(in srgb, rgb(var(--accent)) 10%, transparent);
+    color: rgb(var(--accent));
+  }
+
+  .tags-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(155px, 1fr));
+    gap: 0.5rem;
+  }
+
+  .tag-card {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.6rem 0.8rem;
+    border-radius: 10px;
+    text-decoration: none;
+    border: 1.5px solid color-mix(in srgb, rgb(var(--accent)) 8%, transparent);
+    background: color-mix(in srgb, rgb(var(--accent)) 3%, transparent);
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    color: inherit;
+  }
+  .tag-card:hover {
+    border-color: color-mix(in srgb, rgb(var(--accent)) 25%, transparent);
+    background: color-mix(in srgb, rgb(var(--accent)) 7%, transparent);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px color-mix(in srgb, rgb(var(--accent)) 8%, transparent);
+  }
+
+  .tag-icon {
+    font-size: 1.1rem;
+    color: rgb(var(--accent));
+    flex-shrink: 0;
+    transition: transform 0.25s ease;
+  }
+  .tag-card:hover .tag-icon {
+    transform: scale(1.15);
+  }
+
+  .tag-name {
+    font-size: 0.78rem;
+    font-weight: 500;
+    opacity: 0.7;
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    transition: opacity 0.25s ease;
+  }
+  .tag-card:hover .tag-name {
+    opacity: 1;
+  }
+
+  .tag-count {
+    font-size: 0.6rem;
+    font-weight: 600;
+    padding: 0.12rem 0.4rem;
+    border-radius: 5px;
+    background: color-mix(in srgb, rgb(var(--accent)) 10%, transparent);
+    color: rgb(var(--accent));
+    flex-shrink: 0;
+    min-width: 1.3rem;
+    text-align: center;
+  }
+
+  @media (max-width: 480px) {
+    .tags-grid {
+      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    }
+  }
+</style>

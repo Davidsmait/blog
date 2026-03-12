@@ -17,7 +17,7 @@ const {
 type Props = InferGetStaticPropsType<typeof getStaticPaths>
 
 export async function getStaticPaths() {
-  const tags = await generateTags()
+  const tags = await generateTags(false)
 
   return tags.map(({ tag, icon }) => ({
     params: { tag },
@@ -25,11 +25,10 @@ export async function getStaticPaths() {
   }))
 }
 
-const posts = await getPosts(tag)
-
-const cafePosts = await getCafePosts(tag)
-
+const posts = await getPosts(tag, undefined, false)
+const cafePosts = await getCafePosts(tag, false)
 const projects = await getProjects(tag)
+const totalItems = posts.length + cafePosts.length + projects.length
 
 const frontmatter: PageLayoutProps['frontmatter'] = {
   title: `Tag: ${tag}`,
@@ -38,14 +37,113 @@ const frontmatter: PageLayoutProps['frontmatter'] = {
 ---
 
 <PageLayout {frontmatter}>
-  <h1>
-    <span class={`iconify align-middle text-5xl sm:text-6xl ${icon}`}></span>
-    <span>{tag}</span>
-  </h1>
-  {!!posts.length && <h2>Posts</h2>}
-  <PostsList {posts} />
-  {!!cafePosts.length && <h2>Cafe</h2>}
-  <PostsList posts={cafePosts} />
-  {!!projects.length && <h2>Projects</h2>}
-  <ProjectsList {projects} />
+  <div class="tag-detail-header">
+    <div class="tag-detail-icon-wrap">
+      <span class={`iconify tag-detail-icon ${icon}`} aria-hidden="true"></span>
+    </div>
+    <div>
+      <h1 class="tag-detail-name">{tag}</h1>
+      <p class="tag-detail-count">
+        {totalItems} {totalItems === 1 ? 'entrada' : 'entradas'}
+      </p>
+    </div>
+  </div>
+
+  {!!posts.length && (
+    <div class="tag-section">
+      <div class="tag-section-title">
+        <span class="iconify tabler--article" aria-hidden="true"></span>
+        Posts
+        <span class="tag-section-count">{posts.length}</span>
+      </div>
+      <PostsList {posts} />
+    </div>
+  )}
+
+  {!!cafePosts.length && (
+    <div class="tag-section">
+      <div class="tag-section-title">
+        <span class="iconify tabler--coffee" aria-hidden="true"></span>
+        Cafe
+        <span class="tag-section-count">{cafePosts.length}</span>
+      </div>
+      <PostsList posts={cafePosts} />
+    </div>
+  )}
+
+  {!!projects.length && (
+    <div class="tag-section">
+      <div class="tag-section-title">
+        <span class="iconify tabler--code" aria-hidden="true"></span>
+        Projects
+        <span class="tag-section-count">{projects.length}</span>
+      </div>
+      <ProjectsList {projects} />
+    </div>
+  )}
 </PageLayout>
+
+<style>
+  .tag-detail-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  .tag-detail-icon-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 14px;
+    background: color-mix(in srgb, rgb(var(--accent)) 8%, transparent);
+    border: 1.5px solid color-mix(in srgb, rgb(var(--accent)) 15%, transparent);
+    flex-shrink: 0;
+  }
+  .tag-detail-icon {
+    font-size: 1.6rem;
+    color: rgb(var(--accent));
+  }
+  .tag-detail-name {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: rgb(var(--accent));
+    margin: 0;
+    line-height: 1.2;
+  }
+  .tag-detail-count {
+    font-size: 0.8rem;
+    opacity: 0.45;
+    margin: 0.15rem 0 0;
+  }
+
+  .tag-section {
+    margin-top: 1.75rem;
+  }
+  .tag-section-title {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    opacity: 0.5;
+    margin-bottom: 0.85rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid color-mix(in srgb, rgb(var(--accent)) 8%, transparent);
+  }
+  .tag-section-title .iconify {
+    font-size: 1rem;
+    color: rgb(var(--accent));
+  }
+  .tag-section-count {
+    font-size: 0.6rem;
+    font-weight: 600;
+    padding: 0.1rem 0.4rem;
+    border-radius: 5px;
+    background: color-mix(in srgb, rgb(var(--accent)) 10%, transparent);
+    color: rgb(var(--accent));
+  }
+</style>
