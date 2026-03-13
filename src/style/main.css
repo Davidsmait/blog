@@ -7,7 +7,7 @@
 
 @layer base {
   :root {
-    @apply overflow-y-scroll bg-accent-bg underline-offset-4 selection:bg-accent/75 selection:text-white selection:dark:text-black;
+    @apply overflow-x-hidden overflow-y-scroll bg-accent-bg underline-offset-4 selection:bg-accent/75 selection:text-white selection:dark:text-black;
 
     /* Text hierarchy */
     --color-accent: rgb(var(--accent));
@@ -37,7 +37,7 @@
     --cursor-size: 16px;
 
     #page-wrapper {
-      @apply mx-auto flex min-h-[100svh] w-full max-w-[92%] flex-col justify-between lg:max-w-5xl;
+      @apply mx-auto flex min-h-[100svh] w-full max-w-full flex-col justify-between overflow-x-hidden sm:max-w-[92%] lg:max-w-5xl;
     }
   }
 
