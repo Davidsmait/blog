@@ -13,7 +13,7 @@ isPremium: false
 
 ## Preparar café es extracción
 
-Cada vez que preparas café estás haciendo una extracción: usando agua caliente como solvente para disolver compuestos solubles del café molido. Un grano de café tostado contiene alrededor de un 30% de material soluble — pero no quieres extraer todo. La magia está en extraer la cantidad correcta de los compuestos correctos.
+Cada vez que preparas café estás haciendo una extracción: usando agua caliente como solvente para disolver compuestos solubles del café molido. Este proceso se llama **lixiviación** — el agua penetra las partículas de café y arrastra los compuestos solubles (ácidos, azúcares, aceites) hacia la bebida. Un grano de café tostado contiene alrededor de un 30% de material soluble — pero no quieres extraer todo. La magia está en extraer la cantidad correcta de los compuestos correctos.
 
 Esto no es opinión ni arte abstracto — es química aplicada que puedes medir, controlar y replicar.
 
@@ -36,6 +36,15 @@ Es qué porcentaje del peso seco del café lograste disolver. Se calcula así:
 
 El rango óptimo según la SCA para café filtrado es **18-22%**. Para espresso, típicamente se trabaja entre **18-22%** también, aunque algunos baristas de competencia empujan hasta 23-24%.
 
+Para calcular la extracción necesitas un **refractómetro** que mida el TDS. Sin él, no puedes saber el número exacto — pero sí puedes estimarlo por sabor: si está ácido probablemente sub-extrajiste, si está amargo sobre-extrajiste.
+
+> **Ejemplo — qué significa 20% de extracción:**
+> Usas 20g de café en tu Chemex y obtienes 300g de bebida. El refractómetro marca 1.35% TDS.
+> Cálculo: (1.35 × 300) / 20 = **20.25%** — extracción ideal.
+> Eso significa que 4g de los 20g de café se disolvieron en el agua. Los otros 16g se quedaron en el filtro como residuo.
+
+Un grano tostado tiene alrededor de 30% de material soluble, pero no quieres llegar ahí — el rango ideal es extraer solo entre 18-22% del peso seco. Si no tienes refractómetro, ajusta por sabor usando las 5 variables que veremos más adelante (molienda, ratio, temperatura, tiempo, agitación) hasta que la taza esté balanceada.
+
 ¿Qué significan estos números en tu taza?
 
 - **Sub-extracción (menos de 18%):** No sacaste suficientes compuestos. El café sabe ácido de forma agresiva, salado, delgado, con poco cuerpo y un retrogusto corto. Los ácidos se extraen primero, así que si paras demasiado pronto, dominarán.
@@ -43,6 +52,22 @@ El rango óptimo según la SCA para café filtrado es **18-22%**. Para espresso,
 - **Extracción óptima (18-22%):** Sacaste el equilibrio correcto de ácidos, azúcares y compuestos amargos. El café tiene acidez agradable, dulzura presente, cuerpo balanceado y un retrogusto limpio y prolongado.
 
 - **Sobre-extracción (más de 22%):** Sacaste demasiado. Los compuestos amargos, astringentes y secos (celulosa, cenizas) dominan. El café sabe amargo, áspero, seco en la boca — como cuando dejas un té negro demasiado tiempo en el agua.
+
+### La trampa: TDS correcto no significa extracción correcta
+
+Esto confunde a muchos. Puedes tener un TDS que parece "normal" pero una extracción terrible. La clave es que TDS mide concentración y extracción mide eficiencia — son cosas diferentes.
+
+> **Ejemplo 1 — TDS correcto pero sub-extracción:**
+> 20g de café, 200g de bebida, 1.35% TDS. El TDS parece perfecto para filtrado.
+> Cálculo: (1.35 × 200) / 20 = **13.5%** — sub-extracción fuerte.
+> Resultado: café ácido y delgado, aunque la concentración se sienta "normal". Poca agua pasó por el café.
+
+> **Ejemplo 2 — TDS correcto pero sobre-extracción:**
+> 20g de café, 400g de bebida, 1.35% TDS. Mismo TDS "normal".
+> Cálculo: (1.35 × 400) / 20 = **27%** — sobre-extracción fuerte.
+> Resultado: amargo, seco, astringente. Demasiada agua arrastró compuestos indeseables.
+
+En ambos casos el TDS fue 1.35%, pero la extracción fue radicalmente diferente. Por eso los baristas profesionales evalúan ambos números juntos, no uno solo. El TDS te dice qué tan fuerte está tu café; la extracción te dice si lo preparaste bien.
 
 ## El orden de extracción
 
@@ -60,6 +85,8 @@ Esto explica algo importante: un café puede estar **simultáneamente** sub-extr
 
 La variable más poderosa. Moler más fino = más superficie expuesta = extracción más rápida y mayor. Moler más grueso = menos superficie = extracción más lenta y menor.
 
+**Pero hay un límite:** si mueles demasiado fino, las partículas se compactan y bloquean el paso del agua. En espresso esto es muy evidente — el agua tiene que pasar a presión por un disco de café comprimido (el puck), y si la molienda es excesivamente fina, el agua no puede pasar o busca caminos fáciles (canalización), dejando zonas sin extraer y otras sobre-extraídas. El resultado: una taza amarga y desbalanceada aunque tu tiempo de extracción parezca correcto. En pour-over pasa algo similar: molienda muy fina = el agua se estanca y el drawdown se alarga demasiado.
+
 **Regla práctica:** Si tu café sabe ácido/aguado → muele más fino. Si sabe amargo/áspero → muele más grueso. Ajusta en incrementos pequeños.
 
 ### 2. Ratio (proporción café:agua)
@@ -76,7 +103,7 @@ Un ratio más alto (más agua por gramo de café) produce una bebida más diluid
 El agua más caliente extrae más rápido y más cantidad. Los rangos recomendados por la SCA:
 
 - **Filtrado:** 92-96°C (justo debajo del hervor)
-- **Espresso:** 88-94°C (dependiendo del tueste)
+- **Espresso:** 90-96°C (dependiendo del tueste)
 
 **Tuestes claros** generalmente necesitan más temperatura porque son más densos y difíciles de extraer. **Tuestes oscuros** necesitan menos porque son más porosos y se sobre-extraen fácilmente.
 
@@ -92,6 +119,8 @@ Cuánto tiempo el agua está en contacto con el café molido. En métodos de inm
 ### 5. Agitación
 
 Cualquier movimiento que acelere la extracción: revolver, verter con más fuerza, usar un agitador. Más agitación = extracción más rápida. El bloom en un pour-over (el primer vertido que libera CO2) es una forma de agitación controlada.
+
+> **Bloom vs. preinfusión — ¿no es lo mismo?** Ambos buscan liberar el CO2 atrapado en el café antes de la extracción real, pero funcionan en condiciones muy diferentes. En pour-over la molienda es gruesa y el agua baja por gravedad — el CO2 sale como burbujas que suben libremente porque hay espacio de sobra entre las partículas. En espresso la molienda es muy fina y está comprimida en un disco (el puck). Si metes 9 bares de presión de golpe, el CO2 atrapado no tiene por dónde salir y crea grietas y canales en el puck. La preinfusión moja el café a baja presión (~2-3 bares) para que el gas escape suavemente antes de aplicar la presión completa. En resumen: mismo principio (sacar el CO2), pero en pour-over el gas se va solo; en espresso necesitas darle tiempo a baja presión o el gas destruye la extracción.
 
 ## Cómo usar todo esto en la práctica
 

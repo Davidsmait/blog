@@ -123,12 +123,7 @@ export const quizzes: Record<string, QuizData> = {
       {
         question:
           '¿Qué variedad de café ganó el Best of Panama en 2004 y es considerada la estrella del café de especialidad?',
-        options: [
-          'Bourbon',
-          'SL28',
-          'Gesha (Geisha)',
-          'Caturra'
-        ],
+        options: ['Bourbon', 'SL28', 'Gesha (Geisha)', 'Caturra'],
         correct: 2,
         explanation:
           'La variedad Gesha, originaria de Etiopía, se hizo famosa cuando Hacienda La Esmeralda en Panamá ganó el Best of Panama en 2004. Es conocida por sus notas florales intensas (jazmín, bergamota) y su acidez tipo té.'
@@ -172,12 +167,7 @@ export const quizzes: Record<string, QuizData> = {
       {
         question:
           'Which coffee variety won the Best of Panama in 2004 and is considered the star of specialty coffee?',
-        options: [
-          'Bourbon',
-          'SL28',
-          'Gesha (Geisha)',
-          'Caturra'
-        ],
+        options: ['Bourbon', 'SL28', 'Gesha (Geisha)', 'Caturra'],
         correct: 2,
         explanation:
           'The Gesha variety, originally from Ethiopia, became famous when Hacienda La Esmeralda in Panama won the Best of Panama in 2004. It is known for its intense floral notes (jasmine, bergamot) and tea-like acidity.'
@@ -205,10 +195,23 @@ export const quizzes: Record<string, QuizData> = {
       {
         question:
           '¿En cuánto tiempo típicamente alcanza su máxima extracción un café de filtro?',
-        options: ['2-3 minutos', '3-4 minutos', '4-5 minutos', '5-6 minutos'],
+        options: ['1-2 minutos', '2-3 minutos', '3-4 minutos', '5-6 minutos'],
         correct: 2,
         explanation:
-          'Un café de filtro típicamente requiere 4-5 minutos para alcanzar una extracción óptima, dependiendo del método, tamaño de grano y temperatura del agua.'
+          'Un café de filtro (pour-over) típicamente requiere entre 2:30 y 4:00 minutos para alcanzar una extracción óptima, dependiendo del método, tamaño de molienda y temperatura del agua.'
+      },
+      {
+        question:
+          'Si tu café tiene un TDS de 1.35% (valor ideal para filtrado), ¿significa que la extracción fue correcta?',
+        options: [
+          'Sí, TDS ideal siempre significa extracción ideal',
+          'No, puedes tener TDS correcto pero extracción incorrecta',
+          'Solo si usas refractómetro',
+          'Depende del tipo de grano'
+        ],
+        correct: 1,
+        explanation:
+          'TDS mide concentración (qué tan fuerte está el café) y extracción mide eficiencia (cuánto disolviste del grano). Con el mismo TDS de 1.35%, puedes tener 13.5% de extracción (sub) o 27% (sobre) dependiendo del ratio café:agua.'
       }
     ],
     en: [
@@ -231,10 +234,23 @@ export const quizzes: Record<string, QuizData> = {
       {
         question:
           'In approximately how much time does a filter coffee typically reach maximum extraction?',
-        options: ['2-3 minutes', '3-4 minutes', '4-5 minutes', '5-6 minutes'],
+        options: ['1-2 minutes', '2-3 minutes', '3-4 minutes', '5-6 minutes'],
         correct: 2,
         explanation:
-          'A filter coffee typically requires 4-5 minutes to achieve optimal extraction, depending on the method, grind size, and water temperature.'
+          'A filter coffee (pour-over) typically requires 2:30 to 4:00 minutes to achieve optimal extraction, depending on the method, grind size, and water temperature.'
+      },
+      {
+        question:
+          'If your coffee has a TDS of 1.35% (ideal value for filter), does that mean the extraction was correct?',
+        options: [
+          'Yes, ideal TDS always means ideal extraction',
+          'No, you can have correct TDS but incorrect extraction',
+          'Only if you use a refractometer',
+          'It depends on the bean type'
+        ],
+        correct: 1,
+        explanation:
+          'TDS measures concentration (how strong the coffee is) and extraction measures efficiency (how much you dissolved from the bean). With the same 1.35% TDS, you can have 13.5% extraction (under) or 27% (over) depending on the coffee:water ratio.'
       }
     ]
   },
