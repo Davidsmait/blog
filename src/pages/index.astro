@@ -12,6 +12,31 @@ const recentPosts = allPosts
     (a, b) => b.data.publishedDate.getTime() - a.data.publishedDate.getTime()
   )
   .slice(0, 4)
+
+// Latest released lessons (highest complete phase)
+const allCafeLessons = await getCollection('cafe')
+const roadmapLessons = allCafeLessons
+  .filter((p) => p.data.phase !== undefined && !p.data.draft)
+  .sort((a, b) => {
+    const pa = a.data.phase ?? 0, pb = b.data.phase ?? 0
+    if (pa !== pb) return pa - pb
+    return (a.data.lessonOrder ?? 0) - (b.data.lessonOrder ?? 0)
+  })
+
+const lessonsByPhase: Record<number, typeof roadmapLessons> = {}
+for (const l of roadmapLessons) {
+  const p = l.data.phase!
+  if (!lessonsByPhase[p]) lessonsByPhase[p] = []
+  lessonsByPhase[p].push(l)
+}
+const highestPhase = Math.max(...Object.keys(lessonsByPhase).map(Number))
+const phaseNames: Record<number, string> = {
+  1: 'Fundamentos del café', 2: 'Espresso', 3: 'Métodos de filtrado',
+  4: 'Paladar y catación', 5: 'Leche y latte art', 6: 'Tueste y negocio',
+  7: 'Profesional — Metodología Rao', 8: 'Física de la extracción',
+  9: 'Carrera profesional'
+}
+const latestPhaseName = phaseNames[highestPhase] ?? `Fase ${highestPhase}`
 ---
 
 <BaseLayout
@@ -270,43 +295,85 @@ const recentPosts = allPosts
 
             <!-- Bottom row — editorial CTAs -->
             <div
-              class="flex items-end justify-between gap-6 pb-6 pt-4 sm:gap-10 sm:pb-10 sm:pt-6"
+              class="flex flex-col gap-6 pb-6 pt-4 sm:pb-10 sm:pt-6"
             >
-              <!-- Left: Colaborar + email -->
-              <a
-                href="mailto:david_sanluis@outlook.com"
-                class="hero-fade group flex flex-col gap-1.5 no-underline sm:gap-2"
-                data-hero-delay="1050"
-                data-cursor-hover
-              >
-                <span
-                  class="text-[9px] font-medium uppercase tracking-[0.2em] opacity-20 transition-opacity duration-500 group-hover:opacity-40 sm:text-[10px]"
+              <!-- Top: Colaborar + Lecciones -->
+              <div class="flex items-end justify-between gap-6 sm:gap-10">
+                <!-- Left: Colaborar + email -->
+                <a
+                  href="mailto:david_sanluis@outlook.com"
+                  class="hero-fade group flex flex-col gap-1.5 no-underline sm:gap-2"
+                  data-hero-delay="1050"
+                  data-cursor-hover
                 >
-                  Disponible para colaborar
-                </span>
-                <span
-                  class="flex items-center gap-2 font-serif text-[clamp(0.9rem,2.5vw,1.4rem)] italic leading-[1.1] text-accent opacity-40 transition-all duration-500 group-hover:opacity-80 sm:gap-3"
-                >
-                  david_sanluis@outlook.com
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="10"
-                    height="10"
-                    viewBox="0 0 21 21"
-                    fill="none"
-                    class="shrink-0 transition-all duration-500 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                  <span
+                    class="text-[9px] font-medium uppercase tracking-[0.2em] opacity-20 transition-opacity duration-500 group-hover:opacity-40 sm:text-[10px]"
                   >
-                    <path
-                      d="M1.81213 19.1203L19.4395 1.43779M5.76584 1.24781L19.6484 1.2279L19.6922 15.1104"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"></path>
-                  </svg>
-                </span>
-              </a>
+                    Disponible para colaborar
+                  </span>
+                  <span
+                    class="flex items-center gap-2 font-serif text-[clamp(0.9rem,2.5vw,1.4rem)] italic leading-[1.1] text-accent opacity-40 transition-all duration-500 group-hover:opacity-80 sm:gap-3"
+                  >
+                    david_sanluis@outlook.com
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="10"
+                      height="10"
+                      viewBox="0 0 21 21"
+                      fill="none"
+                      class="shrink-0 transition-all duration-500 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                    >
+                      <path
+                        d="M1.81213 19.1203L19.4395 1.43779M5.76584 1.24781L19.6484 1.2279L19.6922 15.1104"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"></path>
+                    </svg>
+                  </span>
+                </a>
 
-              <!-- Right: Trabajo reciente + post title -->
+                <!-- Right: Nuevas lecciones -->
+                <a
+                  href="/barista-roadmap"
+                  class="hero-fade group flex flex-col items-end gap-1.5 no-underline sm:gap-2"
+                  data-hero-delay="1050"
+                  data-cursor-hover
+                  data-astro-prefetch
+                >
+                  <span
+                    class="text-[9px] font-medium uppercase tracking-[0.2em] opacity-20 transition-opacity duration-500 group-hover:opacity-40 sm:text-[10px]"
+                  >
+                    Nuevas lecciones — Fase {highestPhase}
+                  </span>
+                  <span
+                    class="flex items-center gap-2 text-right font-serif text-[clamp(0.9rem,2.5vw,1.4rem)] italic leading-[1.1] text-accent opacity-40 transition-all duration-500 group-hover:opacity-80 sm:gap-3"
+                  >
+                    {latestPhaseName}
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="10"
+                      height="10"
+                      viewBox="0 0 21 21"
+                      fill="none"
+                      class="shrink-0 transition-all duration-500 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                    >
+                      <path
+                        d="M1.81213 19.1203L19.4395 1.43779M5.76584 1.24781L19.6484 1.2279L19.6922 15.1104"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"></path>
+                    </svg>
+                  </span>
+                </a>
+              </div>
+
+              <!-- Bottom: Trabajo reciente -->
+              <div class="flex items-end justify-between gap-6 sm:gap-10">
+                <!-- spacer to push right -->
+                <div></div>
+                <!-- Right: Trabajo reciente + post title -->
               {recentPosts[0] && (
                 <a
                   href={`/posts/${recentPosts[0].slug}`}
@@ -342,6 +409,7 @@ const recentPosts = allPosts
                   </span>
                 </a>
               )}
+              </div>
             </div>
           </div>
         </section>
