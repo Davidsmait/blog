@@ -38,4 +38,23 @@
       --accent-bg: 15, 13, 11;
     }
   }
+
+  /* ── Premium Awwwards-inspired scheme ── */
+  .scheme-premium {
+    --accent: 45, 40, 36;
+    --accent-bg: 250, 248, 245;
+    --accent-secondary: 168, 130, 90;
+    --accent-glow: 200, 160, 110;
+    --gradient-start: 168, 130, 90;
+    --gradient-end: 120, 90, 65;
+
+    &[data-mode='dark'] {
+      --accent: 235, 225, 215;
+      --accent-bg: 10, 10, 12;
+      --accent-secondary: 200, 160, 110;
+      --accent-glow: 220, 180, 130;
+      --gradient-start: 200, 160, 110;
+      --gradient-end: 168, 130, 90;
+    }
+  }
 }

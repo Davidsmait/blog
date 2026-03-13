@@ -1,11 +1,8 @@
 ---
-import logo from '../../assets/logo.svg'
 import MobileNavToggle from '@/components/layout/MobileNavToggle.astro'
 import NavItem from '@/components/layout/NavItem.astro'
-import Separator from '@/components/layout/Separator.astro'
 import ModeToggle from '@/components/mode/ModeToggle.astro'
 import config from '@/theme.config'
-import { Image } from 'astro:assets'
 
 export interface Props {
   activeHeaderLink?: string
@@ -14,44 +11,50 @@ export interface Props {
 const { activeHeaderLink } = Astro.props
 ---
 
-<header>
-  <div class="flex justify-between py-4 sm:py-8">
-    <a href="/" class="flex gap-2 text-2xl font-semibold text-accent">
-      <!--<Image alt="Nordlys logo" src={logo} height={24} loading="eager" />-->
-      {config.title}
+<header class="sticky top-0 z-50" style="backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); background: rgba(var(--accent-bg), 0.85);">
+  <div class="flex items-center justify-between py-3 sm:py-4">
+    <!-- Logo — serif italic signature -->
+    <a href="/" class="group flex items-center gap-0 no-underline transition-opacity duration-500 hover:opacity-60">
+      <span class="font-serif text-lg italic tracking-tight text-accent sm:text-xl">
+        {config.author}
+      </span>
     </a>
-    <nav class="hidden flex-col justify-end sm:flex">
-      <ul class="flex gap-1">
-        {
-          config.navbarItems.map((item) => (
-            <li class="flex flex-col justify-center">
-              <NavItem
-                {item}
-                isActive={
-                  activeHeaderLink === item.label ||
-                  activeHeaderLink === item.href
-                }
-              />
-            </li>
-          ))
-        }
-        <li class="text-2xl">
-          {config.modeToggle && <ModeToggle />}
-        </li>
-      </ul>
+
+    <!-- Desktop nav — clean, no icons, spaced -->
+    <nav class="hidden items-center gap-1 sm:flex">
+      {
+        config.navbarItems.map((item) => (
+          <NavItem
+            {item}
+            isActive={
+              activeHeaderLink === item.label ||
+              activeHeaderLink === item.href
+            }
+          />
+        ))
+      }
+      <span class="ml-3 h-4 w-[1px] bg-accent/8"></span>
+      <span class="ml-3 text-lg">
+        {config.modeToggle && <ModeToggle />}
+      </span>
     </nav>
-    <div class="flex items-center justify-center gap-4 text-2xl sm:hidden">
+
+    <!-- Mobile -->
+    <div class="flex items-center gap-4 text-xl sm:hidden">
       {config.modeToggle && <ModeToggle />}
       <MobileNavToggle />
     </div>
   </div>
-  <Separator />
-  <div id="mobile-nav" class="hidden">
-    <nav class="flex-col justify-end py-6">
-      <ul class="flex flex-col items-center gap-2">
+
+  <div class="h-[1px] w-full bg-accent/[0.04]"></div>
+
+  <!-- Mobile nav dropdown -->
+  <div id="mobile-nav" class="hidden max-h-[60vh] overflow-y-auto overscroll-contain">
+    <nav class="py-4">
+      <ul class="flex flex-col gap-0.5 px-1">
         {
           config.navbarItems.map((item) => (
-            <li class="flex flex-col justify-center">
+            <li class="list-none">
               <NavItem
                 {item}
                 isActive={
@@ -64,6 +67,6 @@ const { activeHeaderLink } = Astro.props
         }
       </ul>
     </nav>
-    <Separator />
+    <div class="h-[1px] w-full bg-accent/[0.04]"></div>
   </div>
 </header>

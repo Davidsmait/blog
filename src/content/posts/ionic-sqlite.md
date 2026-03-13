@@ -1,5 +1,5 @@
 ---
-title: 🚀 Integración de SQLite con TypeORM en Ionic
+title: Integración de SQLite con TypeORM en Ionic
 description: Aprende a integrar SQLite en tu aplicación Ionic con TypeORM para iOS y Android. Este documento te guiará paso a paso en la configuración y uso de SQLite en tu app. Si necesitas compatibilidad con Web o Electron, consulta la documentación oficial.
 publishedDate: 2024-10-18
 author: "David San Luis Aguirre"
@@ -394,12 +394,12 @@ db.dataSource.query('SELECT * FROM resultados;').then((resultados) => {
 });
 ```
 
-## 🧩 [Template Base SQLite + Ionic/Capacitor](https://github.com/Davidsmait/sqlite-capacitor-ionic-skeleton) <span style="color: #2ecc71;">(Nuevo!)</span>
+## [Template Base SQLite + Ionic/Capacitor](https://github.com/Davidsmait/sqlite-capacitor-ionic-skeleton) <span style="color: #2ecc71;">(Nuevo!)</span>
 [![GitHub stars](https://img.shields.io/github/stars/Davidsmait/sqlite-capacitor-ionic-skeleton?style=for-the-badge)](https://github.com/Davidsmait/sqlite-capacitor-ionic-skeleton/stargazers)
 
-**¿Para qué sirve?**  
-Este skeleton es tu punto de partida para apps móviles con:  
-✅ Base de datos offline lista para usar  
-✅ Configuración de Capacitor pre-deploy (iOS/Android)  
-✅ Estructura de carpetas según mejores prácticas
+**¿Para qué sirve?**
+Este skeleton es tu punto de partida para apps móviles con:
+- Base de datos offline lista para usar
+- Configuración de Capacitor pre-deploy (iOS/Android)
+- Estructura de carpetas según mejores prácticas
 

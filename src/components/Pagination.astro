@@ -15,24 +15,24 @@ const nextLabel = isSpanish ? 'Siguiente' : 'Next'
 {
   page.lastPage > 1 && (
     <nav class="mb-8 flex w-full grow items-end justify-center" aria-label={isSpanish ? 'Paginación' : 'Pagination'}>
-      <div class="flex gap-4">
+      <div class="flex items-center gap-6 text-[12px] font-medium uppercase tracking-[0.15em]">
         {page.url.prev ? (
-          <a class="clickable" href={page.url.prev}>
-            {prevLabel}
+          <a class="no-underline text-accent opacity-40 transition-opacity duration-500 hover:opacity-80" href={page.url.prev}>
+            &larr; {prevLabel}
           </a>
         ) : (
-          <span class="no-underline opacity-25 cursor-default" aria-disabled="true">
-            {prevLabel}
+          <span class="cursor-default opacity-15" aria-disabled="true">
+            &larr; {prevLabel}
           </span>
         )}
-        <span aria-current="page">{page.currentPage} / {page.lastPage}</span>
+        <span class="font-serif text-[13px] italic opacity-25" aria-current="page">{page.currentPage} / {page.lastPage}</span>
         {page.url.next ? (
-          <a class="clickable" href={page.url.next}>
-            {nextLabel}
+          <a class="no-underline text-accent opacity-40 transition-opacity duration-500 hover:opacity-80" href={page.url.next}>
+            {nextLabel} &rarr;
           </a>
         ) : (
-          <span class="no-underline opacity-25 cursor-default" aria-disabled="true">
-            {nextLabel}
+          <span class="cursor-default opacity-15" aria-disabled="true">
+            {nextLabel} &rarr;
           </span>
         )}
       </div>

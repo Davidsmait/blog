@@ -31,13 +31,13 @@ Antes de comenzar, asegúrese de contar con:
       - **Tipo**: Selecciona **JSON File**
       - **Nombre**: `JSON_Adapter_iNVOICE` (usar nombre descriptivo)
 
-3. **Configurar Ruta del JSON** 🗂️
+3. **Configurar Ruta del JSON**
    - **File Name/URL**:
       - Usa el ícono de carpeta para seleccionar tu archivo JSON local
       - Marca esta opcion:
-         - ✅ **Use the report JSON expression when filling the report**
+         - **Use the report JSON expression when filling the report**
 
-4. **Validación de Conexión** 🔍
+4. **Validación de Conexión**
    - Haz clic en **Test** → Debes ver:  
      `Successful`
    - Si falla:
@@ -86,15 +86,15 @@ Sigue estos pasos para configurar la estructura base del reporte:
       - No modifiques valores (presiona **Next** directamente)
    - Click en **Finish** para generar la plantilla base
 
-#### 📸 Vista Preliminar:
+#### Vista Preliminar:
 ![Vista inicial del reporte con datos básicos](@/assets/screenshots/invoice-init-screenshot.png)
 *Ejemplo de reporte con campos principales mapeados*
 
 ---
 
-#### 💡 **Trabajando con Datos Anidados** <span style="color: #2ecc71;">(Nuevo!)</span>:
-Para incluir tablas con estructuras complejas (ej: lista de ítems dentro de `invoice.items`):  
-➡️ [Guía completa: Tablas con propiedades anidadas en JSON](/jaspersofstudio/propiedades-anidadas-json-tabla)
+#### **Trabajando con Datos Anidados** <span style="color: #2ecc71;">(Nuevo!)</span>:
+Para incluir tablas con estructuras complejas (ej: lista de ítems dentro de `invoice.items`):
+[Guía completa: Tablas con propiedades anidadas en JSON](/jaspersofstudio/propiedades-anidadas-json-tabla)
 
 ---
 
@@ -129,7 +129,7 @@ Tipos comunes:
    // Con formato monetario:
    (new DecimalFormat("$#,##0.00")).format($V{SubTotal})
 
-#### 📸 Ejemplo de Implementación:
+#### Ejemplo de Implementación:
 ![Ejemplo de diseño final con datos dinámicos](@/assets/screenshots/invoice-finish-screenshot.png)  
 *Reporte funcional 
 
@@ -301,7 +301,7 @@ pdfGenerator.generateReport(
     reportParameters = parameters
   )
 ) match {
-  case Right(_) => println("✅ Reporte generado exitosamente")
-  case Left(error) => println(s"❌ Error crítico: $error")
+  case Right(_) => println("Reporte generado exitosamente")
+  case Left(error) => println(s"Error crítico: $error")
 }
 ```

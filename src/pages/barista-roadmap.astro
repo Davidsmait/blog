@@ -100,75 +100,92 @@ function getPhaseState(phaseNum: number) {
   frontmatter={{
     title: 'Roadmap Barista de Especialidad',
     description: `${totalLessons} lecciones en ${phases.length} fases: desde los fundamentos del café hasta la física de la extracción. Aprende a ser barista profesional con conocimiento de Scott Rao, Jonathan Gagné y la SCA.`,
-    activeHeaderLink: 'Cafe'
+    activeHeaderLink: 'Café'
   }}
 >
-  <!-- Header -->
-  <div class="rm-header">
-    <div class="rm-top-row">
-      <span class="rm-label">Roadmap</span>
+  <!-- ── Editorial Header ── -->
+  <div class="reveal mb-10 sm:mb-16">
+    <div class="flex items-center justify-between">
+      <div class="flex items-center gap-4 sm:gap-6">
+        <span class="font-serif text-[13px] italic opacity-20">(03)</span>
+        <h1 class="m-0 font-serif text-[clamp(2.5rem,6vw,4rem)] italic leading-[1] tracking-tight text-accent">
+          Café
+        </h1>
+      </div>
       <a
         href="/en/barista-roadmap"
-        class="rm-lang-switch"
+        class="rm-lang-pill"
         aria-label="Switch to English"
-        data-astro-reload>EN</a
-      >
+        data-astro-reload
+      >EN</a>
     </div>
-    <h1 class="rm-title">Barista de Especialidad</h1>
-    <p class="rm-desc">
-      {totalLessons} lecciones de cero a profesional.
-    </p>
-    <div class="rm-progress">
-      <div
-        class="rm-progress-track"
-        role="progressbar"
-        aria-valuenow={completedLessons}
-        aria-valuemin={0}
-        aria-valuemax={totalLessons}
-      >
-        <div class="rm-progress-fill" style={`width: ${progressPercent}%`}>
+    <div class="hr-animated mt-3"></div>
+  </div>
+
+  <!-- ── Subtitle + Progress ── -->
+  <div class="reveal reveal-delay-1 mb-12 sm:mb-16">
+    <div class="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+      <div>
+        <p class="m-0 font-display text-[clamp(1.1rem,2.5vw,1.4rem)] font-semibold leading-[1.3] tracking-tighter-brand text-accent sm:max-w-md">
+          Barista de Especialidad
+        </p>
+        <p class="mt-2 text-[13px] leading-relaxed opacity-30 sm:max-w-sm">
+          {totalLessons} lecciones de cero a profesional. Desde los fundamentos del grano hasta la física de la extracción.
+        </p>
+      </div>
+      <div class="flex items-center gap-3">
+        <div class="rm-progress-bar">
+          <div
+            class="rm-progress-fill"
+            role="progressbar"
+            aria-valuenow={completedLessons}
+            aria-valuemin={0}
+            aria-valuemax={totalLessons}
+            style={`width: ${progressPercent}%`}
+          ></div>
         </div>
+        <span class="text-[11px] font-medium tabular-nums opacity-25">{completedLessons}/{totalLessons}</span>
       </div>
-      <span class="rm-progress-text">{completedLessons}/{totalLessons}</span>
     </div>
-    <div class="rm-user-progress" data-user-progress style="display:none">
-      <div
-        class="rm-progress-track"
-        role="progressbar"
-        aria-label="Tu progreso de lectura"
+    <!-- User progress (shown via JS) -->
+    <div class="rm-user-progress mt-2" data-user-progress style="display:none">
+      <div class="flex items-center gap-3">
+        <div class="rm-progress-bar rm-progress-bar--user">
+          <div class="rm-progress-fill rm-progress-fill--user" data-user-progress-fill></div>
+        </div>
+        <span class="text-[11px] font-medium tabular-nums opacity-25" data-user-progress-text></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Intro — Editorial prose ── -->
+  <div class="reveal reveal-delay-2 mb-14 sm:mb-20">
+    <div class="sm:ml-12">
+      <p class="text-[13px] leading-[1.8] opacity-40 sm:max-w-lg">
+        No soy barista profesional — soy un developer que intenta tomarse la vida
+        en serio. Este roadmap lo armé a partir de libros de especialidad y el
+        programa de la SCA. El contenido lo construyo con la ayuda de Claude, yo
+        lo valido, lo estudio, lo practico, y cuando estoy seguro de que tiene
+        sentido, lo publico.
+      </p>
+      <p class="mt-3 text-[13px] leading-[1.8] opacity-40 sm:max-w-lg">
+        El objetivo es abrir <strong class="font-semibold text-accent opacity-100">La Commune</strong>, mi propia cafetería de
+        especialidad. Mientras ahorro para eso, estoy construyendo las
+        herramientas (<a href="/projects" class="text-accent no-underline opacity-70 transition-opacity duration-300 hover:opacity-100">POS</a>, app de fidelidad, menú digital)
+        y aprendiendo todo lo que puedo.
+      </p>
+      <a
+        href="/cafe/2025-03-05-mi-camino-barista-especialidad"
+        class="mt-4 inline-flex items-center gap-2 text-[12px] font-medium uppercase tracking-[0.12em] text-accent opacity-40 no-underline transition-opacity duration-500 hover:opacity-80"
       >
-        <div class="rm-user-progress-fill" data-user-progress-fill></div>
-      </div>
-      <span class="rm-progress-text" data-user-progress-text></span>
+        Leer la historia completa
+        <span class="text-[10px] transition-transform duration-300 group-hover:translate-x-1">&nearr;</span>
+      </a>
     </div>
   </div>
 
-  <!-- Intro -->
-  <div class="rm-intro">
-    <p class="rm-intro-text">
-      No soy barista profesional — soy un developer que intenta tomarse la vida
-      en serio. Este roadmap lo armé a partir de libros de especialidad y el
-      programa de la SCA. El contenido lo construyo con la ayuda de Claude, yo
-      lo valido, lo estudio, lo practico, y cuando estoy seguro de que tiene
-      sentido, lo publico.
-    </p>
-    <p class="rm-intro-text">
-      El objetivo es abrir <strong>La Commune</strong>, mi propia cafetería de
-      especialidad. Mientras ahorro para eso, estoy construyendo las
-      herramientas (<a href="/projects">POS</a>, app de fidelidad, menú digital)
-      y aprendiendo todo lo que puedo.
-    </p>
-    <a
-      href="/cafe/2025-03-05-mi-camino-barista-especialidad"
-      class="rm-intro-link"
-    >
-      Leer la historia completa
-      <span class="iconify tabler--arrow-right" aria-hidden="true"></span>
-    </a>
-  </div>
-
-  <!-- Timeline -->
-  <div class="timeline">
+  <!-- ── Timeline — Editorial Phases ── -->
+  <div class="rm-timeline stagger-children">
     {
       phases.map((phase, idx) => {
         const lessons = lessonsByPhase[phase.num] ?? []
@@ -182,114 +199,94 @@ function getPhaseState(phaseNum: number) {
 
         return (
           <div
-            class={`tl-phase tl-${state}`}
+            class={`rm-phase rm-phase--${state}`}
             data-phase={phase.num}
             data-state={state}
           >
-            {/* Node + connector line */}
-            <div class="tl-track">
-              <span class="tl-node" data-phase-node>
-                {/* User-complete check (hidden by default, shown via JS) */}
-                <svg
-                  viewBox="0 0 16 16"
-                  fill="currentColor"
-                  class="tl-node-icon tl-node-check tl-node-user-check"
-                >
+            {/* ── Left: Phase number + vertical line ── */}
+            <div class="rm-phase-track">
+              <span class="rm-phase-node" data-phase-node>
+                {/* User-complete check (hidden by default) */}
+                <svg viewBox="0 0 16 16" fill="currentColor" class="rm-node-icon rm-node-check rm-node-user-check">
                   <path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.75.75 0 0 1 1.06-1.06L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z" />
                 </svg>
-                {/* Server-rendered state icons */}
-                <span class="tl-node-default">
+                <span class="rm-node-default">
                   {isComplete ? (
-                    <svg
-                      viewBox="0 0 16 16"
-                      fill="currentColor"
-                      class="tl-node-icon tl-node-check"
-                    >
+                    <svg viewBox="0 0 16 16" fill="currentColor" class="rm-node-icon rm-node-check">
                       <path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.75.75 0 0 1 1.06-1.06L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z" />
                     </svg>
                   ) : isActive ? (
-                    <span class="tl-node-pulse">
-                      <span class="tl-pulse-ring" />
-                      <span class="tl-pulse-dot" />
+                    <span class="rm-node-pulse">
+                      <span class="rm-pulse-ring" />
+                      <span class="rm-pulse-dot" />
                     </span>
                   ) : isLocked ? (
-                    <svg
-                      viewBox="0 0 16 16"
-                      fill="currentColor"
-                      class="tl-node-icon tl-node-lock"
-                    >
+                    <svg viewBox="0 0 16 16" fill="currentColor" class="rm-node-icon rm-node-lock">
                       <path d="M8 1a4 4 0 0 0-4 4v3H3a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1h-1V5a4 4 0 0 0-4-4Zm2 7H6V5a2 2 0 1 1 4 0v3Z" />
                     </svg>
                   ) : (
-                    <span class="tl-node-empty" />
+                    <span class="rm-node-empty" />
                   )}
                 </span>
               </span>
               {!isLast && (
-                <span
-                  class={`tl-line ${isComplete ? 'tl-line-done' : ''}`}
-                  data-phase-line
-                />
+                <span class={`rm-phase-line ${isComplete ? 'rm-phase-line--done' : ''}`} data-phase-line />
               )}
             </div>
 
-            {/* Content */}
-            <div class="tl-content">
+            {/* ── Right: Content ── */}
+            <div class="rm-phase-content">
               <button
                 type="button"
                 data-phase-toggle
-                class="tl-header"
+                class="rm-phase-header"
                 aria-expanded="false"
                 aria-label={`Fase ${phase.num}: ${phase.title}`}
               >
-                <div class="tl-title-group">
-                  <span class="tl-title">{phase.title}</span>
-                  <span class="tl-desc">{phase.desc}</span>
+                <div class="rm-phase-info">
+                  <div class="flex items-center gap-3">
+                    <span class="font-serif text-[12px] italic opacity-15">({String(phase.num).padStart(2, '0')})</span>
+                    <span class="rm-phase-title">{phase.title}</span>
+                  </div>
+                  <span class="rm-phase-desc">{phase.desc}</span>
                 </div>
-                <span class="tl-meta">
-                  <span class="tl-counter">
+                <span class="rm-phase-meta">
+                  <span class="rm-phase-counter">
                     {lessons.length}/{phase.totalLessons}
                   </span>
                   {hasContent && (
-                    <svg
-                      class="tl-chevron"
-                      data-chevron
-                      viewBox="0 0 16 16"
-                      fill="currentColor"
-                    >
+                    <svg class="rm-phase-chevron" data-chevron viewBox="0 0 16 16" fill="currentColor">
                       <path d="M6.22 4.22a.75.75 0 0 1 1.06 0l3.25 3.25a.75.75 0 0 1 0 1.06l-3.25 3.25a.75.75 0 0 1-1.06-1.06L8.94 8 6.22 5.28a.75.75 0 0 1 0-1.06Z" />
                     </svg>
                   )}
                 </span>
               </button>
 
-              {/* Expandable lesson list */}
+              {/* ── Expandable lesson list ── */}
               {hasContent && (
-                <div class="tl-lessons hidden" data-lessons-panel>
-                  {lessons.map((lesson) => (
+                <div class="rm-lessons hidden" data-lessons-panel>
+                  {lessons.map((lesson, li) => (
                     <a
                       href={`/cafe/${lesson.slug}`}
-                      class="tl-lesson tl-lesson-available"
+                      class="rm-lesson rm-lesson--available"
                       data-lesson-slug={lesson.slug}
                     >
-                      <span class="tl-lesson-status-icon">
-                        <svg
-                          viewBox="0 0 16 16"
-                          fill="currentColor"
-                          class="tl-lesson-icon tl-lesson-icon-check"
-                          style="display:none"
-                        >
+                      <span class="rm-lesson-status">
+                        <svg viewBox="0 0 16 16" fill="currentColor" class="rm-lesson-check" style="display:none">
                           <path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.75.75 0 0 1 1.06-1.06L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z" />
                         </svg>
-                        <span class="tl-lesson-icon-unread" />
+                        <span class="rm-lesson-dot" />
                       </span>
-                      <span>{lesson.data.title}</span>
+                      <span class="rm-lesson-title">{lesson.data.title}</span>
+                      <span class="rm-lesson-arrow">&nearr;</span>
                     </a>
                   ))}
                   {planned.slice(lessons.length).map((title) => (
-                    <div class="tl-lesson tl-lesson-pending">
-                      <span class="tl-lesson-dot" />
-                      <span>{title}</span>
+                    <div class="rm-lesson rm-lesson--pending">
+                      <span class="rm-lesson-status">
+                        <span class="rm-lesson-dot rm-lesson-dot--pending" />
+                      </span>
+                      <span class="rm-lesson-title">{title}</span>
                     </div>
                   ))}
                 </div>
@@ -301,10 +298,11 @@ function getPhaseState(phaseNum: number) {
     }
   </div>
 
-  <!-- Sources -->
-  <div class="rm-footer">
-    <details>
-      <summary class="rm-sources-toggle">Bibliografía y fuentes</summary>
+  <!-- ── Bibliography ── -->
+  <div class="reveal mt-16 sm:mt-24">
+    <div class="hr-animated mb-8"></div>
+    <details class="rm-biblio-details">
+      <summary class="rm-biblio-toggle">Bibliografía y fuentes</summary>
       <div class="rm-biblio">
         <div class="rm-biblio-section">
           <h4 class="rm-biblio-heading">Libros principales</h4>
@@ -312,7 +310,7 @@ function getPhaseState(phaseNum: number) {
             <li>
               <strong>James Hoffmann</strong> — <em
                 >The World Atlas of Coffee</em
-              >, 2ª ed. (2018). Fundamento para las fases 1, 3 y 4: orígenes,
+              >, 2a ed. (2018). Fundamento para las fases 1, 3 y 4: orígenes,
               métodos de filtrado, variedades y la técnica de French press.
             </li>
             <li>
@@ -336,7 +334,7 @@ function getPhaseState(phaseNum: number) {
             <li>
               <strong>David Schomer</strong> — <em
                 >Espresso Coffee: Professional Techniques</em
-              >, 4ª ed. (2010). Referencia para la fase 2: presión, temperatura,
+              >, 4a ed. (2010). Referencia para la fase 2: presión, temperatura,
               estabilidad térmica, pre-infusión y mantenimiento.
             </li>
             <li>
@@ -422,7 +420,7 @@ function getPhaseState(phaseNum: number) {
             <li>
               <strong>Andrea Illy &amp; Rinantonio Viani</strong> — <em
                 >Espresso Coffee: The Science of Quality</em
-              >, 2ª ed. (2005). Fundamentos científicos del espresso (fase 2).
+              >, 2a ed. (2005). Fundamentos científicos del espresso (fase 2).
             </li>
             <li>
               <strong>Morten Münchow et al.</strong> — Investigaciones sobre extracción,
@@ -508,210 +506,75 @@ function getPhaseState(phaseNum: number) {
 </PageLayout>
 
 <style>
-  /* ── Header ── */
-  .rm-top-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .rm-lang-switch {
+  /* ── Language pill ── */
+  .rm-lang-pill {
     font-size: 0.625rem;
     font-weight: 600;
     letter-spacing: 0.08em;
-    padding: 0.2rem 0.5rem;
-    border-radius: 4px;
-    border: 1px solid color-mix(in srgb, var(--color-accent) 15%, transparent);
+    padding: 0.2rem 0.6rem;
+    border-radius: 9999px;
+    border: 1px solid color-mix(in srgb, var(--color-accent) 10%, transparent);
     color: inherit;
     text-decoration: none;
-    opacity: 0.35;
-    transition:
-      opacity 0.15s,
-      border-color 0.15s;
+    opacity: 0.3;
+    transition: opacity 0.4s ease, border-color 0.4s ease;
   }
-  .rm-lang-switch:hover {
+  .rm-lang-pill:hover {
     opacity: 0.7;
-    border-color: color-mix(in srgb, var(--color-accent) 35%, transparent);
+    border-color: color-mix(in srgb, var(--color-accent) 30%, transparent);
   }
-  .rm-header {
-    margin-bottom: 2.5rem;
-    animation: rm-fade-in 0.6s ease-out;
-  }
-  .rm-label {
-    display: block;
-    font-size: 0.6875rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    opacity: 0.25;
-    margin-bottom: 0.375rem;
-  }
-  .rm-title {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--color-accent);
-    line-height: 1.2;
-    margin-bottom: 0.25rem;
-  }
-  .rm-desc {
-    font-size: 0.8125rem;
-    opacity: 0.4;
-    margin-bottom: 0;
-  }
-  .rm-progress {
-    display: flex;
-    align-items: center;
-    gap: 0.625rem;
-    margin-top: 1rem;
-    max-width: 16rem;
-  }
-  .rm-progress-track {
-    flex: 1;
-    height: 3px;
+
+  /* ── Progress bar ── */
+  .rm-progress-bar {
+    width: 8rem;
+    height: 2px;
     border-radius: 9999px;
-    background: color-mix(in srgb, var(--color-accent) 8%, transparent);
+    background: color-mix(in srgb, var(--color-accent) 6%, transparent);
     overflow: hidden;
   }
   .rm-progress-fill {
     height: 100%;
     border-radius: 9999px;
-    background: color-mix(in srgb, var(--color-accent) 55%, transparent);
-    transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    background: color-mix(in srgb, var(--color-accent) 40%, transparent);
+    transition: width 1s cubic-bezier(0.16, 1, 0.3, 1);
   }
-  .rm-progress-text {
-    font-size: 0.6875rem;
-    font-weight: 500;
-    opacity: 0.3;
-    font-variant-numeric: tabular-nums;
+  .rm-progress-bar--user {
+    width: 8rem;
   }
-
-  @keyframes rm-fade-in {
-    from {
-      opacity: 0;
-      transform: translateY(8px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+  .rm-progress-fill--user {
+    background: color-mix(in srgb, #22c55e 45%, transparent);
   }
 
-  /* ── Intro ── */
-  .rm-intro {
-    margin-bottom: 2.5rem;
-    padding: 1.25rem 1.5rem;
-    border-radius: 12px;
-    border: 1.5px solid color-mix(in srgb, var(--color-accent) 10%, transparent);
-    background: color-mix(in srgb, var(--color-accent) 3%, transparent);
-  }
-  .rm-intro-text {
-    font-size: 0.85rem;
-    line-height: 1.7;
-    opacity: 0.6;
-    margin: 0 0 0.6rem;
-  }
-  .rm-intro-text:last-of-type {
-    margin-bottom: 0.85rem;
-  }
-  .rm-intro-text strong {
-    opacity: 1;
-    color: var(--color-accent);
-    font-weight: 600;
-  }
-  .rm-intro-text a {
-    color: var(--color-accent);
-    text-decoration: none;
-    border-bottom: 1px solid
-      color-mix(in srgb, var(--color-accent) 25%, transparent);
-    transition: border-color 0.2s ease;
-  }
-  .rm-intro-text a:hover {
-    border-color: var(--color-accent);
-  }
-  .rm-intro-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.35rem;
-    font-size: 0.78rem;
-    font-weight: 600;
-    color: var(--color-accent);
-    text-decoration: none;
-    opacity: 0.65;
-    transition: opacity 0.2s ease;
-  }
-  .rm-intro-link:hover {
-    opacity: 1;
-  }
-  .rm-intro-link .iconify {
-    font-size: 0.85rem;
-    transition: transform 0.2s ease;
-  }
-  .rm-intro-link:hover .iconify {
-    transform: translateX(3px);
-  }
-
-  /* ── Timeline layout ── */
-  .timeline {
+  /* ── Timeline ── */
+  .rm-timeline {
     display: flex;
     flex-direction: column;
   }
 
-  .tl-phase {
+  .rm-phase {
     display: grid;
-    grid-template-columns: 2rem 1fr;
-    gap: 0 1rem;
+    grid-template-columns: 2.5rem 1fr;
+    gap: 0 1.25rem;
     min-height: 0;
-    animation: rm-phase-in 0.5s ease-out both;
   }
-  .tl-phase:nth-child(1) {
-    animation-delay: 0.08s;
-  }
-  .tl-phase:nth-child(2) {
-    animation-delay: 0.14s;
-  }
-  .tl-phase:nth-child(3) {
-    animation-delay: 0.2s;
-  }
-  .tl-phase:nth-child(4) {
-    animation-delay: 0.26s;
-  }
-  .tl-phase:nth-child(5) {
-    animation-delay: 0.32s;
-  }
-  .tl-phase:nth-child(6) {
-    animation-delay: 0.38s;
-  }
-  .tl-phase:nth-child(7) {
-    animation-delay: 0.44s;
-  }
-  .tl-phase:nth-child(8) {
-    animation-delay: 0.5s;
-  }
-  .tl-phase:nth-child(9) {
-    animation-delay: 0.56s;
-  }
-
-  @keyframes rm-phase-in {
-    from {
-      opacity: 0;
-      transform: translateX(-6px);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0);
+  @media (max-width: 480px) {
+    .rm-phase {
+      grid-template-columns: 1.75rem 1fr;
+      gap: 0 0.75rem;
     }
   }
 
   /* ── Track: node + vertical line ── */
-  .tl-track {
+  .rm-phase-track {
     display: flex;
     flex-direction: column;
     align-items: center;
     position: relative;
   }
 
-  .tl-node {
-    width: 1.5rem;
-    height: 1.5rem;
+  .rm-phase-node {
+    width: 1.75rem;
+    height: 1.75rem;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -719,71 +582,75 @@ function getPhaseState(phaseNum: number) {
     flex-shrink: 0;
     position: relative;
     z-index: 1;
-    transition:
-      transform 0.2s ease,
-      box-shadow 0.2s ease;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.5s ease;
+  }
+  @media (max-width: 480px) {
+    .rm-phase-node {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
   }
 
-  .tl-phase:hover .tl-node {
-    transform: scale(1.12);
+  .rm-phase:hover .rm-phase-node {
+    transform: scale(1.15);
   }
 
   /* Node states */
-  .tl-complete .tl-node {
-    background: color-mix(in srgb, #22c55e 12%, transparent);
+  .rm-phase--complete .rm-phase-node {
+    background: color-mix(in srgb, #22c55e 10%, transparent);
   }
-  .tl-active .tl-node {
-    background: color-mix(in srgb, var(--color-accent) 10%, transparent);
-    box-shadow: 0 0 0 3px
-      color-mix(in srgb, var(--color-accent) 6%, transparent);
+  .rm-phase--active .rm-phase-node {
+    background: color-mix(in srgb, var(--color-accent) 8%, transparent);
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-accent) 4%, transparent);
   }
-  .tl-next .tl-node,
-  .tl-locked .tl-node {
-    background: color-mix(in srgb, var(--color-accent) 5%, transparent);
+  .rm-phase--next .rm-phase-node,
+  .rm-phase--locked .rm-phase-node {
+    background: color-mix(in srgb, var(--color-accent) 4%, transparent);
   }
 
-  .tl-node-icon {
+  .rm-node-icon {
     width: 0.75rem;
     height: 0.75rem;
   }
-  .tl-node-check {
+  .rm-node-check {
     color: #22c55e;
   }
-  .tl-node-lock {
-    opacity: 0.3;
+  .rm-node-lock {
+    opacity: 0.25;
     width: 0.625rem;
     height: 0.625rem;
   }
 
-  /* User-complete: hidden by default, shown when user reads all lessons in phase */
-  .tl-node-user-check {
+  /* User-complete overrides */
+  .rm-node-user-check {
     display: none;
   }
-  .tl-phase.user-phase-complete .tl-node-user-check {
+  .rm-phase.user-phase-complete .rm-node-user-check {
     display: block;
   }
-  .tl-phase.user-phase-complete .tl-node-default {
+  .rm-phase.user-phase-complete .rm-node-default {
     display: none;
   }
-  .tl-phase.user-phase-complete .tl-node {
-    background: color-mix(in srgb, #22c55e 12%, transparent);
+  .rm-phase.user-phase-complete .rm-phase-node {
+    background: color-mix(in srgb, #22c55e 10%, transparent);
     transition: background 0.3s ease;
   }
-  .tl-phase.user-phase-complete .tl-line {
-    background: color-mix(in srgb, #22c55e 20%, transparent);
+  .rm-phase.user-phase-complete .rm-phase-line {
+    background: color-mix(in srgb, #22c55e 15%, transparent);
   }
-  .tl-phase.user-phase-complete .tl-title {
-    opacity: 0.55;
+  .rm-phase.user-phase-complete .rm-phase-title {
+    opacity: 0.45;
   }
 
-  .tl-node-empty {
+  .rm-node-empty {
     width: 0.5rem;
     height: 0.5rem;
     border-radius: 50%;
-    border: 1.5px solid color-mix(in srgb, var(--color-accent) 25%, transparent);
+    border: 1.5px solid color-mix(in srgb, var(--color-accent) 20%, transparent);
   }
 
-  .tl-node-pulse {
+  .rm-node-pulse {
     position: relative;
     width: 0.5rem;
     height: 0.5rem;
@@ -791,318 +658,239 @@ function getPhaseState(phaseNum: number) {
     align-items: center;
     justify-content: center;
   }
-  .tl-pulse-ring {
+  .rm-pulse-ring {
     position: absolute;
-    inset: -2px;
+    inset: -3px;
     border-radius: 50%;
-    background: color-mix(in srgb, var(--color-accent) 30%, transparent);
-    animation: tl-ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+    background: color-mix(in srgb, var(--color-accent) 25%, transparent);
+    animation: rm-ping 2.5s cubic-bezier(0, 0, 0.2, 1) infinite;
   }
-  .tl-pulse-dot {
+  .rm-pulse-dot {
     width: 0.5rem;
     height: 0.5rem;
     border-radius: 50%;
     background: var(--color-accent);
     position: relative;
   }
-  @keyframes tl-ping {
-    0% {
-      transform: scale(1);
-      opacity: 0.6;
-    }
-    75%,
-    100% {
-      transform: scale(2.5);
-      opacity: 0;
-    }
+  @keyframes rm-ping {
+    0% { transform: scale(1); opacity: 0.5; }
+    75%, 100% { transform: scale(2.8); opacity: 0; }
   }
 
   /* Connector line */
-  .tl-line {
-    width: 1.5px;
+  .rm-phase-line {
+    width: 1px;
     flex: 1;
     min-height: 0;
-    background: color-mix(in srgb, var(--color-accent) 8%, transparent);
-    transition: background 0.3s ease;
+    background: color-mix(in srgb, var(--color-accent) 6%, transparent);
+    transition: background 0.5s ease;
   }
-  .tl-line-done {
-    background: color-mix(in srgb, #22c55e 20%, transparent);
+  .rm-phase-line--done {
+    background: color-mix(in srgb, #22c55e 15%, transparent);
   }
 
   /* ── Content column ── */
-  .tl-content {
-    padding-bottom: 1.75rem;
+  .rm-phase-content {
+    padding-bottom: 2rem;
     min-width: 0;
   }
 
-  .tl-header {
+  .rm-phase-header {
     display: flex;
     align-items: flex-start;
-    gap: 0.5rem;
+    gap: 0.75rem;
     width: 100%;
     border: none;
     background: none;
-    padding: 0.375rem 0.5rem;
-    margin: -0.375rem -0.5rem;
-    border-radius: 0.5rem;
+    padding: 0.5rem 0.625rem;
+    margin: -0.5rem -0.625rem;
+    border-radius: 0.625rem;
     cursor: pointer;
     font-family: inherit;
     color: inherit;
     text-align: left;
-    min-height: 1.5rem;
-    transition: background 0.15s ease;
+    min-height: 1.75rem;
+    transition: background 0.3s ease;
   }
-  .tl-header:hover {
-    background: color-mix(in srgb, var(--color-accent) 3%, transparent);
+  .rm-phase-header:hover {
+    background: color-mix(in srgb, var(--color-accent) 2%, transparent);
   }
-  .tl-header:focus-visible {
-    outline: 2px solid color-mix(in srgb, var(--color-accent) 40%, transparent);
+  .rm-phase-header:focus-visible {
+    outline: 2px solid color-mix(in srgb, var(--color-accent) 35%, transparent);
     outline-offset: 2px;
   }
 
-  .tl-title-group {
+  .rm-phase-info {
     display: flex;
     flex-direction: column;
-    gap: 0.125rem;
+    gap: 0.25rem;
     min-width: 0;
   }
 
-  .tl-title {
-    font-size: 0.875rem;
+  .rm-phase-title {
+    font-size: 0.9375rem;
     font-weight: 600;
     line-height: 1.2;
-    transition:
-      opacity 0.15s ease,
-      color 0.15s ease;
+    letter-spacing: -0.01em;
+    transition: opacity 0.3s ease, color 0.3s ease;
   }
-  .tl-complete .tl-title {
-    opacity: 0.55;
-  }
-  .tl-active .tl-title {
-    color: var(--color-accent);
-  }
-  .tl-next .tl-title {
-    opacity: 0.5;
-  }
-  .tl-locked .tl-title {
-    opacity: 0.3;
-  }
-  .tl-header:hover .tl-title {
-    opacity: 0.85;
-  }
-  .tl-active .tl-header:hover .tl-title {
-    opacity: 1;
-  }
+  .rm-phase--complete .rm-phase-title { opacity: 0.45; }
+  .rm-phase--active .rm-phase-title { color: var(--color-accent); }
+  .rm-phase--next .rm-phase-title { opacity: 0.45; }
+  .rm-phase--locked .rm-phase-title { opacity: 0.25; }
+  .rm-phase-header:hover .rm-phase-title { opacity: 0.8; }
+  .rm-phase--active .rm-phase-header:hover .rm-phase-title { opacity: 1; }
 
-  .tl-desc {
+  .rm-phase-desc {
     font-size: 0.6875rem;
-    line-height: 1.4;
-    opacity: 0.25;
+    line-height: 1.5;
+    opacity: 0.2;
     display: none;
+    max-width: 28rem;
   }
-  .tl-header[aria-expanded='true'] .tl-desc,
-  .tl-active .tl-desc {
+  .rm-phase-header[aria-expanded='true'] .rm-phase-desc,
+  .rm-phase--active .rm-phase-desc {
     display: block;
   }
 
-  .tl-meta {
+  .rm-phase-meta {
     display: flex;
     align-items: center;
-    gap: 0.25rem;
+    gap: 0.375rem;
     margin-left: auto;
     flex-shrink: 0;
   }
 
-  .tl-counter {
+  .rm-phase-counter {
     font-size: 0.6875rem;
     font-weight: 500;
     font-variant-numeric: tabular-nums;
-    opacity: 0.3;
+    opacity: 0.25;
   }
-  .tl-complete .tl-counter {
-    color: #22c55e;
-    opacity: 0.5;
-  }
-  .tl-active .tl-counter {
-    color: var(--color-accent);
-    opacity: 0.5;
-  }
+  .rm-phase--complete .rm-phase-counter { color: #22c55e; opacity: 0.4; }
+  .rm-phase--active .rm-phase-counter { color: var(--color-accent); opacity: 0.45; }
 
-  .tl-chevron {
+  .rm-phase-chevron {
     width: 0.75rem;
     height: 0.75rem;
-    opacity: 0.2;
-    transition:
-      transform 0.2s cubic-bezier(0.4, 0, 0.2, 1),
-      opacity 0.15s ease;
+    opacity: 0.15;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
   }
-  .tl-header:hover .tl-chevron {
-    opacity: 0.4;
-  }
+  .rm-phase-header:hover .rm-phase-chevron { opacity: 0.35; }
 
   /* ── Lessons (animated expand/collapse) ── */
-  .tl-lessons {
-    margin-top: 0.625rem;
+  .rm-lessons {
+    margin-top: 0.75rem;
     display: flex;
     flex-direction: column;
     gap: 1px;
     overflow: hidden;
-    transition:
-      max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-      opacity 0.2s ease;
+    transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
   }
-  .tl-lessons.hidden {
+  .rm-lessons.hidden {
     max-height: 0 !important;
     opacity: 0;
     margin-top: 0;
   }
-  .tl-lessons:not(.hidden) {
+  .rm-lessons:not(.hidden) {
     opacity: 1;
   }
 
-  .tl-lesson {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.3rem 0.5rem;
-    margin: 0 -0.5rem;
-    font-size: 0.8125rem;
-    text-decoration: none;
-    color: inherit;
-    border-radius: 0.375rem;
-    transition: background 0.12s ease;
-  }
-  a.tl-lesson:hover {
-    background: color-mix(in srgb, var(--color-accent) 4%, transparent);
-  }
-
-  /* Lesson status icons */
-  .tl-lesson-status-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 0.75rem;
-    height: 0.75rem;
-    flex-shrink: 0;
-  }
-  .tl-lesson-icon-check {
-    width: 0.75rem;
-    height: 0.75rem;
-    color: color-mix(in srgb, #22c55e 55%, transparent);
-  }
-  .tl-lesson-icon-unread {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: color-mix(in srgb, var(--color-accent) 20%, transparent);
-  }
-  /* Read lesson */
-  .tl-lesson-available.is-read .tl-lesson-icon-check {
-    display: block !important;
-  }
-  .tl-lesson-available.is-read .tl-lesson-icon-unread {
-    display: none;
-  }
-  .tl-lesson-available.is-read span:last-child {
-    opacity: 0.55;
-  }
-  /* Unread lesson */
-  .tl-lesson-available:not(.is-read) span:last-child {
-    opacity: 0.75;
-  }
-  .tl-lesson-available {
-    transition:
-      background 0.12s ease,
-      opacity 0.12s ease;
-  }
-  a.tl-lesson-available:hover span:last-child {
-    opacity: 1;
-    color: var(--color-accent);
-  }
-  a.tl-lesson-available:hover .tl-lesson-icon-check {
-    color: var(--color-accent);
-  }
-  a.tl-lesson-available:hover .tl-lesson-icon-unread {
-    background: var(--color-accent);
-  }
-
-  /* User progress bar */
-  .rm-user-progress {
+  .rm-lesson {
     display: flex;
     align-items: center;
     gap: 0.625rem;
-    margin-top: 0.375rem;
-    max-width: 16rem;
+    padding: 0.4rem 0.625rem;
+    margin: 0 -0.625rem;
+    font-size: 0.8125rem;
+    text-decoration: none;
+    color: inherit;
+    border-radius: 0.5rem;
+    transition: background 0.2s ease, padding-left 0.3s ease;
   }
-  .rm-user-progress-fill {
-    height: 100%;
-    border-radius: 9999px;
-    background: color-mix(in srgb, #22c55e 50%, transparent);
-    transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-  .rm-user-progress-label {
-    font-size: 0.625rem;
-    opacity: 0.25;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    margin-top: 0.5rem;
+  a.rm-lesson:hover {
+    background: color-mix(in srgb, var(--color-accent) 3%, transparent);
+    padding-left: 1rem;
   }
 
-  .tl-lesson-dot {
+  .rm-lesson-status {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 0.875rem;
+    height: 0.875rem;
+    flex-shrink: 0;
+  }
+  .rm-lesson-check {
+    width: 0.75rem;
+    height: 0.75rem;
+    color: color-mix(in srgb, #22c55e 50%, transparent);
+  }
+  .rm-lesson-dot {
     width: 5px;
     height: 5px;
     border-radius: 50%;
-    border: 1px solid color-mix(in srgb, var(--color-accent) 15%, transparent);
-    flex-shrink: 0;
-    margin: 0 0.125rem;
+    background: color-mix(in srgb, var(--color-accent) 18%, transparent);
+    transition: background 0.2s ease;
   }
-  .tl-lesson-pending span {
-    opacity: 0.22;
+  .rm-lesson-dot--pending {
+    background: none;
+    border: 1px solid color-mix(in srgb, var(--color-accent) 12%, transparent);
   }
 
-  /* ── Footer ── */
-  .rm-footer {
-    margin-top: 2.5rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid
-      color-mix(in srgb, var(--color-accent) 5%, transparent);
+  .rm-lesson-title {
+    transition: opacity 0.2s ease, color 0.2s ease;
   }
-  .rm-sources-toggle {
+
+  .rm-lesson-arrow {
+    margin-left: auto;
+    font-size: 0.6875rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  a.rm-lesson:hover .rm-lesson-arrow {
+    opacity: 0.4;
+  }
+
+  /* Read state */
+  .rm-lesson--available.is-read .rm-lesson-check { display: block !important; }
+  .rm-lesson--available.is-read .rm-lesson-dot { display: none; }
+  .rm-lesson--available.is-read .rm-lesson-title { opacity: 0.45; }
+  .rm-lesson--available:not(.is-read) .rm-lesson-title { opacity: 0.7; }
+  a.rm-lesson--available:hover .rm-lesson-title { opacity: 1; color: var(--color-accent); }
+  a.rm-lesson--available:hover .rm-lesson-check { color: var(--color-accent); }
+  a.rm-lesson--available:hover .rm-lesson-dot { background: var(--color-accent); }
+
+  .rm-lesson--pending .rm-lesson-title { opacity: 0.18; }
+
+  /* ── Bibliography ── */
+  .rm-biblio-toggle {
     cursor: pointer;
     font-size: 0.6875rem;
     font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
-    opacity: 0.2;
-    transition: opacity 0.12s;
+    letter-spacing: 0.12em;
+    opacity: 0.18;
+    transition: opacity 0.3s ease;
     list-style: none;
   }
-  .rm-sources-toggle::-webkit-details-marker {
-    display: none;
-  }
-  .rm-sources-toggle::marker {
-    display: none;
-    content: '';
-  }
-  .rm-sources-toggle:hover {
-    opacity: 0.4;
-  }
+  .rm-biblio-toggle::-webkit-details-marker { display: none; }
+  .rm-biblio-toggle::marker { display: none; content: ''; }
+  .rm-biblio-toggle:hover { opacity: 0.4; }
 
-  /* ── Bibliografía ── */
   .rm-biblio {
-    margin-top: 1rem;
-    animation: rm-fade-in 0.3s ease-out;
+    margin-top: 1.5rem;
   }
   .rm-biblio-section {
-    margin-bottom: 1.25rem;
+    margin-bottom: 1.5rem;
   }
   .rm-biblio-heading {
-    font-size: 0.75rem;
+    font-size: 0.6875rem;
     font-weight: 600;
-    opacity: 0.35;
-    margin-bottom: 0.375rem;
+    opacity: 0.3;
+    margin-bottom: 0.5rem;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.06em;
   }
   .rm-biblio-list {
     list-style: none;
@@ -1110,12 +898,12 @@ function getPhaseState(phaseNum: number) {
     margin: 0;
     display: flex;
     flex-direction: column;
-    gap: 0.375rem;
+    gap: 0.5rem;
   }
   .rm-biblio-list li {
     font-size: 0.8125rem;
-    line-height: 1.5;
-    opacity: 0.45;
+    line-height: 1.6;
+    opacity: 0.35;
   }
   .rm-biblio-list li strong {
     opacity: 1;
@@ -1127,12 +915,12 @@ function getPhaseState(phaseNum: number) {
   .rm-phase-refs {
     display: flex;
     flex-direction: column;
-    gap: 0.25rem;
+    gap: 0.375rem;
   }
   .rm-phase-refs p {
     font-size: 0.8125rem;
-    line-height: 1.5;
-    opacity: 0.4;
+    line-height: 1.6;
+    opacity: 0.35;
     margin: 0;
   }
   .rm-phase-refs p strong {
@@ -1142,24 +930,13 @@ function getPhaseState(phaseNum: number) {
 
   /* ── Responsive ── */
   @media (max-width: 480px) {
-    .tl-phase {
-      grid-template-columns: 1.5rem 1fr;
-      gap: 0 0.625rem;
-    }
-    .tl-node {
-      width: 1.25rem;
-      height: 1.25rem;
-    }
-    .tl-title {
+    .rm-phase-title {
       font-size: 0.8125rem;
     }
-    .tl-lesson {
+    .rm-lesson {
       font-size: 0.75rem;
-      padding: 0.25rem 0.375rem;
-      margin: 0 -0.375rem;
-    }
-    .rm-title {
-      font-size: 1.25rem;
+      padding: 0.3rem 0.5rem;
+      margin: 0 -0.5rem;
     }
     .rm-biblio-list li {
       font-size: 0.75rem;
@@ -1229,13 +1006,13 @@ function getPhaseState(phaseNum: number) {
     ) as HTMLElement | null
 
     if (userProgressEl && userFill && userText && totalAvailable > 0) {
-      userProgressEl.style.display = 'flex'
+      userProgressEl.style.display = 'block'
       const pct = Math.round((totalRead / totalAvailable) * 100)
       userFill.style.width = pct + '%'
       userText.textContent = `${totalRead}/${totalAvailable} leídas`
     }
 
-    // Update phase counters and node state based on user reads
+    // Update phase counters based on user reads
     document
       .querySelectorAll<HTMLElement>('[data-phase]')
       .forEach((phaseEl) => {
@@ -1244,14 +1021,13 @@ function getPhaseState(phaseNum: number) {
         const readInPhase = [...lessons].filter((l) =>
           read.has(l.dataset.lessonSlug!)
         ).length
-        const counterEl = phaseEl.querySelector('.tl-counter')
+        const counterEl = phaseEl.querySelector('.rm-phase-counter')
         if (counterEl && lessons.length > 0) {
           const total =
             counterEl.textContent?.split('/')[1] ?? String(lessons.length)
           counterEl.textContent = `${readInPhase}/${total}`
         }
 
-        // Show green check on phase node when all lessons are read
         if (lessons.length > 0 && readInPhase === lessons.length) {
           phaseEl.classList.add('user-phase-complete')
         } else {
@@ -1260,7 +1036,6 @@ function getPhaseState(phaseNum: number) {
       })
   }
 
-  // ── Mark lesson on click (before navigation) ──
   function attachLessonTracking() {
     document
       .querySelectorAll<HTMLElement>('[data-lesson-slug]')
@@ -1310,7 +1085,7 @@ function getPhaseState(phaseNum: number) {
       })
     })
 
-    // Auto-open active phase or first complete phase
+    // Auto-open active phase
     const active = document.querySelector(
       '[data-state="active"] [data-phase-toggle]'
     ) as HTMLElement | null
@@ -1334,7 +1109,6 @@ function getPhaseState(phaseNum: number) {
       })
     }
 
-    // Init progress tracking
     updateProgressUI()
     attachLessonTracking()
   }

@@ -7,11 +7,10 @@ export default defineThemeConfig({
     'Blog personal de David San Luis Aguirre — desarrollo web, proyectos y café de especialidad.',
   author: 'David San Luis',
   navbarItems: [
-    { label: 'Blog', href: '/posts', icon: 'tabler--article' },
-    { label: 'Projects', href: '/projects', icon: 'tabler--code' },
-    { label: 'Cafe', href: '/barista-roadmap', icon: 'tabler--coffee' },
-    { label: 'Tags', href: '/tags', icon: 'tabler--tags' },
-    { label: 'About', href: '/about', icon: 'tabler--user' }
+    { label: 'Blog', href: '/posts' },
+    { label: 'Proyectos', href: '/projects' },
+    { label: 'Café', href: '/barista-roadmap' },
+    { label: 'Sobre mí', href: '/about' }
   ],
   footerItems: [
     {
@@ -45,7 +44,7 @@ export default defineThemeConfig({
   locale: 'en',
   mode: 'dark',
   modeToggle: true,
-  colorScheme: 'scheme-warm',
+  colorScheme: 'scheme-premium',
   openGraphImage: undefined,
   postsPerPage: 4,
   projectsPerPage: 3,

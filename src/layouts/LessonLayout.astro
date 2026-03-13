@@ -123,185 +123,165 @@ const diagram = diagramMap[post.slug] || null
 ---
 
 <BaseLayout frontmatter={frontmatter}>
-  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,300;1,8..60,400;1,8..60,500&display=swap" rel="stylesheet" slot="head" />
   <script type="application/ld+json" set:html={jsonLd} slot="head" />
 
-  <div class="lesson-page">
-    <Header activeHeaderLink="Cafe" />
+  <div id="page-wrapper" class="noise-overlay">
+    <div class="px-5 sm:px-6 lg:px-0">
+      <Header activeHeaderLink="Café" />
 
-    <main class="lesson-main">
-      <!-- Top pill + reading time -->
-      <div class="lesson-top">
-        <a href={roadmapPath} class="lesson-pill">
-          {phaseName && <span class="pill-phase">{phaseName}</span>}
-          <span class="pill-num">{labels.lesson} {lessonNum} {labels.of} {totalInPhase.length}</span>
-        </a>
-        <span class="lesson-reading">{readingTime}</span>
-      </div>
-
-      <!-- Title -->
-      <h1 class="lesson-title">{frontmatter.title}</h1>
-
-      <!-- Description -->
-      {post.data.description && (
-        <p class="lesson-desc">{post.data.description}</p>
-      )}
-
-      <!-- Progress steps -->
-      {totalInPhase.length > 1 && (
-        <div class="lesson-steps" aria-hidden="true">
-          {totalInPhase.map((_, i) => (
-            <span class:list={['step', { done: i <= currentIdx, current: i === currentIdx }]} />
-          ))}
+      <main class="lesson-main mt-8 sm:mt-14">
+        <!-- ── Editorial breadcrumb ── -->
+        <div class="reveal mb-8 sm:mb-12">
+          <div class="flex flex-wrap items-center gap-3 text-[11px] font-medium uppercase tracking-[0.15em] opacity-20">
+            <a href={roadmapPath} class="no-underline opacity-70 transition-opacity duration-300 hover:opacity-100">Roadmap</a>
+            <span class="h-[1px] w-4 bg-accent/10"></span>
+            {phaseName && (
+              <>
+                <span>{isEnglish ? `Phase ${phase}` : `Fase ${phase}`}</span>
+                <span class="h-[1px] w-4 bg-accent/10"></span>
+              </>
+            )}
+            <span>{labels.lesson} {lessonNum} {labels.of} {totalInPhase.length}</span>
+            <span class="h-[1px] w-4 bg-accent/10"></span>
+            <span>{readingTime}</span>
+          </div>
         </div>
-      )}
 
-      <!-- Content -->
-      <article class="lesson-body">
-        <Content />
-      </article>
+        <!-- ── Title ── -->
+        <div class="reveal mb-6 sm:mb-8">
+          <h1 class="m-0 font-display text-[clamp(1.8rem,5vw,3rem)] font-bold leading-[1.1] tracking-tighter-brand text-accent sm:text-[clamp(2rem,4vw,3.5rem)]">
+            {frontmatter.title}
+          </h1>
+        </div>
 
-      {diagram === 'flavor-wheel' && <FlavorWheel lang={lang as 'es' | 'en'} />}
-      {diagram === 'roast-curve' && <RoastCurve lang={lang as 'es' | 'en'} />}
-      {diagram === 'espresso-anatomy' && <EspressoAnatomy lang={lang as 'es' | 'en'} />}
-      {diagram === 'extraction-chart' && <ExtractionChart lang={lang as 'es' | 'en'} />}
-      {diagram === 'coffee-belt' && <CoffeeBelt lang={lang as 'es' | 'en'} />}
-
-      {quizQuestions.length > 0 && (
-        <Quiz questions={quizQuestions} lang={lang as 'es' | 'en'} />
-      )}
-
-      <!-- Prev / Next -->
-      <nav class="lesson-nav">
-        {prev ? (
-          <a href={`${lessonBasePath}/${prev.slug}`} class="nav-card">
-            <span class="nav-arrow">&larr;</span>
-            <span class="nav-info">
-              <span class="nav-label">{labels.prev}</span>
-              <span class="nav-name">{prev.data.title}</span>
-            </span>
-          </a>
-        ) : (
-          <div></div>
+        <!-- ── Description ── -->
+        {post.data.description && (
+          <div class="reveal mb-6 sm:mb-8">
+            <p class="m-0 max-w-xl text-[15px] leading-[1.7] opacity-35 sm:text-base">
+              {post.data.description}
+            </p>
+          </div>
         )}
-        {next ? (
-          <a href={`${lessonBasePath}/${next.slug}`} class="nav-card nav-card--next">
-            <span class="nav-info">
-              <span class="nav-label">{labels.next}</span>
-              <span class="nav-name">{next.data.title}</span>
-            </span>
-            <span class="nav-arrow">&rarr;</span>
-          </a>
-        ) : (
-          <a href={roadmapPath} class="nav-card nav-card--next">
-            <span class="nav-info">
-              <span class="nav-label">{labels.phaseComplete}</span>
-              <span class="nav-name">{labels.backToRoadmap}</span>
-            </span>
-            <span class="nav-arrow">&rarr;</span>
-          </a>
-        )}
-      </nav>
-    </main>
 
-    <Footer />
+        <!-- ── Progress steps ── -->
+        {totalInPhase.length > 1 && (
+          <div class="reveal mb-8 sm:mb-10">
+            <div class="lesson-steps" aria-hidden="true">
+              {totalInPhase.map((_, i) => (
+                <span class:list={['step', { done: i <= currentIdx, current: i === currentIdx }]} />
+              ))}
+            </div>
+          </div>
+        )}
+
+        <div class="hr-animated mb-8 sm:mb-12"></div>
+
+        <!-- ── Content ── -->
+        <article class="reveal reveal-delay-1 lesson-body">
+          <Content />
+        </article>
+
+        {diagram === 'flavor-wheel' && <FlavorWheel lang={lang as 'es' | 'en'} />}
+        {diagram === 'roast-curve' && <RoastCurve lang={lang as 'es' | 'en'} />}
+        {diagram === 'espresso-anatomy' && <EspressoAnatomy lang={lang as 'es' | 'en'} />}
+        {diagram === 'extraction-chart' && <ExtractionChart lang={lang as 'es' | 'en'} />}
+        {diagram === 'coffee-belt' && <CoffeeBelt lang={lang as 'es' | 'en'} />}
+
+        {quizQuestions.length > 0 && (
+          <Quiz questions={quizQuestions} lang={lang as 'es' | 'en'} />
+        )}
+
+        <!-- ── Prev / Next navigation ── -->
+        <div class="reveal mt-16 sm:mt-20">
+          <div class="hr-animated mb-8"></div>
+          <nav class="lesson-nav">
+            {prev ? (
+              <a href={`${lessonBasePath}/${prev.slug}`} class="nav-link nav-link--prev" data-cursor-hover>
+                <span class="nav-direction">{labels.prev}</span>
+                <span class="nav-title">{prev.data.title}</span>
+              </a>
+            ) : (
+              <div></div>
+            )}
+            {next ? (
+              <a href={`${lessonBasePath}/${next.slug}`} class="nav-link nav-link--next" data-cursor-hover>
+                <span class="nav-direction">{labels.next}</span>
+                <span class="nav-title">{next.data.title}</span>
+              </a>
+            ) : (
+              <a href={roadmapPath} class="nav-link nav-link--next" data-cursor-hover>
+                <span class="nav-direction">{labels.phaseComplete}</span>
+                <span class="nav-title">{labels.backToRoadmap}</span>
+              </a>
+            )}
+          </nav>
+        </div>
+      </main>
+
+      <Footer />
+    </div>
   </div>
 
   <ScrollProgressPlugin />
   <HeadingAnchorsPlugin />
+
+  <!-- Page animations -->
+  <script>
+    function initPageAnimations() {
+      const reveals = document.querySelectorAll('.reveal, .stagger-children, .hr-animated')
+      if (reveals.length) {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) entry.target.classList.add('revealed')
+            })
+          },
+          { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
+        )
+        reveals.forEach((el) => observer.observe(el))
+      }
+
+      const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0
+      if (!isTouchDevice && window.matchMedia('(pointer: fine)').matches) {
+        const hoverTargets = document.querySelectorAll('[data-cursor-hover]')
+        hoverTargets.forEach((el) => {
+          el.addEventListener('mouseenter', () => {
+            document.getElementById('custom-cursor')?.classList.add('hovering')
+          })
+          el.addEventListener('mouseleave', () => {
+            document.getElementById('custom-cursor')?.classList.remove('hovering')
+          })
+        })
+      }
+    }
+
+    document.addEventListener('astro:page-load', initPageAnimations)
+  </script>
 </BaseLayout>
 
 <style>
-  /* ── Page ── */
-  .lesson-page {
-    display: flex;
-    flex-direction: column;
-    min-height: 100svh;
-    max-width: 90%;
-    width: 100%;
-    margin: 0 auto;
-  }
-  @media (min-width: 768px) {
-    .lesson-page { max-width: 38rem; }
-  }
-
+  /* ── Main ── */
   .lesson-main {
-    flex: 1;
-    padding: 2.5rem 0 5rem;
-  }
-
-  /* ── Top bar ── */
-  .lesson-top {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 2rem;
-  }
-  .lesson-pill {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.35rem 0.85rem;
-    border-radius: 9999px;
-    background: color-mix(in srgb, var(--color-accent) 8%, transparent);
-    text-decoration: none;
-    color: var(--color-accent);
-    font-size: 0.75rem;
-    font-weight: 500;
-    transition: background 0.15s;
-  }
-  .lesson-pill:hover {
-    background: color-mix(in srgb, var(--color-accent) 14%, transparent);
-  }
-  .pill-phase {
-    font-weight: 600;
-  }
-  .pill-num {
-    opacity: 0.6;
-  }
-  .lesson-reading {
-    font-size: 0.75rem;
-    opacity: 0.3;
-  }
-
-  /* ── Title ── */
-  .lesson-title {
-    font-family: 'Source Serif 4', Georgia, 'Times New Roman', serif;
-    font-size: 2rem;
-    font-weight: 600;
-    line-height: 1.25;
-    letter-spacing: -0.01em;
-    margin: 0 0 1rem 0;
-  }
-  @media (min-width: 640px) {
-    .lesson-title { font-size: 2.5rem; }
-  }
-
-  /* ── Description ── */
-  .lesson-desc {
-    font-size: 1.0625rem;
-    line-height: 1.6;
-    opacity: 0.5;
-    margin-bottom: 1.5rem;
-    max-width: 34rem;
+    max-width: 42rem;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   /* ── Progress steps ── */
   .lesson-steps {
     display: flex;
     gap: 4px;
-    margin-bottom: 3rem;
   }
   .step {
     flex: 1;
-    height: 3px;
+    height: 2px;
     border-radius: 9999px;
-    background: color-mix(in srgb, var(--color-accent) 8%, transparent);
-    transition: background 0.3s;
-    max-width: 4rem;
+    background: color-mix(in srgb, var(--color-accent) 6%, transparent);
+    transition: background 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    max-width: 3.5rem;
   }
   .step.done {
-    background: color-mix(in srgb, var(--color-accent) 35%, transparent);
+    background: color-mix(in srgb, var(--color-accent) 30%, transparent);
   }
   .step.current {
     background: var(--color-accent);
@@ -309,7 +289,6 @@ const diagram = diagramMap[post.slug] || null
 
   /* ── Body prose ── */
   .lesson-body {
-    font-family: 'Source Serif 4', Georgia, 'Times New Roman', serif;
     font-size: 1.0625rem;
     line-height: 1.9;
     color: inherit;
@@ -319,25 +298,23 @@ const diagram = diagramMap[post.slug] || null
   }
 
   .lesson-body :global(h2) {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
     font-size: 1.375rem;
     font-weight: 650;
-    letter-spacing: -0.01em;
+    letter-spacing: -0.02em;
     margin-top: 3rem;
     margin-bottom: 1rem;
-    line-height: 1.3;
+    line-height: 1.25;
   }
   .lesson-body :global(h3) {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
     font-size: 1.125rem;
     font-weight: 600;
     margin-top: 2.25rem;
     margin-bottom: 0.75rem;
-    line-height: 1.35;
+    line-height: 1.3;
   }
   .lesson-body :global(p) {
     margin-bottom: 1.5rem;
-    opacity: 0.82;
+    opacity: 0.75;
   }
   .lesson-body :global(strong) {
     font-weight: 600;
@@ -349,9 +326,9 @@ const diagram = diagramMap[post.slug] || null
   .lesson-body :global(a) {
     color: var(--color-accent);
     text-decoration: underline;
-    text-decoration-color: color-mix(in srgb, var(--color-accent) 30%, transparent);
+    text-decoration-color: color-mix(in srgb, var(--color-accent) 25%, transparent);
     text-underline-offset: 3px;
-    transition: text-decoration-color 0.15s;
+    transition: text-decoration-color 0.3s ease;
   }
   .lesson-body :global(a:hover) {
     text-decoration-color: var(--color-accent);
@@ -364,32 +341,32 @@ const diagram = diagramMap[post.slug] || null
   }
   .lesson-body :global(li) {
     margin-bottom: 0.5rem;
-    opacity: 0.82;
+    opacity: 0.75;
     line-height: 1.8;
   }
   .lesson-body :global(li strong) {
     opacity: 1;
   }
   .lesson-body :global(li::marker) {
-    color: color-mix(in srgb, var(--color-accent) 40%, transparent);
+    color: color-mix(in srgb, var(--color-accent) 35%, transparent);
   }
 
   .lesson-body :global(blockquote) {
-    border-left: 3px solid color-mix(in srgb, var(--color-accent) 20%, transparent);
+    border-left: 2px solid color-mix(in srgb, var(--color-accent) 15%, transparent);
     padding: 0.75rem 0 0.75rem 1.25rem;
     margin: 2rem 0;
-    background: color-mix(in srgb, var(--color-accent) 3%, transparent);
+    background: color-mix(in srgb, var(--color-accent) 2%, transparent);
     border-radius: 0 8px 8px 0;
   }
   .lesson-body :global(blockquote p) {
-    opacity: 0.65;
+    opacity: 0.55;
     margin-bottom: 0;
     font-style: italic;
   }
 
   .lesson-body :global(code) {
     font-size: 0.85em;
-    background: color-mix(in srgb, var(--color-accent) 6%, transparent);
+    background: color-mix(in srgb, var(--color-accent) 5%, transparent);
     padding: 0.15em 0.4em;
     border-radius: 5px;
     font-family: ui-monospace, monospace;
@@ -410,9 +387,9 @@ const diagram = diagramMap[post.slug] || null
   .lesson-body :global(hr) {
     border: none;
     height: 1px;
-    background: color-mix(in srgb, var(--color-accent) 8%, transparent);
+    background: color-mix(in srgb, var(--color-accent) 6%, transparent);
     margin: 3rem auto;
-    max-width: 5rem;
+    max-width: 4rem;
   }
 
   .lesson-body :global(img) {
@@ -426,91 +403,78 @@ const diagram = diagramMap[post.slug] || null
     font-size: 0.9375rem;
     margin: 2rem 0;
     border-collapse: collapse;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
   }
   .lesson-body :global(th),
   .lesson-body :global(td) {
     padding: 0.625rem 0.875rem;
     text-align: left;
-    border-bottom: 1px solid color-mix(in srgb, var(--color-accent) 8%, transparent);
+    border-bottom: 1px solid color-mix(in srgb, var(--color-accent) 6%, transparent);
   }
   .lesson-body :global(th) {
     font-weight: 600;
     font-size: 0.8125rem;
-    opacity: 0.5;
+    opacity: 0.45;
   }
   .lesson-body :global(td) {
-    opacity: 0.75;
+    opacity: 0.65;
   }
 
-  /* ── Prev / Next nav ── */
+  /* ── Navigation ── */
   .lesson-nav {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 0.75rem;
-    margin-top: 4rem;
-    padding-top: 2rem;
-    border-top: 1px solid color-mix(in srgb, var(--color-accent) 6%, transparent);
+    gap: 1rem;
   }
   @media (max-width: 480px) {
     .lesson-nav {
       grid-template-columns: 1fr;
     }
   }
-  .nav-card {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    padding: 1rem 1.125rem;
-    border-radius: 12px;
-    border: 1px solid color-mix(in srgb, var(--color-accent) 8%, transparent);
-    text-decoration: none;
-    color: inherit;
-    transition: border-color 0.15s, background 0.15s;
-  }
-  .nav-card:hover {
-    border-color: color-mix(in srgb, var(--color-accent) 20%, transparent);
-    background: color-mix(in srgb, var(--color-accent) 3%, transparent);
-  }
-  .nav-card--next {
-    text-align: right;
-    justify-content: flex-end;
-  }
-  .nav-arrow {
-    font-size: 1.125rem;
-    opacity: 0.25;
-    flex-shrink: 0;
-    transition: opacity 0.15s;
-  }
-  .nav-card:hover .nav-arrow {
-    opacity: 0.5;
-    color: var(--color-accent);
-  }
-  .nav-info {
+
+  .nav-link {
     display: flex;
     flex-direction: column;
-    gap: 0.15rem;
-    min-width: 0;
+    gap: 0.25rem;
+    padding: 1rem 0;
+    text-decoration: none;
+    color: inherit;
+    border-bottom: 1px solid color-mix(in srgb, var(--color-accent) 4%, transparent);
+    transition: border-color 0.5s ease, padding-left 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   }
-  .nav-label {
+  .nav-link:hover {
+    border-color: color-mix(in srgb, var(--color-accent) 15%, transparent);
+    padding-left: 0.5rem;
+  }
+  .nav-link--next {
+    text-align: right;
+  }
+  .nav-link--next:hover {
+    padding-left: 0;
+    padding-right: 0.5rem;
+  }
+
+  .nav-direction {
     font-size: 0.6875rem;
     font-weight: 500;
     text-transform: uppercase;
-    letter-spacing: 0.06em;
-    opacity: 0.3;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    letter-spacing: 0.1em;
+    opacity: 0.2;
+    transition: opacity 0.3s ease;
   }
-  .nav-name {
-    font-size: 0.875rem;
+  .nav-link:hover .nav-direction {
+    opacity: 0.4;
+  }
+
+  .nav-title {
+    font-size: 0.9375rem;
     font-weight: 500;
-    opacity: 0.65;
-    transition: opacity 0.12s, color 0.12s;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    opacity: 0.5;
+    transition: opacity 0.3s ease, color 0.3s ease;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
   }
-  .nav-card:hover .nav-name {
+  .nav-link:hover .nav-title {
     opacity: 1;
     color: var(--color-accent);
   }

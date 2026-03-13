@@ -22,7 +22,7 @@ const {
 const frontmatter: PageLayoutProps['frontmatter'] = {
   ...post.data,
   openGraphImage: post.data.openGraphImage || `/${post.collection}/${post.slug}.png`,
-  activeHeaderLink: post.collection === 'cafe' ? 'Cafe' : 'Blog',
+  activeHeaderLink: post.collection === 'cafe' ? 'Café' : 'Blog',
   scrollProgress: true
 }
 
@@ -30,16 +30,28 @@ const publishedStr = toDateString(post.data.publishedDate)
 ---
 
 <PageLayout {frontmatter}>
-  <h1 class="my-2 sm:my-4">{frontmatter.title}</h1>
-  <TagsBar tags={resolveTags(post.data.tags)} />
+  <!-- Editorial post header -->
+  <div class="reveal mb-8 sm:mb-12">
+    <h1 class="m-0 font-display text-[clamp(1.8rem,5vw,3rem)] font-bold leading-[1.1] tracking-tighter-brand text-accent sm:text-[clamp(2rem,4vw,3.5rem)]">
+      {frontmatter.title}
+    </h1>
 
-  <div class="mt-4">
-    <span class="opacity-75">Published on <time datetime={post.data.publishedDate.toISOString()}>{publishedStr}</time> by</span>
-    <a class="clickable" href={`/authors/${post.data.author}`}
-      >{post.data.author}</a
-    > · <span class="whitespace-nowrap opacity-75">{readingTime} </span>
+    <div class="mt-4 flex flex-wrap items-center gap-3 text-[11px] font-medium uppercase tracking-[0.15em] opacity-25 sm:mt-5 sm:gap-4 sm:text-[12px]">
+      <time datetime={post.data.publishedDate.toISOString()}>{publishedStr}</time>
+      <span class="h-[1px] w-4 bg-accent/10"></span>
+      <a class="no-underline opacity-70 transition-opacity duration-300 hover:opacity-100" href={`/authors/${post.data.author}`}>{post.data.author}</a>
+      <span class="h-[1px] w-4 bg-accent/10"></span>
+      <span>{readingTime}</span>
+    </div>
+
+    <div class="mt-4">
+      <TagsBar tags={resolveTags(post.data.tags)} />
+    </div>
   </div>
-  <article>
+
+  <div class="hr-animated mb-8 sm:mb-12"></div>
+
+  <article class="reveal reveal-delay-1">
     <Content />
   </article>
   <HeadingAnchorsPlugin />

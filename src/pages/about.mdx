@@ -1,7 +1,7 @@
 ---
 layout: '@/layouts/PageLayout.astro'
-title: About
-activeHeaderLink: About
+title: Sobre mí
+activeHeaderLink: Sobre mí
 ---
 
 <style>{`
@@ -9,121 +9,115 @@ activeHeaderLink: About
   .about-hero {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     gap: 1.5rem;
-    text-align: center;
-    margin-bottom: 2.5rem;
+    text-align: left;
+    margin-bottom: 3rem;
   }
   .about-photo {
-    width: 180px;
-    height: 180px;
+    width: 120px;
+    height: 120px;
     object-fit: cover;
-    border-radius: 50%;
+    border-radius: 16px;
     display: block;
-    transition: transform 0.4s ease, filter 0.4s ease, box-shadow 0.4s ease;
-    filter: saturate(0.75) brightness(0.95);
-    box-shadow: 0 0 0 3px color-mix(in srgb, rgb(var(--accent)) 15%, transparent);
-    cursor: pointer;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.6s ease;
+    filter: saturate(0.8) brightness(0.95);
   }
   .about-photo:hover {
-    transform: scale(1.06);
-    filter: saturate(1.1) brightness(1.03);
-    box-shadow: 0 12px 32px color-mix(in srgb, rgb(var(--accent)) 18%, transparent),
-                0 0 0 3px color-mix(in srgb, rgb(var(--accent)) 30%, transparent);
+    transform: scale(1.04);
+    filter: saturate(1) brightness(1);
   }
   .about-name {
-    font-size: 2rem;
-    font-weight: 700;
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 400;
     color: rgb(var(--accent));
     margin: 0;
     letter-spacing: -0.02em;
+    line-height: 1;
   }
   .about-title {
-    font-size: 0.95rem;
-    opacity: 0.55;
-    margin-top: 0.25rem;
+    font-size: 0.8rem;
+    opacity: 0.3;
+    margin-top: 0.5rem;
     font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
   }
   .about-bio {
-    font-size: 0.95rem;
-    line-height: 1.7;
-    max-width: 560px;
-    opacity: 0.72;
-    margin: 0 auto;
+    font-size: 0.9rem;
+    line-height: 1.8;
+    max-width: 520px;
+    opacity: 0.5;
   }
 
   /* ── Stats ── */
   .stats-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0.75rem;
-    margin: 2rem 0;
+    display: flex;
+    gap: 2rem;
+    margin: 2.5rem 0;
+    padding: 1.5rem 0;
+    border-top: 1px solid rgba(var(--accent), 0.04);
+    border-bottom: 1px solid rgba(var(--accent), 0.04);
   }
   .stat-card {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 0.35rem;
-    padding: 1.1rem 0.75rem;
-    border-radius: 12px;
-    border: 1.5px solid color-mix(in srgb, rgb(var(--accent)) 10%, transparent);
-    background: color-mix(in srgb, rgb(var(--accent)) 3%, transparent);
-    transition: all 0.3s ease;
-  }
-  .stat-card:hover {
-    border-color: color-mix(in srgb, rgb(var(--accent)) 25%, transparent);
-    background: color-mix(in srgb, rgb(var(--accent)) 6%, transparent);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px color-mix(in srgb, rgb(var(--accent)) 8%, transparent);
+    gap: 0.25rem;
   }
   .stat-number {
-    font-size: 1.5rem;
-    font-weight: 700;
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 2rem;
     color: rgb(var(--accent));
     line-height: 1;
+    opacity: 0.7;
   }
   .stat-label {
-    font-size: 0.7rem;
+    font-size: 0.65rem;
     text-transform: uppercase;
-    letter-spacing: 0.06em;
-    opacity: 0.5;
-    font-weight: 600;
-    text-align: center;
+    letter-spacing: 0.15em;
+    opacity: 0.25;
+    font-weight: 500;
   }
 
   /* ── Section titles ── */
   .section-title {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    font-size: 0.8rem;
-    font-weight: 700;
+    gap: 0.75rem;
+    font-size: 0.7rem;
+    font-weight: 500;
     text-transform: uppercase;
-    letter-spacing: 0.08em;
-    opacity: 0.45;
-    margin: 2.5rem 0 1rem;
+    letter-spacing: 0.2em;
+    opacity: 0.25;
+    margin: 3rem 0 1.25rem;
+  }
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(var(--accent), 0.04);
   }
   .section-title .iconify {
-    font-size: 1.1rem;
-    opacity: 0.7;
+    font-size: 0.9rem;
+    opacity: 0.5;
   }
 
   /* ── Experience ── */
   .exp-list {
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
+    gap: 0;
   }
   .exp-card {
-    padding: 1rem 1.25rem;
-    border-radius: 12px;
-    border: 1.5px solid color-mix(in srgb, rgb(var(--accent)) 10%, transparent);
-    background: color-mix(in srgb, rgb(var(--accent)) 3%, transparent);
-    transition: all 0.3s ease;
+    padding: 1.25rem 0;
+    border-bottom: 1px solid rgba(var(--accent), 0.04);
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   }
   .exp-card:hover {
-    border-color: color-mix(in srgb, rgb(var(--accent)) 20%, transparent);
-    background: color-mix(in srgb, rgb(var(--accent)) 5%, transparent);
+    padding-left: 12px;
   }
   .exp-header {
     display: flex;
@@ -139,14 +133,10 @@ activeHeaderLink: About
     color: rgb(var(--accent));
   }
   .exp-badge {
-    font-size: 0.65rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    padding: 0.2rem 0.55rem;
-    border-radius: 6px;
-    background: color-mix(in srgb, rgb(var(--accent)) 12%, transparent);
-    color: rgb(var(--accent));
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 0.75rem;
+    opacity: 0.3;
     white-space: nowrap;
   }
   .exp-company {
@@ -166,114 +156,90 @@ activeHeaderLink: About
     margin-top: 0.6rem;
   }
   .exp-tech span {
-    font-size: 0.675rem;
-    padding: 0.15rem 0.5rem;
-    border-radius: 5px;
-    background: color-mix(in srgb, rgb(var(--accent)) 8%, transparent);
-    opacity: 0.6;
+    font-size: 0.65rem;
+    opacity: 0.2;
     font-weight: 500;
+  }
+  .exp-tech span::after {
+    content: ' · ';
+    opacity: 0.4;
+  }
+  .exp-tech span:last-child::after {
+    content: '';
   }
 
   /* ── Tech stack ── */
   .tech-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 0.65rem;
+    gap: 0;
   }
   .tech-card {
-    padding: 0.85rem 1rem;
-    border-radius: 10px;
-    border: 1.5px solid color-mix(in srgb, rgb(var(--accent)) 8%, transparent);
-    background: color-mix(in srgb, rgb(var(--accent)) 2%, transparent);
-    transition: all 0.3s ease;
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(var(--accent), 0.04);
   }
-  .tech-card:hover {
-    border-color: color-mix(in srgb, rgb(var(--accent)) 18%, transparent);
-    background: color-mix(in srgb, rgb(var(--accent)) 5%, transparent);
+  .tech-card:nth-child(odd) {
+    padding-right: 1rem;
+    border-right: 1px solid rgba(var(--accent), 0.04);
+  }
+  .tech-card:nth-child(even) {
+    padding-left: 1rem;
   }
   .tech-card-title {
     display: flex;
     align-items: center;
     gap: 0.4rem;
-    font-size: 0.75rem;
-    font-weight: 600;
+    font-size: 0.7rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
     color: rgb(var(--accent));
-    margin-bottom: 0.4rem;
+    margin-bottom: 0.35rem;
+    opacity: 0.5;
   }
   .tech-card-title .iconify {
-    font-size: 0.95rem;
+    font-size: 0.85rem;
+    opacity: 0.6;
   }
   .tech-card-items {
-    font-size: 0.75rem;
+    font-size: 0.78rem;
     line-height: 1.6;
-    opacity: 0.55;
+    opacity: 0.35;
   }
 
   /* ── Contact & CV ── */
   .footer-section {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 1.5rem;
-    margin-top: 2.5rem;
+    gap: 2rem;
+    margin-top: 3rem;
     padding-top: 2rem;
-    border-top: 1.5px solid color-mix(in srgb, rgb(var(--accent)) 8%, transparent);
+    border-top: 1px solid rgba(var(--accent), 0.04);
   }
   .footer-row {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 0.6rem;
+    gap: 0.75rem;
   }
   .footer-label {
-    font-size: 0.75rem;
-    font-weight: 600;
+    font-size: 0.65rem;
+    font-weight: 500;
     text-transform: uppercase;
-    letter-spacing: 0.08em;
-    opacity: 0.4;
+    letter-spacing: 0.2em;
+    opacity: 0.2;
   }
   .footer-links {
     display: flex;
-    gap: 0.5rem;
+    gap: 0.75rem;
     flex-wrap: wrap;
-    justify-content: center;
   }
-  .contact-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    padding: 0.5rem 1rem;
-    border-radius: 10px;
-    text-decoration: none !important;
-    font-size: 0.8rem;
-    font-weight: 500;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    border: 1.5px solid color-mix(in srgb, rgb(var(--accent)) 12%, transparent);
-    background: color-mix(in srgb, rgb(var(--accent)) 4%, transparent);
-    color: rgb(var(--accent));
-    opacity: 0.75;
-  }
-  .contact-link:hover {
-    opacity: 1;
-    background: color-mix(in srgb, rgb(var(--accent)) 10%, transparent);
-    border-color: color-mix(in srgb, rgb(var(--accent)) 25%, transparent);
-    box-shadow: 0 4px 14px color-mix(in srgb, rgb(var(--accent)) 10%, transparent);
-    transform: translateY(-1px);
-  }
-  .contact-link:active { transform: translateY(0); }
-  .contact-link .iconify {
-    font-size: 1.05rem;
-    transition: transform 0.3s ease;
-  }
-  .contact-link:hover .iconify { transform: scale(1.12); }
 
   .about-footnote {
-    font-size: 0.82rem;
+    font-family: 'Instrument Serif', serif;
+    font-size: 0.95rem;
     line-height: 1.7;
-    opacity: 0.45;
-    text-align: center;
+    opacity: 0.3;
     max-width: 480px;
-    margin: 0 auto 1.5rem;
     font-style: italic;
   }
 
@@ -281,58 +247,51 @@ activeHeaderLink: About
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 0.6rem 1.3rem;
-    border-radius: 10px;
+    padding: 0.6rem 1.2rem;
+    border-radius: 9999px;
     text-decoration: none !important;
-    font-size: 0.825rem;
-    font-weight: 600;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
     cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1.5px solid color-mix(in srgb, rgb(var(--accent)) 20%, transparent);
-    background: color-mix(in srgb, rgb(var(--accent)) 8%, transparent);
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    border: 1px solid rgba(var(--accent), 0.08);
+    background: transparent;
     color: rgb(var(--accent));
-    box-shadow: 0 2px 8px color-mix(in srgb, rgb(var(--accent)) 6%, transparent);
+    opacity: 0.5;
   }
   .cv-btn:hover {
-    background: color-mix(in srgb, rgb(var(--accent)) 15%, transparent);
-    border-color: color-mix(in srgb, rgb(var(--accent)) 35%, transparent);
-    box-shadow: 0 8px 24px color-mix(in srgb, rgb(var(--accent)) 14%, transparent);
-    transform: translateY(-2px);
-  }
-  .cv-btn:active {
-    transform: translateY(0);
-    box-shadow: 0 2px 8px color-mix(in srgb, rgb(var(--accent)) 8%, transparent);
+    opacity: 1;
+    border-color: rgba(var(--accent), 0.2);
+    background: rgba(var(--accent), 0.03);
   }
   .cv-btn .iconify {
-    font-size: 1rem;
-    transition: transform 0.3s ease;
+    font-size: 0.85rem;
+    opacity: 0.6;
   }
-  .cv-btn:hover .iconify { transform: scale(1.1); }
   .cv-arrow {
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     opacity: 0;
-    transform: translateY(-3px);
-    transition: all 0.3s ease;
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   }
   .cv-btn:hover .cv-arrow {
-    opacity: 0.6;
-    transform: translateY(0);
+    opacity: 0.5;
   }
 
   /* ── Responsive ── */
   @media (max-width: 540px) {
-    .stats-grid { grid-template-columns: repeat(3, 1fr); gap: 0.5rem; }
-    .stat-card { padding: 0.85rem 0.5rem; }
-    .stat-number { font-size: 1.25rem; }
+    .stats-grid { gap: 1.5rem; }
+    .stat-number { font-size: 1.5rem; }
     .tech-grid { grid-template-columns: 1fr; }
+    .tech-card:nth-child(odd) { padding-right: 0; border-right: none; }
+    .tech-card:nth-child(even) { padding-left: 0; }
     .exp-header { flex-direction: column; gap: 0.3rem; }
   }
 `}</style>
 
 {/* ── Hero ── */}
-<div class="about-hero">
+<div class="about-hero reveal">
   <img
     src="/me/me4.jpeg"
     alt="David San Luis Aguirre"
@@ -344,7 +303,7 @@ activeHeaderLink: About
     <p class="about-name">David San Luis Aguirre</p>
     <p class="about-title">Fullstack Developer · Angular · NestJS · TypeScript · AWS</p>
   </div>
-  <p class="about-bio">
+  <p class="about-bio reveal reveal-delay-1">
     Desarrollador Fullstack con +3 años de experiencia construyendo aplicaciones web y móviles en producción.
     Actualmente desarrollo una plataforma SaaS LegalTech con IA, integrando APIs de LLM con infraestructura cloud escalable.
     He publicado apps multiplataforma en iOS App Store y Google Play.
@@ -352,7 +311,7 @@ activeHeaderLink: About
 </div>
 
 {/* ── Stats ── */}
-<div class="stats-grid">
+<div class="stats-grid reveal reveal-delay-2">
   <div class="stat-card">
     <span class="stat-number">3+</span>
     <span class="stat-label">Años de experiencia</span>
@@ -368,12 +327,12 @@ activeHeaderLink: About
 </div>
 
 {/* ── Experience ── */}
-<div class="section-title">
+<div class="section-title reveal">
   <span class="iconify tabler--briefcase" aria-hidden="true"></span>
   Experiencia
 </div>
 
-<div class="exp-list">
+<div class="exp-list stagger-children">
   <div class="exp-card">
     <div class="exp-header">
       <span class="exp-project">Grace AI — Plataforma SaaS LegalTech</span>
@@ -423,12 +382,12 @@ activeHeaderLink: About
 </div>
 
 {/* ── Tech Stack ── */}
-<div class="section-title">
+<div class="section-title reveal">
   <span class="iconify tabler--stack-2" aria-hidden="true"></span>
   Stack Tecnológico
 </div>
 
-<div class="tech-grid">
+<div class="tech-grid stagger-children">
   <div class="tech-card">
     <div class="tech-card-title">
       <span class="iconify tabler--browser" aria-hidden="true"></span>
@@ -474,7 +433,7 @@ activeHeaderLink: About
 </div>
 
 {/* ── Contact & CV ── */}
-<div class="footer-section">
+<div class="footer-section reveal">
   {/* <div class="footer-row">
     <span class="footer-label">Contacto</span>
     <div class="footer-links">

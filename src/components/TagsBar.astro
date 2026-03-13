@@ -12,20 +12,21 @@ const visibleTags = maxVisible > 0 ? tags.slice(0, maxVisible) : tags
 const remainingCount = maxVisible > 0 ? tags.length - maxVisible : 0
 ---
 
-<div class="flex flex-wrap items-center gap-1.5 text-xs">
+<div class="flex flex-wrap items-center gap-1.5 text-[11px]">
   {
     visibleTags.map(({ tag, icon }) => (
       <a
-        class="flex items-center gap-1 rounded-full bg-accent/8 px-2 py-0.5 no-underline opacity-60 transition-all duration-200 hover:bg-accent/15 hover:opacity-100"
+        class="flex items-center gap-1 rounded-full border border-accent/6 bg-accent/[0.03] px-2.5 py-0.5 no-underline opacity-50 transition-all duration-300 hover:border-accent/15 hover:bg-accent/8 hover:opacity-80"
         href={`/tags/${tag}`}
+        style="transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);"
       >
-        <span class={`iconify text-[0.7rem] ${icon}`} />
-        <span class="font-medium">{tag}</span>
+        <span class={`iconify text-[0.65rem] ${icon}`} />
+        <span class="font-medium tracking-wide">{tag}</span>
       </a>
     ))
   }
   {remainingCount > 0 && (
-    <span class="rounded-full bg-accent/5 px-2 py-0.5 text-xs opacity-40">
+    <span class="rounded-full border border-accent/4 px-2 py-0.5 text-[11px] opacity-30">
       +{remainingCount}
     </span>
   )}

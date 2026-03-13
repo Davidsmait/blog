@@ -88,7 +88,7 @@ git config --global user.name "Tu Nombre"
 git config --global user.email "tu-correo@example.com"
 ```
 
-💡 **Importante:** Asegúrate de que este correo coincida con el de la clave GPG y el usado en GitHub.
+**Importante:** Asegúrate de que este correo coincida con el de la clave GPG y el usado en GitHub.
 
 ---
 

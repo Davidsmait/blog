@@ -27,16 +27,53 @@ const {
 ---
 
 <BaseLayout frontmatter={frontmatter}>
-  <div id="page-wrapper">
-    <Header activeHeaderLink={activeHeaderLink} />
-    <main class="mt-6 sm:mt-12">
-      <Prose>
-        <slot />
-      </Prose>
-    </main>
-    <slot name="bottom" />
-    <Footer />
+  <div id="page-wrapper" class="noise-overlay">
+    <div class="px-5 sm:px-6 lg:px-0">
+      <Header activeHeaderLink={activeHeaderLink} />
+      <main class="mt-8 sm:mt-14">
+        <Prose>
+          <slot />
+        </Prose>
+      </main>
+      <slot name="bottom" />
+      <Footer />
+    </div>
   </div>
   {scrollProgress && <ScrollProgressPlugin />}
   {scrollToTop && <ScrollToTopPlugin />}
+
+  <!-- Page animations -->
+  <script>
+    function initPageAnimations() {
+      // ── Scroll reveals ──
+      const reveals = document.querySelectorAll('.reveal, .stagger-children, .hr-animated')
+      if (reveals.length) {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) entry.target.classList.add('revealed')
+            })
+          },
+          { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
+        )
+        reveals.forEach((el) => observer.observe(el))
+      }
+
+      // ── Custom cursor (desktop only) ──
+      const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0
+      if (!isTouchDevice && window.matchMedia('(pointer: fine)').matches) {
+        const hoverTargets = document.querySelectorAll('[data-cursor-hover]')
+        hoverTargets.forEach((el) => {
+          el.addEventListener('mouseenter', () => {
+            document.getElementById('custom-cursor')?.classList.add('hovering')
+          })
+          el.addEventListener('mouseleave', () => {
+            document.getElementById('custom-cursor')?.classList.remove('hovering')
+          })
+        })
+      }
+    }
+
+    document.addEventListener('astro:page-load', initPageAnimations)
+  </script>
 </BaseLayout>

@@ -1,7 +1,6 @@
 ---
 import PostsList from '@/components/PostsList.astro'
 import FooterItem from '@/components/layout/FooterItem.astro'
-import Separator from '@/components/layout/Separator.astro'
 import ModeToggle from '@/components/mode/ModeToggle.astro'
 import BaseLayout from '@/layouts/BaseLayout.astro'
 import config from '@/theme.config'
@@ -9,98 +8,688 @@ import { getCollection } from 'astro:content'
 
 const allPosts = await getCollection('posts')
 const recentPosts = allPosts
-  .sort((a, b) => b.data.publishedDate.getTime() - a.data.publishedDate.getTime())
-  .slice(0, 3)
+  .sort(
+    (a, b) => b.data.publishedDate.getTime() - a.data.publishedDate.getTime()
+  )
+  .slice(0, 4)
 ---
 
-<BaseLayout frontmatter={{ title: config.title, description: config.description }}>
-  <div id="page-wrapper">
-    <div class="mt-12 px-4 sm:mt-24 sm:px-12">
+<BaseLayout
+  frontmatter={{ title: config.title, description: config.description }}
+>
+  <!-- Custom cursor — hidden on touch devices -->
+  <div class="custom-cursor hidden sm:block" id="custom-cursor"></div>
+
+  <div id="page-wrapper" class="noise-overlay">
+    <div class="px-5 sm:px-6 lg:px-0">
       <main>
-        <!-- Hero Section -->
-        <section class="flex flex-col items-center gap-8 sm:flex-row sm:items-start sm:gap-12">
-          <div class="shrink-0">
-            <img
-              src="/me/me4.jpeg"
-              alt="David San Luis Aguirre"
-              width="140"
-              height="140"
-              loading="eager"
-              class="rounded-full object-cover ring-2 ring-accent/20 transition-all duration-500 hover:ring-accent/50 hover:shadow-lg hover:shadow-accent/10"
-              style="width: 140px; height: 140px;"
-            />
-          </div>
-          <div class="text-center sm:text-left">
-            <h1 class="mb-2 text-4xl font-bold tracking-tight text-accent sm:text-5xl">
-              David San Luis
-            </h1>
-            <p class="mb-4 text-lg opacity-60">
-              Software Engineer
-            </p>
-            <p class="max-w-lg text-base leading-relaxed opacity-50">
-              Construyo aplicaciones web y moviles con tecnologias modernas.
-            </p>
-            <!-- Social Icons -->
-            <div class="mt-5 flex items-center justify-center gap-4 text-2xl sm:justify-start">
-              <a href="https://github.com/Davidsmait" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="clickable">
-                <span class="iconify tabler--brand-github" aria-hidden="true" />
-              </a>
-              <a href="https://www.linkedin.com/in/davidsanluisaguirre" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="clickable">
-                <span class="iconify tabler--brand-linkedin" aria-hidden="true" />
-              </a>
-              <a href="https://www.instagram.com/davidsanluisaguirre/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="clickable">
-                <span class="iconify tabler--brand-instagram" aria-hidden="true" />
-              </a>
-              <a href="mailto:david_sanluis@outlook.com" aria-label="Email" class="clickable">
-                <span class="iconify tabler--mail" aria-hidden="true" />
-              </a>
+        <!-- ═══════════════════════════════════════════════════════════ -->
+        <!-- HERO — Photo-driven, stacked on mobile, overlapping grid   -->
+        <!-- ═══════════════════════════════════════════════════════════ -->
+        <section
+          class="relative min-h-[100svh] sm:min-h-[100vh]"
+          id="hero-section"
+        >
+          <!-- Top micro-bar -->
+          <div
+            class="relative z-30 flex items-center justify-between pt-6 sm:pt-10"
+          >
+            <div class="reveal flex items-center gap-3">
+              <span class="relative flex h-[5px] w-[5px]">
+                <span
+                  class="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75"
+                ></span>
+                <span
+                  class="relative inline-flex h-[5px] w-[5px] rounded-full bg-green-500"
+                ></span>
+              </span>
+              <span class="section-label">Disponible</span>
+            </div>
+            <div
+              class="reveal flex items-center gap-5 text-[10px] font-medium uppercase tracking-[0.25em] opacity-25 sm:gap-6"
+            >
+              <a
+                href="https://github.com/Davidsmait"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="no-underline transition-opacity duration-300 hover:opacity-100"
+                >Gh</a
+              >
+              <a
+                href="https://www.linkedin.com/in/davidsanluisaguirre"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="no-underline transition-opacity duration-300 hover:opacity-100"
+                >Li</a
+              >
+              <a
+                href="https://www.instagram.com/davidsanluisaguirre/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="no-underline transition-opacity duration-300 hover:opacity-100"
+                >Ig</a
+              >
             </div>
           </div>
+
+          <!-- ── THE GRID: Stacked on mobile, overlapping on desktop ── -->
+          <div
+            class="relative z-10 flex min-h-[80svh] flex-col justify-center gap-6 sm:grid sm:min-h-[85vh] sm:grid-cols-[1fr_1fr] sm:items-center sm:gap-0"
+          >
+            <!-- LEFT: Visual block — photo -->
+            <div class="reveal relative order-2 sm:order-1">
+              <!-- Photo container -->
+              <div
+                class="hero-photo-wrap relative mx-auto aspect-[3/4] w-[65%] max-w-[280px] overflow-hidden rounded-[20px] sm:mx-0 sm:w-full sm:max-w-[400px] sm:rounded-[24px]"
+              >
+                <img
+                  src="/me/me5-hero.jpeg"
+                  alt="David San Luis Aguirre"
+                  width="400"
+                  height="533"
+                  loading="eager"
+                  class="hero-photo h-full w-full object-cover transition-transform duration-[1.5s]"
+                  style="transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);"
+                />
+                <!-- Gradient overlay at bottom -->
+                <div
+                  class="pointer-events-none absolute inset-0"
+                  style="background: linear-gradient(to top, rgb(var(--accent-bg)) 0%, transparent 40%);"
+                >
+                </div>
+                <!-- Grain texture on photo -->
+                <div
+                  class="pointer-events-none absolute inset-0 opacity-[0.06] mix-blend-overlay"
+                  style="background-image: url(&quot;data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E&quot;);"
+                >
+                </div>
+              </div>
+
+              <!-- Floating tag -->
+              <div
+                class="reveal reveal-delay-3 absolute -bottom-3 left-1/2 -translate-x-1/2 sm:bottom-4 sm:left-auto sm:right-[-20px] sm:translate-x-0"
+              >
+                <div
+                  class="flex items-center gap-2 rounded-full border border-accent/[0.06] bg-accent-bg/90 px-3 py-1.5 backdrop-blur-sm sm:px-4 sm:py-2"
+                >
+                  <span
+                    class="iconify text-[10px] text-accent opacity-50 tabler--coffee sm:text-xs"
+                    aria-hidden="true"></span>
+                  <span
+                    class="text-[9px] font-medium uppercase tracking-[0.12em] opacity-40 sm:text-[10px] sm:tracking-[0.15em]"
+                    >Barista &amp; Dev</span
+                  >
+                </div>
+              </div>
+            </div>
+
+            <!-- RIGHT: Text block — name overlaps photo on desktop -->
+            <div
+              class="relative z-20 order-1 text-center sm:order-2 sm:-ml-[15%] sm:text-left"
+            >
+              <!-- "David" -->
+              <div class="text-split-line" data-split-delay="200">
+                <span
+                  class="inline-block font-display text-[clamp(3rem,14vw,9rem)] font-bold leading-[0.85] tracking-[-0.06em] text-accent sm:text-[clamp(3.5rem,12vw,9rem)]"
+                >
+                  David
+                </span>
+              </div>
+
+              <!-- "San Luis" — serif italic -->
+              <div class="text-split-line" data-split-delay="350">
+                <span
+                  class="inline-block font-serif text-[clamp(2.5rem,11vw,7.5rem)] leading-[0.88] tracking-[-0.02em] text-accent opacity-65 sm:text-[clamp(3rem,10vw,7.5rem)]"
+                >
+                  San Luis
+                </span>
+              </div>
+
+              <!-- Subtitle + micro-bio -->
+              <div
+                class="reveal reveal-delay-4 mx-auto mt-6 max-w-[280px] sm:mx-0 sm:mt-12 sm:max-w-[300px]"
+              >
+                <p
+                  class="text-[12px] leading-[1.7] opacity-30 sm:text-[13px] sm:leading-[1.8]"
+                >
+                  Construyo experiencias digitales con tecnologías modernas y
+                  exploro el café de especialidad como barista.
+                </p>
+                <p
+                  class="mt-2 font-serif text-[12px] italic opacity-20 sm:mt-3 sm:text-[13px]"
+                >
+                  &mdash; Desde México
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom row -->
+          <div
+            class="relative z-10 flex items-end justify-between pb-4 pt-2 sm:pb-6 sm:pt-4"
+          >
+            <div class="reveal flex items-center gap-4">
+              <div class="flex h-6 w-[1px] flex-col overflow-hidden sm:h-8">
+                <div
+                  class="h-full w-full animate-pulse"
+                  style="background: linear-gradient(to bottom, rgba(var(--accent), 0.12), transparent);"
+                >
+                </div>
+              </div>
+              <span
+                class="text-[8px] uppercase tracking-[0.3em] opacity-10 sm:text-[9px]"
+                >Scroll</span
+              >
+            </div>
+            <span
+              class="reveal font-serif text-[9px] italic opacity-10 sm:text-[10px]"
+              >&copy; 2026</span
+            >
+          </div>
         </section>
 
-        <!-- Quick Links -->
-        <section class="mt-12 grid grid-cols-2 gap-3 sm:grid-cols-4">
-          <a href="/posts" class="group flex flex-col items-center gap-2 rounded-xl border border-accent/10 bg-accent/[0.03] p-4 no-underline transition-all duration-300 hover:border-accent/30 hover:bg-accent/[0.06]">
-            <span class="iconify tabler--article text-2xl text-accent opacity-60 transition-opacity group-hover:opacity-100" />
-            <span class="text-sm font-medium opacity-70 group-hover:opacity-100">Blog</span>
-          </a>
-          <a href="/projects" class="group flex flex-col items-center gap-2 rounded-xl border border-accent/10 bg-accent/[0.03] p-4 no-underline transition-all duration-300 hover:border-accent/30 hover:bg-accent/[0.06]">
-            <span class="iconify tabler--code text-2xl text-accent opacity-60 transition-opacity group-hover:opacity-100" />
-            <span class="text-sm font-medium opacity-70 group-hover:opacity-100">Proyectos</span>
-          </a>
-          <a href="/barista-roadmap" class="group flex flex-col items-center gap-2 rounded-xl border border-accent/10 bg-accent/[0.03] p-4 no-underline transition-all duration-300 hover:border-accent/30 hover:bg-accent/[0.06]">
-            <span class="iconify tabler--coffee text-2xl text-accent opacity-60 transition-opacity group-hover:opacity-100" />
-            <span class="text-sm font-medium opacity-70 group-hover:opacity-100">Cafe</span>
-          </a>
-          <a href="/about" class="group flex flex-col items-center gap-2 rounded-xl border border-accent/10 bg-accent/[0.03] p-4 no-underline transition-all duration-300 hover:border-accent/30 hover:bg-accent/[0.06]">
-            <span class="iconify tabler--user text-2xl text-accent opacity-60 transition-opacity group-hover:opacity-100" />
-            <span class="text-sm font-medium opacity-70 group-hover:opacity-100">Sobre mi</span>
-          </a>
-        </section>
+        <!-- ═══════════════════════════════════════════════════════════ -->
+        <!-- MARQUEE                                                     -->
+        <!-- ═══════════════════════════════════════════════════════════ -->
+        <div class="reveal py-4 sm:py-6">
+          <div
+            class="marquee text-[9px] font-medium uppercase tracking-[0.3em] opacity-10 sm:text-[10px] sm:tracking-[0.35em]"
+          >
+            <div class="marquee-content">
+              <span>Angular</span><span>&bull;</span>
+              <span>NestJS</span><span>&bull;</span>
+              <span>Astro</span><span>&bull;</span>
+              <span>TypeScript</span><span>&bull;</span>
+              <span>Espresso</span><span>&bull;</span>
+              <span>Latte Art</span><span>&bull;</span>
+              <span>V60</span><span>&bull;</span>
+              <span>Firebase</span><span>&bull;</span>
+              <span>Ionic</span><span>&bull;</span>
+              <span>Open Source</span><span>&bull;</span>
+              <span>Specialty Coffee</span><span>&bull;</span>
+              <span>PWA</span><span>&bull;</span>
+            </div>
+            <div class="marquee-content" aria-hidden="true">
+              <span>Angular</span><span>&bull;</span>
+              <span>NestJS</span><span>&bull;</span>
+              <span>Astro</span><span>&bull;</span>
+              <span>TypeScript</span><span>&bull;</span>
+              <span>Espresso</span><span>&bull;</span>
+              <span>Latte Art</span><span>&bull;</span>
+              <span>V60</span><span>&bull;</span>
+              <span>Firebase</span><span>&bull;</span>
+              <span>Ionic</span><span>&bull;</span>
+              <span>Open Source</span><span>&bull;</span>
+              <span>Specialty Coffee</span><span>&bull;</span>
+              <span>PWA</span><span>&bull;</span>
+            </div>
+          </div>
+        </div>
 
-        <!-- Recent Posts -->
-        <section class="mt-12">
-          <div class="mb-6 flex items-center justify-between">
-            <h2 class="text-2xl font-bold tracking-tight text-accent">
-              Posts recientes
-            </h2>
-            <a href="/posts" class="clickable text-sm font-medium">
-              Ver todos &rarr;
+        <!-- ═══════════════════════════════════════════════════════════ -->
+        <!-- S02 — EXPLORE: Full-width editorial rows                   -->
+        <!-- ═══════════════════════════════════════════════════════════ -->
+        <section class="py-16 sm:py-24" id="explore-section">
+          <div class="reveal mb-12 flex items-center gap-4 sm:mb-20 sm:gap-6">
+            <span class="section-number">(01)</span>
+            <span class="section-label">Explora</span>
+            <div class="hr-animated reveal flex-1"></div>
+          </div>
+
+          <div class="flex flex-col gap-0">
+            <!-- Blog row -->
+            <a
+              href="/posts"
+              class="explore-row reveal group flex items-center justify-between border-b border-accent/[0.04] py-6 no-underline transition-all duration-700 sm:py-10"
+              data-cursor-hover
+            >
+              <div class="flex items-center gap-3 sm:gap-8">
+                <span
+                  class="section-number transition-opacity duration-500 group-hover:opacity-60"
+                  >(01)</span
+                >
+                <h3
+                  class="font-serif text-[clamp(1.6rem,6vw,3.5rem)] leading-[1] tracking-tight text-accent transition-all duration-700 group-hover:tracking-[-0.01em]"
+                >
+                  Blog
+                </h3>
+              </div>
+              <div class="flex items-center gap-3 sm:gap-8">
+                <span
+                  class="hidden text-[12px] leading-relaxed opacity-0 transition-all duration-700 group-hover:opacity-30 sm:block sm:max-w-[200px]"
+                >
+                  Artículos sobre desarrollo web y herramientas modernas.
+                </span>
+                <div
+                  class="flex h-9 w-9 items-center justify-center rounded-full border border-accent/[0.06] text-sm opacity-30 transition-all duration-700 group-hover:scale-110 group-hover:border-accent/20 group-hover:opacity-70 sm:h-12 sm:w-12"
+                >
+                  <span
+                    class="transition-transform duration-700 group-hover:translate-x-1"
+                    >&rarr;</span
+                  >
+                </div>
+              </div>
+            </a>
+
+            <!-- Projects row -->
+            <a
+              href="/projects"
+              class="explore-row reveal group flex items-center justify-between border-b border-accent/[0.04] py-6 no-underline transition-all duration-700 sm:py-10"
+              data-cursor-hover
+            >
+              <div class="flex items-center gap-3 sm:gap-8">
+                <span
+                  class="section-number transition-opacity duration-500 group-hover:opacity-60"
+                  >(02)</span
+                >
+                <h3
+                  class="font-serif text-[clamp(1.6rem,6vw,3.5rem)] leading-[1] tracking-tight text-accent transition-all duration-700 group-hover:tracking-[-0.01em]"
+                >
+                  Proyectos
+                </h3>
+              </div>
+              <div class="flex items-center gap-3 sm:gap-8">
+                <span
+                  class="hidden text-[12px] leading-relaxed opacity-0 transition-all duration-700 group-hover:opacity-30 sm:block sm:max-w-[200px]"
+                >
+                  Apps open source con Angular, NestJS, Astro y más.
+                </span>
+                <div
+                  class="flex h-9 w-9 items-center justify-center rounded-full border border-accent/[0.06] text-sm opacity-30 transition-all duration-700 group-hover:scale-110 group-hover:border-accent/20 group-hover:opacity-70 sm:h-12 sm:w-12"
+                >
+                  <span
+                    class="transition-transform duration-700 group-hover:translate-x-1"
+                    >&rarr;</span
+                  >
+                </div>
+              </div>
+            </a>
+
+            <!-- Coffee row -->
+            <a
+              href="/barista-roadmap"
+              class="explore-row reveal group flex items-center justify-between py-6 no-underline transition-all duration-700 sm:py-10"
+              data-cursor-hover
+            >
+              <div class="flex items-center gap-3 sm:gap-8">
+                <span
+                  class="section-number transition-opacity duration-500 group-hover:opacity-60"
+                  >(03)</span
+                >
+                <h3
+                  class="font-serif text-[clamp(1.6rem,6vw,3.5rem)] leading-[1] tracking-tight text-accent transition-all duration-700 group-hover:tracking-[-0.01em]"
+                >
+                  Café
+                </h3>
+              </div>
+              <div class="flex items-center gap-3 sm:gap-8">
+                <span
+                  class="hidden text-[12px] leading-relaxed opacity-0 transition-all duration-700 group-hover:opacity-30 sm:block sm:max-w-[200px]"
+                >
+                  Extracción, latte art y ciencia del café de especialidad.
+                </span>
+                <div
+                  class="flex h-9 w-9 items-center justify-center rounded-full border border-accent/[0.06] text-sm opacity-30 transition-all duration-700 group-hover:scale-110 group-hover:border-accent/20 group-hover:opacity-70 sm:h-12 sm:w-12"
+                >
+                  <span
+                    class="transition-transform duration-700 group-hover:translate-x-1"
+                    >&rarr;</span
+                  >
+                </div>
+              </div>
             </a>
           </div>
-          <PostsList posts={recentPosts} featured={true} />
+        </section>
+
+        <!-- ═══════════════════════════════════════════════════════════ -->
+        <!-- S03 — FEATURED WRITING                                      -->
+        <!-- ═══════════════════════════════════════════════════════════ -->
+        <section class="py-16 sm:py-24">
+          <div class="reveal mb-10 flex items-center gap-4 sm:mb-16 sm:gap-6">
+            <span class="section-number">(02)</span>
+            <span class="section-label">Escritura reciente</span>
+            <div class="hr-animated reveal flex-1"></div>
+            <a
+              href="/posts"
+              class="group inline-flex items-center gap-2 text-[10px] font-medium uppercase tracking-[0.15em] no-underline opacity-20 transition-all duration-500 hover:opacity-50 sm:text-[11px]"
+              data-cursor-hover
+            >
+              Archivo
+              <span
+                class="inline-block transition-transform duration-500 group-hover:translate-x-2"
+                >&rarr;</span
+              >
+            </a>
+          </div>
+
+          <!-- Featured post as large editorial quote -->
+          {
+            recentPosts[0] && (
+              <div class="reveal mb-10 sm:mb-12">
+                <a
+                  href={`/posts/${recentPosts[0].slug}`}
+                  class="group block no-underline"
+                  data-cursor-hover
+                  data-astro-prefetch
+                >
+                  <h2 class="font-serif text-[clamp(1.6rem,5vw,3.5rem)] italic leading-[1.15] tracking-tight text-accent transition-opacity duration-500 group-hover:opacity-70 sm:leading-[1.1]">
+                    &ldquo;{recentPosts[0].data.title}&rdquo;
+                  </h2>
+                  <div class="mt-3 flex flex-wrap items-center gap-3 sm:mt-4 sm:gap-4">
+                    <time class="text-[10px] font-medium uppercase tracking-[0.15em] opacity-20 sm:text-[11px]">
+                      {recentPosts[0].data.publishedDate.toLocaleDateString(
+                        'es-MX',
+                        { year: 'numeric', month: 'long', day: 'numeric' }
+                      )}
+                    </time>
+                    <span class="bg-accent/8 h-[1px] w-6 sm:w-8" />
+                    <span class="text-[10px] uppercase tracking-[0.15em] opacity-20 transition-all duration-500 group-hover:tracking-[0.2em] group-hover:opacity-40 sm:text-[11px]">
+                      Leer &rarr;
+                    </span>
+                  </div>
+                </a>
+              </div>
+            )
+          }
+
+          <div class="hr-animated reveal mb-6 sm:mb-8"></div>
+
+          <PostsList posts={recentPosts.slice(1)} />
+        </section>
+
+        <!-- ═══════════════════════════════════════════════════════════ -->
+        <!-- S04 — CONTACT: Typographic links                            -->
+        <!-- ═══════════════════════════════════════════════════════════ -->
+        <section class="relative py-20 sm:py-32" id="contact-section">
+          <div class="reveal mb-8 flex items-center gap-4 sm:mb-12 sm:gap-6">
+            <span class="section-number">(03)</span>
+            <span class="section-label">Contacto</span>
+            <div class="hr-animated reveal flex-1"></div>
+          </div>
+
+          <!-- Headline -->
+          <div class="reveal">
+            <h2
+              class="text-balance font-display text-[clamp(1.8rem,7vw,4.5rem)] font-bold leading-[1] tracking-[-0.05em] text-accent sm:text-[clamp(2rem,6vw,4.5rem)]"
+            >
+              Hagamos algo
+            </h2>
+            <h2
+              class="font-serif text-[clamp(1.8rem,7vw,4.5rem)] italic leading-[1] tracking-tight text-accent opacity-70 sm:text-[clamp(2rem,6vw,4.5rem)]"
+            >
+              increíble juntos.
+            </h2>
+          </div>
+
+          <!-- Contact links — typographic rows -->
+          <div class="reveal reveal-delay-2 mt-10 flex flex-col gap-0 sm:mt-16">
+            <a href="mailto:david_sanluis@outlook.com" class="contact-link group flex flex-col gap-1 border-b border-accent/[0.04] py-4 no-underline transition-all duration-500 sm:flex-row sm:items-center sm:justify-between sm:py-6" data-cursor-hover>
+              <span class="text-[10px] font-medium uppercase tracking-[0.2em] opacity-20 transition-opacity duration-500 group-hover:opacity-50 sm:text-[11px]">Email</span>
+              <span class="break-all font-serif text-base italic text-accent opacity-50 transition-all duration-500 group-hover:opacity-100 sm:break-normal sm:text-xl sm:group-hover:tracking-wide">
+                david_sanluis@outlook.com
+              </span>
+            </a>
+
+            <a href="https://www.linkedin.com/in/davidsanluisaguirre" target="_blank" rel="noopener noreferrer" class="contact-link group flex flex-col gap-1 border-b border-accent/[0.04] py-4 no-underline transition-all duration-500 sm:flex-row sm:items-center sm:justify-between sm:py-6" data-cursor-hover>
+              <span class="text-[10px] font-medium uppercase tracking-[0.2em] opacity-20 transition-opacity duration-500 group-hover:opacity-50 sm:text-[11px]">LinkedIn</span>
+              <span class="font-serif text-base italic text-accent opacity-50 transition-all duration-500 group-hover:opacity-100 sm:text-xl sm:group-hover:tracking-wide">
+                davidsanluisaguirre
+              </span>
+            </a>
+
+            <a href="https://github.com/Davidsmait" target="_blank" rel="noopener noreferrer" class="contact-link group flex flex-col gap-1 border-b border-accent/[0.04] py-4 no-underline transition-all duration-500 sm:flex-row sm:items-center sm:justify-between sm:py-6" data-cursor-hover>
+              <span class="text-[10px] font-medium uppercase tracking-[0.2em] opacity-20 transition-opacity duration-500 group-hover:opacity-50 sm:text-[11px]">GitHub</span>
+              <span class="font-serif text-base italic text-accent opacity-50 transition-all duration-500 group-hover:opacity-100 sm:text-xl sm:group-hover:tracking-wide">
+                Davidsmait
+              </span>
+            </a>
+
+            <a href="https://www.instagram.com/davidsanluisaguirre/" target="_blank" rel="noopener noreferrer" class="contact-link group flex flex-col gap-1 py-4 no-underline transition-all duration-500 sm:flex-row sm:items-center sm:justify-between sm:py-6" data-cursor-hover>
+              <span class="text-[10px] font-medium uppercase tracking-[0.2em] opacity-20 transition-opacity duration-500 group-hover:opacity-50 sm:text-[11px]">Instagram</span>
+              <span class="font-serif text-base italic text-accent opacity-50 transition-all duration-500 group-hover:opacity-100 sm:text-xl sm:group-hover:tracking-wide">
+                @davidsanluisaguirre
+              </span>
+            </a>
+          </div>
+
+          <!-- Ambient glow -->
+          <div
+            class="pointer-events-none absolute -bottom-[30%] left-[10%] h-[300px] w-[400px] rounded-full opacity-[0.02] blur-[120px] sm:h-[400px] sm:w-[600px] sm:blur-[150px]"
+            style="background: rgb(var(--accent-glow, var(--accent)));"
+          >
+          </div>
         </section>
       </main>
 
-      <footer class="mt-12">
-        <Separator />
-        <div class="flex items-center justify-between gap-2 py-4 text-2xl sm:py-8">
-          <span class="text-sm opacity-50">Dev + Coffee lover desde Mexico</span>
-          <div class="grow"></div>
-          {config.footerItems.map((item) => <FooterItem {item} />)}
-          {config.modeToggle && <ModeToggle />}
+      <!-- ═══════════════════════════════════════════════════════════ -->
+      <!-- FOOTER — Editorial signature                               -->
+      <!-- ═══════════════════════════════════════════════════════════ -->
+      <footer class="relative pb-10 pt-6 sm:pb-14 sm:pt-8">
+        <div class="hr-animated reveal"></div>
+
+        <!-- Main footer content -->
+        <div class="reveal pt-10 sm:pt-12">
+          <!-- Large signature name -->
+          <div class="mb-8 sm:mb-10">
+            <span class="font-serif text-[clamp(2rem,5vw,3.5rem)] italic leading-[1] tracking-tight text-accent opacity-20">
+              {config.author}
+            </span>
+          </div>
+
+          <!-- Bottom row: info + actions -->
+          <div class="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+            <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-8">
+              <span class="text-[10px] font-medium uppercase tracking-[0.25em] opacity-15 sm:text-[11px]">
+                Desarrollo &amp; Café de especialidad
+              </span>
+              <span class="hidden h-3 w-[1px] bg-accent/8 sm:block"></span>
+              <span class="text-[10px] font-medium uppercase tracking-[0.25em] opacity-15 sm:text-[11px]">
+                México
+              </span>
+              <span class="hidden h-3 w-[1px] bg-accent/8 sm:block"></span>
+              <span class="font-serif text-[11px] italic opacity-12">&copy; 2026</span>
+            </div>
+
+            <div class="flex items-center gap-5 text-lg">
+              {config.footerItems.map((item) => <FooterItem {item} />)}
+              {config.modeToggle && <ModeToggle />}
+            </div>
+          </div>
         </div>
       </footer>
     </div>
   </div>
+
+  <!-- SCRIPTS -->
+  <script>
+    function initAwwwardsInteractions() {
+      const isTouchDevice =
+        'ontouchstart' in window || navigator.maxTouchPoints > 0
+      const isFineCursor = window.matchMedia('(pointer: fine)').matches
+
+      // ── Custom cursor — only on fine pointer devices ──
+      const cursor = document.getElementById('custom-cursor')
+      if (cursor && isFineCursor && !isTouchDevice) {
+        let mouseX = 0,
+          mouseY = 0
+        let cursorX = 0,
+          cursorY = 0
+
+        document.addEventListener('mousemove', (e) => {
+          mouseX = e.clientX
+          mouseY = e.clientY
+          cursor.classList.add('visible')
+        })
+
+        document.addEventListener('mouseleave', () => {
+          cursor.classList.remove('visible')
+        })
+
+        function animateCursor() {
+          cursorX += (mouseX - cursorX) * 0.12
+          cursorY += (mouseY - cursorY) * 0.12
+          cursor.style.left = cursorX + 'px'
+          cursor.style.top = cursorY + 'px'
+          requestAnimationFrame(animateCursor)
+        }
+        animateCursor()
+
+        const hoverTargets = document.querySelectorAll(
+          'a, button, [data-cursor-hover]'
+        )
+        hoverTargets.forEach((el) => {
+          el.addEventListener('mouseenter', () =>
+            cursor.classList.add('hovering')
+          )
+          el.addEventListener('mouseleave', () =>
+            cursor.classList.remove('hovering')
+          )
+        })
+      }
+
+      // ── Scroll reveals ──
+      const reveals = document.querySelectorAll(
+        '.reveal, .stagger-children, .hr-animated'
+      )
+      if (reveals.length) {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) entry.target.classList.add('revealed')
+            })
+          },
+          { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
+        )
+        reveals.forEach((el) => observer.observe(el))
+      }
+
+      // ── Text split reveal ──
+      const splitLines = document.querySelectorAll('.text-split-line')
+      if (splitLines.length) {
+        const splitObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                const delay = parseInt(entry.target.dataset.splitDelay || '0')
+                setTimeout(() => entry.target.classList.add('revealed'), delay)
+              }
+            })
+          },
+          { threshold: 0.3 }
+        )
+        splitLines.forEach((el) => splitObserver.observe(el))
+      }
+
+      // ── Explore rows: horizontal slide on hover (desktop only) ──
+      if (!isTouchDevice) {
+        const exploreRows = document.querySelectorAll('.explore-row')
+        exploreRows.forEach((row) => {
+          row.addEventListener('mouseenter', () => {
+            const title = row.querySelector('h3')
+            if (title)
+              (title as HTMLElement).style.transform = 'translateX(12px)'
+          })
+          row.addEventListener('mouseleave', () => {
+            const title = row.querySelector('h3')
+            if (title) (title as HTMLElement).style.transform = 'translateX(0)'
+          })
+        })
+      }
+
+      // ── Contact links: indent on hover (desktop only) ──
+      if (!isTouchDevice) {
+        const contactLinks = document.querySelectorAll('.contact-link')
+        contactLinks.forEach((link) => {
+          const el = link as HTMLElement
+          el.addEventListener('mouseenter', () => {
+            el.style.paddingLeft = '16px'
+          })
+          el.addEventListener('mouseleave', () => {
+            el.style.paddingLeft = '0'
+          })
+        })
+      }
+
+      // ── Hero photo parallax on scroll ──
+      const heroPhoto = document.querySelector(
+        '.hero-photo'
+      ) as HTMLElement | null
+      if (heroPhoto) {
+        let ticking = false
+        const parallaxRate = isTouchDevice ? 0.04 : 0.08
+
+        window.addEventListener(
+          'scroll',
+          () => {
+            if (!ticking) {
+              requestAnimationFrame(() => {
+                const scrollY = window.scrollY
+                const rate = scrollY * parallaxRate
+                heroPhoto.style.transform = `scale(1.05) translateY(${rate}px)`
+                ticking = false
+              })
+              ticking = true
+            }
+          },
+          { passive: true }
+        )
+      }
+
+      // ── Hero photo hover zoom (desktop only) ──
+      const heroPhotoWrap = document.querySelector(
+        '.hero-photo-wrap'
+      ) as HTMLElement | null
+      if (heroPhotoWrap && heroPhoto && !isTouchDevice) {
+        heroPhotoWrap.addEventListener('mouseenter', () => {
+          heroPhoto.style.transform = `scale(1.08)`
+        })
+        heroPhotoWrap.addEventListener('mouseleave', () => {
+          heroPhoto.style.transform = `scale(1.05)`
+        })
+      }
+
+      document.documentElement.style.scrollBehavior = 'smooth'
+    }
+
+    document.addEventListener('astro:page-load', initAwwwardsInteractions)
+  </script>
+
+  <!-- Inline styles for interactions -->
+  <style>
+    .explore-row h3 {
+      transition:
+        transform 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+        letter-spacing 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .contact-link {
+      transition:
+        padding-left 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+        background 0.5s ease;
+    }
+
+    .contact-link:hover {
+      background: rgba(var(--accent), 0.015);
+    }
+
+    /* Mobile active states replacing hover */
+    @media (hover: none) {
+      .explore-row:active {
+        background: rgba(var(--accent), 0.02);
+      }
+
+      .explore-row:active h3 {
+        transform: translateX(6px);
+      }
+
+      .contact-link:active {
+        background: rgba(var(--accent), 0.03);
+      }
+
+      /* Reduce reveal motion on mobile for performance */
+      .reveal {
+        transform: translateY(24px);
+      }
+    }
+  </style>
 </BaseLayout>
