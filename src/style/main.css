@@ -37,7 +37,7 @@
     --cursor-size: 16px;
 
     #page-wrapper {
-      @apply mx-auto flex min-h-[100svh] w-full max-w-full flex-col justify-between overflow-x-hidden sm:max-w-[92%] lg:max-w-5xl;
+      @apply mx-auto flex min-h-[100svh] w-full max-w-full flex-col justify-between sm:max-w-[92%] lg:max-w-5xl;
     }
   }
 
