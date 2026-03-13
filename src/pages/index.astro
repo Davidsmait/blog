@@ -105,6 +105,14 @@ const recentPosts = allPosts
                     >
                   </h1>
                 </div>
+                <!-- "BASED IN MÉXICO" — desktop, tight under title, right-aligned -->
+                <div class="hero-fade -mt-1 hidden sm:block" data-hero-delay="500">
+                  <span
+                    class="float-right text-[10px] font-medium uppercase tracking-[0.5em] opacity-15"
+                  >
+                    B&thinsp;A&thinsp;S&thinsp;E&thinsp;D&ensp;&ensp;I&thinsp;N&ensp;&ensp;M&thinsp;É&thinsp;X&thinsp;I&thinsp;C&thinsp;O
+                  </span>
+                </div>
               </div>
               <!-- Mobile -->
               <div class="w-full sm:hidden">
@@ -125,6 +133,7 @@ const recentPosts = allPosts
                 <div class="hero-title-wrap overflow-hidden">
                   <div class="hero-title-line" data-hero-delay="420">
                     <span
+                      id="hero-developer-mobile"
                       class="hero-mega-text font-display font-bold uppercase leading-[0.85] tracking-[-0.04em] text-accent"
                       style="font-size: clamp(2.6rem, 15.5vw, 5.2rem);"
                     >
@@ -142,18 +151,80 @@ const recentPosts = allPosts
                     </span>
                   </div>
                 </div>
+
+                <!-- "BASED IN MÉXICO" — mobile only, tight under text -->
+                <div class="hero-fade -mt-1 sm:hidden" data-hero-delay="500">
+                  <span
+                    id="based-in-mexico"
+                    class="block text-[9px] font-medium uppercase opacity-15"
+                    style="text-align: justify; text-align-last: justify;"
+                  >
+                    B A S E D &ensp; I N &ensp; M É X I C O
+                  </span>
+                </div>
               </div>
             </div>
 
             <!-- ═══ PHOTO + INFO — pulled up under text ═══ -->
-            <div class="relative -mt-2 sm:-mt-[4.5vw]">
-              <!-- Photo — centered, z-10 (behind text z-20) -->
+            <div class="relative -mt-2 sm:-mt-[8vw]">
+              <!-- Mobile: photo left + descriptors right -->
+              <div class="flex items-end gap-4 sm:hidden">
+                <!-- Photo — left, square crop -->
+                <div
+                  class="hero-fade relative z-10 shrink-0"
+                  data-hero-delay="500"
+                >
+                  <div
+                    class="hero-photo-wrap relative aspect-square w-[40vw] max-w-[200px] overflow-hidden"
+                  >
+                    <img
+                      src="/me/me5-hero.jpeg"
+                      alt="David San Luis Aguirre"
+                      width="400"
+                      height="533"
+                      loading="eager"
+                      class="hero-photo h-full w-full object-cover transition-transform duration-[1.5s]"
+                      style="transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);"
+                    />
+                    <div
+                      class="pointer-events-none absolute inset-0"
+                      style="background: linear-gradient(to top, rgb(var(--accent-bg)) 0%, transparent 30%);"
+                    >
+                    </div>
+                    <div
+                      class="pointer-events-none absolute inset-0 opacity-[0.06] mix-blend-overlay"
+                      style="background-image: url(&quot;data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E&quot;);"
+                    >
+                    </div>
+                  </div>
+                </div>
+                <!-- Descriptors — right -->
+                <div
+                  class="hero-fade flex flex-col gap-2.5"
+                  data-hero-delay="850"
+                >
+                  <span
+                    class="font-display text-[10px] font-semibold uppercase tracking-[0.12em] opacity-50"
+                    ><span class="text-accent opacity-70">/</span> Web Development</span
+                  >
+                  <span
+                    class="font-display text-[10px] font-semibold uppercase tracking-[0.12em] opacity-50"
+                    ><span class="text-accent opacity-70">/</span> Barista de Especialidad</span
+                  >
+                  <span
+                    class="font-display text-[10px] font-semibold uppercase tracking-[0.12em] opacity-50"
+                    ><span class="text-accent opacity-70">/</span> Open Source</span
+                  >
+                </div>
+              </div>
+
+              <!-- Desktop: photo centered -->
               <div
-                class="hero-fade relative z-10 mx-auto"
+                class="hero-fade relative z-10 mx-auto hidden sm:block"
                 data-hero-delay="500"
               >
                 <div
-                  class="hero-photo-wrap relative mx-auto aspect-[3/4] w-[55vw] max-w-[260px] overflow-hidden sm:w-[24vw] sm:max-w-[350px]"
+                  class="hero-photo-wrap relative mx-auto aspect-[3/4] w-[24vw] max-w-[350px] overflow-hidden"
                 >
                   <img
                     src="/me/me5-hero.jpeg"
@@ -177,110 +248,100 @@ const recentPosts = allPosts
                 </div>
               </div>
 
-              <!-- "BASED IN MÉXICO" — right side, vertically centered with photo -->
+              <!-- Descriptors — desktop only, absolute left -->
               <div
-                class="hero-fade absolute right-0 top-[12%] z-10 hidden sm:block"
-                data-hero-delay="800"
-              >
-                <span
-                  class="text-[10px] font-medium uppercase tracking-[0.6em] opacity-15"
-                >
-                  B&thinsp;A&thinsp;S&thinsp;E&thinsp;D&ensp;&ensp;I&thinsp;N&ensp;&ensp;M&thinsp;É&thinsp;X&thinsp;I&thinsp;C&thinsp;O
-                </span>
-              </div>
-
-              <!-- Descriptors — left side, aligned to photo bottom area -->
-              <div
-                class="hero-fade absolute bottom-[18%] left-0 z-30 hidden flex-col gap-2 sm:flex"
+                class="hero-fade absolute bottom-[18%] left-0 z-30 hidden flex-col gap-2.5 sm:flex"
                 data-hero-delay="850"
               >
                 <span
-                  class="font-display text-[11px] font-medium uppercase tracking-[0.08em] opacity-30"
-                  >/ Web Development</span
+                  class="font-display text-[12px] font-semibold uppercase tracking-[0.12em] opacity-50"
+                  ><span class="text-accent opacity-70">/</span> Web Development</span
                 >
                 <span
-                  class="font-display text-[11px] font-medium uppercase tracking-[0.08em] opacity-30"
-                  >/ Barista de Especialidad</span
+                  class="font-display text-[12px] font-semibold uppercase tracking-[0.12em] opacity-50"
+                  ><span class="text-accent opacity-70">/</span> Barista de Especialidad</span
                 >
                 <span
-                  class="font-display text-[11px] font-medium uppercase tracking-[0.08em] opacity-30"
-                  >/ Open Source</span
+                  class="font-display text-[12px] font-semibold uppercase tracking-[0.12em] opacity-50"
+                  ><span class="text-accent opacity-70">/</span> Open Source</span
                 >
               </div>
             </div>
 
-            <!-- Description — centered -->
+            <!-- Bottom row — editorial CTAs -->
             <div
-              class="hero-fade mx-auto mt-4 max-w-[380px] text-center sm:mt-6"
-              data-hero-delay="950"
+              class="flex items-end justify-between gap-6 pb-6 pt-4 sm:gap-10 sm:pb-10 sm:pt-6"
             >
-              <p
-                class="text-[11px] uppercase leading-[1.8] tracking-[0.02em] opacity-25 sm:text-[13px]"
-              >
-                Construyo experiencias digitales con tecnologías modernas y
-                exploro el café de especialidad como barista
-              </p>
-            </div>
-
-            <!-- Bottom row — clean corner CTAs -->
-            <div
-              class="flex items-end justify-between pb-6 pt-4 sm:pb-10 sm:pt-6"
-            >
+              <!-- Left: Colaborar + email -->
               <a
                 href="mailto:david_sanluis@outlook.com"
-                class="hero-fade group flex items-center gap-1.5 no-underline"
+                class="hero-fade group flex flex-col gap-1.5 no-underline sm:gap-2"
                 data-hero-delay="1050"
                 data-cursor-hover
               >
                 <span
-                  class="text-[9px] font-medium uppercase tracking-[0.15em] opacity-20 transition-opacity duration-500 group-hover:opacity-50 sm:text-[10px]"
+                  class="text-[9px] font-medium uppercase tracking-[0.2em] opacity-20 transition-opacity duration-500 group-hover:opacity-40 sm:text-[10px]"
                 >
                   Disponible para colaborar
                 </span>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="9"
-                  height="9"
-                  viewBox="0 0 21 21"
-                  fill="none"
-                  class="opacity-20 transition-all duration-500 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:opacity-40"
+                <span
+                  class="flex items-center gap-2 font-serif text-[clamp(0.9rem,2.5vw,1.4rem)] italic leading-[1.1] text-accent opacity-40 transition-all duration-500 group-hover:opacity-80 sm:gap-3"
                 >
-                  <path
-                    d="M1.81213 19.1203L19.4395 1.43779M5.76584 1.24781L19.6484 1.2279L19.6922 15.1104"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"></path>
-                </svg>
+                  david_sanluis@outlook.com
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="10"
+                    height="10"
+                    viewBox="0 0 21 21"
+                    fill="none"
+                    class="shrink-0 transition-all duration-500 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                  >
+                    <path
+                      d="M1.81213 19.1203L19.4395 1.43779M5.76584 1.24781L19.6484 1.2279L19.6922 15.1104"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"></path>
+                  </svg>
+                </span>
               </a>
 
-              <a
-                href="/posts"
-                class="hero-fade group flex items-center gap-1.5 no-underline"
-                data-hero-delay="1050"
-                data-cursor-hover
-              >
-                <span
-                  class="text-[9px] font-medium uppercase tracking-[0.15em] opacity-20 transition-opacity duration-500 group-hover:opacity-50 sm:text-[10px]"
+              <!-- Right: Trabajo reciente + post title -->
+              {recentPosts[0] && (
+                <a
+                  href={`/posts/${recentPosts[0].slug}`}
+                  class="hero-fade group flex flex-col items-end gap-1.5 no-underline sm:gap-2"
+                  data-hero-delay="1050"
+                  data-cursor-hover
+                  data-astro-prefetch
                 >
-                  Trabajo reciente
-                </span>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="9"
-                  height="9"
-                  viewBox="0 0 21 21"
-                  fill="none"
-                  class="opacity-20 transition-all duration-500 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:opacity-40"
-                >
-                  <path
-                    d="M1.81213 19.1203L19.4395 1.43779M5.76584 1.24781L19.6484 1.2279L19.6922 15.1104"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"></path>
-                </svg>
-              </a>
+                  <span
+                    class="text-[9px] font-medium uppercase tracking-[0.2em] opacity-20 transition-opacity duration-500 group-hover:opacity-40 sm:text-[10px]"
+                  >
+                    Trabajo reciente
+                  </span>
+                  <span
+                    class="flex items-center gap-2 text-right font-serif text-[clamp(0.9rem,2.5vw,1.4rem)] italic leading-[1.1] text-accent opacity-40 transition-all duration-500 group-hover:opacity-80 sm:gap-3"
+                  >
+                    {recentPosts[0].data.title}
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="10"
+                      height="10"
+                      viewBox="0 0 21 21"
+                      fill="none"
+                      class="shrink-0 transition-all duration-500 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                    >
+                      <path
+                        d="M1.81213 19.1203L19.4395 1.43779M5.76584 1.24781L19.6484 1.2279L19.6922 15.1104"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"></path>
+                    </svg>
+                  </span>
+                </a>
+              )}
             </div>
           </div>
         </section>
@@ -714,6 +775,19 @@ const recentPosts = allPosts
         fitText()
         window.addEventListener('resize', fitText)
       }
+
+      // ── "BASED IN MÉXICO" — match width to title on both mobile & desktop ──
+      const fitBasedInMexico = () => {
+        // Mobile: match to Developer line
+        const devMobile = document.getElementById('hero-developer-mobile')
+        const basedMobile = document.getElementById('based-in-mexico')
+        if (devMobile && basedMobile) {
+          const w = devMobile.offsetWidth
+          if (w > 0) basedMobile.style.width = w + 'px'
+        }
+      }
+      setTimeout(fitBasedInMexico, 100)
+      window.addEventListener('resize', fitBasedInMexico)
 
       // ── Hero entrance animation — staggered like Olha ──
       const heroTitleLines = document.querySelectorAll('.hero-title-line')
