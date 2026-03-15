@@ -160,7 +160,7 @@ const latestPhaseName = phaseNames[highestPhase] ?? `Fase ${highestPhase}`
                 </div>
               </div>
               <!-- Mobile -->
-              <div class="w-full sm:hidden">
+              <div class="w-full text-center sm:hidden">
                 <div class="hero-title-wrap overflow-hidden">
                   <div class="hero-title-line" data-hero-delay="300">
                     <h1
@@ -202,7 +202,7 @@ const latestPhaseName = phaseNames[highestPhase] ?? `Fase ${highestPhase}`
                   <span
                     id="based-in-mexico"
                     class="block text-[9px] font-medium uppercase opacity-15"
-                    style="text-align: justify; text-align-last: justify;"
+                    style="text-align: center; letter-spacing: 0.3em;"
                   >
                     B A S E D &ensp; I N &ensp; M É X I C O
                   </span>
@@ -212,8 +212,8 @@ const latestPhaseName = phaseNames[highestPhase] ?? `Fase ${highestPhase}`
 
             <!-- ═══ PHOTO + INFO — pulled up under text ═══ -->
             <div class="relative -mt-2 sm:-mt-[8vw]">
-              <!-- Mobile: photo left + descriptors right -->
-              <div class="flex items-end gap-4 sm:hidden">
+              <!-- Mobile: photo centered + descriptors below -->
+              <div class="flex flex-col items-center gap-4 sm:hidden">
                 <!-- Photo — left, square crop -->
                 <div
                   class="hero-fade relative z-10 shrink-0"
@@ -243,9 +243,9 @@ const latestPhaseName = phaseNames[highestPhase] ?? `Fase ${highestPhase}`
                     </div>
                   </div>
                 </div>
-                <!-- Descriptors — right -->
+                <!-- Descriptors — centered -->
                 <div
-                  class="hero-fade flex flex-col gap-2.5"
+                  class="hero-fade flex flex-col items-center gap-2.5"
                   data-hero-delay="850"
                 >
                   <span
