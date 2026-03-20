@@ -44,7 +44,10 @@ const openGraphImageUrl = new URL(
 ---
 
 <!doctype html>
-<html lang={Astro.currentLocale || config.locale || 'es'} class={config.colorScheme || 'scheme-mono'}>
+<html
+  lang={Astro.currentLocale || config.locale || 'es'}
+  class={config.colorScheme || 'scheme-mono'}
+>
   <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -62,19 +65,53 @@ const openGraphImageUrl = new URL(
     <link rel="sitemap" href="/sitemap-index.xml" />
 
     {/* hreflang for bilingual pages */}
-    {Astro.url.pathname.startsWith('/en/') ? (
-      <>
-        <link rel="alternate" hreflang="en" href={canonicalURL} />
-        <link rel="alternate" hreflang="es" href={new URL(Astro.url.pathname.replace('/en/', '/').replace('cafe-en', 'cafe'), Astro.site).href} />
-        <link rel="alternate" hreflang="x-default" href={new URL(Astro.url.pathname.replace('/en/', '/').replace('cafe-en', 'cafe'), Astro.site).href} />
-      </>
-    ) : Astro.url.pathname.includes('/cafe/') || Astro.url.pathname.includes('/barista-roadmap') ? (
-      <>
-        <link rel="alternate" hreflang="es" href={canonicalURL} />
-        <link rel="alternate" hreflang="en" href={new URL(`/en${Astro.url.pathname}`.replace('/cafe/', '/cafe-en/'), Astro.site).href} />
-        <link rel="alternate" hreflang="x-default" href={canonicalURL} />
-      </>
-    ) : null}
+    {
+      Astro.url.pathname.startsWith('/en/') ? (
+        <>
+          <link rel="alternate" hreflang="en" href={canonicalURL} />
+          <link
+            rel="alternate"
+            hreflang="es"
+            href={
+              new URL(
+                Astro.url.pathname
+                  .replace('/en/', '/')
+                  .replace('cafe-en', 'cafe'),
+                Astro.site
+              ).href
+            }
+          />
+          <link
+            rel="alternate"
+            hreflang="x-default"
+            href={
+              new URL(
+                Astro.url.pathname
+                  .replace('/en/', '/')
+                  .replace('cafe-en', 'cafe'),
+                Astro.site
+              ).href
+            }
+          />
+        </>
+      ) : Astro.url.pathname.includes('/cafe/') ||
+        Astro.url.pathname.includes('/barista-roadmap') ? (
+        <>
+          <link rel="alternate" hreflang="es" href={canonicalURL} />
+          <link
+            rel="alternate"
+            hreflang="en"
+            href={
+              new URL(
+                `/en${Astro.url.pathname}`.replace('/cafe/', '/cafe-en/'),
+                Astro.site
+              ).href
+            }
+          />
+          <link rel="alternate" hreflang="x-default" href={canonicalURL} />
+        </>
+      ) : null
+    }
     <link
       rel="alternate"
       type="application/rss+xml"
@@ -82,9 +119,12 @@ const openGraphImageUrl = new URL(
       href={new URL('feed.xml', Astro.site)}
     />
 
-    <meta property="og:type" content={publishedDate ? "article" : "website"} />
+    <meta property="og:type" content={publishedDate ? 'article' : 'website'} />
     <meta property="og:site_name" content="David San Luis Aguirre" />
-    <meta property="og:locale" content={Astro.currentLocale === 'en' ? 'en_US' : 'es_MX'} />
+    <meta
+      property="og:locale"
+      content={Astro.currentLocale === 'en' ? 'en_US' : 'es_MX'}
+    />
     <meta property="og:title" content={titleWithSuffix} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalURL} />
@@ -126,7 +166,18 @@ const openGraphImageUrl = new URL(
           "@type": "EducationalOrganization",
           "name": "Instituto Tecnológico de Pachuca"
         },
-        "knowsAbout": ["Angular", "NestJS", "TypeScript", "AWS", "Ionic", "Scala", "React", "Next.js", "Specialty Coffee", "Café de Especialidad"],
+        "knowsAbout": [
+          "Angular",
+          "NestJS",
+          "TypeScript",
+          "AWS",
+          "Ionic",
+          "Scala",
+          "React",
+          "Next.js",
+          "Specialty Coffee",
+          "Café de Especialidad"
+        ],
         "sameAs": [
           "https://www.instagram.com/davidsanluisaguirre/",
           "https://www.linkedin.com/in/davidsanluisaguirre",
@@ -143,7 +194,7 @@ const openGraphImageUrl = new URL(
           "addressCountry": "MX"
         }
       }
-      </script>
+    </script>
   </head>
   <body>
     <slot />
