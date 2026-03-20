@@ -1,8 +1,31 @@
 ---
 layout: '@/layouts/PageLayout.astro'
 title: Sobre mí
+description: "David San Luis Aguirre — Desarrollador Fullstack especializado en Angular, NestJS, TypeScript y AWS. +3 años de experiencia construyendo aplicaciones web y móviles en producción."
 activeHeaderLink: Sobre mí
 ---
+
+<script type="application/ld+json">{JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "ProfilePage",
+  "mainEntity": {
+    "@type": "Person",
+    "name": "David San Luis Aguirre",
+    "alternateName": ["David San Luis", "David Aguirre"],
+    "url": "https://davidsanluisaguirre.com",
+    "image": "https://davidsanluisaguirre.com/me/me4.jpeg",
+    "jobTitle": "Fullstack Developer",
+    "description": "Desarrollador Fullstack con +3 años de experiencia construyendo aplicaciones web y móviles en producción. Especializado en Angular, NestJS, TypeScript y AWS.",
+    "worksFor": { "@type": "Organization", "name": "QRSof", "url": "https://qrsof.com" },
+    "alumniOf": { "@type": "EducationalOrganization", "name": "Instituto Tecnológico de Pachuca" },
+    "knowsAbout": ["Angular", "NestJS", "TypeScript", "AWS", "Ionic", "Scala", "React", "Next.js", "LegalTech", "Specialty Coffee"],
+    "sameAs": [
+      "https://www.instagram.com/davidsanluisaguirre/",
+      "https://www.linkedin.com/in/davidsanluisaguirre",
+      "https://github.com/Davidsmait"
+    ]
+  }
+})}</script>
 
 <style>{`
   /* ── Hero ── */
@@ -437,19 +460,19 @@ activeHeaderLink: Sobre mí
   {/* <div class="footer-row">
     <span class="footer-label">Contacto</span>
     <div class="footer-links">
-      <a class="contact-link" href="mailto:david_sanluis@outlook.com">
+      <a class="contact-link" href="mailto:david_sanluis@outlook.com" rel="me">
         <span class="iconify tabler--mail" aria-hidden="true"></span>
         Email
       </a>
-      <a class="contact-link" href="https://www.linkedin.com/in/davidsanluisaguirre" target="_blank" rel="noopener noreferrer">
+      <a class="contact-link" href="https://www.linkedin.com/in/davidsanluisaguirre" target="_blank" rel="me noopener noreferrer">
         <span class="iconify tabler--brand-linkedin" aria-hidden="true"></span>
         LinkedIn
       </a>
-      <a class="contact-link" href="https://github.com/Davidsmait" target="_blank" rel="noopener noreferrer">
+      <a class="contact-link" href="https://github.com/Davidsmait" target="_blank" rel="me noopener noreferrer">
         <span class="iconify tabler--brand-github" aria-hidden="true"></span>
         GitHub
       </a>
-      <a class="contact-link" href="https://www.instagram.com/davidsanluisaguirre" target="_blank" rel="noopener noreferrer">
+      <a class="contact-link" href="https://www.instagram.com/davidsanluisaguirre/" target="_blank" rel="me noopener noreferrer">
         <span class="iconify tabler--brand-instagram" aria-hidden="true"></span>
         Instagram
       </a>
