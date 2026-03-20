@@ -52,9 +52,42 @@ function getPhaseState(phaseNum: number) {
 
 <PageLayout frontmatter={{
   title: 'Specialty Barista Roadmap',
-  description: `${totalLessons} lessons in ${phases.length} phases: from coffee fundamentals to the physics of extraction. Learn to become a professional barista with knowledge from Scott Rao, Jonathan Gagne and the SCA.`,
+  description: `${totalLessons} lessons in ${phases.length} phases: from coffee fundamentals to extraction physics. Become a pro barista with Scott Rao, Gagné and the SCA.`,
   activeHeaderLink: 'Café'
 }}>
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Course",
+    "name": "Specialty Barista Roadmap",
+    "description": `${totalLessons} lessons in ${phases.length} phases: from coffee fundamentals to the physics of extraction.`,
+    "url": "https://davidsanluisaguirre.com/en/barista-roadmap",
+    "inLanguage": "en",
+    "numberOfCredits": totalLessons,
+    "educationalLevel": "Beginner to Expert",
+    "provider": {
+      "@type": "Person",
+      "name": "David San Luis Aguirre",
+      "url": "https://davidsanluisaguirre.com",
+      "sameAs": [
+        "https://www.instagram.com/davidsanluisaguirre/",
+        "https://www.linkedin.com/in/davidsanluisaguirre",
+        "https://github.com/Davidsmait"
+      ]
+    },
+    "hasCourseInstance": phases.map(p => ({
+      "@type": "CourseInstance",
+      "name": `Phase ${p.num}: ${p.title}`,
+      "description": p.desc,
+      "courseMode": "online"
+    })),
+    "about": [
+      { "@type": "Thing", "name": "Specialty Coffee" },
+      { "@type": "Thing", "name": "Barista" },
+      { "@type": "Thing", "name": "Espresso" },
+      { "@type": "Thing", "name": "Latte Art" },
+      { "@type": "Thing", "name": "SCA" }
+    ]
+  })} />
 
   <!-- ── Editorial Header ── -->
   <div class="reveal mb-10 sm:mb-16">

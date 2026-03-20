@@ -82,28 +82,76 @@ const labels = isEnglish
   ? { lesson: 'Lesson', of: 'of', prev: 'Previous', next: 'Next', phaseComplete: 'Phase complete', backToRoadmap: 'Back to roadmap' }
   : { lesson: 'Lección', of: 'de', prev: 'Anterior', next: 'Siguiente', phaseComplete: 'Fase completada', backToRoadmap: 'Volver al roadmap' }
 
+const lessonUrl = new URL(`${lessonBasePath}/${post.slug}`, Astro.site).href
+const roadmapUrl = new URL(roadmapPath, Astro.site).href
+
+// Educational level based on phase
+const educationalLevels: Record<number, string> = {
+  1: 'Beginner', 2: 'Beginner', 3: 'Intermediate',
+  4: 'Intermediate', 5: 'Intermediate', 6: 'Advanced',
+  7: 'Advanced', 8: 'Advanced', 9: 'Expert'
+}
+
 const jsonLd = JSON.stringify({
   "@context": "https://schema.org",
   "@type": "Course",
   "name": frontmatter.title,
   "description": post.data.description,
+  "url": lessonUrl,
   "provider": {
-    "@type": "Organization",
-    "name": isEnglish ? "Specialty Barista Roadmap" : "Roadmap Barista de Especialidad",
-    "url": new URL(roadmapPath, Astro.site).href
+    "@type": "Person",
+    "name": "David San Luis Aguirre",
+    "url": "https://davidsanluisaguirre.com"
   },
   "courseCode": phase ? `BARISTA-${phase}.${lessonNum}` : undefined,
   "inLanguage": lang,
+  "educationalLevel": phase ? educationalLevels[phase] : undefined,
   "isPartOf": {
     "@type": "Course",
     "name": isEnglish ? `Phase ${phase}: ${phaseName}` : `Fase ${phase}: ${phaseName}`,
-    "url": new URL(roadmapPath, Astro.site).href
+    "url": roadmapUrl
   },
   "hasCourseInstance": {
     "@type": "CourseInstance",
     "courseMode": "online",
     "courseWorkload": readingTime
+  },
+  "author": {
+    "@type": "Person",
+    "name": "David San Luis Aguirre",
+    "url": "https://davidsanluisaguirre.com",
+    "sameAs": [
+      "https://www.instagram.com/davidsanluisaguirre/",
+      "https://www.linkedin.com/in/davidsanluisaguirre",
+      "https://github.com/Davidsmait"
+    ]
   }
+})
+
+// BreadcrumbList schema
+const breadcrumbLd = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Roadmap",
+      "item": roadmapUrl
+    },
+    ...(phase && phaseName ? [{
+      "@type": "ListItem",
+      "position": 2,
+      "name": isEnglish ? `Phase ${phase}: ${phaseName}` : `Fase ${phase}: ${phaseName}`,
+      "item": roadmapUrl
+    }] : []),
+    {
+      "@type": "ListItem",
+      "position": phase ? 3 : 2,
+      "name": frontmatter.title,
+      "item": lessonUrl
+    }
+  ]
 })
 
 // Quiz data for this lesson
@@ -124,6 +172,9 @@ const diagram = diagramMap[post.slug] || null
 
 <BaseLayout frontmatter={frontmatter}>
   <script type="application/ld+json" set:html={jsonLd} slot="head" />
+  <script type="application/ld+json" set:html={breadcrumbLd} slot="head" />
+  {prev && <link rel="prev" href={`${lessonBasePath}/${prev.slug}`} slot="head" />}
+  {next && <link rel="next" href={`${lessonBasePath}/${next.slug}`} slot="head" />}
 
   <div id="page-wrapper" class="noise-overlay">
     <div class="px-5 sm:px-6 lg:px-0">

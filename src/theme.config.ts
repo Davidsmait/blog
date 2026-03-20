@@ -41,7 +41,7 @@ export default defineThemeConfig({
   ],
 
   // optional settings
-  locale: 'en',
+  locale: 'es',
   mode: 'dark',
   modeToggle: true,
   colorScheme: 'scheme-premium',

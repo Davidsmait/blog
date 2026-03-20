@@ -39,6 +39,7 @@ const blogPostingSchema = JSON.stringify({
   "url": postUrl,
   "image": ogImageUrl,
   "datePublished": post.data.publishedDate.toISOString(),
+  "dateModified": post.data.publishedDate.toISOString(),
   "author": {
     "@type": "Person",
     "name": "David San Luis Aguirre",

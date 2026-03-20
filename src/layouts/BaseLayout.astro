@@ -118,6 +118,12 @@ const openGraphImageUrl = new URL(
       title={title}
       href={new URL('feed.xml', Astro.site)}
     />
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title="Roadmap Barista de Especialidad"
+      href={new URL('cafe/feed.xml', Astro.site)}
+    />
 
     <meta property="og:type" content={publishedDate ? 'article' : 'website'} />
     <meta property="og:site_name" content="David San Luis Aguirre" />
