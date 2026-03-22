@@ -109,7 +109,7 @@ export const quizzes: Record<string, QuizData> = {
       },
       {
         question:
-          '¿En qué procesamiento el café mantiene parte de la pulpa (mucílago) durante el secado?',
+          '¿En qué procesamiento el café mantiene el mucílago (la capa pegajosa de azúcares) durante el secado?',
         options: [
           'Lavado',
           'Honey o pulped natural',
@@ -153,7 +153,7 @@ export const quizzes: Record<string, QuizData> = {
       },
       {
         question:
-          'In which processing method does coffee retain part of the pulp (mucilage) during drying?',
+          'In which processing method does coffee retain the mucilage (the sticky sugar-rich layer) during drying?',
         options: [
           'Washed',
           'Honey or pulped natural',
@@ -212,6 +212,19 @@ export const quizzes: Record<string, QuizData> = {
         correct: 1,
         explanation:
           'TDS mide concentración (qué tan fuerte está el café) y extracción mide eficiencia (cuánto disolviste del grano). Con el mismo TDS de 1.35%, puedes tener 13.5% de extracción (sub) o 27% (sobre) dependiendo del ratio café:agua.'
+      },
+      {
+        question:
+          '¿En qué orden se extraen los compuestos del café durante la preparación?',
+        options: [
+          'Azúcares → ácidos → amargos',
+          'Ácidos → azúcares → amargos',
+          'Amargos → azúcares → ácidos',
+          'Todos se extraen al mismo tiempo'
+        ],
+        correct: 1,
+        explanation:
+          'Los compuestos se extraen en un orden predecible: primero los ácidos (por eso un café sub-extraído sabe agrio), después los azúcares y caramelos (la zona dulce que buscas), y al final los compuestos amargos y astringentes. Entender este orden es clave para saber qué ajustar cuando tu café no sabe bien.'
       }
     ],
     en: [
@@ -251,6 +264,19 @@ export const quizzes: Record<string, QuizData> = {
         correct: 1,
         explanation:
           'TDS measures concentration (how strong the coffee is) and extraction measures efficiency (how much you dissolved from the bean). With the same 1.35% TDS, you can have 13.5% extraction (under) or 27% (over) depending on the coffee:water ratio.'
+      },
+      {
+        question:
+          'In what order are compounds extracted from coffee during brewing?',
+        options: [
+          'Sugars → acids → bitters',
+          'Acids → sugars → bitters',
+          'Bitters → sugars → acids',
+          'All compounds extract at the same time'
+        ],
+        correct: 1,
+        explanation:
+          'Compounds extract in a predictable order: first acids (which is why under-extracted coffee tastes sour), then sugars and caramels (the sweet spot you\'re aiming for), and finally bitter and astringent compounds. Understanding this order is key to knowing what to adjust when your coffee doesn\'t taste right.'
       }
     ]
   },

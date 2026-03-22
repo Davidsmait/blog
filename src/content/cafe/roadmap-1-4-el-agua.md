@@ -98,9 +98,9 @@ El setup más profesional. Un sistema de ósmosis inversa (RO) elimina práctica
 
 ## La temperatura también importa
 
-Hablamos mucho de minerales, pero la temperatura del agua es igual de crítica. La SCA recomienda preparar café entre **90-96°C** (194-205°F). En ese rango, el agua tiene suficiente energía para disolver los compuestos de sabor sin quemar el café.
+Hablamos mucho de minerales, pero la temperatura del agua es igual de crítica. La SCA recomienda preparar café entre **92-96°C** (197-205°F) — el mismo rango que vimos en la [lección de extracción](/cafe/roadmap-1-3-ciencia-extraccion). En ese rango, el agua tiene suficiente energía para disolver los compuestos de sabor sin quemar el café.
 
-Demasiado caliente (>96°C) y sobre-extraes — el café sale amargo y áspero, porque disuelves compuestos que no quieres en tu taza. Demasiado fría (<90°C) y sub-extraes — sale ácido, delgado, sin cuerpo. Es el mismo principio que con los minerales: el agua necesita las condiciones correctas para hacer su trabajo como solvente.
+Demasiado caliente (>96°C) y sobre-extraes — el café sale amargo y áspero, porque disuelves compuestos que no quieres en tu taza. Demasiado fría (<92°C) y sub-extraes — sale ácido, delgado, sin cuerpo. Es el mismo principio que con los minerales: el agua necesita las condiciones correctas para hacer su trabajo como solvente.
 
 Un tip práctico: si no tienes hervidor con termómetro, hierve el agua y espera 30-45 segundos antes de verterla. Eso te pone en el rango correcto para la mayoría de los métodos de filtrado.
 
