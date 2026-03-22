@@ -258,63 +258,89 @@ export const quizzes: Record<string, QuizData> = {
     es: [
       {
         question:
-          '¿Cuál es el rango ideal de TDS (Total Dissolved Solids) para la extracción de café?',
-        options: ['50-100 ppm', '100-150 ppm', '150-250 ppm', '250-350 ppm'],
-        correct: 2,
+          '¿Cuál es el rango ideal de TDS (Total Dissolved Solids) del agua para preparar café según la SCA?',
+        options: ['0-50 ppm', '75-150 ppm', '150-250 ppm', '250-350 ppm'],
+        correct: 1,
         explanation:
-          'El rango ideal de TDS para extraer café es entre 150-250 ppm (partes por millón). Esto proporciona suficientes minerales para extraer compuestos del café sin crear sabores desagradables.'
+          'El rango ideal de TDS del agua para café es 75-150 ppm, con un objetivo de 150 ppm según la SCA. Esto proporciona suficientes minerales (calcio y magnesio) para extraer los compuestos de sabor sin hacer el agua "pesada". El rango 150-250 es aceptable pero no ideal.'
       },
       {
         question:
           '¿Qué efecto tiene el agua con dureza muy alta (>300 ppm) en la extracción de café?',
         options: [
-          'Aumenta la extracción y el cuerpo',
+          'Sobre-extrae, produciendo café áspero y amargo',
           'Reduce la extracción y el sabor',
           'No tiene efecto',
           'Mejora la acidez'
         ],
-        correct: 1,
+        correct: 0,
         explanation:
-          'El agua muy dura inhibe la extracción de compuestos del café porque los minerales compiten con los ácidos del café por el espacio en la solución, resultando en café subextraído.'
+          'El agua muy dura tiene exceso de calcio y magnesio, que son los minerales responsables de extraer compuestos del café. Con demasiados, el agua sobre-extrae: produce café áspero, opaco y amargo. Además, genera depósitos de cal (escala) que dañan el equipo.'
       },
       {
         question:
-          '¿Cuál es la dureza ideal del agua (concentración de calcio y magnesio) para café espresso?',
-        options: ['0-50 ppm', '50-100 ppm', '100-150 ppm', '150-200 ppm'],
-        correct: 2,
+          '¿Cuál es la dureza ideal del agua (concentración de calcio) para café según la SCA?',
+        options: ['0-25 ppm', '50-175 ppm', '200-300 ppm', '300-400 ppm'],
+        correct: 1,
         explanation:
-          'La dureza ideal es entre 100-150 ppm de calcio y magnesio. Esto permite una extracción equilibrada mientras protege la máquina de espresso de acumulación de depósitos.'
+          'La SCA recomienda una dureza de calcio con objetivo de 68 mg/L y un rango aceptable de 50-175 mg/L. Esto permite una extracción equilibrada de sabores mientras protege la máquina de espresso de acumulación de escala.'
+      },
+      {
+        question:
+          '¿Qué mineral del agua tiene mayor afinidad por los compuestos ácidos y afrutados del café?',
+        options: [
+          'Calcio',
+          'Magnesio',
+          'Sodio',
+          'Bicarbonato'
+        ],
+        correct: 1,
+        explanation:
+          'El magnesio tiene mayor afinidad por los ácidos y compuestos aromáticos — es el responsable de las notas afrutadas, florales y la acidez brillante. El calcio, en cambio, extrae más los compuestos que dan cuerpo y dulzura. Por eso el balance entre ambos moldea el perfil final de tu taza.'
       }
     ],
     en: [
       {
         question:
-          'What is the ideal TDS (Total Dissolved Solids) range for coffee extraction?',
-        options: ['50-100 ppm', '100-150 ppm', '150-250 ppm', '250-350 ppm'],
-        correct: 2,
+          'What is the ideal water TDS (Total Dissolved Solids) range for brewing coffee according to the SCA?',
+        options: ['0-50 ppm', '75-150 ppm', '150-250 ppm', '250-350 ppm'],
+        correct: 1,
         explanation:
-          'The ideal TDS range for extracting coffee is 150-250 ppm (parts per million). This provides enough minerals to extract compounds from coffee without creating unpleasant flavors.'
+          'The ideal water TDS range for coffee is 75-150 ppm, with a target of 150 ppm according to the SCA. This provides enough minerals (calcium and magnesium) to extract flavor compounds without making the water too "heavy". The 150-250 range is acceptable but not ideal.'
       },
       {
         question:
           'What effect does very hard water (>300 ppm) have on coffee extraction?',
         options: [
-          'Increases extraction and body',
+          'Over-extracts, producing harsh and bitter coffee',
           'Reduces extraction and flavor',
           'Has no effect',
           'Improves acidity'
         ],
-        correct: 1,
+        correct: 0,
         explanation:
-          'Very hard water inhibits the extraction of coffee compounds because minerals compete with coffee acids for space in the solution, resulting in underextracted coffee.'
+          'Very hard water has excess calcium and magnesium — the minerals responsible for extracting coffee compounds. With too many, the water over-extracts: producing harsh, dull, and bitter coffee. It also creates limescale deposits that damage equipment.'
       },
       {
         question:
-          'What is the ideal water hardness (calcium and magnesium concentration) for espresso?',
-        options: ['0-50 ppm', '50-100 ppm', '100-150 ppm', '150-200 ppm'],
-        correct: 2,
+          'What is the ideal water hardness (calcium concentration) for coffee according to the SCA?',
+        options: ['0-25 ppm', '50-175 ppm', '200-300 ppm', '300-400 ppm'],
+        correct: 1,
         explanation:
-          'Ideal hardness is between 100-150 ppm of calcium and magnesium. This allows balanced extraction while protecting the espresso machine from mineral buildup.'
+          'The SCA recommends calcium hardness with a target of 68 mg/L and an acceptable range of 50-175 mg/L. This allows balanced flavor extraction while protecting espresso machines from scale buildup.'
+      },
+      {
+        question:
+          'Which mineral in water has the highest affinity for acidic and fruity compounds in coffee?',
+        options: [
+          'Calcium',
+          'Magnesium',
+          'Sodium',
+          'Bicarbonate'
+        ],
+        correct: 1,
+        explanation:
+          'Magnesium has the highest affinity for acids and aromatic compounds — it\'s responsible for fruity, floral notes and bright acidity. Calcium, on the other hand, extracts more of the compounds that give body and sweetness. The balance between both shapes the final profile of your cup.'
       }
     ]
   },

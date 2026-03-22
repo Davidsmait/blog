@@ -17,17 +17,19 @@ Un café filtrado es aproximadamente 98.5% agua y 1.5% solubles de café. Un esp
 
 El agua no es solo un vehículo — es un solvente activo. Su composición mineral determina qué tan eficientemente extrae los compuestos del café y cómo los percibes en tu paladar. Cambiar tu agua puede transformar literalmente la misma bolsa de café.
 
-## Qué hay en tu agua
+## Qué hay en tu agua (y por qué te importa)
 
-El agua contiene minerales disueltos, principalmente:
+Piensa en tu agua como un equipo de trabajo. Cada mineral tiene un rol, y el resultado de tu café depende de que el equipo esté balanceado.
 
-**Calcio (Ca²⁺) y Magnesio (Mg²⁺)** son los minerales que más nos importan. Son los responsables de "atrapar" y extraer los compuestos de sabor del café. El magnesio tiene afinidad particular por los compuestos ácidos y afrutados. El calcio extrae más cuerpo y dulzura. El balance entre ambos afecta el perfil de tu taza.
+**Los extractores: Magnesio y Calcio.** Estos son los que hacen el trabajo pesado. Cuando el agua caliente toca el café molido, son el magnesio y el calcio los que se "pegan" a los compuestos de sabor y los arrancan del grano. Sin ellos, el agua pasa por el café y no se lleva casi nada — como lavar un plato grasoso solo con agua fría.
 
-**Bicarbonato (HCO₃⁻)** actúa como buffer — neutraliza los ácidos del café. Un poco de bicarbonato suaviza la acidez y la hace agradable. Demasiado y tu café sabe plano, opaco, sin vida. Es como añadir leche a un jugo de limón: desaparece la chispa.
+Pero no extraen lo mismo. El magnesio tiene preferencia por los ácidos y compuestos aromáticos — es el que te da las notas afrutadas, florales, la acidez brillante. El calcio se lleva más los compuestos que dan cuerpo, textura y dulzura. Por eso el balance entre ambos moldea el perfil de tu taza: más magnesio = café más brillante y ácido; más calcio = café más redondo y con cuerpo.
 
-**Sodio (Na⁺)** en pequeñas cantidades puede realzar sabores (como la sal en la comida), pero en exceso añade un sabor salado desagradable.
+**El moderador: Bicarbonato.** Si los extractores sacan todo el sabor, el bicarbonato decide cuánta acidez llega a tu paladar. Funciona como un control de volumen para los ácidos: un poco y suaviza la acidez, la hace agradable y balanceada. Demasiado y la apaga por completo — tu café pierde la chispa, sabe plano, opaco, como si le faltara algo. Es la diferencia entre una limonada refrescante y una limonada con demasiada agua.
 
-**Cloro y cloraminas** son desinfectantes que las plantas de tratamiento añaden al agua municipal. Producen sabores y olores desagradables. Siempre filtra el cloro antes de preparar café — un filtro de carbón activado básico es suficiente.
+**El extra: Sodio.** En cantidades mínimas hace lo mismo que una pizca de sal en la comida — realza y redondea sabores. Pero si tu agua tiene mucho sodio, vas a notarlo como un sabor salado o metálico que no debería estar ahí.
+
+**El intruso: Cloro.** Las plantas de tratamiento le añaden cloro al agua para desinfectarla. Cumple su función en la tubería, pero en tu café es puro sabor a alberca. La buena noticia: es lo más fácil de eliminar. Un filtro de carbón activado básico (como un Brita) lo remueve. Este es el paso mínimo — si no haces nada más con tu agua, al menos filtra el cloro.
 
 ## Los estándares SCA para el agua
 
@@ -36,17 +38,23 @@ La SCA publicó estándares específicos para el agua ideal para café:
 | Parámetro | Objetivo | Rango aceptable |
 |-----------|----------|-----------------|
 | TDS (sólidos disueltos totales) | 150 mg/L | 75-250 mg/L |
-| Dureza de calcio | 68 mg/L | 17-85 mg/L |
-| Alcalinidad total | 40 mg/L | cercano a 40 mg/L |
+| Dureza de calcio | 68 mg/L | 50-175 mg/L |
+| Alcalinidad total | 40 mg/L | 40-70 mg/L |
 | pH | 7.0 | 6.5-7.5 |
 | Sodio | 10 mg/L | cercano a 10 mg/L |
 | Cloro | 0 mg/L | 0 mg/L |
 
 Estos números son una guía, no una ley absoluta. Pero te dan un punto de referencia para entender si tu agua está en el rango correcto o completamente fuera.
 
-## TDS: la medida rápida
+## TDS del agua: no confundir con el TDS del café
 
-El TDS (Total Dissolved Solids) del agua mide la cantidad total de minerales disueltos, en miligramos por litro (mg/L) o partes por millón (ppm) — son equivalentes. Se mide con un **medidor de TDS** que cuesta menos de $15 USD y es la inversión más barata con mayor impacto que puedes hacer.
+En la [lección anterior](/cafe/roadmap-1-3-ciencia-extraccion) hablamos de TDS como la concentración de solubles de café en tu bebida (1.35% TDS = qué tan fuerte está tu café). Aquí hablamos de algo diferente: el TDS del **agua antes de tocar el café** — es decir, cuántos minerales trae el agua que vas a usar para preparar.
+
+Son dos mediciones distintas con el mismo nombre, lo que confunde a mucha gente. La forma fácil de distinguirlas: el TDS del agua se mide en **ppm (partes por millón)** y va de 0 a cientos. El TDS del café se mide en **porcentaje** y va de 1% a 12%. Si alguien dice "150 TDS", habla de agua. Si dice "1.35% TDS", habla de café.
+
+El TDS del agua se mide con un **medidor de TDS** que cuesta menos de $15 USD — es la inversión más barata con mayor impacto que puedes hacer. Lo sumerges en el agua y te da una lectura instantánea en ppm.
+
+**Una limitación importante:** el medidor te dice *cuántos* minerales hay, pero no *cuáles*. Un agua con 150 ppm de magnesio (excelente para extracción) y una con 150 ppm de sodio (terrible para café) marcan lo mismo. Por eso el TDS es un punto de partida, no la historia completa. Si tu agua marca buen TDS pero tu café sabe plano o salado, la composición mineral puede ser el problema.
 
 - **Menos de 75 ppm:** Agua muy blanda. No tiene suficientes minerales para extraer bien. El café saldrá sub-extraído, plano y sin sabor.
 - **75-150 ppm:** El rango ideal para la mayoría de los casos.
@@ -73,7 +81,7 @@ Un filtro Brita o similar remueve cloro, sedimentos y algo de calcio. No cambia 
 
 ### Opción 2: Agua embotellada
 
-Algunas marcas de agua embotellada tienen una composición mineral excelente para café. El truco es revisar la etiqueta y buscar aguas con TDS entre 75-150 ppm y alcalinidad moderada. Aguas como Volvic (~130 ppm) o Crystal Geyser (~100 ppm) funcionan bien, aunque varía por región. En México, aguas como Bonafont (~200 ppm) están en el rango aceptable.
+Algunas marcas de agua embotellada tienen una composición mineral excelente para café. El truco es revisar la etiqueta y buscar aguas con TDS entre 75-150 ppm y alcalinidad moderada. Aguas como Volvic (~130 ppm) o Crystal Geyser (~100 ppm) funcionan bien, aunque varía por región. En México, aguas como Bonafont (~130-150 ppm) están en el rango aceptable.
 
 ### Opción 3: Recetas de agua (Third Wave Water y similares)
 
@@ -82,11 +90,19 @@ Empiezas con agua destilada o de ósmosis inversa (0 TDS) y añades minerales en
 - Sulfato de magnesio (sales de Epsom)
 - Bicarbonato de sodio (baking soda)
 
-Una receta básica popular: 0.30g de bicarbonato de sodio + 0.75g de sulfato de magnesio en 1 litro de agua destilada. Esto te da ~100 ppm TDS con buen balance de minerales y alcalinidad.
+Una receta básica popular (adaptada de Barista Hustle): 0.05g de bicarbonato de sodio + 0.40g de sulfato de magnesio en 1 litro de agua destilada. Esto te da ~90 ppm TDS con buen balance entre minerales de extracción y alcalinidad moderada. Las proporciones importan — demasiado bicarbonato aplasta la acidez.
 
 ### Opción 4: Sistema de ósmosis inversa + remineralización
 
 El setup más profesional. Un sistema de ósmosis inversa (RO) elimina prácticamente todo del agua, y luego se añaden minerales de vuelta en la proporción exacta. Cafeterías de especialidad serias usan sistemas como BWT, Pentair Everpure o Peak Water.
+
+## La temperatura también importa
+
+Hablamos mucho de minerales, pero la temperatura del agua es igual de crítica. La SCA recomienda preparar café entre **90-96°C** (194-205°F). En ese rango, el agua tiene suficiente energía para disolver los compuestos de sabor sin quemar el café.
+
+Demasiado caliente (>96°C) y sobre-extraes — el café sale amargo y áspero, porque disuelves compuestos que no quieres en tu taza. Demasiado fría (<90°C) y sub-extraes — sale ácido, delgado, sin cuerpo. Es el mismo principio que con los minerales: el agua necesita las condiciones correctas para hacer su trabajo como solvente.
+
+Un tip práctico: si no tienes hervidor con termómetro, hierve el agua y espera 30-45 segundos antes de verterla. Eso te pone en el rango correcto para la mayoría de los métodos de filtrado.
 
 ## Impacto real en tu espresso
 
@@ -109,12 +125,17 @@ Si usas una máquina de espresso en casa, descalcifica regularmente según las i
 
 Si tu agua del grifo está por encima de 300 ppm (común en muchas ciudades de México), vas a notar una diferencia dramática. Si está entre 100-200, la diferencia será más sutil pero real.
 
+**Contexto México:** La calidad del agua varía mucho por ciudad. CDMX tiene agua relativamente blanda (baja en calcio y magnesio), lo que puede resultar en sub-extracción si usas el grifo directo. Guadalajara tiene agua dura — buena para extracción pero mala para tu equipo. Y los garrafones de purificadoras locales son una lotería: algunas usan ósmosis inversa (TDS cercano a 0, terrible para café), otras simplemente filtran y el TDS depende de la fuente original. Mide tu garrafón antes de asumir que es buena agua para café.
+
 ## Conceptos clave de esta lección
 
 - Tu café es 98% agua — su composición mineral importa enormemente
 - Calcio y magnesio extraen sabor; bicarbonato neutraliza acidez
 - El TDS ideal para café está entre 75-150 ppm según la SCA
+- TDS mide cantidad total de minerales, no cuáles son — es un punto de partida, no la respuesta completa
 - Agua muy blanda sub-extrae; agua muy dura sobre-extrae y daña el equipo
+- Temperatura de preparación: 90-96°C — tan importante como la composición mineral
 - Un medidor de TDS de $15 USD es la mejor inversión que puedes hacer ahora mismo
 - Filtrar el cloro es el paso mínimo; recetas de agua son el siguiente nivel
+- Los garrafones de purificadoras locales no son todos iguales — mide antes de asumir
 - El agua dura genera escala — el mayor enemigo de las máquinas de espresso
