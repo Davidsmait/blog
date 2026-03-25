@@ -374,53 +374,63 @@ export const quizzes: Record<string, QuizData> = {
     es: [
       {
         question:
-          '¿Cuál es la relación (ratio) típica de café a agua para un espresso simple (ristretto)?',
+          '¿Cuál es el ratio estándar de partida para un espresso en café de especialidad?',
         options: ['1:1', '1:1.5', '1:2', '1:3'],
-        correct: 1,
+        correct: 2,
         explanation:
-          'Un espresso típico mantiene una relación de 1:1.5 (por ejemplo, 18g de café molido produce 27ml de licor). Esta proporción crea el balance clásico de concentración y sabor.'
+          'El ratio 1:2 (ej: 18g de café → 36g en taza) es el punto de partida universal en café de especialidad. De ahí se ajusta según el café y el paladar.'
       },
       {
         question:
-          '¿A cuántas atmósferas (bares) de presión opera típicamente una máquina de espresso?',
+          '¿A cuántos bares de presión opera típicamente una máquina de espresso?',
         options: ['6 bares', '7 bares', '9 bares', '12 bares'],
         correct: 2,
         explanation:
-          'Las máquinas de espresso operan típicamente a 9 bares de presión. Esta presión es necesaria para forzar agua caliente a través del café molido finamente en 25-30 segundos.'
+          'Las máquinas de espresso operan típicamente a 9 bares de presión (~130 PSI). Este estándar viene de la Faema E61 (1961) y crea el balance ideal entre velocidad de extracción y emulsión de aceites.'
       },
       {
         question:
-          '¿Cuánta presión adicional se requiere para crear la emulsión de crema en un espresso?',
-        options: ['3 bares', '5 bares', '7 bares', '9 bares'],
-        correct: 0,
+          '¿Qué indica la crema sobre la frescura del café?',
+        options: [
+          'Café de 1-3 días post-tueste',
+          'Café de 7-14 días post-tueste',
+          'Café de más de 30 días',
+          'La crema no tiene relación con la frescura'
+        ],
+        correct: 1,
         explanation:
-          'La crema requiere aproximadamente 3 bares adicionales de presión para ser creada. Es una emulsión de aceites de café dispersados por el dióxido de carbono bajo presión.'
+          'Una crema abundante y estable indica café fresco de 7-14 días post-tueste. Antes de 7 días hay demasiado CO2 (extracción errática), y después de 14 días la crema se vuelve pálida y delgada.'
       }
     ],
     en: [
       {
         question:
-          'What is the typical ratio of coffee to water for a single (ristretto) espresso?',
+          'What is the standard starting ratio for an espresso in specialty coffee?',
         options: ['1:1', '1:1.5', '1:2', '1:3'],
-        correct: 1,
+        correct: 2,
         explanation:
-          'A typical espresso maintains a ratio of 1:1.5 (for example, 18g of ground coffee produces 27ml of liquor). This proportion creates the classic balance of concentration and flavor.'
+          'The 1:2 ratio (e.g., 18g coffee → 36g in cup) is the universal starting point in specialty coffee. From there you adjust based on the coffee and your palate.'
       },
       {
         question:
-          'At how many atmospheres (bars) of pressure does a typical espresso machine operate?',
+          'At how many bars of pressure does a typical espresso machine operate?',
         options: ['6 bars', '7 bars', '9 bars', '12 bars'],
         correct: 2,
         explanation:
-          'Espresso machines typically operate at 9 bars of pressure. This pressure is necessary to force hot water through finely ground coffee in 25-30 seconds.'
+          'Espresso machines typically operate at 9 bars of pressure (~130 PSI). This standard comes from the Faema E61 (1961) and creates the ideal balance between extraction speed and oil emulsion.'
       },
       {
         question:
-          'How much additional pressure is required to create the crema emulsion in an espresso?',
-        options: ['3 bars', '5 bars', '7 bars', '9 bars'],
-        correct: 0,
+          'What does crema indicate about coffee freshness?',
+        options: [
+          'Coffee 1-3 days post-roast',
+          'Coffee 7-14 days post-roast',
+          'Coffee over 30 days old',
+          'Crema has no relation to freshness'
+        ],
+        correct: 1,
         explanation:
-          'Crema requires approximately 3 additional bars of pressure to be created. It is an emulsion of coffee oils dispersed by carbon dioxide under pressure.'
+          'Abundant, stable crema indicates fresh coffee 7-14 days post-roast. Before 7 days there is too much CO2 (erratic extraction), and after 14 days crema becomes pale and thin.'
       }
     ]
   },
@@ -611,12 +621,12 @@ export const quizzes: Record<string, QuizData> = {
         options: [
           'Color oscuro del licor',
           'Presencia de crema abundante',
-          'Flujo consistente que cambia de dorado a marrón oscuro',
+          'Flujo que empieza oscuro y viscoso, aclarándose gradualmente a caramelo dorado',
           'Duración total de 60 segundos'
         ],
         correct: 2,
         explanation:
-          'El flujo debe comenzar dorado y gradualmente oscurecerse a marrón oscuro durante la extracción. Un cambio de color abrupto indica canalización; ningún cambio indica sobreextracción.'
+          'Un shot bien extraído empieza oscuro y viscoso (como miel), y gradualmente se aclara a caramelo dorado. Si se vuelve rubio claro demasiado rápido (blonding), la extracción se agotó prematuramente.'
       }
     ],
     en: [
@@ -652,12 +662,12 @@ export const quizzes: Record<string, QuizData> = {
         options: [
           'Dark color of the liquor',
           'Abundant crema presence',
-          'Consistent flow changing from golden to dark brown',
+          'Flow that starts dark and viscous, gradually lightening to golden caramel',
           'Total duration of 60 seconds'
         ],
         correct: 2,
         explanation:
-          'The flow should start golden and gradually darken to dark brown during extraction. An abrupt color change indicates channeling; no change indicates overextraction.'
+          'A well-extracted shot starts dark and viscous (like honey), gradually lightening to golden caramel. If it turns pale blonde too quickly (blonding), the extraction ran out prematurely.'
       }
     ]
   },
@@ -665,16 +675,16 @@ export const quizzes: Record<string, QuizData> = {
     es: [
       {
         question:
-          '¿Con qué frecuencia se debe realizar una limpieza profunda (backflush) de la ducha de una máquina de espresso?',
+          '¿Con qué frecuencia se debe hacer backflush con detergente (Cafiza) en una máquina de espresso casera?',
         options: [
-          'Mensualmente',
-          'Cada dos semanas',
+          'Después de cada shot',
           'Diariamente',
-          'Semanalmente'
+          'Semanalmente',
+          'Mensualmente'
         ],
         correct: 2,
         explanation:
-          'El backflush debe realizarse diariamente, idealmente después de cada turno, para limpiar los residuos de café de la ducha y mantener una distribución uniforme del agua.'
+          'El backflush con detergente debe hacerse una vez por semana para disolver aceites acumulados. El backflush solo con agua se puede hacer 2-3 veces por semana. En cafeterías de alto volumen, la frecuencia aumenta.'
       },
       {
         question:
@@ -706,11 +716,11 @@ export const quizzes: Record<string, QuizData> = {
     en: [
       {
         question:
-          'How often should a deep cleaning (backflush) of the shower screen be performed on an espresso machine?',
-        options: ['Monthly', 'Every two weeks', 'Daily', 'Weekly'],
+          'How often should a detergent backflush (Cafiza) be performed on a home espresso machine?',
+        options: ['After every shot', 'Daily', 'Weekly', 'Monthly'],
         correct: 2,
         explanation:
-          'Backflush should be done daily, ideally after each shift, to clean coffee residue from the shower screen and maintain uniform water distribution.'
+          'Detergent backflush should be done once a week to dissolve accumulated oils. Water-only backflush can be done 2-3 times per week. In high-volume cafés, frequency increases.'
       },
       {
         question:

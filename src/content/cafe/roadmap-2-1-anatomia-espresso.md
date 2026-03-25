@@ -1,5 +1,4 @@
 ---
-draft: true
 title: 'Anatomía de un espresso'
 description: 'Qué define un espresso, cómo se mide un buen shot y qué significan dosis, yield, ratio, tiempo y crema.'
 publishedDate: 2026-03-05
@@ -64,7 +63,7 @@ La crema es la capa de espuma dorada-rojiza en la superficie del espresso. Se fo
 
 Lo que la crema te indica:
 
-- **Crema abundante y estable:** Café fresco (7-21 días post-tueste), buena presión, extracción decente.
+- **Crema abundante y estable:** Café fresco (7-14 días post-tueste), buena presión, extracción decente.
 - **Crema pálida y delgada:** Café viejo (más de 30 días), molienda muy gruesa o sub-extracción.
 - **Crema muy oscura con manchas:** Sobre-extracción o molienda demasiado fina.
 - **Sin crema:** Café rancio, problema de presión en la máquina, o canasta dañada.
@@ -87,7 +86,7 @@ Técnicas de distribución:
 
 ### Tamping
 
-Comprimir el café en la canasta para crear una cama uniforme y resistente. La presión recomendada es de unos **15-20 kg** — suficiente para compactar pero sin forzar. Lo más importante no es la fuerza exacta, sino la **nivelación**: un tamp inclinado crea un lado más delgado por donde el agua pasa más rápido.
+Comprimir el café en la canasta para crear una cama uniforme y resistente. La presión recomendada es de unos **13-20 kg** dependiendo de la dosis — suficiente para compactar pero sin forzar. Lo más importante no es la fuerza exacta, sino la **consistencia y nivelación**: un tamp inclinado crea un lado más delgado por donde el agua pasa más rápido.
 
 Tamps de calibración (como el Normcore o el Decent calibrated tamper) aplican una presión constante y garantizan nivelación. Son una buena inversión si estás empezando.
 
