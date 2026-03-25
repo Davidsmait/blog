@@ -746,7 +746,13 @@ function getPhaseState(phaseNum: number) {
     transition: background 0.3s ease;
   }
   .rm-phase-header:hover {
-    background: color-mix(in srgb, var(--color-accent) 2%, transparent);
+    background: color-mix(in srgb, var(--color-accent) 3%, transparent);
+  }
+  .rm-phase--active .rm-phase-header {
+    background: color-mix(in srgb, var(--color-accent) 3%, transparent);
+  }
+  .rm-phase--active .rm-phase-header:hover {
+    background: color-mix(in srgb, var(--color-accent) 5%, transparent);
   }
   .rm-phase-header:focus-visible {
     outline: 2px solid color-mix(in srgb, var(--color-accent) 35%, transparent);
@@ -767,17 +773,17 @@ function getPhaseState(phaseNum: number) {
     letter-spacing: -0.01em;
     transition: opacity 0.3s ease, color 0.3s ease;
   }
-  .rm-phase--complete .rm-phase-title { opacity: 0.45; }
+  .rm-phase--complete .rm-phase-title { opacity: 0.5; }
   .rm-phase--active .rm-phase-title { color: var(--color-accent); }
-  .rm-phase--next .rm-phase-title { opacity: 0.45; }
-  .rm-phase--locked .rm-phase-title { opacity: 0.25; }
+  .rm-phase--next .rm-phase-title { opacity: 0.5; }
+  .rm-phase--locked .rm-phase-title { opacity: 0.3; }
   .rm-phase-header:hover .rm-phase-title { opacity: 0.8; }
   .rm-phase--active .rm-phase-header:hover .rm-phase-title { opacity: 1; }
 
   .rm-phase-desc {
     font-size: 0.6875rem;
     line-height: 1.5;
-    opacity: 0.2;
+    opacity: 0.3;
     display: none;
     max-width: 28rem;
   }
@@ -798,18 +804,18 @@ function getPhaseState(phaseNum: number) {
     font-size: 0.6875rem;
     font-weight: 500;
     font-variant-numeric: tabular-nums;
-    opacity: 0.25;
+    opacity: 0.35;
   }
-  .rm-phase--complete .rm-phase-counter { color: #22c55e; opacity: 0.4; }
-  .rm-phase--active .rm-phase-counter { color: var(--color-accent); opacity: 0.45; }
+  .rm-phase--complete .rm-phase-counter { color: #22c55e; opacity: 0.5; }
+  .rm-phase--active .rm-phase-counter { color: var(--color-accent); opacity: 0.55; }
 
   .rm-phase-chevron {
     width: 0.75rem;
     height: 0.75rem;
-    opacity: 0.15;
+    opacity: 0.2;
     transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
   }
-  .rm-phase-header:hover .rm-phase-chevron { opacity: 0.35; }
+  .rm-phase-header:hover .rm-phase-chevron { opacity: 0.4; }
 
   /* ── Lessons (animated expand/collapse) ── */
   .rm-lessons {
@@ -888,13 +894,13 @@ function getPhaseState(phaseNum: number) {
   /* Read state */
   .rm-lesson--available.is-read .rm-lesson-check { display: block !important; }
   .rm-lesson--available.is-read .rm-lesson-dot { display: none; }
-  .rm-lesson--available.is-read .rm-lesson-title { opacity: 0.45; }
-  .rm-lesson--available:not(.is-read) .rm-lesson-title { opacity: 0.7; }
+  .rm-lesson--available.is-read .rm-lesson-title { opacity: 0.5; }
+  .rm-lesson--available:not(.is-read) .rm-lesson-title { opacity: 0.75; }
   a.rm-lesson--available:hover .rm-lesson-title { opacity: 1; color: var(--color-accent); }
   a.rm-lesson--available:hover .rm-lesson-check { color: var(--color-accent); }
   a.rm-lesson--available:hover .rm-lesson-dot { background: var(--color-accent); }
 
-  .rm-lesson--pending .rm-lesson-title { opacity: 0.18; }
+  .rm-lesson--pending .rm-lesson-title { opacity: 0.3; }
 
   /* ── Bibliography ── */
   .rm-biblio-toggle {
@@ -903,13 +909,13 @@ function getPhaseState(phaseNum: number) {
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.12em;
-    opacity: 0.18;
+    opacity: 0.3;
     transition: opacity 0.3s ease;
     list-style: none;
   }
   .rm-biblio-toggle::-webkit-details-marker { display: none; }
   .rm-biblio-toggle::marker { display: none; content: ''; }
-  .rm-biblio-toggle:hover { opacity: 0.4; }
+  .rm-biblio-toggle:hover { opacity: 0.5; }
 
   .rm-biblio {
     margin-top: 1.5rem;
@@ -936,7 +942,7 @@ function getPhaseState(phaseNum: number) {
   .rm-biblio-list li {
     font-size: 0.8125rem;
     line-height: 1.6;
-    opacity: 0.35;
+    opacity: 0.45;
   }
   .rm-biblio-list li strong {
     opacity: 1;
@@ -953,7 +959,7 @@ function getPhaseState(phaseNum: number) {
   .rm-phase-refs p {
     font-size: 0.8125rem;
     line-height: 1.6;
-    opacity: 0.35;
+    opacity: 0.45;
     margin: 0;
   }
   .rm-phase-refs p strong {

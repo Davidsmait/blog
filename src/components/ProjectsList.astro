@@ -36,8 +36,8 @@ const renderedProjects = await Promise.all(
 <ul class="flex flex-col gap-0 p-0">
   {
     renderedProjects.map(({ data, Content }, index) => (
-      <li class="reveal group list-none border-b border-accent/[0.04] last:border-0" style={`transition-delay: ${index * 0.1}s`}>
-        <div class="py-6 transition-all duration-500 sm:py-8" data-cursor-hover>
+      <li class="reveal group list-none border-b border-accent/[0.08] last:border-0" style={`transition-delay: ${index * 0.1}s`}>
+        <div class="rounded-lg py-6 transition-all duration-500 group-hover:bg-accent/[0.03] sm:px-4 sm:py-8" data-cursor-hover>
           <div class="flex flex-col justify-between gap-2 sm:flex-row sm:items-center">
             <div class="flex items-center gap-3 sm:gap-5">
               <span class="section-number shrink-0">({String(index + 1).padStart(2, '0')})</span>
@@ -57,7 +57,7 @@ const renderedProjects = await Promise.all(
                 <span class="font-display text-lg font-semibold tracking-tight-brand text-accent sm:text-xl">{data.title}</span>
               )}
             </div>
-            <div class="ml-8 text-[11px] font-medium uppercase tracking-[0.15em] opacity-20 sm:ml-0">
+            <div class="ml-8 text-[11px] font-medium uppercase tracking-[0.15em] opacity-30 sm:ml-0">
               <time datetime={data.startDate.toISOString()}>{toMonthString(data.startDate)}</time> –
               {data.endDate ? <time datetime={data.endDate.toISOString()}>{toMonthString(data.endDate)}</time> : nowLabel}
             </div>
@@ -66,7 +66,7 @@ const renderedProjects = await Promise.all(
             <div class="pointer-events-none">
               <TagsBar tags={resolveTags(data.tags)} maxVisible={3} />
             </div>
-            <div class="mt-2 text-[13px] leading-relaxed opacity-30">
+            <div class="mt-2 text-[13px] leading-relaxed opacity-40">
               <Content />
             </div>
           </div>
