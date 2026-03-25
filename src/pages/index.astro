@@ -119,6 +119,10 @@ const latestPhaseName = phaseNames[highestPhase] ?? `Fase ${highestPhase}`
                 class="no-underline transition-opacity duration-300 hover:opacity-100"
                 >Ig</a
               >
+              <span class="h-3 w-[1px] bg-accent/10"></span>
+              <span class="text-base transition-opacity duration-300 hover:opacity-100">
+                <ModeToggle />
+              </span>
             </div>
           </div>
 
@@ -162,7 +166,7 @@ const latestPhaseName = phaseNames[highestPhase] ?? `Fase ${highestPhase}`
                   data-hero-delay="500"
                 >
                   <span
-                    class="float-right text-[10px] font-medium uppercase tracking-[0.5em] opacity-15"
+                    class="based-in-text float-right text-[10px] font-medium uppercase opacity-15"
                   >
                     B&thinsp;A&thinsp;S&thinsp;E&thinsp;D&ensp;&ensp;I&thinsp;N&ensp;&ensp;M&thinsp;É&thinsp;X&thinsp;I&thinsp;C&thinsp;O
                   </span>
@@ -210,8 +214,8 @@ const latestPhaseName = phaseNames[highestPhase] ?? `Fase ${highestPhase}`
                 <div class="hero-fade -mt-1 sm:hidden" data-hero-delay="500">
                   <span
                     id="based-in-mexico"
-                    class="block text-[9px] font-medium uppercase opacity-15"
-                    style="text-align: center; letter-spacing: 0.3em;"
+                    class="based-in-text block text-[9px] font-medium uppercase opacity-15"
+                    style="text-align: center;"
                   >
                     B A S E D &ensp; I N &ensp; M É X I C O
                   </span>
@@ -437,6 +441,12 @@ const latestPhaseName = phaseNames[highestPhase] ?? `Fase ${highestPhase}`
                 }
               </div>
             </div>
+          </div>
+
+          <!-- Scroll cue -->
+          <div class="hero-fade pointer-events-none absolute bottom-6 left-1/2 z-30 -translate-x-1/2 flex-col items-center gap-2 hidden sm:flex" data-hero-delay="1400">
+            <span class="text-[9px] font-medium uppercase tracking-[0.3em] opacity-20">Scroll</span>
+            <div class="scroll-cue-line h-8 w-[1px] bg-accent/20 origin-top"></div>
           </div>
         </section>
 
@@ -968,6 +978,39 @@ const latestPhaseName = phaseNames[highestPhase] ?? `Fase ${highestPhase}`
         })
       }
 
+      // ── Scroll cue — hide on scroll ──
+      const heroSection = document.getElementById('hero-section')
+      if (heroSection) {
+        let scrollCueHidden = false
+        window.addEventListener('scroll', () => {
+          if (!scrollCueHidden && window.scrollY > 50) {
+            heroSection.closest('.hero-bleed')?.classList.add('scrolled')
+            scrollCueHidden = true
+          }
+        }, { passive: true })
+      }
+
+      // ── Based-in text — tracking expand ──
+      document.querySelectorAll('.based-in-text').forEach(el => {
+        setTimeout(() => el.classList.add('revealed'), 1200)
+      })
+
+      // ── Hero title parallax on scroll (desktop) ──
+      const heroTitle = document.getElementById('hero-role-container')
+      if (heroTitle && !isTouchDevice) {
+        let titleTicking = false
+        window.addEventListener('scroll', () => {
+          if (!titleTicking) {
+            requestAnimationFrame(() => {
+              const rate = window.scrollY * 0.03
+              heroTitle.style.transform = `translateY(${rate}px)`
+              titleTicking = false
+            })
+            titleTicking = true
+          }
+        }, { passive: true })
+      }
+
       // ── Hero photo parallax on scroll ──
       const heroPhoto = document.querySelector(
         '.hero-photo'
@@ -1137,6 +1180,64 @@ const latestPhaseName = phaseNames[highestPhase] ?? `Fase ${highestPhase}`
     /* Restore original opacity for elements that had opacity classes */
     .hero-fade.revealed[class*='opacity-'] {
       /* Let Tailwind opacity classes take precedence */
+    }
+
+    /* ── Scroll cue — breathing line ── */
+    .scroll-cue-line {
+      animation: scroll-cue-pulse 2s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+    }
+    @keyframes scroll-cue-pulse {
+      0%, 100% { transform: scaleY(1); opacity: 0.2; }
+      50% { transform: scaleY(0.4); opacity: 0.5; }
+    }
+
+    /* Hide scroll cue once user scrolls */
+    .hero-bleed.scrolled .scroll-cue-line,
+    .hero-bleed.scrolled .scroll-cue-line + span {
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    /* ── Hero letter hover — interactive on desktop ── */
+    @media (hover: hover) {
+      .hero-letter {
+        transition:
+          transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+          opacity 0.6s ease,
+          color 0.3s ease;
+      }
+      .hero-letter.revealed:hover {
+        transform: translateY(-6%) scale(1.05);
+        color: rgb(var(--accent-glow, var(--accent)));
+      }
+    }
+
+    /* ── Hero ambient gradient glow ── */
+    .hero-bleed::before {
+      content: '';
+      position: absolute;
+      bottom: 10%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60%;
+      height: 40%;
+      background: radial-gradient(ellipse, rgba(var(--accent-glow, var(--accent)), 0.03) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+      animation: hero-glow-breathe 6s ease-in-out infinite;
+    }
+    @keyframes hero-glow-breathe {
+      0%, 100% { opacity: 0.5; transform: translateX(-50%) scale(1); }
+      50% { opacity: 1; transform: translateX(-50%) scale(1.1); }
+    }
+
+    /* ── BASED IN — tracking expand on reveal ── */
+    .based-in-text {
+      letter-spacing: 0.1em;
+      transition: letter-spacing 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .based-in-text.revealed {
+      letter-spacing: 0.5em;
     }
 
     /* ── Explore rows ── */
