@@ -1,5 +1,5 @@
 ---
-title: "La Commune v1: de 'todavía no existe' a producción en 17 días"
+title: "La Commune v1: todo lo que pasó entre 'funciona en local' y 'funciona de verdad'"
 description: "La historia de llevar un sistema completo — app de fidelidad + punto de venta — de prototipo a producción real. Migración de base de datos, auditoría de seguridad, push notifications y las decisiones que importaron."
 publishedDate: 2026-03-22
 tags:

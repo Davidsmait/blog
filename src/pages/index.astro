@@ -1,6 +1,7 @@
 ---
 import PostsList from '@/components/PostsList.astro'
 import FooterItem from '@/components/layout/FooterItem.astro'
+import Header from '@/components/layout/Header.astro'
 import ModeToggle from '@/components/mode/ModeToggle.astro'
 import BaseLayout from '@/layouts/BaseLayout.astro'
 import config from '@/theme.config'
@@ -70,6 +71,17 @@ const latestPhaseName = phaseNames[highestPhase] ?? `Fase ${highestPhase}`
 
   <!-- Custom cursor — hidden on touch devices -->
   <div class="custom-cursor hidden sm:block" id="custom-cursor"></div>
+
+  <!-- Scroll-triggered sticky header — hidden while hero is visible -->
+  <div
+    id="scroll-header"
+    class="pointer-events-none fixed inset-x-0 top-0 z-[60] -translate-y-full opacity-0 transition-all duration-700"
+    style="transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);"
+  >
+    <div class="pointer-events-auto mx-auto w-full max-w-full sm:max-w-[92%] lg:max-w-5xl px-5 sm:px-6 lg:px-0">
+      <Header />
+    </div>
+  </div>
 
   <div id="page-wrapper" class="noise-overlay">
     <div class="px-5 sm:px-6 lg:px-0">
@@ -338,12 +350,12 @@ const latestPhaseName = phaseNames[highestPhase] ?? `Fase ${highestPhase}`
                   data-cursor-hover
                 >
                   <span
-                    class="text-[9px] font-medium uppercase tracking-[0.2em] opacity-20 transition-opacity duration-500 group-hover:opacity-40 sm:text-[10px]"
+                    class="text-[10px] font-medium uppercase tracking-[0.2em] opacity-40 transition-opacity duration-500 group-hover:opacity-70 sm:text-[11px]"
                   >
                     Disponible para colaborar
                   </span>
                   <span
-                    class="flex items-center gap-2 font-serif text-[clamp(0.9rem,2.5vw,1.4rem)] italic leading-[1.1] text-accent opacity-40 transition-all duration-500 group-hover:opacity-80 sm:gap-3"
+                    class="flex items-center gap-2 font-serif text-[clamp(0.9rem,2.5vw,1.4rem)] italic leading-[1.1] text-accent opacity-60 transition-all duration-500 group-hover:opacity-100 sm:gap-3"
                   >
                     david_sanluis@outlook.com
                     <svg
@@ -373,12 +385,12 @@ const latestPhaseName = phaseNames[highestPhase] ?? `Fase ${highestPhase}`
                   data-astro-prefetch
                 >
                   <span
-                    class="text-[9px] font-medium uppercase tracking-[0.2em] opacity-20 transition-opacity duration-500 group-hover:opacity-40 sm:text-[10px]"
+                    class="text-[10px] font-medium uppercase tracking-[0.2em] opacity-40 transition-opacity duration-500 group-hover:opacity-70 sm:text-[11px]"
                   >
                     Nuevas lecciones — Fase {highestPhase}
                   </span>
                   <span
-                    class="flex items-center gap-2 text-right font-serif text-[clamp(0.9rem,2.5vw,1.4rem)] italic leading-[1.1] text-accent opacity-40 transition-all duration-500 group-hover:opacity-80 sm:gap-3"
+                    class="flex items-center gap-2 text-right font-serif text-[clamp(0.9rem,2.5vw,1.4rem)] italic leading-[1.1] text-accent opacity-60 transition-all duration-500 group-hover:opacity-100 sm:gap-3"
                   >
                     {latestPhaseName}
                     <svg
@@ -414,10 +426,10 @@ const latestPhaseName = phaseNames[highestPhase] ?? `Fase ${highestPhase}`
                       data-cursor-hover
                       data-astro-prefetch
                     >
-                      <span class="text-[9px] font-medium uppercase tracking-[0.2em] opacity-20 transition-opacity duration-500 group-hover:opacity-40 sm:text-[10px]">
+                      <span class="text-[10px] font-medium uppercase tracking-[0.2em] opacity-40 transition-opacity duration-500 group-hover:opacity-70 sm:text-[11px]">
                         Trabajo reciente
                       </span>
-                      <span class="flex items-center gap-2 text-right font-serif text-[clamp(0.9rem,2.5vw,1.4rem)] italic leading-[1.1] text-accent opacity-40 transition-all duration-500 group-hover:opacity-80 sm:gap-3">
+                      <span class="flex items-center gap-2 text-right font-serif text-[clamp(0.9rem,2.5vw,1.4rem)] italic leading-[1.1] text-accent opacity-60 transition-all duration-500 group-hover:opacity-100 sm:gap-3">
                         {recentPosts[0].data.title}
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -444,7 +456,7 @@ const latestPhaseName = phaseNames[highestPhase] ?? `Fase ${highestPhase}`
           </div>
 
           <!-- Scroll cue -->
-          <div class="hero-fade pointer-events-none absolute bottom-6 left-1/2 z-30 -translate-x-1/2 flex-col items-center gap-2 hidden sm:flex" data-hero-delay="1400">
+          <div class="hero-fade pointer-events-none absolute bottom-6 left-1/2 z-30 -translate-x-1/2 flex-col items-center gap-2 flex" data-hero-delay="1400">
             <span class="text-[9px] font-medium uppercase tracking-[0.3em] opacity-20">Scroll</span>
             <div class="scroll-cue-line h-8 w-[1px] bg-accent/20 origin-top"></div>
           </div>
@@ -819,6 +831,32 @@ const latestPhaseName = phaseNames[highestPhase] ?? `Fase ${highestPhase}`
 
   <!-- SCRIPTS -->
   <script>
+    // ── Scroll-triggered sticky header ──
+    function initScrollHeader() {
+      const heroSection = document.getElementById('hero-section')
+      const scrollHeader = document.getElementById('scroll-header')
+      if (!heroSection || !scrollHeader) return
+
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            // Hero visible → hide header
+            scrollHeader.style.opacity = '0'
+            scrollHeader.style.transform = 'translateY(-100%)'
+            scrollHeader.classList.add('pointer-events-none')
+          } else {
+            // Hero gone → show header
+            scrollHeader.style.opacity = '1'
+            scrollHeader.style.transform = 'translateY(0)'
+            scrollHeader.classList.remove('pointer-events-none')
+          }
+        },
+        { threshold: 0.05 }
+      )
+
+      observer.observe(heroSection)
+    }
+
     function initAwwwardsInteractions() {
       const isTouchDevice =
         'ontouchstart' in window || navigator.maxTouchPoints > 0
@@ -1101,6 +1139,7 @@ const latestPhaseName = phaseNames[highestPhase] ?? `Fase ${highestPhase}`
     }
 
     function initPage() {
+      initScrollHeader()
       initPreloader(() => {
         initAwwwardsInteractions()
       })
