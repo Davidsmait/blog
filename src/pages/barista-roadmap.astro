@@ -103,45 +103,50 @@ function getPhaseState(phaseNum: number) {
     activeHeaderLink: 'Café'
   }}
 >
-  <script type="application/ld+json" set:html={JSON.stringify({
-    "@context": "https://schema.org",
-    "@type": "Course",
-    "name": "Roadmap Barista de Especialidad",
-    "description": `${totalLessons} lecciones en ${phases.length} fases: desde los fundamentos del café hasta la física de la extracción.`,
-    "url": "https://davidsanluisaguirre.com/barista-roadmap",
-    "inLanguage": "es",
-    "numberOfCredits": totalLessons,
-    "educationalLevel": "Beginner to Expert",
-    "provider": {
-      "@type": "Person",
-      "name": "David San Luis Aguirre",
-      "url": "https://davidsanluisaguirre.com",
-      "sameAs": [
-        "https://www.instagram.com/davidsanluisaguirre/",
-        "https://www.linkedin.com/in/davidsanluisaguirre",
-        "https://github.com/Davidsmait"
+  <script
+    type="application/ld+json"
+    set:html={JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'Course',
+      name: 'Roadmap Barista de Especialidad',
+      description: `${totalLessons} lecciones en ${phases.length} fases: desde los fundamentos del café hasta la física de la extracción.`,
+      url: 'https://davidsanluisaguirre.com/barista-roadmap',
+      inLanguage: 'es',
+      numberOfCredits: totalLessons,
+      educationalLevel: 'Beginner to Expert',
+      provider: {
+        '@type': 'Person',
+        name: 'David San Luis Aguirre',
+        url: 'https://davidsanluisaguirre.com',
+        sameAs: [
+          'https://www.instagram.com/davidsanluisaguirre/',
+          'https://www.linkedin.com/in/davidsanluisaguirre',
+          'https://github.com/Davidsmait'
+        ]
+      },
+      hasCourseInstance: phases.map((p) => ({
+        '@type': 'CourseInstance',
+        name: `Fase ${p.num}: ${p.title}`,
+        description: p.desc,
+        courseMode: 'online'
+      })),
+      about: [
+        { '@type': 'Thing', name: 'Café de especialidad' },
+        { '@type': 'Thing', name: 'Barista' },
+        { '@type': 'Thing', name: 'Espresso' },
+        { '@type': 'Thing', name: 'Latte art' },
+        { '@type': 'Thing', name: 'SCA' }
       ]
-    },
-    "hasCourseInstance": phases.map(p => ({
-      "@type": "CourseInstance",
-      "name": `Fase ${p.num}: ${p.title}`,
-      "description": p.desc,
-      "courseMode": "online"
-    })),
-    "about": [
-      { "@type": "Thing", "name": "Café de especialidad" },
-      { "@type": "Thing", "name": "Barista" },
-      { "@type": "Thing", "name": "Espresso" },
-      { "@type": "Thing", "name": "Latte art" },
-      { "@type": "Thing", "name": "SCA" }
-    ]
-  })} />
+    })}
+  />
   <!-- ── Editorial Header ── -->
   <div class="reveal mb-10 sm:mb-16">
     <div class="flex items-center justify-between">
       <div class="flex items-center gap-4 sm:gap-6">
         <span class="font-serif text-[13px] italic opacity-20">(03)</span>
-        <h1 class="m-0 font-serif text-[clamp(2.5rem,6vw,4rem)] italic leading-[1] tracking-tight text-accent">
+        <h1
+          class="m-0 font-serif text-[clamp(2.5rem,6vw,4rem)] italic leading-[1] tracking-tight text-accent"
+        >
           Café
         </h1>
       </div>
@@ -149,21 +154,26 @@ function getPhaseState(phaseNum: number) {
         href="/en/barista-roadmap"
         class="rm-lang-pill"
         aria-label="Switch to English"
-        data-astro-reload
-      >EN</a>
+        data-astro-reload>EN</a
+      >
     </div>
     <div class="hr-animated mt-3"></div>
   </div>
 
   <!-- ── Subtitle + Progress ── -->
   <div class="reveal reveal-delay-1 mb-12 sm:mb-16">
-    <div class="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+    <div
+      class="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between"
+    >
       <div>
-        <p class="m-0 font-display text-[clamp(1.1rem,2.5vw,1.4rem)] font-semibold leading-[1.3] tracking-tighter-brand text-accent sm:max-w-md">
+        <p
+          class="m-0 font-display text-[clamp(1.1rem,2.5vw,1.4rem)] font-semibold leading-[1.3] tracking-tighter-brand text-accent sm:max-w-md"
+        >
           Barista de Especialidad
         </p>
         <p class="mt-2 text-[13px] leading-relaxed opacity-30 sm:max-w-sm">
-          {totalLessons} lecciones de cero a profesional. Desde los fundamentos del grano hasta la física de la extracción.
+          {totalLessons} lecciones de cero a profesional. Desde los fundamentos del
+          grano hasta la física de la extracción.
         </p>
       </div>
       <div class="flex items-center gap-3">
@@ -175,18 +185,27 @@ function getPhaseState(phaseNum: number) {
             aria-valuemin={0}
             aria-valuemax={totalLessons}
             style={`width: ${progressPercent}%`}
-          ></div>
+          >
+          </div>
         </div>
-        <span class="text-[11px] font-medium tabular-nums opacity-25">{completedLessons}/{totalLessons}</span>
+        <span class="text-[11px] font-medium tabular-nums opacity-25"
+          >{completedLessons}/{totalLessons}</span
+        >
       </div>
     </div>
     <!-- User progress (shown via JS) -->
     <div class="rm-user-progress mt-2" data-user-progress style="display:none">
       <div class="flex items-center gap-3">
         <div class="rm-progress-bar rm-progress-bar--user">
-          <div class="rm-progress-fill rm-progress-fill--user" data-user-progress-fill></div>
+          <div
+            class="rm-progress-fill rm-progress-fill--user"
+            data-user-progress-fill
+          >
+          </div>
         </div>
-        <span class="text-[11px] font-medium tabular-nums opacity-25" data-user-progress-text></span>
+        <span
+          class="text-[11px] font-medium tabular-nums opacity-25"
+          data-user-progress-text></span>
       </div>
     </div>
   </div>
@@ -195,24 +214,37 @@ function getPhaseState(phaseNum: number) {
   <div class="reveal reveal-delay-2 mb-14 sm:mb-20">
     <div class="sm:ml-12">
       <p class="text-[13px] leading-[1.8] opacity-40 sm:max-w-lg">
-        No soy barista profesional — soy un developer que intenta tomarse la vida
-        en serio. Este roadmap lo armé a partir de libros de especialidad y el
-        programa de la SCA. El contenido lo construyo con la ayuda de Claude, yo
-        lo valido, lo estudio, lo practico, y cuando estoy seguro de que tiene
-        sentido, lo publico.
+        No soy barista profesional — soy un developer que intenta tomarse la
+        vida en serio. Este roadmap lo armé a partir de libros de especialidad y
+        el programa de la SCA. El contenido lo construyo con la ayuda de Claude,
+        yo lo valido, lo estudio, lo practico, y cuando estoy seguro de que
+        tiene sentido, lo publico.
       </p>
       <p class="mt-3 text-[13px] leading-[1.8] opacity-40 sm:max-w-lg">
-        El objetivo es abrir <strong class="font-semibold text-accent opacity-100">La Commune</strong>, mi propia cafetería de
-        especialidad. Mientras ahorro para eso, estoy construyendo las
-        herramientas (<a href="/projects" class="text-accent no-underline opacity-70 transition-opacity duration-300 hover:opacity-100">POS</a>, app de fidelidad, menú digital)
-        y aprendiendo todo lo que puedo.
+        El objetivo es abrir cafeterías con diferentes enfoques y temáticas,
+        siempre con el café de especialidad como base.
+        <strong class="font-semibold text-accent opacity-100"
+          ><a href="/projects" class="text-accent no-underline opacity-100"
+            >La Commune</a
+          ></strong
+        >
+        es el brazo tecnológico — el software que construyo para que cualquiera de
+        esas cafeterías arranque con
+        <a
+          href="/projects"
+          class="text-accent no-underline opacity-70 transition-opacity duration-300 hover:opacity-100"
+          >POS</a
+        >, app de fidelidad y menú digital desde el día uno.
       </p>
       <a
         href="/cafe/2025-03-05-mi-camino-barista-especialidad"
-        class="mt-4 inline-flex items-center gap-2 text-[12px] font-medium uppercase tracking-[0.12em] text-accent opacity-40 no-underline transition-opacity duration-500 hover:opacity-80"
+        class="mt-4 inline-flex items-center gap-2 text-[12px] font-medium uppercase tracking-[0.12em] text-accent no-underline opacity-40 transition-opacity duration-500 hover:opacity-80"
       >
         Leer la historia completa
-        <span class="text-[10px] transition-transform duration-300 group-hover:translate-x-1">&nearr;</span>
+        <span
+          class="text-[10px] transition-transform duration-300 group-hover:translate-x-1"
+          >&nearr;</span
+        >
       </a>
     </div>
   </div>
@@ -240,12 +272,20 @@ function getPhaseState(phaseNum: number) {
             <div class="rm-phase-track">
               <span class="rm-phase-node" data-phase-node>
                 {/* User-complete check (hidden by default) */}
-                <svg viewBox="0 0 16 16" fill="currentColor" class="rm-node-icon rm-node-check rm-node-user-check">
+                <svg
+                  viewBox="0 0 16 16"
+                  fill="currentColor"
+                  class="rm-node-icon rm-node-check rm-node-user-check"
+                >
                   <path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.75.75 0 0 1 1.06-1.06L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z" />
                 </svg>
                 <span class="rm-node-default">
                   {isComplete ? (
-                    <svg viewBox="0 0 16 16" fill="currentColor" class="rm-node-icon rm-node-check">
+                    <svg
+                      viewBox="0 0 16 16"
+                      fill="currentColor"
+                      class="rm-node-icon rm-node-check"
+                    >
                       <path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.75.75 0 0 1 1.06-1.06L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z" />
                     </svg>
                   ) : isActive ? (
@@ -254,7 +294,11 @@ function getPhaseState(phaseNum: number) {
                       <span class="rm-pulse-dot" />
                     </span>
                   ) : isLocked ? (
-                    <svg viewBox="0 0 16 16" fill="currentColor" class="rm-node-icon rm-node-lock">
+                    <svg
+                      viewBox="0 0 16 16"
+                      fill="currentColor"
+                      class="rm-node-icon rm-node-lock"
+                    >
                       <path d="M8 1a4 4 0 0 0-4 4v3H3a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1h-1V5a4 4 0 0 0-4-4Zm2 7H6V5a2 2 0 1 1 4 0v3Z" />
                     </svg>
                   ) : (
@@ -263,7 +307,10 @@ function getPhaseState(phaseNum: number) {
                 </span>
               </span>
               {!isLast && (
-                <span class={`rm-phase-line ${isComplete ? 'rm-phase-line--done' : ''}`} data-phase-line />
+                <span
+                  class={`rm-phase-line ${isComplete ? 'rm-phase-line--done' : ''}`}
+                  data-phase-line
+                />
               )}
             </div>
 
@@ -278,7 +325,9 @@ function getPhaseState(phaseNum: number) {
               >
                 <div class="rm-phase-info">
                   <div class="flex items-center gap-3">
-                    <span class="font-serif text-[12px] italic opacity-15">({String(phase.num).padStart(2, '0')})</span>
+                    <span class="font-serif text-[12px] italic opacity-15">
+                      ({String(phase.num).padStart(2, '0')})
+                    </span>
                     <span class="rm-phase-title">{phase.title}</span>
                   </div>
                   <span class="rm-phase-desc">{phase.desc}</span>
@@ -288,7 +337,12 @@ function getPhaseState(phaseNum: number) {
                     {lessons.length}/{phase.totalLessons}
                   </span>
                   {hasContent && (
-                    <svg class="rm-phase-chevron" data-chevron viewBox="0 0 16 16" fill="currentColor">
+                    <svg
+                      class="rm-phase-chevron"
+                      data-chevron
+                      viewBox="0 0 16 16"
+                      fill="currentColor"
+                    >
                       <path d="M6.22 4.22a.75.75 0 0 1 1.06 0l3.25 3.25a.75.75 0 0 1 0 1.06l-3.25 3.25a.75.75 0 0 1-1.06-1.06L8.94 8 6.22 5.28a.75.75 0 0 1 0-1.06Z" />
                     </svg>
                   )}
@@ -305,7 +359,12 @@ function getPhaseState(phaseNum: number) {
                       data-lesson-slug={lesson.slug}
                     >
                       <span class="rm-lesson-status">
-                        <svg viewBox="0 0 16 16" fill="currentColor" class="rm-lesson-check" style="display:none">
+                        <svg
+                          viewBox="0 0 16 16"
+                          fill="currentColor"
+                          class="rm-lesson-check"
+                          style="display:none"
+                        >
                           <path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.75.75 0 0 1 1.06-1.06L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z" />
                         </svg>
                         <span class="rm-lesson-dot" />
@@ -550,7 +609,9 @@ function getPhaseState(phaseNum: number) {
     color: inherit;
     text-decoration: none;
     opacity: 0.3;
-    transition: opacity 0.4s ease, border-color 0.4s ease;
+    transition:
+      opacity 0.4s ease,
+      border-color 0.4s ease;
   }
   .rm-lang-pill:hover {
     opacity: 0.7;
@@ -615,8 +676,9 @@ function getPhaseState(phaseNum: number) {
     flex-shrink: 0;
     position: relative;
     z-index: 1;
-    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
-                box-shadow 0.5s ease;
+    transition:
+      transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+      box-shadow 0.5s ease;
   }
   @media (max-width: 480px) {
     .rm-phase-node {
@@ -635,7 +697,8 @@ function getPhaseState(phaseNum: number) {
   }
   .rm-phase--active .rm-phase-node {
     background: color-mix(in srgb, var(--color-accent) 8%, transparent);
-    box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-accent) 4%, transparent);
+    box-shadow: 0 0 0 4px
+      color-mix(in srgb, var(--color-accent) 4%, transparent);
   }
   .rm-phase--next .rm-phase-node,
   .rm-phase--locked .rm-phase-node {
@@ -706,8 +769,15 @@ function getPhaseState(phaseNum: number) {
     position: relative;
   }
   @keyframes rm-ping {
-    0% { transform: scale(1); opacity: 0.5; }
-    75%, 100% { transform: scale(2.8); opacity: 0; }
+    0% {
+      transform: scale(1);
+      opacity: 0.5;
+    }
+    75%,
+    100% {
+      transform: scale(2.8);
+      opacity: 0;
+    }
   }
 
   /* Connector line */
@@ -771,14 +841,28 @@ function getPhaseState(phaseNum: number) {
     font-weight: 600;
     line-height: 1.2;
     letter-spacing: -0.01em;
-    transition: opacity 0.3s ease, color 0.3s ease;
+    transition:
+      opacity 0.3s ease,
+      color 0.3s ease;
   }
-  .rm-phase--complete .rm-phase-title { opacity: 0.5; }
-  .rm-phase--active .rm-phase-title { color: var(--color-accent); }
-  .rm-phase--next .rm-phase-title { opacity: 0.5; }
-  .rm-phase--locked .rm-phase-title { opacity: 0.3; }
-  .rm-phase-header:hover .rm-phase-title { opacity: 0.8; }
-  .rm-phase--active .rm-phase-header:hover .rm-phase-title { opacity: 1; }
+  .rm-phase--complete .rm-phase-title {
+    opacity: 0.5;
+  }
+  .rm-phase--active .rm-phase-title {
+    color: var(--color-accent);
+  }
+  .rm-phase--next .rm-phase-title {
+    opacity: 0.5;
+  }
+  .rm-phase--locked .rm-phase-title {
+    opacity: 0.3;
+  }
+  .rm-phase-header:hover .rm-phase-title {
+    opacity: 0.8;
+  }
+  .rm-phase--active .rm-phase-header:hover .rm-phase-title {
+    opacity: 1;
+  }
 
   .rm-phase-desc {
     font-size: 0.6875rem;
@@ -806,16 +890,26 @@ function getPhaseState(phaseNum: number) {
     font-variant-numeric: tabular-nums;
     opacity: 0.35;
   }
-  .rm-phase--complete .rm-phase-counter { color: #22c55e; opacity: 0.5; }
-  .rm-phase--active .rm-phase-counter { color: var(--color-accent); opacity: 0.55; }
+  .rm-phase--complete .rm-phase-counter {
+    color: #22c55e;
+    opacity: 0.5;
+  }
+  .rm-phase--active .rm-phase-counter {
+    color: var(--color-accent);
+    opacity: 0.55;
+  }
 
   .rm-phase-chevron {
     width: 0.75rem;
     height: 0.75rem;
     opacity: 0.2;
-    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+    transition:
+      transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+      opacity 0.3s ease;
   }
-  .rm-phase-header:hover .rm-phase-chevron { opacity: 0.4; }
+  .rm-phase-header:hover .rm-phase-chevron {
+    opacity: 0.4;
+  }
 
   /* ── Lessons (animated expand/collapse) ── */
   .rm-lessons {
@@ -824,7 +918,9 @@ function getPhaseState(phaseNum: number) {
     flex-direction: column;
     gap: 1px;
     overflow: hidden;
-    transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+    transition:
+      max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+      opacity 0.3s ease;
   }
   .rm-lessons.hidden {
     max-height: 0 !important;
@@ -845,7 +941,9 @@ function getPhaseState(phaseNum: number) {
     text-decoration: none;
     color: inherit;
     border-radius: 0.5rem;
-    transition: background 0.2s ease, padding-left 0.3s ease;
+    transition:
+      background 0.2s ease,
+      padding-left 0.3s ease;
   }
   a.rm-lesson:hover {
     background: color-mix(in srgb, var(--color-accent) 3%, transparent);
@@ -878,7 +976,9 @@ function getPhaseState(phaseNum: number) {
   }
 
   .rm-lesson-title {
-    transition: opacity 0.2s ease, color 0.2s ease;
+    transition:
+      opacity 0.2s ease,
+      color 0.2s ease;
   }
 
   .rm-lesson-arrow {
@@ -892,15 +992,32 @@ function getPhaseState(phaseNum: number) {
   }
 
   /* Read state */
-  .rm-lesson--available.is-read .rm-lesson-check { display: block !important; }
-  .rm-lesson--available.is-read .rm-lesson-dot { display: none; }
-  .rm-lesson--available.is-read .rm-lesson-title { opacity: 0.5; }
-  .rm-lesson--available:not(.is-read) .rm-lesson-title { opacity: 0.75; }
-  a.rm-lesson--available:hover .rm-lesson-title { opacity: 1; color: var(--color-accent); }
-  a.rm-lesson--available:hover .rm-lesson-check { color: var(--color-accent); }
-  a.rm-lesson--available:hover .rm-lesson-dot { background: var(--color-accent); }
+  .rm-lesson--available.is-read .rm-lesson-check {
+    display: block !important;
+  }
+  .rm-lesson--available.is-read .rm-lesson-dot {
+    display: none;
+  }
+  .rm-lesson--available.is-read .rm-lesson-title {
+    opacity: 0.5;
+  }
+  .rm-lesson--available:not(.is-read) .rm-lesson-title {
+    opacity: 0.75;
+  }
+  a.rm-lesson--available:hover .rm-lesson-title {
+    opacity: 1;
+    color: var(--color-accent);
+  }
+  a.rm-lesson--available:hover .rm-lesson-check {
+    color: var(--color-accent);
+  }
+  a.rm-lesson--available:hover .rm-lesson-dot {
+    background: var(--color-accent);
+  }
 
-  .rm-lesson--pending .rm-lesson-title { opacity: 0.3; }
+  .rm-lesson--pending .rm-lesson-title {
+    opacity: 0.3;
+  }
 
   /* ── Bibliography ── */
   .rm-biblio-toggle {
@@ -913,9 +1030,16 @@ function getPhaseState(phaseNum: number) {
     transition: opacity 0.3s ease;
     list-style: none;
   }
-  .rm-biblio-toggle::-webkit-details-marker { display: none; }
-  .rm-biblio-toggle::marker { display: none; content: ''; }
-  .rm-biblio-toggle:hover { opacity: 0.5; }
+  .rm-biblio-toggle::-webkit-details-marker {
+    display: none;
+  }
+  .rm-biblio-toggle::marker {
+    display: none;
+    content: '';
+  }
+  .rm-biblio-toggle:hover {
+    opacity: 0.5;
+  }
 
   .rm-biblio {
     margin-top: 1.5rem;
