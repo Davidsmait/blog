@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Video: El Agua y Tu Café — Dashboard de Producción</title>
+<style>
+  :root {
+    --bg: #0f0f0f;
+    --surface: #1a1a1a;
+    --surface-2: #242424;
+    --surface-3: #2e2e2e;
+    --accent: #c8a97e;
+    --accent-dim: #8b7355;
+    --accent-glow: rgba(200, 169, 126, 0.15);
+    --text: #e8e0d6;
+    --text-dim: #9a9088;
+    --text-bright: #fff;
+    --success: #6ecf8e;
+    --success-bg: rgba(110, 207, 142, 0.1);
+    --warning: #f0c674;
+    --warning-bg: rgba(240, 198, 116, 0.1);
+    --danger: #e07070;
+    --info: #7ab8d9;
+    --info-bg: rgba(122, 184, 217, 0.1);
+    --border: #333;
+    --radius: 12px;
+    --radius-sm: 8px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* NAV */
+  .nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(15, 15, 15, 0.9);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 24px;
+  }
+  .nav-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: flex; align-items: center; gap: 8px;
+    overflow-x: auto; scrollbar-width: none;
+    padding: 12px 0;
+  }
+  .nav-inner::-webkit-scrollbar { display: none; }
+  .nav-btn {
+    background: none; border: 1px solid transparent; color: var(--text-dim);
+    padding: 8px 16px; border-radius: 20px; cursor: pointer;
+    font-size: 13px; white-space: nowrap; transition: all 0.2s;
+    font-family: inherit;
+  }
+  .nav-btn:hover { color: var(--text); border-color: var(--border); }
+  .nav-btn.active { color: var(--accent); border-color: var(--accent); background: var(--accent-glow); }
+
+  /* MAIN */
+  .main { max-width: 1100px; margin: 0 auto; padding: 32px 24px; }
+
+  /* HEADER */
+  .header { margin-bottom: 40px; }
+  .header h1 {
+    font-size: 28px; font-weight: 700; color: var(--text-bright);
+    margin-bottom: 8px; letter-spacing: -0.5px;
+  }
+  .header p { color: var(--text-dim); font-size: 15px; }
+
+  /* PROGRESS BAR */
+  .progress-section { margin-bottom: 40px; }
+  .progress-bar-bg {
+    background: var(--surface-2); border-radius: 8px; height: 8px;
+    overflow: hidden; margin-top: 12px;
+  }
+  .progress-bar-fill {
+    height: 100%; background: linear-gradient(90deg, var(--accent-dim), var(--accent));
+    border-radius: 8px; transition: width 0.5s ease;
+  }
+  .progress-label {
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 13px; color: var(--text-dim); margin-bottom: 4px;
+  }
+  .progress-label strong { color: var(--accent); font-size: 15px; }
+
+  /* SECTIONS */
+  .section { display: none; }
+  .section.active { display: block; }
+
+  /* CARDS */
+  .card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); margin-bottom: 16px;
+    overflow: hidden;
+  }
+  .card-header {
+    padding: 16px 20px; cursor: pointer;
+    display: flex; align-items: center; justify-content: space-between;
+    transition: background 0.2s; user-select: none;
+  }
+  .card-header:hover { background: var(--surface-2); }
+  .card-header h3 { font-size: 15px; font-weight: 600; color: var(--text-bright); }
+  .card-chevron {
+    color: var(--text-dim); transition: transform 0.3s; font-size: 18px;
+  }
+  .card.open .card-chevron { transform: rotate(180deg); }
+  .card-body {
+    max-height: 0; overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.3s ease;
+  }
+  .card.open .card-body { max-height: 5000px; }
+  .card-content { padding: 0 20px 20px; }
+
+  /* BADGE */
+  .badge {
+    font-size: 11px; padding: 3px 10px; border-radius: 12px;
+    font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase;
+    margin-right: 12px;
+  }
+  .badge-time { background: var(--info-bg); color: var(--info); }
+  .badge-tip { background: var(--warning-bg); color: var(--warning); }
+  .badge-viral { background: rgba(200, 169, 126, 0.15); color: var(--accent); }
+
+  /* DIALOGUE */
+  .dialogue {
+    background: var(--surface-2); border-left: 3px solid var(--accent);
+    padding: 14px 18px; border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    margin: 12px 0; font-style: italic; color: var(--text);
+    font-size: 14px; line-height: 1.7;
+  }
+  .dialogue::before { content: '🎙️ '; font-style: normal; }
+
+  /* NOTE */
+  .note {
+    padding: 14px 18px; border-radius: var(--radius-sm);
+    margin: 12px 0; font-size: 13px; line-height: 1.6;
+  }
+  .note-production { background: var(--warning-bg); border-left: 3px solid var(--warning); }
+  .note-science { background: var(--info-bg); border-left: 3px solid var(--info); }
+  .note-success { background: var(--success-bg); border-left: 3px solid var(--success); }
+  .note strong { color: var(--text-bright); }
+
+  /* CHECKLIST */
+  .checklist { list-style: none; }
+  .checklist li {
+    padding: 10px 0; border-bottom: 1px solid var(--surface-3);
+    display: flex; align-items: flex-start; gap: 12px; font-size: 14px;
+  }
+  .checklist li:last-child { border-bottom: none; }
+  .checklist input[type="checkbox"] {
+    appearance: none; -webkit-appearance: none;
+    width: 20px; height: 20px; min-width: 20px;
+    border: 2px solid var(--border); border-radius: 4px;
+    cursor: pointer; margin-top: 1px; transition: all 0.2s;
+    position: relative;
+  }
+  .checklist input[type="checkbox"]:checked {
+    background: var(--accent); border-color: var(--accent);
+  }
+  .checklist input[type="checkbox"]:checked::after {
+    content: '✓'; position: absolute; color: var(--bg);
+    font-size: 13px; font-weight: 700;
+    top: 50%; left: 50%; transform: translate(-50%, -50%);
+  }
+  .checklist input[type="checkbox"]:checked + span {
+    text-decoration: line-through; color: var(--text-dim);
+  }
+
+  /* FLOW DIAGRAM */
+  .flow {
+    display: flex; flex-direction: column; gap: 0;
+    margin: 16px 0;
+  }
+  .flow-step {
+    display: flex; align-items: flex-start; gap: 16px;
+    position: relative; padding-bottom: 24px;
+  }
+  .flow-step:last-child { padding-bottom: 0; }
+  .flow-step:not(:last-child)::before {
+    content: ''; position: absolute;
+    left: 17px; top: 36px; bottom: 0;
+    width: 2px; background: var(--border);
+  }
+  .flow-num {
+    width: 36px; height: 36px; min-width: 36px;
+    border-radius: 50%; background: var(--surface-2);
+    border: 2px solid var(--accent-dim);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; font-weight: 700; color: var(--accent);
+    z-index: 1;
+  }
+  .flow-content h4 { font-size: 14px; font-weight: 600; color: var(--text-bright); margin-bottom: 4px; }
+  .flow-content p { font-size: 13px; color: var(--text-dim); }
+
+  /* TONE METER */
+  .tone-meter {
+    display: flex; align-items: center; gap: 12px;
+    margin: 16px 0; padding: 16px;
+    background: var(--surface-2); border-radius: var(--radius-sm);
+  }
+  .tone-meter-label { font-size: 12px; color: var(--text-dim); min-width: 70px; text-align: right; }
+  .tone-meter-bar {
+    flex: 1; height: 6px; background: var(--surface-3);
+    border-radius: 3px; position: relative;
+  }
+  .tone-meter-fill {
+    height: 100%; border-radius: 3px;
+    position: absolute; left: 0; top: 0;
+  }
+  .tone-meter-marker {
+    position: absolute; top: -8px;
+    width: 22px; height: 22px; border-radius: 50%;
+    background: var(--accent); border: 3px solid var(--bg);
+    transform: translateX(-50%);
+    box-shadow: 0 0 0 2px var(--accent-dim);
+  }
+  .tone-meter-ends {
+    display: flex; justify-content: space-between;
+    font-size: 11px; color: var(--text-dim); margin-top: 4px;
+  }
+
+  /* SHORTS GRID */
+  .shorts-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 16px 0; }
+  @media (max-width: 600px) { .shorts-grid { grid-template-columns: 1fr; } }
+  .short-card {
+    background: var(--surface-2); border: 1px solid var(--border);
+    border-radius: var(--radius-sm); padding: 16px;
+    cursor: pointer; transition: all 0.2s;
+  }
+  .short-card:hover { border-color: var(--accent-dim); transform: translateY(-2px); }
+  .short-card h4 { font-size: 14px; color: var(--text-bright); margin-bottom: 8px; }
+  .short-card p { font-size: 12px; color: var(--text-dim); line-height: 1.5; }
+  .short-card .hook { color: var(--accent); font-weight: 600; font-size: 13px; margin-bottom: 6px; }
+
+  /* SCA TABLE */
+  .sca-table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 13px; }
+  .sca-table th {
+    text-align: left; padding: 10px 14px;
+    background: var(--surface-2); color: var(--accent);
+    font-weight: 600; font-size: 12px; text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .sca-table td { padding: 10px 14px; border-bottom: 1px solid var(--surface-3); }
+  .sca-table tr:hover td { background: var(--surface-2); }
+
+  /* TAGS */
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 12px 0; }
+  .tag {
+    font-size: 12px; padding: 4px 10px;
+    background: var(--surface-2); border: 1px solid var(--border);
+    border-radius: 14px; color: var(--text-dim);
+    cursor: pointer; transition: all 0.2s;
+  }
+  .tag:hover { border-color: var(--accent-dim); color: var(--accent); }
+
+  /* SEPARATOR */
+  .sep { border: none; border-top: 1px solid var(--border); margin: 20px 0; }
+
+  /* DO / DONT */
+  .do-dont { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 16px 0; }
+  @media (max-width: 600px) { .do-dont { grid-template-columns: 1fr; } }
+  .do-col, .dont-col {
+    padding: 16px; border-radius: var(--radius-sm); font-size: 13px;
+  }
+  .do-col { background: var(--success-bg); border: 1px solid rgba(110, 207, 142, 0.2); }
+  .dont-col { background: rgba(224, 112, 112, 0.08); border: 1px solid rgba(224, 112, 112, 0.15); }
+  .do-col h4 { color: var(--success); margin-bottom: 10px; font-size: 13px; }
+  .dont-col h4 { color: var(--danger); margin-bottom: 10px; font-size: 13px; }
+  .do-col li, .dont-col li { margin-bottom: 6px; color: var(--text); line-height: 1.5; }
+
+  /* FORMULA */
+  .formula {
+    background: var(--surface-2); border: 1px solid var(--border);
+    border-radius: var(--radius-sm); padding: 16px 20px;
+    margin: 12px 0; text-align: center;
+  }
+  .formula-main {
+    font-size: 16px; font-weight: 600; color: var(--accent);
+    font-family: 'Courier New', monospace; margin-bottom: 6px;
+  }
+  .formula-desc { font-size: 12px; color: var(--text-dim); }
+
+  /* RESPONSIVE */
+  @media (max-width: 600px) {
+    .main { padding: 20px 16px; }
+    .header h1 { font-size: 22px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <button class="nav-btn active" data-section="overview">📋 Overview</button>
+    <button class="nav-btn" data-section="materiales">🛒 Materiales</button>
+    <button class="nav-btn" data-section="guion">🎬 Guión Largo</button>
+    <button class="nav-btn" data-section="shorts">📱 Shorts</button>
+    <button class="nav-btn" data-section="tono">🎙️ Tono y Voz</button>
+    <button class="nav-btn" data-section="ciencia">🔬 Referencia SCA</button>
+    <button class="nav-btn" data-section="produccion">🎥 Producción</button>
+  </div>
+</nav>
+
+<div class="main">
+
+  <!-- HEADER -->
+  <div class="header">
+    <h1>El Agua que Arruina (o Salva) Tu Café</h1>
+    <p>Dashboard de producción — Video para YouTube + 4 Shorts · Lección 1-4</p>
+  </div>
+
+  <!-- PROGRESS -->
+  <div class="progress-section">
+    <div class="progress-label">
+      <span>Progreso de producción</span>
+      <strong id="progress-pct">0%</strong>
+    </div>
+    <div class="progress-bar-bg">
+      <div class="progress-bar-fill" id="progress-fill" style="width: 0%"></div>
+    </div>
+  </div>
+
+  <!-- ========== OVERVIEW ========== -->
+  <div class="section active" id="sec-overview">
+
+    <h2 style="font-size: 18px; color: var(--text-bright); margin-bottom: 20px;">Checklist de Pre-Producción</h2>
+
+    <ul class="checklist" id="main-checklist">
+      <li><input type="checkbox" id="c1"><span>Kit pH + TDS + EC comprado</span></li>
+      <li><input type="checkbox" id="c2"><span>Kit gotas GH/KH API comprado</span></li>
+      <li><input type="checkbox" id="c3"><span>Portafiltro sin fondo 58mm comprado</span></li>
+      <li><input type="checkbox" id="c4"><span>Café de especialidad conseguido (lavado + natural)</span></li>
+      <li><input type="checkbox" id="c5"><span>Agua destilada (1 galón, farmacia o super)</span></li>
+      <li><input type="checkbox" id="c6"><span>2-3 aguas embotelladas diferentes (Bonafont, Ciel, etc.)</span></li>
+      <li><input type="checkbox" id="c7"><span>Vasos etiquetados / marcador permanente</span></li>
+      <li><input type="checkbox" id="c8"><span>Báscula de cocina 0.1g</span></li>
+      <li><input type="checkbox" id="c9"><span>Hervidor con termómetro</span></li>
+      <li><input type="checkbox" id="c10"><span>Cuaderno para anotar resultados en vivo</span></li>
+      <li><input type="checkbox" id="c11"><span>Espacio limpio con buena luz para grabar</span></li>
+      <li><input type="checkbox" id="c12"><span>Celular/cámara cargada + micrófono</span></li>
+      <li><input type="checkbox" id="c13"><span>Guión leído y entendido (no memorizado)</span></li>
+      <li><input type="checkbox" id="c14"><span>Video grabado</span></li>
+      <li><input type="checkbox" id="c15"><span>Video editado y subido</span></li>
+    </ul>
+
+    <hr class="sep">
+
+    <h2 style="font-size: 18px; color: var(--text-bright); margin-bottom: 20px;">Flujo de Grabación (Orden Óptimo)</h2>
+
+    <div class="flow">
+      <div class="flow-step">
+        <div class="flow-num">1</div>
+        <div class="flow-content">
+          <h4>Preparar la mesa</h4>
+          <p>Todos los instrumentos, aguas etiquetadas, café, Chemex. Todo visible y organizado. Esto es tu set.</p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">2</div>
+        <div class="flow-content">
+          <h4>Grabar intro (hook)</h4>
+          <p>"Tu café es 98% agua..." — Mira a cámara, tono de curiosidad. Máximo 30 segundos.</p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">3</div>
+        <div class="flow-content">
+          <h4>Grabar TODAS las mediciones</h4>
+          <p>TDS → pH → GH → KH de cada agua. Sin cortes si puedes. Las reacciones genuinas a los números son tu mejor material.</p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">4</div>
+        <div class="flow-content">
+          <h4>Preparar café con diferentes aguas</h4>
+          <p>Mismo café, misma receta, solo cambia el agua. Graba el proceso (sirve para time-lapse).</p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">5</div>
+        <div class="flow-content">
+          <h4>Prueba lado a lado</h4>
+          <p>Prueba cada taza en cámara. Describe lo que sientes. Sé honesto — si la diferencia es sutil, dilo.</p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">6</div>
+        <div class="flow-content">
+          <h4>Grabar cierre</h4>
+          <p>Tu veredicto, qué vas a cambiar, invitación al blog. Máximo 1 minuto.</p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">7</div>
+        <div class="flow-content">
+          <h4>Grabar hooks de shorts</h4>
+          <p>4 frases cortas mirando a cámara. Se graban al final cuando ya estás suelto y natural.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== MATERIALES ========== -->
+  <div class="section" id="sec-materiales">
+    <h2 style="font-size: 18px; color: var(--text-bright); margin-bottom: 20px;">Lista de Materiales Completa</h2>
+
+    <div class="card open">
+      <div class="card-header" onclick="toggleCard(this)">
+        <h3>🧪 Kit de Medición (ya comprado)</h3>
+        <span class="card-chevron">▼</span>
+      </div>
+      <div class="card-body">
+        <div class="card-content">
+          <ul class="checklist">
+            <li><input type="checkbox" checked><span>Medidor TDS + EC (pluma blanca) — mide minerales totales en ppm</span></li>
+            <li><input type="checkbox" checked><span>Medidor pH digital (pluma amarilla) — mide acidez/alcalinidad 0-14</span></li>
+            <li><input type="checkbox" checked><span>Polvos de calibración pH (4.01, 6.86, 9.18)</span></li>
+            <li><input type="checkbox" checked><span>Tiras de pH (papel que cambia de color)</span></li>
+            <li><input type="checkbox" checked><span>Kit gotas API GH/KH — mide calcio+magnesio y bicarbonato por separado</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header" onclick="toggleCard(this)">
+        <h3>💧 Aguas para las pruebas</h3>
+        <span class="card-chevron">▼</span>
+      </div>
+      <div class="card-body">
+        <div class="card-content">
+          <ul class="checklist">
+            <li><input type="checkbox"><span>Agua destilada — 1 galón (farmacia o super, $30-60 MXN)</span></li>
+            <li><input type="checkbox"><span>Tu agua del grifo (en vaso etiquetado)</span></li>
+            <li><input type="checkbox"><span>Tu agua de garrafón habitual (en vaso etiquetado)</span></li>
+            <li><input type="checkbox"><span>Agua embotellada #1 — Bonafont o similar</span></li>
+            <li><input type="checkbox"><span>Agua embotellada #2 — Ciel, Epura u otra marca</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header" onclick="toggleCard(this)">
+        <h3>☕ Café y equipo de preparación</h3>
+        <span class="card-chevron">▼</span>
+      </div>
+      <div class="card-body">
+        <div class="card-content">
+          <ul class="checklist">
+            <li><input type="checkbox"><span>Café en grano — una sola variedad/origen para las pruebas de agua</span></li>
+            <li><input type="checkbox"><span>Chemex (o tu método de filtrado)</span></li>
+            <li><input type="checkbox"><span>Báscula 0.1g</span></li>
+            <li><input type="checkbox"><span>Hervidor con termómetro</span></li>
+            <li><input type="checkbox"><span>Molino</span></li>
+            <li><input type="checkbox"><span>Filtros para Chemex</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header" onclick="toggleCard(this)">
+        <h3>🎥 Equipo de grabación</h3>
+        <span class="card-chevron">▼</span>
+      </div>
+      <div class="card-body">
+        <div class="card-content">
+          <ul class="checklist">
+            <li><input type="checkbox"><span>Celular o cámara cargada (horizontal para YouTube, vertical para shorts)</span></li>
+            <li><input type="checkbox"><span>Trípode o superficie estable</span></li>
+            <li><input type="checkbox"><span>Micrófono de solapa o del celular (audio > video)</span></li>
+            <li><input type="checkbox"><span>Luz natural (ventana) o lámpara</span></li>
+            <li><input type="checkbox"><span>Marcador permanente + etiquetas para los vasos</span></li>
+            <li><input type="checkbox"><span>Cuaderno/libreta para anotar en cámara</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== GUIÓN LARGO ========== -->
+  <div class="section" id="sec-guion">
+    <h2 style="font-size: 18px; color: var(--text-bright); margin-bottom: 20px;">Guión — Video Largo (6-8 min)</h2>
+
+    <div class="card open">
+      <div class="card-header" onclick="toggleCard(this)">
+        <div style="display:flex;align-items:center"><span class="badge badge-time">0:00–0:30</span><h3>Intro — Hook</h3></div>
+        <span class="card-chevron">▼</span>
+      </div>
+      <div class="card-body"><div class="card-content">
+        <p style="font-size:13px;color:var(--text-dim);margin-bottom:12px"><strong>Toma:</strong> Close-up vertiendo agua en Chemex</p>
+        <div class="dialogue">Tu café es 98% agua. Y aún así, la mayoría gasta miles en molinos, cafeteras y café de especialidad... pero usa agua del garrafón sin pensarlo dos veces.</div>
+        <p style="font-size:13px;color:var(--text-dim);margin-bottom:12px"><strong>Toma:</strong> Mostrar los instrumentos sobre la mesa</p>
+        <div class="dialogue">Hoy voy a medir exactamente qué tiene el agua que uso todos los días, y vamos a ver si me está arruinando el café o no.</div>
+        <div class="note note-production"><strong>📸 Producción:</strong> Este es tu hook — tiene que enganchar en los primeros 2 segundos. Mira directo a cámara con curiosidad genuina.</div>
+      </div></div>
+    </div>
+
+    <div class="card">
+      <div class="card-header" onclick="toggleCard(this)">
+        <div style="display:flex;align-items:center"><span class="badge badge-time">0:30–1:30</span><h3>¿Por qué importa el agua?</h3></div>
+        <span class="card-chevron">▼</span>
+      </div>
+      <div class="card-body"><div class="card-content">
+        <p style="font-size:13px;color:var(--text-dim);margin-bottom:12px"><strong>Toma:</strong> Sentado frente a cámara, tono conversacional</p>
+        <div class="dialogue">En tu agua hay minerales disueltos. Los dos más importantes son el magnesio y el calcio — los que literalmente arrancan el sabor del grano. El magnesio jala notas ácidas y frutales. El calcio da cuerpo y dulzura.</div>
+        <div class="dialogue">Después está el bicarbonato, que funciona como control de volumen de la acidez. Un poco y la suaviza. Demasiado y la apaga por completo.</div>
+        <div class="dialogue">La SCA dice que el agua ideal tiene entre 75 y 150 partes por millón de minerales, pH entre 6.5 y 7.5, y cero cloro. Ahora veamos qué tiene mi agua.</div>
+        <div class="note note-science"><strong>🔬 Dato:</strong> Mg²⁺ extrae ácidos clorogénicos (notas frutales/ácidas). Ca²⁺ extrae compuestos de cuerpo. HCO₃⁻ neutraliza ácidos en solución.</div>
+      </div></div>
+    </div>
+
+    <div class="card">
+      <div class="card-header" onclick="toggleCard(this)">
+        <div style="display:flex;align-items:center"><span class="badge badge-time">1:30–2:30</span><h3>Prueba TDS — Minerales totales</h3></div>
+        <span class="card-chevron">▼</span>
+      </div>
+      <div class="card-body"><div class="card-content">
+        <p style="font-size:13px;color:var(--text-dim);margin-bottom:12px"><strong>Toma:</strong> Close-up de muestras de agua etiquetadas en fila</p>
+        <div class="dialogue">Tengo aquí [X] muestras: destilada como referencia de cero, mi grifo, el garrafón, [Bonafont] y [Ciel].</div>
+        <p style="font-size:13px;color:var(--text-dim);margin-bottom:12px"><strong>Toma:</strong> Encender medidor, sumergir en cada agua, mostrar pantalla</p>
+        <div class="dialogue">Primero la destilada para confirmar que funciona... [mostrar pantalla] ...marca [X] ppm. Perfecto.</div>
+        <div class="dialogue">Grifo: [X] ppm. Garrafón: [X] ppm. [Bonafont]: [X] ppm. [Ciel]: [X] ppm.</div>
+        <div class="dialogue">[Tu reacción genuina a los números — ¿cuál te sorprendió?]</div>
+        <div class="note note-production"><strong>🔥 Momento viral:</strong> Tu reacción real al ver los números es tu mejor material para shorts. No la finjas — grábala en tiempo real.</div>
+      </div></div>
+    </div>
+
+    <div class="card">
+      <div class="card-header" onclick="toggleCard(this)">
+        <div style="display:flex;align-items:center"><span class="badge badge-time">2:30–3:30</span><h3>Prueba pH — Acidez del agua</h3></div>
+        <span class="card-chevron">▼</span>
+      </div>
+      <div class="card-body"><div class="card-content">
+        <div class="dialogue">Ahora el pH. La SCA quiere entre 6.5 y 7.5, casi neutro.</div>
+        <p style="font-size:13px;color:var(--text-dim);margin-bottom:12px"><strong>Toma:</strong> Medir cada agua con pluma amarilla</p>
+        <div class="dialogue">Destilada: [X]. Grifo: [X]. Garrafón: [X]...</div>
+        <p style="font-size:13px;color:var(--text-dim);margin-bottom:12px"><strong>Toma:</strong> Usar tiras de pH, mostrar cambio de color junto a la escala</p>
+        <div class="dialogue">También traje estas tiras que cambian de color. Miren — [mostrar tira junto a la escala]. Menos preciso que el digital pero mucho más visual.</div>
+        <div class="note note-production"><strong>📸 Producción:</strong> Las tiras cambiando de color son muy fotogénicas. Graba con buena luz y close-up. Material ideal para reels.</div>
+      </div></div>
+    </div>
+
+    <div class="card">
+      <div class="card-header" onclick="toggleCard(this)">
+        <div style="display:flex;align-items:center"><span class="badge badge-time">3:30–5:00</span><h3>Prueba GH/KH — Calcio, magnesio y bicarbonato</h3></div>
+        <span class="card-chevron">▼</span>
+      </div>
+      <div class="card-body"><div class="card-content">
+        <p style="font-size:13px;color:var(--text-dim);margin-bottom:12px"><strong>Toma:</strong> Abrir kit API, mostrar botellitas y tubitos</p>
+        <div class="dialogue">Esta es la prueba más interesante. El TDS me dice cuántos minerales hay, pero no cuáles. Estas gotas me dicen cuánto calcio y magnesio tiene — los extractores — y cuánto bicarbonato — el moderador.</div>
+        <p style="font-size:13px;color:var(--text-dim);margin-bottom:12px"><strong>Toma:</strong> Close-up del tubito. Ir echando gotas una por una, contar en voz alta</p>
+        <div class="dialogue">Para la dureza general, lleno el tubo con 5ml y voy echando gotas hasta que cambie de naranja a verde. Una... dos... tres... [contar]</div>
+        <div class="dialogue">[X] gotas. Eso me da [X] grados de dureza.</div>
+        <div class="dialogue">Ahora la alcalinidad — bicarbonato. Mismo proceso... [X] gotas. [X] grados de KH.</div>
+        <div class="note note-production"><strong>🔥 Momento visual:</strong> El cambio de color gota a gota es muy satisfactorio. Graba en close-up extremo. Material perfecto para el Short #2.</div>
+      </div></div>
+    </div>
+
+    <div class="card">
+      <div class="card-header" onclick="toggleCard(this)">
+        <div style="display:flex;align-items:center"><span class="badge badge-time">5:00–7:00</span><h3>La prueba final — Mismo café, diferente agua</h3></div>
+        <span class="card-chevron">▼</span>
+      </div>
+      <div class="card-body"><div class="card-content">
+        <div class="dialogue">Ya sabemos los números. Ahora la prueba que importa: mismo café, misma receta, solo cambiando el agua.</div>
+        <p style="font-size:13px;color:var(--text-dim);margin-bottom:12px"><strong>Toma:</strong> Pesar grano, moler, calentar agua. Time-lapse de preparaciones.</p>
+        <div class="dialogue">Voy a preparar [2-3] tazas en [Chemex] con exactamente [X]g de café, [X]ml de agua a [X] grados.</div>
+        <p style="font-size:13px;color:var(--text-dim);margin-bottom:12px"><strong>Toma:</strong> Prueba lado a lado, close-up de tus expresiones</p>
+        <div class="dialogue">La del grifo: [describir]. La del garrafón: [describir]. La de [embotellada]: [describir].</div>
+        <div class="note note-success"><strong>💡 Consejo:</strong> Sé honesto. Si no notas diferencia, dilo. La autenticidad vale más que un resultado dramático. Pero si tu agua del grifo está arriba de 300 ppm, la diferencia será obvia.</div>
+      </div></div>
+    </div>
+
+    <div class="card">
+      <div class="card-header" onclick="toggleCard(this)">
+        <div style="display:flex;align-items:center"><span class="badge badge-time">7:00–8:00</span><h3>Cierre y call to action</h3></div>
+        <span class="card-chevron">▼</span>
+      </div>
+      <div class="card-body"><div class="card-content">
+        <div class="dialogue">Después de medir todo, mi agua [resumen del veredicto].</div>
+        <div class="dialogue">[Si aplica: voy a empezar a usar X agua / voy a probar la receta de agua DIY]</div>
+        <div class="dialogue">Todo esto es parte de mi camino aprendiendo café de especialidad. Si quieres la guía completa con los estándares SCA, tengo una lección detallada en mi blog — link en la descripción.</div>
+        <div class="dialogue">Y si tienen dudas sobre su propia agua... midan. Un medidor TDS cuesta $150 pesos y es lo mejor que pueden comprar para mejorar su café.</div>
+        <p style="font-size:13px;color:var(--text-dim);margin-top:12px"><strong>Toma final:</strong> Último sorbo de café. Corte.</p>
+      </div></div>
+    </div>
+  </div>
+
+  <!-- ========== SHORTS ========== -->
+  <div class="section" id="sec-shorts">
+    <h2 style="font-size: 18px; color: var(--text-bright); margin-bottom: 20px;">4 Shorts / TikToks / Reels</h2>
+    <p style="font-size:13px;color:var(--text-dim);margin-bottom:20px">Cada uno de 30-60 segundos. Se sacan del mismo material de grabación.</p>
+
+    <div class="shorts-grid">
+      <div class="short-card" onclick="this.classList.toggle('expanded')">
+        <span class="badge badge-viral" style="margin-bottom:8px;display:inline-block">MÁS VIRAL</span>
+        <h4>Short 1: El Reveal del Garrafón</h4>
+        <div class="hook">"Tu garrafón podría estar arruinando tu café."</div>
+        <p>Medidor TDS en el garrafón → mostrar número → reacción → texto con rango SCA (75-150) → "El mío marca [X]."</p>
+        <p style="margin-top:8px"><strong>CTA:</strong> "Mide tu agua antes de culpar al café."</p>
+      </div>
+
+      <div class="short-card">
+        <span class="badge badge-tip" style="margin-bottom:8px;display:inline-block">MÁS VISUAL</span>
+        <h4>Short 2: El Experimento del Color</h4>
+        <div class="hook">"Mira cómo cambia el color con una sola gota."</div>
+        <p>Close-up gotas GH cayendo → contar gotas → cambio naranja a verde → texto explicando qué significa.</p>
+        <p style="margin-top:8px"><strong>CTA:</strong> "Esto mide el calcio y magnesio que le dan sabor a tu café."</p>
+      </div>
+
+      <div class="short-card">
+        <span class="badge badge-time" style="margin-bottom:8px;display:inline-block">CONVINCENTE</span>
+        <h4>Short 3: Mismo Café, Diferente Agua</h4>
+        <div class="hook">"Mismo café, misma receta, diferente agua."</div>
+        <p>Corte rápido preparando con 2 aguas → sorbo de cada una → reacción honesta → cuál ganó.</p>
+        <p style="margin-top:8px"><strong>CTA:</strong> "Tu café es 98% agua. Cambia el agua, cambia la taza."</p>
+      </div>
+
+      <div class="short-card">
+        <span class="badge badge-tip" style="margin-bottom:8px;display:inline-block">LOCAL</span>
+        <h4>Short 4: El Grifo de Pachuca</h4>
+        <div class="hook">"Medí lo que tiene el agua de mi grifo en Pachuca."</div>
+        <p>Mostrar medición TDS, pH y dureza del grifo → comparar con tabla SCA → veredicto rápido.</p>
+        <p style="margin-top:8px"><strong>CTA:</strong> "Mide tu agua — link en bio para la guía completa."</p>
+      </div>
+    </div>
+
+    <hr class="sep">
+
+    <h3 style="font-size:15px;color:var(--text-bright);margin-bottom:12px">Hashtags</h3>
+    <div class="tags">
+      <span class="tag">#cafe</span>
+      <span class="tag">#cafetiktok</span>
+      <span class="tag">#barista</span>
+      <span class="tag">#cafedeespecialidad</span>
+      <span class="tag">#specialtycoffee</span>
+      <span class="tag">#coffeetok</span>
+      <span class="tag">#aguaparacafe</span>
+      <span class="tag">#coffeewater</span>
+      <span class="tag">#cafeciencia</span>
+      <span class="tag">#coffeescience</span>
+      <span class="tag">#homebarista</span>
+      <span class="tag">#cafemexicano</span>
+      <span class="tag">#pachuca</span>
+    </div>
+  </div>
+
+  <!-- ========== TONO Y VOZ ========== -->
+  <div class="section" id="sec-tono">
+    <h2 style="font-size: 18px; color: var(--text-bright); margin-bottom: 20px;">Cómo Hablar en el Video</h2>
+
+    <div class="card open">
+      <div class="card-header" onclick="toggleCard(this)">
+        <h3>🎯 El principio fundamental</h3>
+        <span class="card-chevron">▼</span>
+      </div>
+      <div class="card-body"><div class="card-content">
+        <p style="font-size:14px;margin-bottom:16px">Habla como le explicas algo a un amigo — no como profesor, no como influencer. La investigación de Richard Mayer muestra que la gente aprende y retiene más con tono conversacional que con tono formal. Tu cerebro pone más atención cuando siente que alguien te habla a ti.</p>
+        <div class="formula">
+          <div class="formula-main">Afirmación → Ejemplo concreto → Por qué te importa</div>
+          <div class="formula-desc">Fórmula para explicar cualquier concepto técnico</div>
+        </div>
+        <p style="font-size:13px;color:var(--text-dim);margin-top:12px"><strong>Ejemplo:</strong> En vez de "el magnesio extrae compuestos ácidos", di: "el magnesio es lo que te da las notas frutales. Si tu agua no tiene suficiente, tu café va a saber plano — como una limonada con demasiada agua."</p>
+      </div></div>
+    </div>
+
+    <div class="card">
+      <div class="card-header" onclick="toggleCard(this)">
+        <h3>📊 Tu punto en el espectro del tono</h3>
+        <span class="card-chevron">▼</span>
+      </div>
+      <div class="card-body"><div class="card-content">
+
+        <p style="font-size:13px;color:var(--text-dim);margin-bottom:16px">Cada barra muestra dónde debes estar. El punto dorado es tu zona ideal.</p>
+
+        <div class="tone-meter">
+          <span class="tone-meter-label">Energía</span>
+          <div style="flex:1">
+            <div class="tone-meter-bar">
+              <div class="tone-meter-marker" style="left: 40%"></div>
+            </div>
+            <div class="tone-meter-ends"><span>Susurro</span><span>Gritando</span></div>
+          </div>
+        </div>
+
+        <div class="tone-meter">
+          <span class="tone-meter-label">Velocidad</span>
+          <div style="flex:1">
+            <div class="tone-meter-bar">
+              <div class="tone-meter-marker" style="left: 35%"></div>
+            </div>
+            <div class="tone-meter-ends"><span>Muy lento</span><span>TikToker rápido</span></div>
+          </div>
+        </div>
+
+        <div class="tone-meter">
+          <span class="tone-meter-label">Formalidad</span>
+          <div style="flex:1">
+            <div class="tone-meter-bar">
+              <div class="tone-meter-marker" style="left: 30%"></div>
+            </div>
+            <div class="tone-meter-ends"><span>Casual total</span><span>Académico</span></div>
+          </div>
+        </div>
+
+        <div class="tone-meter">
+          <span class="tone-meter-label">Expertise</span>
+          <div style="flex:1">
+            <div class="tone-meter-bar">
+              <div class="tone-meter-marker" style="left: 50%"></div>
+            </div>
+            <div class="tone-meter-ends"><span>Principiante curioso</span><span>PhD en café</span></div>
+          </div>
+        </div>
+
+        <div class="note note-science" style="margin-top:16px">
+          <strong>Referencia:</strong> Piensa en el tono de James Hoffmann — tranquilo, claro, con pausas, curiosidad genuina. No grita, no apura, pero nunca aburre porque siempre va hacia un punto.
+        </div>
+      </div></div>
+    </div>
+
+    <div class="card">
+      <div class="card-header" onclick="toggleCard(this)">
+        <h3>✅ Qué hacer vs ❌ Qué evitar</h3>
+        <span class="card-chevron">▼</span>
+      </div>
+      <div class="card-body"><div class="card-content">
+        <div class="do-dont">
+          <div class="do-col">
+            <h4>✅ HAZ ESTO</h4>
+            <ul style="list-style:none">
+              <li>• Habla en singular: "mira lo que marcó"</li>
+              <li>• Comparte lo que estás descubriendo</li>
+              <li>• Usa analogías: "como una limonada con demasiada agua"</li>
+              <li>• Reacciona genuinamente a los números</li>
+              <li>• Haz pausas después de datos importantes</li>
+              <li>• Simplifica: elige 2-3 datos clave, no todos</li>
+              <li>• Sé honesto si la diferencia es sutil</li>
+            </ul>
+          </div>
+          <div class="dont-col">
+            <h4>❌ EVITA ESTO</h4>
+            <ul style="list-style:none">
+              <li>• "Como pueden ver aquí..." (habla a una persona, no a un público)</li>
+              <li>• "Yo apenas estoy aprendiendo, no sé mucho pero..." (no te disculpes)</li>
+              <li>• "Hola, hoy vamos a hablar de..." (perdiste al 80% en 2 segundos)</li>
+              <li>• Leer el guión palabra por palabra</li>
+              <li>• Intentar meter TODOS los datos</li>
+              <li>• Tono de profesor dando clase</li>
+              <li>• Fingir una reacción exagerada</li>
+            </ul>
+          </div>
+        </div>
+      </div></div>
+    </div>
+
+    <div class="card">
+      <div class="card-header" onclick="toggleCard(this)">
+        <h3>🔀 Video Largo vs Shorts — Diferencias de tono</h3>
+        <span class="card-chevron">▼</span>
+      </div>
+      <div class="card-body"><div class="card-content">
+        <table class="sca-table">
+          <thead><tr><th></th><th>Video Largo (YouTube)</th><th>Shorts / TikTok</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Ritmo</strong></td><td>Pausado, con transiciones suaves</td><td>Rápido, cada segundo cuenta</td></tr>
+            <tr><td><strong>Hook</strong></td><td>Tienes 5-10 seg para enganchar</td><td>2 segundos o scroll</td></tr>
+            <tr><td><strong>Profundidad</strong></td><td>Explica el por qué detrás de cada número</td><td>Solo el dato impactante + reacción</td></tr>
+            <tr><td><strong>CTA</strong></td><td>"Link en la descripción para la guía"</td><td>"Link en bio" / "Mide tu agua"</td></tr>
+            <tr><td><strong>Energía</strong></td><td>40% de la barra — calmado con dirección</td><td>55% — un poco más de punch</td></tr>
+          </tbody>
+        </table>
+      </div></div>
+    </div>
+
+    <div class="card">
+      <div class="card-header" onclick="toggleCard(this)">
+        <h3>🎤 Tip práctico para el día de grabación</h3>
+        <span class="card-chevron">▼</span>
+      </div>
+      <div class="card-body"><div class="card-content">
+        <p style="font-size:14px;line-height:1.7">Antes de grabar, <strong>practica explicándole la prueba a alguien en persona</strong> — tu pareja, un roommate, quien sea. No como ensayo, sino como conversación real. Nota qué palabras usas naturalmente, dónde te emocionas, dónde simplificas sin pensarlo. Esa versión es la que quieres capturar en cámara.</p>
+        <p style="font-size:14px;line-height:1.7;margin-top:12px">Cuando prendas la cámara, imagina que esa misma persona está del otro lado del lente.</p>
+      </div></div>
+    </div>
+  </div>
+
+  <!-- ========== REFERENCIA SCA ========== -->
+  <div class="section" id="sec-ciencia">
+    <h2 style="font-size: 18px; color: var(--text-bright); margin-bottom: 20px;">Referencia Rápida — Estándares SCA</h2>
+    <p style="font-size:13px;color:var(--text-dim);margin-bottom:20px">Estos son los números que vas a comparar contra tus mediciones. Tenlos a la mano durante la grabación.</p>
+
+    <table class="sca-table">
+      <thead><tr><th>Parámetro</th><th>Objetivo</th><th>Rango aceptable</th><th>Instrumento</th></tr></thead>
+      <tbody>
+        <tr><td><strong>TDS</strong> (minerales totales)</td><td>150 mg/L</td><td>75–250 mg/L</td><td>Medidor TDS (pluma blanca)</td></tr>
+        <tr><td><strong>Dureza de calcio</strong></td><td>68 mg/L</td><td>50–175 mg/L</td><td>Gotas GH (kit API)</td></tr>
+        <tr><td><strong>Alcalinidad total</strong></td><td>40 mg/L</td><td>40–70 mg/L</td><td>Gotas KH (kit API)</td></tr>
+        <tr><td><strong>pH</strong></td><td>7.0</td><td>6.5–7.5</td><td>Medidor pH (pluma amarilla)</td></tr>
+        <tr><td><strong>Sodio</strong></td><td>10 mg/L</td><td>~10 mg/L</td><td>No medible con tu kit</td></tr>
+        <tr><td><strong>Cloro</strong></td><td>0 mg/L</td><td>0 mg/L</td><td>Tiras de cloro (opcional)</td></tr>
+      </tbody>
+    </table>
+
+    <hr class="sep">
+
+    <h3 style="font-size:15px;color:var(--text-bright);margin-bottom:12px">Interpretación rápida del TDS</h3>
+    <table class="sca-table">
+      <thead><tr><th>Rango (ppm)</th><th>Significado</th><th>Efecto en café</th></tr></thead>
+      <tbody>
+        <tr><td><strong>&lt; 75</strong></td><td>Agua muy blanda</td><td>Sub-extrae: café plano, sin sabor</td></tr>
+        <tr><td><strong>75–150</strong></td><td style="color:var(--success)">Rango ideal</td><td>Extracción balanceada</td></tr>
+        <tr><td><strong>150–250</strong></td><td>Aceptable</td><td>Puede ser "pesada"</td></tr>
+        <tr><td><strong>&gt; 250</strong></td><td>Agua dura</td><td>Sobre-extrae, sabores minerales, escala en equipo</td></tr>
+      </tbody>
+    </table>
+
+    <hr class="sep">
+
+    <h3 style="font-size:15px;color:var(--text-bright);margin-bottom:12px">Rol de cada mineral</h3>
+    <table class="sca-table">
+      <thead><tr><th>Mineral</th><th>Rol</th><th>Efecto</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Magnesio (Mg²⁺)</strong></td><td>Extractor — ácidos</td><td>Más Mg = más notas ácidas, frutales, florales</td></tr>
+        <tr><td><strong>Calcio (Ca²⁺)</strong></td><td>Extractor — cuerpo</td><td>Más Ca = más cuerpo, dulzura, redondez</td></tr>
+        <tr><td><strong>Bicarbonato (HCO₃⁻)</strong></td><td>Moderador</td><td>Poco = acidez agresiva. Mucho = café plano</td></tr>
+        <tr><td><strong>Sodio (Na⁺)</strong></td><td>Realzador</td><td>Poco = redondea sabor. Mucho = salado</td></tr>
+        <tr><td><strong>Cloro (Cl₂)</strong></td><td>Intruso</td><td>Sabor a alberca. Remover siempre.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ========== PRODUCCIÓN ========== -->
+  <div class="section" id="sec-produccion">
+    <h2 style="font-size: 18px; color: var(--text-bright); margin-bottom: 20px;">Tips de Producción</h2>
+
+    <div class="card open">
+      <div class="card-header" onclick="toggleCard(this)">
+        <h3>🔊 Audio</h3>
+        <span class="card-chevron">▼</span>
+      </div>
+      <div class="card-body"><div class="card-content">
+        <p style="font-size:14px">El audio importa MÁS que el video. La gente perdona video mediocre pero no audio malo.</p>
+        <ul class="checklist" style="margin-top:12px">
+          <li><input type="checkbox"><span>Grabar en un lugar silencioso (sin ventilador, sin tele de fondo)</span></li>
+          <li><input type="checkbox"><span>Micrófono de solapa o audífonos con micrófono > micrófono del celular a distancia</span></li>
+          <li><input type="checkbox"><span>Hacer prueba de audio de 10 seg antes de grabar todo</span></li>
+        </ul>
+      </div></div>
+    </div>
+
+    <div class="card">
+      <div class="card-header" onclick="toggleCard(this)">
+        <h3>💡 Iluminación</h3>
+        <span class="card-chevron">▼</span>
+      </div>
+      <div class="card-body"><div class="card-content">
+        <p style="font-size:14px">Luz natural (ventana) es suficiente y se ve mejor que la mayoría de lámparas artificiales.</p>
+        <ul class="checklist" style="margin-top:12px">
+          <li><input type="checkbox"><span>Sentarse FRENTE a la ventana (que la luz te dé en la cara, no en la espalda)</span></li>
+          <li><input type="checkbox"><span>Para close-ups de medidores: asegurarse de que la pantalla se lea bien en cámara</span></li>
+          <li><input type="checkbox"><span>Evitar sombras duras — luz difusa es mejor</span></li>
+        </ul>
+      </div></div>
+    </div>
+
+    <div class="card">
+      <div class="card-header" onclick="toggleCard(this)">
+        <h3>📐 Encuadre</h3>
+        <span class="card-chevron">▼</span>
+      </div>
+      <div class="card-body"><div class="card-content">
+        <p style="font-size:14px;margin-bottom:12px"><strong>Video largo:</strong> Horizontal (16:9). Mezcla tomas frontales (cuando explicas) con close-ups (cuando mides).</p>
+        <p style="font-size:14px"><strong>Shorts:</strong> Vertical (9:16). Close-ups dominan. Si grabas en horizontal, deja espacio para recortar a vertical.</p>
+        <div class="note note-production" style="margin-top:12px"><strong>Pro tip:</strong> Graba TODO en horizontal con encuadre un poco más abierto de lo normal. Así puedes recortar a vertical en edición para los shorts sin perder el sujeto principal.</div>
+      </div></div>
+    </div>
+
+    <div class="card">
+      <div class="card-header" onclick="toggleCard(this)">
+        <h3>✂️ Edición</h3>
+        <span class="card-chevron">▼</span>
+      </div>
+      <div class="card-body"><div class="card-content">
+        <ul class="checklist">
+          <li><input type="checkbox"><span>Textos en pantalla con los números y rangos SCA durante las mediciones</span></li>
+          <li><input type="checkbox"><span>Subtítulos SIEMPRE (mucha gente ve sin audio, especialmente shorts)</span></li>
+          <li><input type="checkbox"><span>Música de fondo suave para video largo (tipo lo-fi café)</span></li>
+          <li><input type="checkbox"><span>Música con más ritmo para shorts</span></li>
+          <li><input type="checkbox"><span>Cortar silencios y "ums" — ritmo limpio</span></li>
+        </ul>
+      </div></div>
+    </div>
+
+    <div class="card">
+      <div class="card-header" onclick="toggleCard(this)">
+        <h3>📝 Descripción de YouTube (copiar y pegar)</h3>
+        <span class="card-chevron">▼</span>
+      </div>
+      <div class="card-body"><div class="card-content">
+        <div style="background:var(--surface-2);padding:16px;border-radius:8px;font-size:13px;line-height:1.7;font-family:monospace;white-space:pre-wrap">Tu café es 98% agua, pero casi nadie mide lo que tiene su agua.
+
+En este video mido los minerales, pH y dureza de diferentes aguas disponibles en México (grifo, garrafón, embotellada, destilada) y preparo el mismo café con cada una para ver si realmente se nota la diferencia.
+
+🧪 Herramientas usadas:
+- Medidor TDS/EC digital
+- Medidor pH digital
+- Kit de gotas GH/KH API
+- Tiras de pH
+
+📊 Estándares SCA para agua de café:
+- TDS: 75-250 ppm (ideal 150)
+- pH: 6.5-7.5
+- Dureza de calcio: 50-175 mg/L
+- Alcalinidad: 40-70 mg/L
+
+📖 Lección completa: [LINK A TU LECCION 1-4]
+
+⏱️ Capítulos:
+0:00 - Intro
+0:30 - Qué minerales afectan tu café
+1:30 - Midiendo TDS
+2:30 - Midiendo pH
+3:30 - Midiendo dureza y alcalinidad
+5:00 - Mismo café, diferente agua
+7:00 - Mi veredicto
+
+#cafe #cafedeespecialidad #barista #agua #coffeewater</div>
+      </div></div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+// NAV
+document.querySelectorAll('.nav-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.getElementById('sec-' + btn.dataset.section).classList.add('active');
+  });
+});
+
+// CARDS
+function toggleCard(header) {
+  header.closest('.card').classList.toggle('open');
+}
+
+// PROGRESS
+function updateProgress() {
+  const checks = document.querySelectorAll('#main-checklist input[type="checkbox"]');
+  const total = checks.length;
+  const checked = [...checks].filter(c => c.checked).length;
+  const pct = Math.round((checked / total) * 100);
+  document.getElementById('progress-pct').textContent = pct + '%';
+  document.getElementById('progress-fill').style.width = pct + '%';
+}
+
+document.querySelectorAll('#main-checklist input[type="checkbox"]').forEach(cb => {
+  cb.addEventListener('change', () => {
+    updateProgress();
+    saveState();
+  });
+});
+
+// PERSIST CHECKBOXES
+function saveState() {
+  const state = {};
+  document.querySelectorAll('input[type="checkbox"]').forEach((cb, i) => {
+    state[i] = cb.checked;
+  });
+  localStorage.setItem('video-agua-cafe-state', JSON.stringify(state));
+}
+
+function loadState() {
+  const raw = localStorage.getItem('video-agua-cafe-state');
+  if (!raw) return;
+  const state = JSON.parse(raw);
+  document.querySelectorAll('input[type="checkbox"]').forEach((cb, i) => {
+    if (state[i] !== undefined) cb.checked = state[i];
+  });
+  updateProgress();
+}
+
+document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+  cb.addEventListener('change', saveState);
+});
+
+loadState();
+updateProgress();
+</script>
+</body>
+</html>
