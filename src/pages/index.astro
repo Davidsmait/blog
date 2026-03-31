@@ -49,26 +49,6 @@ const latestPhaseName = phaseNames[highestPhase] ?? `Fase ${highestPhase}`
 <BaseLayout
   frontmatter={{ title: config.title, description: config.description }}
 >
-  <!-- ═══════════════════════════════════════════════════════════ -->
-  <!-- PRELOADER — Cinematic counter + split curtain               -->
-  <!-- ═══════════════════════════════════════════════════════════ -->
-  <div id="preloader" class="pl" aria-hidden="true">
-    <!-- Noise texture (same as site) -->
-    <div class="pl-noise"></div>
-
-    <!-- Top curtain half -->
-    <div class="pl-curtain pl-curtain--top" data-curtain="top"></div>
-    <!-- Bottom curtain half -->
-    <div class="pl-curtain pl-curtain--bottom" data-curtain="bottom"></div>
-
-    <!-- Center content -->
-    <div class="pl-center">
-      <div class="pl-counter-wrap">
-        <span class="pl-counter" id="pl-counter">0</span>
-      </div>
-    </div>
-  </div>
-
   <!-- Custom cursor — hidden on touch devices -->
   <div class="custom-cursor hidden sm:block" id="custom-cursor"></div>
 
@@ -1090,59 +1070,9 @@ const latestPhaseName = phaseNames[highestPhase] ?? `Fase ${highestPhase}`
       document.documentElement.style.scrollBehavior = 'smooth'
     }
 
-    // ── Preloader — Counter + split curtain ──
-    function initPreloader(onComplete: () => void) {
-      const pl = document.getElementById('preloader')
-      if (!pl) {
-        onComplete()
-        return
-      }
-
-      const key = 'pl_shown'
-      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-      if (sessionStorage.getItem(key) || prefersReduced) {
-        pl.classList.add('skip')
-        onComplete()
-        return
-      }
-      sessionStorage.setItem(key, '1')
-
-      const counter = document.getElementById('pl-counter')
-      document.body.style.overflow = 'hidden'
-
-      // Counter 0 → 100
-      const DURATION = 900
-      const start = performance.now()
-
-      function ease(t: number) {
-        return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2
-      }
-
-      function tick(now: number) {
-        const t = Math.min((now - start) / DURATION, 1)
-        if (counter) counter.textContent = String(Math.round(ease(t) * 100))
-
-        if (t < 1) {
-          requestAnimationFrame(tick)
-        } else {
-          // Counter hits 100 → brief hold → curtains split
-          setTimeout(() => {
-            pl.classList.add('done')
-            document.body.style.overflow = ''
-            setTimeout(onComplete, 500)
-            setTimeout(() => pl.remove(), 1400)
-          }, 300)
-        }
-      }
-
-      requestAnimationFrame(tick)
-    }
-
     function initPage() {
       initScrollHeader()
-      initPreloader(() => {
-        initAwwwardsInteractions()
-      })
+      initAwwwardsInteractions()
     }
 
     document.addEventListener('astro:page-load', initPage)
@@ -1315,110 +1245,6 @@ const latestPhaseName = phaseNames[highestPhase] ?? `Fase ${highestPhase}`
       }
     }
 
-    /* ═══════════════════════════════════════════════ */
-    /* PRELOADER — Cinematic counter + split curtain  */
-    /* ═══════════════════════════════════════════════ */
-    .pl {
-      position: fixed;
-      inset: 0;
-      z-index: 100000;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: rgb(var(--accent-bg));
-      overflow: hidden;
-    }
-
-    /* Override root overflow clipping during preloader */
-    html:has(.pl:not(.skip):not(.done)) {
-      overflow: hidden !important;
-      scrollbar-gutter: auto;
-    }
-
-    .pl.skip {
-      display: none;
-    }
-
-    .pl.done {
-      pointer-events: none;
-    }
-
-    /* Noise layer */
-    .pl-noise {
-      position: absolute;
-      inset: 0;
-      opacity: 0.025;
-      pointer-events: none;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-    }
-
-    /* ── Split curtains ── */
-    .pl-curtain {
-      position: absolute;
-      left: 0;
-      right: 0;
-      height: 50%;
-      background: rgb(var(--accent-bg));
-      z-index: 2;
-      transition: transform 1s cubic-bezier(0.83, 0, 0.17, 1);
-    }
-
-    .pl-curtain--top {
-      top: 0;
-      transform-origin: top;
-    }
-    .pl-curtain--bottom {
-      bottom: 0;
-      transform-origin: bottom;
-    }
-
-    .pl.done .pl-curtain--top {
-      transform: translateY(-100%);
-    }
-    .pl.done .pl-curtain--bottom {
-      transform: translateY(100%);
-    }
-
-    /* ── Center content ── */
-    .pl-center {
-      position: relative;
-      z-index: 3;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0;
-      width: 100%;
-      max-width: 100vw;
-      overflow: visible;
-    }
-
-    /* Counter — giant serif italic */
-    .pl-counter-wrap {
-      overflow: visible;
-      perspective: 600px;
-    }
-
-    .pl-counter {
-      display: block;
-      font-family: 'Instrument Serif', serif;
-      font-style: italic;
-      font-size: clamp(4.5rem, 15vw, 10rem);
-      line-height: 1;
-      letter-spacing: -0.04em;
-      color: rgb(var(--accent));
-      font-variant-numeric: tabular-nums;
-      opacity: 0.9;
-    }
-
-    /* Exit: counter shrinks as curtains part */
-    .pl.done .pl-center {
-      opacity: 0;
-      transform: scale(0.92);
-      transition:
-        opacity 0.4s ease,
-        transform 0.6s cubic-bezier(0.83, 0, 0.17, 1);
-    }
-
     /* ── Reduced motion ── */
     @media (prefers-reduced-motion: reduce) {
       .hero-title-line,
@@ -1427,10 +1253,6 @@ const latestPhaseName = phaseNames[highestPhase] ?? `Fase ${highestPhase}`
         transition-duration: 0.01ms !important;
         transform: none !important;
         opacity: 1 !important;
-      }
-
-      .preloader {
-        display: none;
       }
     }
   </style>
