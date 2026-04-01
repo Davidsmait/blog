@@ -15,7 +15,7 @@ const recentPosts = allPosts
   )
   .slice(0, 4)
 
-// Latest released lessons (highest complete phase)
+// Latest released lessons — use Spanish collection as source of truth for draft status
 const allCafeLessons = await getCollection('cafe')
 const roadmapLessons = allCafeLessons
   .filter((p) => p.data.phase !== undefined && !p.data.draft)
@@ -34,21 +34,21 @@ for (const l of roadmapLessons) {
 }
 const highestPhase = Math.max(...Object.keys(lessonsByPhase).map(Number))
 const phaseNames: Record<number, string> = {
-  1: 'Fundamentos del café',
+  1: 'Coffee Fundamentals',
   2: 'Espresso',
-  3: 'Métodos de filtrado',
-  4: 'Paladar y catación',
-  5: 'Leche y latte art',
-  6: 'Tueste y negocio',
-  7: 'Profesional — Metodología Rao',
-  8: 'Física de la extracción',
-  9: 'Carrera profesional'
+  3: 'Filter Methods',
+  4: 'Palate & Cupping',
+  5: 'Milk & Latte Art',
+  6: 'Roasting & Business',
+  7: 'Professional — Rao Methodology',
+  8: 'Extraction Physics',
+  9: 'Professional Career'
 }
-const latestPhaseName = phaseNames[highestPhase] ?? `Fase ${highestPhase}`
+const latestPhaseName = phaseNames[highestPhase] ?? `Phase ${highestPhase}`
 ---
 
 <BaseLayout
-  frontmatter={{ title: config.title, description: config.description }}
+  frontmatter={{ title: config.title, description: 'Personal blog by David San Luis Aguirre — web development, projects and specialty coffee.' }}
 >
   <!-- Custom cursor — hidden on touch devices -->
   <div class="custom-cursor hidden sm:block" id="custom-cursor"></div>
@@ -81,7 +81,7 @@ const latestPhaseName = phaseNames[highestPhase] ?? `Fase ${highestPhase}`
             class="relative z-30 flex items-start justify-between pt-8 sm:pt-12"
           >
             <div class="hero-fade" data-hero-delay="0">
-              <a href="/" class="block no-underline">
+              <a href="/en" class="block no-underline">
                 <span
                   class="block font-display text-[11px] font-bold uppercase leading-[1.1] tracking-[0.08em] text-accent sm:text-[13px]"
                 >
@@ -249,7 +249,7 @@ const latestPhaseName = phaseNames[highestPhase] ?? `Fase ${highestPhase}`
                   >
                   <span
                     class="font-display text-[10px] font-bold uppercase tracking-[0.15em]"
-                    ><span class="opacity-30">/</span><span class="ml-1.5">Barista de Especialidad</span></span
+                    ><span class="opacity-30">/</span><span class="ml-1.5">Specialty Barista</span></span
                   >
                   <span
                     class="font-display text-[10px] font-bold uppercase tracking-[0.15em]"
@@ -318,7 +318,7 @@ const latestPhaseName = phaseNames[highestPhase] ?? `Fase ${highestPhase}`
                       >
                       <span
                         class="font-display text-[clamp(0.85rem,1.2vw,1.15rem)] font-extrabold uppercase tracking-[0.02em]"
-                        ><span class="opacity-40">/</span><span class="ml-1">Barista de Especialidad</span></span
+                        ><span class="opacity-40">/</span><span class="ml-1">Specialty Barista</span></span
                       >
                       <span
                         class="font-display text-[clamp(0.85rem,1.2vw,1.15rem)] font-extrabold uppercase tracking-[0.02em]"
@@ -344,7 +344,7 @@ const latestPhaseName = phaseNames[highestPhase] ?? `Fase ${highestPhase}`
                   <span
                     class="hero-cta-label text-[10px] font-medium uppercase tracking-[0.2em] opacity-40 transition-opacity duration-500 group-hover:opacity-70 sm:text-[11px]"
                   >
-                    Disponible para colaborar
+                    Available for collaboration
                   </span>
                   <span
                     class="hero-cta-value flex items-center gap-2 font-serif text-[clamp(0.9rem,2.5vw,1.4rem)] italic leading-[1.1] text-accent opacity-60 transition-all duration-500 group-hover:opacity-100 sm:gap-3"
@@ -370,7 +370,7 @@ const latestPhaseName = phaseNames[highestPhase] ?? `Fase ${highestPhase}`
 
                 <!-- Right: Nuevas lecciones -->
                 <a
-                  href="/barista-roadmap"
+                  href="/en/barista-roadmap"
                   class="hero-fade group flex flex-col items-end gap-1.5 no-underline sm:gap-2"
                   data-hero-delay="1050"
                   data-cursor-hover
@@ -379,7 +379,7 @@ const latestPhaseName = phaseNames[highestPhase] ?? `Fase ${highestPhase}`
                   <span
                     class="hero-cta-label text-[10px] font-medium uppercase tracking-[0.2em] opacity-40 transition-opacity duration-500 group-hover:opacity-70 sm:text-[11px]"
                   >
-                    Nuevas lecciones — Fase {highestPhase}
+                    New lessons — Phase {highestPhase}
                   </span>
                   <span
                     class="hero-cta-value flex items-center gap-2 text-right font-serif text-[clamp(0.9rem,2.5vw,1.4rem)] italic leading-[1.1] text-accent opacity-60 transition-all duration-500 group-hover:opacity-100 sm:gap-3"
@@ -453,7 +453,7 @@ const latestPhaseName = phaseNames[highestPhase] ?? `Fase ${highestPhase}`
                       data-astro-prefetch
                     >
                       <span class="hero-cta-label text-[10px] font-medium uppercase tracking-[0.2em] opacity-40 transition-opacity duration-500 group-hover:opacity-70 sm:text-[11px]">
-                        Trabajo reciente
+                        Recent work
                       </span>
                       <span class="hero-cta-value flex items-center gap-2 text-right font-serif text-[clamp(0.9rem,2.5vw,1.4rem)] italic leading-[1.1] text-accent opacity-60 transition-all duration-500 group-hover:opacity-100 sm:gap-3">
                         {recentPosts[0].data.title}
@@ -526,14 +526,14 @@ const latestPhaseName = phaseNames[highestPhase] ?? `Fase ${highestPhase}`
         <section class="py-16 sm:py-24" id="explore-section">
           <div class="reveal mb-12 flex items-center gap-4 sm:mb-20 sm:gap-6">
             <span class="section-number">(01)</span>
-            <span class="section-label">Explora</span>
+            <span class="section-label">Explore</span>
             <div class="hr-animated reveal flex-1"></div>
           </div>
 
           <div class="flex flex-col gap-0">
             <!-- Blog row -->
             <a
-              href="/posts"
+              href="/en/posts"
               class="explore-row reveal group flex items-center justify-between border-b border-accent/[0.08] py-6 no-underline transition-all duration-700 sm:py-10"
               data-cursor-hover
             >
@@ -552,7 +552,7 @@ const latestPhaseName = phaseNames[highestPhase] ?? `Fase ${highestPhase}`
                 <span
                   class="hidden text-[12px] leading-relaxed opacity-0 transition-all duration-700 group-hover:opacity-45 sm:block sm:max-w-[200px]"
                 >
-                  Artículos sobre desarrollo web y herramientas modernas.
+                  Articles on web development and modern tools.
                 </span>
                 <div
                   class="flex h-9 w-9 items-center justify-center rounded-full border border-accent/[0.10] text-sm opacity-30 transition-all duration-700 group-hover:scale-110 group-hover:border-accent/20 group-hover:opacity-70 sm:h-12 sm:w-12"
@@ -567,7 +567,7 @@ const latestPhaseName = phaseNames[highestPhase] ?? `Fase ${highestPhase}`
 
             <!-- Projects row -->
             <a
-              href="/projects"
+              href="/en/projects"
               class="explore-row reveal group flex items-center justify-between border-b border-accent/[0.08] py-6 no-underline transition-all duration-700 sm:py-10"
               data-cursor-hover
             >
@@ -579,14 +579,14 @@ const latestPhaseName = phaseNames[highestPhase] ?? `Fase ${highestPhase}`
                 <h3
                   class="font-serif text-[clamp(1.6rem,6vw,3.5rem)] leading-[1] tracking-tight text-accent transition-all duration-700 group-hover:tracking-[-0.01em]"
                 >
-                  Proyectos
+                  Projects
                 </h3>
               </div>
               <div class="flex items-center gap-3 sm:gap-8">
                 <span
                   class="hidden text-[12px] leading-relaxed opacity-0 transition-all duration-700 group-hover:opacity-45 sm:block sm:max-w-[200px]"
                 >
-                  Apps open source con Angular, NestJS, Astro y más.
+                  Open source apps with Angular, NestJS, Astro and more.
                 </span>
                 <div
                   class="flex h-9 w-9 items-center justify-center rounded-full border border-accent/[0.10] text-sm opacity-30 transition-all duration-700 group-hover:scale-110 group-hover:border-accent/20 group-hover:opacity-70 sm:h-12 sm:w-12"
@@ -601,7 +601,7 @@ const latestPhaseName = phaseNames[highestPhase] ?? `Fase ${highestPhase}`
 
             <!-- Coffee row -->
             <a
-              href="/barista-roadmap"
+              href="/en/barista-roadmap"
               class="explore-row reveal group flex items-center justify-between py-6 no-underline transition-all duration-700 sm:py-10"
               data-cursor-hover
             >
@@ -613,14 +613,14 @@ const latestPhaseName = phaseNames[highestPhase] ?? `Fase ${highestPhase}`
                 <h3
                   class="font-serif text-[clamp(1.6rem,6vw,3.5rem)] leading-[1] tracking-tight text-accent transition-all duration-700 group-hover:tracking-[-0.01em]"
                 >
-                  Café
+                  Coffee
                 </h3>
               </div>
               <div class="flex items-center gap-3 sm:gap-8">
                 <span
                   class="hidden text-[12px] leading-relaxed opacity-0 transition-all duration-700 group-hover:opacity-45 sm:block sm:max-w-[200px]"
                 >
-                  Extracción, latte art y ciencia del café de especialidad.
+                  Extraction, latte art and specialty coffee science.
                 </span>
                 <div
                   class="flex h-9 w-9 items-center justify-center rounded-full border border-accent/[0.10] text-sm opacity-30 transition-all duration-700 group-hover:scale-110 group-hover:border-accent/20 group-hover:opacity-70 sm:h-12 sm:w-12"
@@ -641,14 +641,14 @@ const latestPhaseName = phaseNames[highestPhase] ?? `Fase ${highestPhase}`
         <section class="py-16 sm:py-24">
           <div class="reveal mb-10 flex items-center gap-4 sm:mb-16 sm:gap-6">
             <span class="section-number">(02)</span>
-            <span class="section-label">Escritura reciente</span>
+            <span class="section-label">Recent Writing</span>
             <div class="hr-animated reveal flex-1"></div>
             <a
-              href="/posts"
+              href="/en/posts"
               class="group inline-flex items-center gap-2 text-[10px] font-medium uppercase tracking-[0.15em] no-underline opacity-20 transition-all duration-500 hover:opacity-50 sm:text-[11px]"
               data-cursor-hover
             >
-              Archivo
+              Archive
               <span
                 class="inline-block transition-transform duration-500 group-hover:translate-x-2"
                 >&rarr;</span
@@ -672,13 +672,13 @@ const latestPhaseName = phaseNames[highestPhase] ?? `Fase ${highestPhase}`
                   <div class="mt-3 flex flex-wrap items-center gap-3 sm:mt-4 sm:gap-4">
                     <time class="text-[10px] font-medium uppercase tracking-[0.15em] opacity-20 sm:text-[11px]">
                       {recentPosts[0].data.publishedDate.toLocaleDateString(
-                        'es-MX',
+                        'en-US',
                         { year: 'numeric', month: 'long', day: 'numeric' }
                       )}
                     </time>
                     <span class="bg-accent/8 h-[1px] w-6 sm:w-8" />
                     <span class="text-[10px] uppercase tracking-[0.15em] opacity-20 transition-all duration-500 group-hover:tracking-[0.2em] group-hover:opacity-40 sm:text-[11px]">
-                      Leer &rarr;
+                      Read &rarr;
                     </span>
                   </div>
                 </a>
@@ -697,7 +697,7 @@ const latestPhaseName = phaseNames[highestPhase] ?? `Fase ${highestPhase}`
         <section class="relative py-20 sm:py-32" id="contact-section">
           <div class="reveal mb-8 flex items-center gap-4 sm:mb-12 sm:gap-6">
             <span class="section-number">(03)</span>
-            <span class="section-label">Contacto</span>
+            <span class="section-label">Contact</span>
             <div class="hr-animated reveal flex-1"></div>
           </div>
 
@@ -706,12 +706,12 @@ const latestPhaseName = phaseNames[highestPhase] ?? `Fase ${highestPhase}`
             <h2
               class="text-balance font-display text-[clamp(1.8rem,7vw,4.5rem)] font-bold leading-[1] tracking-[-0.05em] text-accent sm:text-[clamp(2rem,6vw,4.5rem)]"
             >
-              Hagamos algo
+              Let's build
             </h2>
             <h2
               class="font-serif text-[clamp(1.8rem,7vw,4.5rem)] italic leading-[1] tracking-tight text-accent opacity-70 sm:text-[clamp(2rem,6vw,4.5rem)]"
             >
-              increíble juntos.
+              something amazing.
             </h2>
           </div>
 
@@ -825,13 +825,13 @@ const latestPhaseName = phaseNames[highestPhase] ?? `Fase ${highestPhase}`
               <span
                 class="text-[10px] font-medium uppercase tracking-[0.25em] opacity-15 sm:text-[11px]"
               >
-                Desarrollo &amp; Café de especialidad
+                Development &amp; Specialty Coffee
               </span>
               <span class="bg-accent/8 hidden h-3 w-[1px] sm:block"></span>
               <span
                 class="text-[10px] font-medium uppercase tracking-[0.25em] opacity-15 sm:text-[11px]"
               >
-                México
+                Mexico
               </span>
               <span class="bg-accent/8 hidden h-3 w-[1px] sm:block"></span>
               <span class="opacity-12 font-serif text-[11px] italic"

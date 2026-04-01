@@ -1,0 +1,2013 @@
+---
+import Footer from '@/components/layout/Footer.astro'
+import Header from '@/components/layout/Header.astro'
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import ScrollProgressPlugin from '@/plugins/ScrollProgressPlugin.astro'
+
+const frontmatter = {
+  title: 'Interactive guide: Water testing tools',
+  description:
+    'Learn to use your digital pH/TDS/EC meter and API GH & KH kit to optimize your specialty coffee water.'
+}
+---
+
+<BaseLayout frontmatter={frontmatter}>
+  <div id="page-wrapper" class="noise-overlay">
+    <div class="px-5 sm:px-6 lg:px-0">
+      <Header activeHeaderLink="Coffee" />
+
+      <main class="guide-main mt-8 sm:mt-14">
+        <!-- Breadcrumb -->
+        <div class="reveal mb-8 sm:mb-12">
+          <div
+            class="flex flex-wrap items-center gap-3 text-[11px] font-medium uppercase tracking-[0.15em] opacity-20"
+          >
+            <a
+              href="/en/barista-roadmap"
+              class="no-underline opacity-70 transition-opacity duration-300 hover:opacity-100"
+              >Roadmap</a
+            >
+            <span class="h-[1px] w-4 bg-accent/10"></span>
+            <span>Phase 1: Fundamentals</span>
+            <span class="h-[1px] w-4 bg-accent/10"></span>
+            <span>Practical guide</span>
+          </div>
+        </div>
+
+        <!-- Title -->
+        <div class="reveal mb-4">
+          <h1
+            class="m-0 font-display text-[clamp(1.8rem,5vw,3rem)] font-bold leading-[1.1] tracking-tighter-brand text-accent sm:text-[clamp(2rem,4vw,3.5rem)]"
+          >
+            Water testing tools
+          </h1>
+        </div>
+
+        <!-- Subtitle -->
+        <div class="reveal mb-6">
+          <p
+            class="m-0 max-w-xl text-[15px] leading-[1.7] opacity-35 sm:text-base"
+          >
+            Step-by-step guide for the digital pH/TDS/EC meter and the API GH &
+            KH test kit. Practical companion to Lesson 1.4: Water.
+          </p>
+        </div>
+
+        <!-- Unlock gate (hidden via JS if lessons complete) -->
+        <div class="reveal mb-8" id="unlock-gate">
+          <div class="gate-card">
+            <div class="gate-icon">
+              <svg
+                viewBox="0 0 16 16"
+                fill="currentColor"
+                width="28"
+                height="28"
+                style="opacity:0.3"
+              >
+                <path
+                  d="M8 1a4 4 0 0 0-4 4v3H3a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1h-1V5a4 4 0 0 0-4-4Zm2 7H6V5a2 2 0 1 1 4 0v3Z"
+                ></path>
+              </svg>
+            </div>
+            <p class="gate-title">Bonus content locked</p>
+            <p class="gate-text">
+              This guide unlocks after completing all 4 lessons in Phase 1:
+              Coffee Fundamentals.
+            </p>
+            <div class="gate-progress">
+              <div class="gate-lessons" id="gate-lessons-list"></div>
+            </div>
+            <a href="/en/barista-roadmap" class="gate-btn" data-cursor-hover
+              >Go to roadmap →</a
+            >
+          </div>
+        </div>
+
+        <!-- Guide content (hidden until unlocked) -->
+        <div id="guide-content" style="display:none">
+          <!-- Quick context -->
+          <div class="reveal mb-8">
+            <div class="context-card">
+              <div class="context-icon">💧</div>
+              <div>
+                <p class="context-title">Why test your water?</p>
+                <p class="context-text">
+                  Your coffee is 98% water. Its mineral composition determines
+                  how flavors are extracted. The digital meter tells you how
+                  many minerals are present; the API kit tells you which ones
+                  they are. Together they give you the complete picture.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="hr-animated mb-8 sm:mb-12"></div>
+
+          <!-- ═══ TAB NAVIGATION ═══ -->
+          <div class="reveal" id="tool-tabs">
+            <div class="tab-nav" role="tablist" aria-label="Tool selection">
+              <button
+                role="tab"
+                aria-selected="true"
+                aria-controls="panel-digital"
+                id="tab-digital"
+                class="tab-btn active"
+                data-tab="digital"
+              >
+                <span class="tab-icon">📱</span>
+                <span class="tab-label">Digital Meter</span>
+                <span class="tab-sub">pH / TDS / EC</span>
+              </button>
+              <button
+                role="tab"
+                aria-selected="false"
+                aria-controls="panel-api"
+                id="tab-api"
+                class="tab-btn"
+                data-tab="api"
+              >
+                <span class="tab-icon">🧪</span>
+                <span class="tab-label">Kit API</span>
+                <span class="tab-sub">GH & KH</span>
+              </button>
+              <button
+                role="tab"
+                aria-selected="false"
+                aria-controls="panel-strips"
+                id="tab-strips"
+                class="tab-btn"
+                data-tab="strips"
+              >
+                <span class="tab-icon">📄</span>
+                <span class="tab-label">pH Strips</span>
+                <span class="tab-sub">Indicator paper</span>
+              </button>
+            </div>
+
+            <!-- ═══ PANEL: Digital Meter ═══ -->
+            <div
+              role="tabpanel"
+              id="panel-digital"
+              aria-labelledby="tab-digital"
+              class="tab-panel active"
+            >
+              <!-- What it measures -->
+              <div class="info-grid">
+                <div class="info-card">
+                  <div class="info-badge">TDS</div>
+                  <p class="info-label">Total Dissolved Solids</p>
+                  <p class="info-desc">
+                    How many minerals your water has in ppm. <strong
+                      >This is the most important measurement for coffee.</strong>
+                  </p>
+                  <div class="range-visual">
+                    <div class="range-bar">
+                      <div class="range-zone range-low" style="width:30%">
+                        <span class="range-text"><75</span>
+                      </div>
+                      <div class="range-zone range-ideal" style="width:30%">
+                        <span class="range-text">75-150</span>
+                      </div>
+                      <div class="range-zone range-ok" style="width:20%">
+                        <span class="range-text">150-250</span>
+                      </div>
+                      <div class="range-zone range-high" style="width:20%">
+                        <span class="range-text">&gt;250</span>
+                      </div>
+                    </div>
+                    <div class="range-labels">
+                      <span>Too soft</span>
+                      <span class="range-ideal-label">Ideal ✓</span>
+                      <span>Acceptable</span>
+                      <span>Hard</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="info-card">
+                  <div class="info-badge">pH</div>
+                  <p class="info-label">Acidity / Alkalinity</p>
+                  <p class="info-desc">
+                    SCA recommends water between <strong>6.5 and 7.5</strong> for
+                    coffee.
+                  </p>
+                  <div class="ph-scale">
+                    <div class="ph-gradient"></div>
+                    <div class="ph-marker" style="left: 46.4%"></div>
+                    <div class="ph-marker" style="left: 53.6%"></div>
+                    <div class="ph-labels">
+                      <span>0 Acidic</span>
+                      <span>7 Neutral</span>
+                      <span>14 Alkaline</span>
+                    </div>
+                    <div class="ph-ideal-label">6.5 — 7.5 ideal</div>
+                  </div>
+                </div>
+                <div class="info-card">
+                  <div class="info-badge">EC</div>
+                  <p class="info-label">Electrical Conductivity</p>
+                  <p class="info-desc">
+                    Measures the same as TDS but in µS/cm. For coffee, <strong
+                      >focus on the TDS reading</strong
+                    > directly.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Steps -->
+              <h2 class="section-title">Calibration (first time only)</h2>
+              <p class="section-note">
+                Repeat every 2-3 weeks or if readings seem off.
+              </p>
+
+              <div class="steps-timeline">
+                <div class="step-item">
+                  <div class="step-number">1</div>
+                  <div class="step-content">
+                    <h3>Prepare the buffer solution</h3>
+                    <p>
+                      Dissolve the <strong>pH 6.86</strong> powder packet in a glass
+                      with distilled water (~250ml). Stir until completely dissolved.
+                    </p>
+                    <div class="media-placeholder" data-type="foto">
+                      <div class="placeholder-icon">📷</div>
+                      <span>Your photo: dissolving the buffer powder</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="step-item">
+                  <div class="step-number">2</div>
+                  <div class="step-content">
+                    <h3>Submerge the electrode</h3>
+                    <p>
+                      Turn on the meter, submerge the tip in the buffer
+                      solution. Wait a few seconds for the reading to stabilize.
+                    </p>
+                  </div>
+                </div>
+                <div class="step-item">
+                  <div class="step-number">3</div>
+                  <div class="step-content">
+                    <h3>Press CAL</h3>
+                    <p>
+                      Hold down the <strong>"CAL"</strong> button for 5 seconds. The
+                      number will flash and then stabilize — that means it calibrated.
+                    </p>
+                  </div>
+                </div>
+                <div class="step-item">
+                  <div class="step-number">4</div>
+                  <div class="step-content">
+                    <h3>Repite con pH 4.01</h3>
+                    <p>
+                      Rinse the tip with distilled water, then repeat the
+                      process with the <strong>pH 4.01</strong> packet. With two calibration
+                      points your meter is accurate across the entire range.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <h2 class="section-title">How to measure your water</h2>
+
+              <div class="steps-timeline">
+                <div class="step-item">
+                  <div class="step-number">1</div>
+                  <div class="step-content">
+                    <h3>Sirve el agua en un vaso limpio</h3>
+                    <p>
+                      Use the water you want to measure: tap, jug, bottled. <strong
+                        >Don't use the same glass</strong
+                      > — rinse it between mediciones o usa vasos separados.
+                    </p>
+                  </div>
+                </div>
+                <div class="step-item">
+                  <div class="step-number">2</div>
+                  <div class="step-content">
+                    <h3>Enciende y sumerge</h3>
+                    <p>
+                      Turn on the meter, submerge the tip in the water. Gently
+                      move it in circles 2-3 times to remove air aire.
+                    </p>
+                  </div>
+                </div>
+                <div class="step-item">
+                  <div class="step-number">3</div>
+                  <div class="step-content">
+                    <h3>Espera ~30 segundos</h3>
+                    <p>
+                      Let the number stabilize. When it stops moving, that's
+                      your reading. You can press <strong>"HOLD"</strong> to lock
+                      the number on the screen.
+                    </p>
+                    <div class="media-placeholder" data-type="video">
+                      <div class="placeholder-icon">🎬</div>
+                      <span>Your video: measuring the jug water</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="step-item">
+                  <div class="step-number">4</div>
+                  <div class="step-content">
+                    <h3>Anota en tu cuaderno</h3>
+                    <p>
+                      Registra: tipo de agua, TDS (ppm), pH, y fecha. Con el
+                      tiempo vas a tener un historial que te ayuda a elegir tu
+                      agua ideal.
+                    </p>
+                  </div>
+                </div>
+                <div class="step-item">
+                  <div class="step-number">5</div>
+                  <div class="step-content">
+                    <h3>Enjuaga entre mediciones</h3>
+                    <p>
+                      Moja la punta con agua destilada antes de medir otra agua
+                      diferente. Esto evita contaminar la lectura.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="tip-box">
+                <span class="tip-label">Tip</span>
+                <p>
+                  TDS <strong>doesn't require calibration</strong> — it comes factory
+                  calibrated. Only pH requires calibration with thelvos buffer.
+                </p>
+              </div>
+            </div>
+
+            <!-- ═══ PANEL: API GH & KH Kit ═══ -->
+            <div
+              role="tabpanel"
+              id="panel-api"
+              aria-labelledby="tab-api"
+              class="tab-panel"
+              hidden
+            >
+              <div class="info-grid two-col">
+                <div class="info-card">
+                  <div class="info-badge badge-gh">GH</div>
+                  <p class="info-label">General Hardness (General Hardness)</p>
+                  <p class="info-desc">
+                    Measures the <strong>calcium + magnesium</strong> in your water.
+                    They're the "extractors": the minerals that unlock the coffee's
+                    flavor compounds.
+                  </p>
+                  <p class="info-detail">
+                    More magnesium → brighter, more acidic coffee<br />More
+                    calcium → rounder, fuller-bodied coffee
+                  </p>
+                  <p class="info-target">
+                    SCA recommends: <strong>50-175 ppm</strong>
+                  </p>
+                </div>
+                <div class="info-card">
+                  <div class="info-badge badge-kh">KH</div>
+                  <p class="info-label">Carbonate Hardness (Alkalinity)</p>
+                  <p class="info-desc">
+                    Measures the <strong>bicarbonates</strong> in your water. They
+                    work like a "volume control" for the coffee's acidity.
+                  </p>
+                  <p class="info-detail">
+                    Low KH → aggressive acidity<br />High KH → flat, lifeless
+                    coffee
+                  </p>
+                  <p class="info-target">
+                    SCA recommends: <strong>40-70 ppm</strong>
+                  </p>
+                </div>
+              </div>
+
+              <!-- Conversion callout -->
+              <div class="conversion-card">
+                <p class="conversion-title">Conversion</p>
+                <p class="conversion-formula">
+                  Cada gota = 1 dGH (o dKH) = <strong>17.9 ppm</strong>
+                </p>
+                <p class="conversion-example">
+                  Ejemplo: 4 gotas × 17.9 = 71.6 ppm
+                </p>
+              </div>
+
+              <!-- KH Test -->
+              <h2 class="section-title">Test KH (Alkalinity)</h2>
+              <p class="section-note">Cambio de color: blue → yellow</p>
+
+              <div class="steps-timeline kh-steps">
+                <div class="step-item">
+                  <div class="step-number">1</div>
+                  <div class="step-content">
+                    <h3>Llena el tubo</h3>
+                    <p>
+                      Use the glass tube from the kit. Fill it with <strong
+                        >5 ml</strong
+                      > of your water (up to the marked line).
+                    </p>
+                  </div>
+                </div>
+                <div class="step-item">
+                  <div class="step-number">2</div>
+                  <div class="step-content">
+                    <h3>Agrega 1 gota del reactivo KH</h3>
+                    <p>
+                      Hold the KH reagent bottle vertically and add <strong
+                        >one drop only</strong
+                      >.
+                    </p>
+                  </div>
+                </div>
+                <div class="step-item">
+                  <div class="step-number">3</div>
+                  <div class="step-content">
+                    <h3>Tapa e invierte</h3>
+                    <p>
+                      Cap the tube and <strong>flip it several times</strong> to mix
+                      well. Observe the color.
+                    </p>
+                    <div class="color-indicator">
+                      <div class="color-dot" style="background: #4a90d9"></div>
+                      <span>Still blue? → Add another drop</span>
+                    </div>
+                    <div class="color-indicator">
+                      <div class="color-dot" style="background: #d4c94a"></div>
+                      <span>Turned yellow? → Stop! Count the drops</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="step-item">
+                  <div class="step-number">4</div>
+                  <div class="step-content">
+                    <h3>Repite gota a gota</h3>
+                    <p>
+                      Keep adding drops one at a time, shaking after each one,
+                      until the water changes from <strong
+                        >blue to yellowo</strong
+                      >.
+                    </p>
+                    <div class="media-placeholder" data-type="foto">
+                      <div class="placeholder-icon">📷</div>
+                      <span>Your photo: color change blue → yellow</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="step-item">
+                  <div class="step-number">5</div>
+                  <div class="step-content">
+                    <h3>Calculate your result</h3>
+                    <p>Number of drops × 17.9 = your KH in ppm</p>
+                    <!-- Interactive calculator -->
+                    <div class="calc-box" id="calc-kh">
+                      <label class="calc-label" for="kh-drops"
+                        >How many drops did you use?</label
+                      >
+                      <div class="calc-input-row">
+                        <button
+                          class="calc-btn minus"
+                          data-calc="kh"
+                          data-action="minus"
+                          aria-label="Less">−</button
+                        >
+                        <input
+                          type="number"
+                          id="kh-drops"
+                          class="calc-input"
+                          value="0"
+                          min="0"
+                          max="30"
+                          readonly
+                        />
+                        <button
+                          class="calc-btn plus"
+                          data-calc="kh"
+                          data-action="plus"
+                          aria-label="More">+</button
+                        >
+                      </div>
+                      <div class="calc-result" id="kh-result">
+                        <span class="calc-ppm">0 ppm</span>
+                        <span class="calc-verdict" id="kh-verdict"></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- GH Test -->
+              <h2 class="section-title">Test GH (General Hardness)</h2>
+              <p class="section-note">Cambio de color: orange → green</p>
+
+              <div class="steps-timeline gh-steps">
+                <div class="step-item">
+                  <div class="step-number">1</div>
+                  <div class="step-content">
+                    <h3>Clean tube with fresh water</h3>
+                    <p>
+                      Rinse the tube and fill it with <strong
+                        >5 ml of fresh water</strong
+                      > (don't reuse water from the KH test).
+                    </p>
+                  </div>
+                </div>
+                <div class="step-item">
+                  <div class="step-number">2</div>
+                  <div class="step-content">
+                    <h3>Agrega 1 gota del reactivo GH</h3>
+                    <p>
+                      Usa el frasco de reactivo <strong>GH</strong> (diferente al
+                      de KH). Agrega una gota.
+                    </p>
+                  </div>
+                </div>
+                <div class="step-item">
+                  <div class="step-number">3</div>
+                  <div class="step-content">
+                    <h3>Tapa, invierte, observa</h3>
+                    <div class="color-indicator">
+                      <div class="color-dot" style="background: #d98a4a"></div>
+                      <span>Still orange? → Add another drop</span>
+                    </div>
+                    <div class="color-indicator">
+                      <div class="color-dot" style="background: #5ab569"></div>
+                      <span>Turned green? → Stop! Count the drops</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="step-item">
+                  <div class="step-number">4</div>
+                  <div class="step-content">
+                    <h3>Repite gota a gota hasta verde</h3>
+                    <div class="media-placeholder" data-type="foto">
+                      <div class="placeholder-icon">📷</div>
+                      <span>Tu foto: cambio de color orange → green</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="step-item">
+                  <div class="step-number">5</div>
+                  <div class="step-content">
+                    <h3>Calculate your result</h3>
+                    <p>Number of drops × 17.9 = your GH in ppm</p>
+                    <div class="calc-box" id="calc-gh">
+                      <label class="calc-label" for="gh-drops"
+                        >How many drops did you use?</label
+                      >
+                      <div class="calc-input-row">
+                        <button
+                          class="calc-btn minus"
+                          data-calc="gh"
+                          data-action="minus"
+                          aria-label="Less">−</button
+                        >
+                        <input
+                          type="number"
+                          id="gh-drops"
+                          class="calc-input"
+                          value="0"
+                          min="0"
+                          max="30"
+                          readonly
+                        />
+                        <button
+                          class="calc-btn plus"
+                          data-calc="gh"
+                          data-action="plus"
+                          aria-label="More">+</button
+                        >
+                      </div>
+                      <div class="calc-result" id="gh-result">
+                        <span class="calc-ppm">0 ppm</span>
+                        <span class="calc-verdict" id="gh-verdict"></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="tip-box">
+                <span class="tip-label">Ojo</span>
+                <p>
+                  If the <strong
+                    >very first drop already changes the color</strong
+                  >, your water has very low hardness. This is common in reverse
+                  osmosis jugs and means your water lacks enough minerals to
+                  properly extract the coffee's flavors.
+                </p>
+              </div>
+            </div>
+
+            <!-- ═══ PANEL: pH Strips ═══ -->
+            <div
+              role="tabpanel"
+              id="panel-strips"
+              aria-labelledby="tab-strips"
+              class="tab-panel"
+              hidden
+            >
+              <div class="info-card single-card">
+                <p class="info-label">What are they?</p>
+                <p class="info-desc">
+                  Paper impregnated with chemical indicators that change color
+                  based on the liquid's pH. It's a quick, analog way to measure
+                  pH — less accurate than the digital meter (±0.5 vs ±0.01), but
+                  useful as a quick check.
+                </p>
+              </div>
+
+              <h2 class="section-title">How to use them</h2>
+
+              <div class="steps-timeline">
+                <div class="step-item">
+                  <div class="step-number">1</div>
+                  <div class="step-content">
+                    <h3>Arranca una tirita</h3>
+                    <p>
+                      Separa una tira del bloque de papel. Sostenla por un
+                      extremo sin tocar la zona que vas a sumergir.
+                    </p>
+                  </div>
+                </div>
+                <div class="step-item">
+                  <div class="step-number">2</div>
+                  <div class="step-content">
+                    <h3>Sumerge brevemente</h3>
+                    <p>
+                      Dip the strip in the liquid <strong
+                        >for just one second</strong
+                      > — don't leave it soaking. Pull it out immediately.
+                    </p>
+                  </div>
+                </div>
+                <div class="step-item">
+                  <div class="step-number">3</div>
+                  <div class="step-content">
+                    <h3>Espera 15-30 segundos</h3>
+                    <p>
+                      Deja que el color se estabilice. No la toques mientras
+                      cambia.
+                    </p>
+                  </div>
+                </div>
+                <div class="step-item">
+                  <div class="step-number">4</div>
+                  <div class="step-content">
+                    <h3>Compara con la escala</h3>
+                    <p>
+                      Hold the strip next to the color scale printed on the box. <strong
+                        >Use natural light and a white background</strong
+                      > — artificial or yellow light can trick you.
+                    </p>
+                    <div class="media-placeholder" data-type="foto">
+                      <div class="placeholder-icon">📷</div>
+                      <span>Tu foto: comparando la tirita con la escala</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- pH color scale -->
+              <h2 class="section-title">Escala de colores y significado</h2>
+
+              <div class="ph-color-guide">
+                <div class="ph-row" data-ph="acid">
+                  <div
+                    class="ph-color-strip"
+                    style="background: linear-gradient(to right, #e53935, #ff8f00)"
+                  >
+                  </div>
+                  <div class="ph-info">
+                    <span class="ph-range">pH 1-4</span>
+                    <span class="ph-name">Very acidic</span>
+                    <span class="ph-example">Lemon, vinegar</span>
+                  </div>
+                </div>
+                <div class="ph-row" data-ph="slight-acid">
+                  <div
+                    class="ph-color-strip"
+                    style="background: linear-gradient(to right, #ff8f00, #c0ca33)"
+                  >
+                  </div>
+                  <div class="ph-info">
+                    <span class="ph-range">pH 5-6</span>
+                    <span class="ph-name">Slightly acidic</span>
+                    <span class="ph-example">Prepared coffee (~5), rain</span>
+                  </div>
+                </div>
+                <div class="ph-row ideal" data-ph="ideal">
+                  <div
+                    class="ph-color-strip"
+                    style="background: linear-gradient(to right, #c0ca33, #43a047)"
+                  >
+                  </div>
+                  <div class="ph-info">
+                    <span class="ph-range">pH 6.5-7.5</span>
+                    <span class="ph-name">Ideal for coffee ✓</span>
+                    <span class="ph-example">Agua potable bien balanceada</span>
+                  </div>
+                </div>
+                <div class="ph-row" data-ph="alkaline">
+                  <div
+                    class="ph-color-strip"
+                    style="background: linear-gradient(to right, #43a047, #1565c0)"
+                  >
+                  </div>
+                  <div class="ph-info">
+                    <span class="ph-range">pH 8-9</span>
+                    <span class="ph-name">Alkaline</span>
+                    <span class="ph-example"
+                      >Agua con bicarbonato, agua dura</span
+                    >
+                  </div>
+                </div>
+                <div class="ph-row" data-ph="very-alkaline">
+                  <div
+                    class="ph-color-strip"
+                    style="background: linear-gradient(to right, #1565c0, #7b1fa2)"
+                  >
+                  </div>
+                  <div class="ph-info">
+                    <span class="ph-range">pH 10-14</span>
+                    <span class="ph-name">Muy alcalino</span>
+                    <span class="ph-example">Soap, bleach</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="tip-box">
+                <span class="tip-label"
+                  >When to use strips instead of the digital meter?</span
+                >
+                <p>
+                  As a <strong>quick check</strong> if you doubt the meter's calibration,
+                  or to measure liquids where you don't want to dirty the electrode
+                  (like prepared coffee, out of curiosity). For serious water measurements,
+                  use the digital meter.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="hr-animated my-10 sm:my-14"></div>
+
+          <!-- ═══ EXERCISE: Comparativa de aguas ═══ -->
+          <div class="reveal">
+            <h2 class="section-title">Exercise: Complete water profile</h2>
+            <p class="section-note">
+              This exercise goes beyond what lesson 4 asks — it's what
+              competitive baristasncia.
+            </p>
+
+            <div class="exercise-steps">
+              <div class="exercise-step">
+                <span class="exercise-num">01</span>
+                <div>
+                  <h3>Mide 3 aguas diferentes</h3>
+                  <p>
+                    Your tap water, your jug, and a bottle of bottled water
+                    (~100-130 ppm). Measure <strong>TDS, pH, GH, and KH</strong
+                    >g> de cada una.
+                  </p>
+                </div>
+              </div>
+              <div class="exercise-step">
+                <span class="exercise-num">02</span>
+                <div>
+                  <h3>Llena la tabla</h3>
+                  <p>
+                    Record everything in your tasting notebook. Here's a
+                    reference:
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Reference table -->
+            <div class="table-wrapper">
+              <table class="water-table">
+                <thead>
+                  <tr>
+                    <th>Measurement</th>
+                    <th>SCA Target</th>
+                    <th>Your tap</th>
+                    <th>Your jug</th>
+                    <th>Bottled</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>TDS</strong> (ppm)</td>
+                    <td>75–150</td>
+                    <td
+                      class="editable"
+                      contenteditable="true"
+                      data-placeholder="—"></td>
+                    <td
+                      class="editable"
+                      contenteditable="true"
+                      data-placeholder="—"></td>
+                    <td
+                      class="editable"
+                      contenteditable="true"
+                      data-placeholder="—"></td>
+                  </tr>
+                  <tr>
+                    <td><strong>pH</strong></td>
+                    <td>6.5–7.5</td>
+                    <td
+                      class="editable"
+                      contenteditable="true"
+                      data-placeholder="—"></td>
+                    <td
+                      class="editable"
+                      contenteditable="true"
+                      data-placeholder="—"></td>
+                    <td
+                      class="editable"
+                      contenteditable="true"
+                      data-placeholder="—"></td>
+                  </tr>
+                  <tr>
+                    <td><strong>GH</strong> (ppm)</td>
+                    <td>50–175</td>
+                    <td
+                      class="editable"
+                      contenteditable="true"
+                      data-placeholder="—"></td>
+                    <td
+                      class="editable"
+                      contenteditable="true"
+                      data-placeholder="—"></td>
+                    <td
+                      class="editable"
+                      contenteditable="true"
+                      data-placeholder="—"></td>
+                  </tr>
+                  <tr>
+                    <td><strong>KH</strong> (ppm)</td>
+                    <td>40–70</td>
+                    <td
+                      class="editable"
+                      contenteditable="true"
+                      data-placeholder="—"></td>
+                    <td
+                      class="editable"
+                      contenteditable="true"
+                      data-placeholder="—"></td>
+                    <td
+                      class="editable"
+                      contenteditable="true"
+                      data-placeholder="—"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="exercise-steps">
+              <div class="exercise-step">
+                <span class="exercise-num">03</span>
+                <div>
+                  <h3>Brew the same coffee with the 2 most different waters</h3>
+                  <p>
+                    Use exactly the same recipe: same coffee, same ratio, same
+                    grind, same temperature. Only change the water.
+                  </p>
+                </div>
+              </div>
+              <div class="exercise-step">
+                <span class="exercise-num">04</span>
+                <div>
+                  <h3>Prueba y conecta</h3>
+                  <p>
+                    Did the water with more GH extract more flavor? Did the one
+                    with more KH suppress acidity? Note your observations.
+                  </p>
+                  <div class="media-placeholder" data-type="video">
+                    <div class="placeholder-icon">🎬</div>
+                    <span>Tu video: prueba de aguas lado a lado</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="hr-animated my-10 sm:my-14"></div>
+
+          <!-- ═══ QUICK REFERENCE ═══ -->
+          <div class="reveal">
+            <h2 class="section-title">Quick reference</h2>
+            <div class="reference-grid">
+              <div class="ref-card">
+                <h3>SCA water standards</h3>
+                <div class="ref-item">
+                  <span>TDS</span><strong>75–150 ppm</strong>
+                </div>
+                <div class="ref-item">
+                  <span>pH</span><strong>6.5–7.5</strong>
+                </div>
+                <div class="ref-item">
+                  <span>Dureza (GH)</span><strong>50–175 ppm</strong>
+                </div>
+                <div class="ref-item">
+                  <span>Alkalinity (KH)</span><strong>40–70 ppm</strong>
+                </div>
+                <div class="ref-item">
+                  <span>Sodio</span><strong>~10 mg/L</strong>
+                </div>
+                <div class="ref-item">
+                  <span>Cloro</span><strong>0 mg/L</strong>
+                </div>
+              </div>
+              <div class="ref-card">
+                <h3>Drops → ppm conversion</h3>
+                <div class="ref-item">
+                  <span>1 gota</span><strong>17.9 ppm</strong>
+                </div>
+                <div class="ref-item">
+                  <span>2 gotas</span><strong>35.8 ppm</strong>
+                </div>
+                <div class="ref-item">
+                  <span>3 gotas</span><strong>53.7 ppm</strong>
+                </div>
+                <div class="ref-item">
+                  <span>4 gotas</span><strong>71.6 ppm</strong>
+                </div>
+                <div class="ref-item">
+                  <span>5 gotas</span><strong>89.5 ppm</strong>
+                </div>
+                <div class="ref-item">
+                  <span>6 gotas</span><strong>107.4 ppm</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div><!-- /guide-content -->
+
+        <!-- Nav back -->
+        <div class="reveal mt-16 sm:mt-20">
+          <div class="hr-animated mb-8"></div>
+          <nav class="guide-nav">
+            <a
+              href="/en/cafe-en/roadmap-1-4-el-agua"
+              class="nav-link nav-link--prev"
+              data-cursor-hover
+            >
+              <span class="nav-direction">Related lesson</span>
+              <span class="nav-title"
+                >1.4 — Water: the invisible ingredient</span
+              >
+            </a>
+            <a
+              href="/en/barista-roadmap"
+              class="nav-link nav-link--next"
+              data-cursor-hover
+            >
+              <span class="nav-direction">Back</span>
+              <span class="nav-title">Barista Roadmap</span>
+            </a>
+          </nav>
+        </div>
+      </main>
+
+      <Footer />
+    </div>
+  </div>
+
+  <ScrollProgressPlugin />
+
+  <!-- ═══ UNLOCK GATE ═══ -->
+  <script>
+    const PHASE_1_SLUGS = [
+      'roadmap-1-1-que-es-cafe-especialidad',
+      'roadmap-1-2-del-grano-a-la-taza',
+      'roadmap-1-3-ciencia-extraccion',
+      'roadmap-1-4-el-agua'
+    ]
+    const PHASE_1_TITLES = [
+      '1.1 — What is specialty coffee?',
+      '1.2 — From bean to cup',
+      '1.3 — The science of extraction',
+      '1.4 — Water: the invisible ingredient'
+    ]
+    const COOKIE_NAME = 'roadmap_read'
+
+    function getReadLessons(): Set<string> {
+      const match = document.cookie.match(
+        new RegExp('(?:^|; )' + COOKIE_NAME + '=([^;]*)')
+      )
+      if (!match) return new Set()
+      try {
+        return new Set(JSON.parse(decodeURIComponent(match[1])))
+      } catch {
+        return new Set()
+      }
+    }
+
+    function checkGate() {
+      const read = getReadLessons()
+      const allComplete = PHASE_1_SLUGS.every((s) => read.has(s))
+
+      const gate = document.getElementById('unlock-gate')
+      const content = document.getElementById('guide-content')
+
+      if (allComplete) {
+        if (gate) gate.style.display = 'none'
+        if (content) content.style.display = 'block'
+      } else {
+        if (gate) gate.style.display = 'block'
+        if (content) content.style.display = 'none'
+
+        // Populate lessons checklist
+        const list = document.getElementById('gate-lessons-list')
+        if (list && list.children.length === 0) {
+          PHASE_1_SLUGS.forEach((slug, i) => {
+            const isRead = read.has(slug)
+            const el = document.createElement('a')
+            el.href = `/en/cafe-en/${slug}`
+            el.className = `gate-lesson ${isRead ? 'gate-lesson--done' : ''}`
+            el.innerHTML = `
+              <span class="gate-check">${isRead ? '✓' : ''}</span>
+              <span>${PHASE_1_TITLES[i]}</span>
+            `
+            list.appendChild(el)
+          })
+        }
+      }
+    }
+
+    checkGate()
+    document.addEventListener('astro:page-load', checkGate)
+  </script>
+
+  <!-- ═══ INTERACTIVITY ═══ -->
+  <script>
+    function initGuide() {
+      // ── Tab switching ──
+      const tabs = document.querySelectorAll<HTMLButtonElement>('.tab-btn')
+      const panels = document.querySelectorAll<HTMLDivElement>('.tab-panel')
+
+      tabs.forEach((tab) => {
+        tab.addEventListener('click', () => {
+          const target = tab.dataset.tab
+          tabs.forEach((t) => {
+            t.classList.remove('active')
+            t.setAttribute('aria-selected', 'false')
+          })
+          panels.forEach((p) => {
+            p.classList.remove('active')
+            p.hidden = true
+          })
+          tab.classList.add('active')
+          tab.setAttribute('aria-selected', 'true')
+          const panel = document.getElementById(`panel-${target}`)
+          if (panel) {
+            panel.classList.add('active')
+            panel.hidden = false
+          }
+        })
+      })
+
+      // ── Drop calculators ──
+      document
+        .querySelectorAll<HTMLButtonElement>('.calc-btn')
+        .forEach((btn) => {
+          btn.addEventListener('click', () => {
+            const calc = btn.dataset.calc! // 'kh' or 'gh'
+            const action = btn.dataset.action! // 'plus' or 'minus'
+            const input = document.getElementById(
+              `${calc}-drops`
+            ) as HTMLInputElement
+            let val = parseInt(input.value) || 0
+            if (action === 'plus') val++
+            if (action === 'minus' && val > 0) val--
+            input.value = String(val)
+
+            const ppm = (val * 17.9).toFixed(1)
+            const resultEl = document.getElementById(`${calc}-result`)!
+            resultEl.querySelector('.calc-ppm')!.textContent = `${ppm} ppm`
+
+            const verdictEl = document.getElementById(`${calc}-verdict`)!
+            if (calc === 'kh') {
+              const n = parseFloat(ppm)
+              if (val === 0) verdictEl.textContent = ''
+              else if (n < 40)
+                verdictEl.textContent = '⚠️ Baja — acidez puede ser agresiva'
+              else if (n <= 70) verdictEl.textContent = '✅ Rango ideal SCA'
+              else verdictEl.textContent = '⚠️ Alta — puede aplastar la acidez'
+              verdictEl.className =
+                'calc-verdict' +
+                (n >= 40 && n <= 70 && val > 0
+                  ? ' verdict-good'
+                  : val > 0
+                    ? ' verdict-warn'
+                    : '')
+            } else {
+              const n = parseFloat(ppm)
+              if (val === 0) verdictEl.textContent = ''
+              else if (n < 50)
+                verdictEl.textContent = '⚠️ Low — poor flavor extraction'
+              else if (n <= 175) verdictEl.textContent = '✅ Rango ideal SCA'
+              else
+                verdictEl.textContent =
+                  '⚠️ High — risk of over-extraction and scaling'
+              verdictEl.className =
+                'calc-verdict' +
+                (n >= 50 && n <= 175 && val > 0
+                  ? ' verdict-good'
+                  : val > 0
+                    ? ' verdict-warn'
+                    : '')
+            }
+          })
+        })
+
+      // ── Reveal animations ──
+      const reveals = document.querySelectorAll(
+        '.reveal, .stagger-children, .hr-animated'
+      )
+      if (reveals.length) {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) entry.target.classList.add('revealed')
+            })
+          },
+          { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
+        )
+        reveals.forEach((el) => observer.observe(el))
+      }
+
+      // ── Cursor hover ──
+      const isTouchDevice =
+        'ontouchstart' in window || navigator.maxTouchPoints > 0
+      if (!isTouchDevice && window.matchMedia('(pointer: fine)').matches) {
+        document.querySelectorAll('[data-cursor-hover]').forEach((el) => {
+          el.addEventListener('mouseenter', () => {
+            document.getElementById('custom-cursor')?.classList.add('hovering')
+          })
+          el.addEventListener('mouseleave', () => {
+            document
+              .getElementById('custom-cursor')
+              ?.classList.remove('hovering')
+          })
+        })
+      }
+    }
+
+    document.addEventListener('astro:page-load', initGuide)
+  </script>
+</BaseLayout>
+
+<style>
+  /* ── Unlock gate ── */
+  .gate-card {
+    text-align: center;
+    padding: 2.5rem 1.5rem;
+    border-radius: 0.75rem;
+    border: 1px solid color-mix(in srgb, var(--color-accent) 8%, transparent);
+    background: color-mix(in srgb, var(--color-accent) 2%, transparent);
+  }
+  .gate-icon {
+    margin-bottom: 1rem;
+  }
+  .gate-title {
+    font-weight: 650;
+    font-size: 1.125rem;
+    margin: 0 0 0.5rem;
+    opacity: 0.7;
+  }
+  .gate-text {
+    font-size: 0.875rem;
+    line-height: 1.7;
+    opacity: 0.4;
+    margin: 0 0 1.5rem;
+    max-width: 24rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .gate-progress {
+    margin-bottom: 1.5rem;
+  }
+  .gate-lessons {
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+    max-width: 22rem;
+    margin: 0 auto;
+    text-align: left;
+  }
+  .gate-lesson {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    font-size: 0.8125rem;
+    padding: 0.375rem 0.625rem;
+    border-radius: 6px;
+    opacity: 0.4;
+    text-decoration: none;
+    color: inherit;
+    transition:
+      opacity 0.3s ease,
+      background 0.3s ease;
+  }
+  .gate-lesson:hover {
+    opacity: 0.7;
+    background: color-mix(in srgb, var(--color-accent) 3%, transparent);
+  }
+  .gate-lesson--done {
+    opacity: 0.6;
+  }
+  .gate-check {
+    width: 1.125rem;
+    height: 1.125rem;
+    border-radius: 50%;
+    border: 1.5px solid color-mix(in srgb, var(--color-accent) 15%, transparent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.625rem;
+    flex-shrink: 0;
+  }
+  .gate-lesson--done .gate-check {
+    background: color-mix(in srgb, #43a047 15%, transparent);
+    border-color: color-mix(in srgb, #43a047 30%, transparent);
+    color: #43a047;
+  }
+  .gate-btn {
+    display: inline-block;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    padding: 0.625rem 1.5rem;
+    border-radius: 8px;
+    border: 1px solid color-mix(in srgb, var(--color-accent) 15%, transparent);
+    background: color-mix(in srgb, var(--color-accent) 5%, transparent);
+    color: inherit;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+  .gate-btn:hover {
+    background: color-mix(in srgb, var(--color-accent) 10%, transparent);
+    transform: translateY(-1px);
+  }
+
+  /* ── Main container ── */
+  .guide-main {
+    max-width: 42rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* ── Context card ── */
+  .context-card {
+    display: flex;
+    gap: 1rem;
+    padding: 1.25rem 1.5rem;
+    border-radius: 0.75rem;
+    border: 1px solid color-mix(in srgb, var(--color-accent) 8%, transparent);
+    background: color-mix(in srgb, var(--color-accent) 2%, transparent);
+  }
+  .context-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .context-title {
+    font-weight: 600;
+    font-size: 0.9375rem;
+    margin: 0 0 0.375rem;
+    opacity: 0.8;
+  }
+  .context-text {
+    font-size: 0.875rem;
+    line-height: 1.7;
+    margin: 0;
+    opacity: 0.5;
+  }
+  .context-text strong {
+    opacity: 1;
+    font-weight: 600;
+  }
+
+  /* ── Section titles ── */
+  .section-title {
+    font-size: 1.375rem;
+    font-weight: 650;
+    letter-spacing: -0.02em;
+    margin-top: 2.5rem;
+    margin-bottom: 0.5rem;
+    line-height: 1.25;
+  }
+  .section-note {
+    font-size: 0.8125rem;
+    opacity: 0.35;
+    margin-bottom: 1.5rem;
+  }
+
+  /* ── Tab navigation ── */
+  .tab-nav {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+  }
+  .tab-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 1rem 0.5rem;
+    border: 1px solid color-mix(in srgb, var(--color-accent) 6%, transparent);
+    border-radius: 0.75rem;
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    color: inherit;
+  }
+  .tab-btn:hover {
+    border-color: color-mix(in srgb, var(--color-accent) 15%, transparent);
+    background: color-mix(in srgb, var(--color-accent) 3%, transparent);
+    transform: translateY(-2px);
+  }
+  .tab-btn.active {
+    border-color: color-mix(in srgb, var(--color-accent) 25%, transparent);
+    background: color-mix(in srgb, var(--color-accent) 5%, transparent);
+    box-shadow: 0 4px 20px
+      color-mix(in srgb, var(--color-accent) 6%, transparent);
+  }
+  .tab-icon {
+    font-size: 1.25rem;
+  }
+  .tab-label {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    opacity: 0.7;
+  }
+  .tab-sub {
+    font-size: 0.6875rem;
+    opacity: 0.35;
+  }
+  .tab-btn.active .tab-label {
+    opacity: 1;
+  }
+  .tab-btn.active .tab-sub {
+    opacity: 0.55;
+  }
+
+  /* ── Tab panels ── */
+  .tab-panel {
+    animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .tab-panel:not(.active) {
+    display: none;
+  }
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* ── Info grid ── */
+  .info-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+  .info-grid.two-col {
+    grid-template-columns: 1fr 1fr;
+  }
+  @media (max-width: 580px) {
+    .info-grid.two-col {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .info-card {
+    padding: 1.25rem;
+    border-radius: 0.75rem;
+    border: 1px solid color-mix(in srgb, var(--color-accent) 6%, transparent);
+    background: color-mix(in srgb, var(--color-accent) 2%, transparent);
+  }
+  .info-card.single-card {
+    margin-bottom: 1.5rem;
+  }
+  .info-badge {
+    display: inline-block;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    background: color-mix(in srgb, var(--color-accent) 10%, transparent);
+    margin-bottom: 0.75rem;
+    opacity: 0.7;
+  }
+  .badge-gh {
+    background: color-mix(in srgb, #5ab569 20%, transparent);
+    color: #5ab569;
+  }
+  .badge-kh {
+    background: color-mix(in srgb, #4a90d9 20%, transparent);
+    color: #4a90d9;
+  }
+  .info-label {
+    font-weight: 600;
+    font-size: 0.9375rem;
+    margin: 0 0 0.375rem;
+    opacity: 0.7;
+  }
+  .info-desc {
+    font-size: 0.8125rem;
+    line-height: 1.7;
+    margin: 0;
+    opacity: 0.5;
+  }
+  .info-desc strong {
+    opacity: 1;
+    font-weight: 600;
+  }
+  .info-detail {
+    font-size: 0.8125rem;
+    line-height: 1.7;
+    margin: 0.5rem 0 0;
+    opacity: 0.4;
+  }
+  .info-target {
+    font-size: 0.8125rem;
+    margin: 0.75rem 0 0;
+    opacity: 0.55;
+  }
+
+  /* ── TDS Range visual ── */
+  .range-visual {
+    margin-top: 1rem;
+  }
+  .range-bar {
+    display: flex;
+    border-radius: 4px;
+    overflow: hidden;
+    height: 24px;
+  }
+  .range-zone {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.625rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+  .range-low {
+    background: color-mix(in srgb, #e53935 15%, transparent);
+  }
+  .range-ideal {
+    background: color-mix(in srgb, #43a047 15%, transparent);
+  }
+  .range-ok {
+    background: color-mix(in srgb, #ff8f00 12%, transparent);
+  }
+  .range-high {
+    background: color-mix(in srgb, #e53935 12%, transparent);
+  }
+  .range-text {
+    opacity: 0.7;
+  }
+  .range-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.5625rem;
+    opacity: 0.35;
+    margin-top: 0.375rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .range-ideal-label {
+    color: #43a047;
+    opacity: 0.7;
+    font-weight: 600;
+  }
+
+  /* ── pH Scale ── */
+  .ph-scale {
+    margin-top: 1rem;
+    position: relative;
+  }
+  .ph-gradient {
+    height: 20px;
+    border-radius: 4px;
+    background: linear-gradient(
+      to right,
+      #e53935,
+      #ff8f00,
+      #c0ca33,
+      #43a047,
+      #1565c0,
+      #7b1fa2
+    );
+  }
+  .ph-marker {
+    position: absolute;
+    top: 0;
+    width: 2px;
+    height: 20px;
+    background: var(--color-accent);
+    opacity: 0.8;
+  }
+  .ph-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.5625rem;
+    opacity: 0.35;
+    margin-top: 0.375rem;
+  }
+  .ph-ideal-label {
+    text-align: center;
+    font-size: 0.625rem;
+    font-weight: 600;
+    opacity: 0.55;
+    margin-top: 0.25rem;
+  }
+
+  /* ── Steps timeline ── */
+  .steps-timeline {
+    position: relative;
+    padding-left: 2.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .steps-timeline::before {
+    content: '';
+    position: absolute;
+    left: 0.75rem;
+    top: 0.25rem;
+    bottom: 0.25rem;
+    width: 1px;
+    background: color-mix(in srgb, var(--color-accent) 8%, transparent);
+  }
+  .step-item {
+    position: relative;
+    margin-bottom: 1.75rem;
+  }
+  .step-item:last-child {
+    margin-bottom: 0;
+  }
+  .step-number {
+    position: absolute;
+    left: -2.5rem;
+    top: 0;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    background: color-mix(in srgb, var(--color-accent) 8%, transparent);
+    color: inherit;
+    opacity: 0.6;
+  }
+  .step-content h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0 0 0.375rem;
+    line-height: 1.3;
+    opacity: 0.8;
+  }
+  .step-content p {
+    font-size: 0.875rem;
+    line-height: 1.7;
+    margin: 0 0 0.5rem;
+    opacity: 0.5;
+  }
+  .step-content p strong {
+    opacity: 1;
+    font-weight: 600;
+  }
+
+  /* ── Color indicators ── */
+  .color-indicator {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    margin: 0.5rem 0;
+    font-size: 0.8125rem;
+    opacity: 0.6;
+  }
+  .color-dot {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    border: 1px solid color-mix(in srgb, var(--color-accent) 10%, transparent);
+  }
+
+  /* ── Media placeholders ── */
+  .media-placeholder {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 1.25rem;
+    border-radius: 0.5rem;
+    border: 1.5px dashed
+      color-mix(in srgb, var(--color-accent) 10%, transparent);
+    background: color-mix(in srgb, var(--color-accent) 1.5%, transparent);
+    margin-top: 0.75rem;
+    font-size: 0.8125rem;
+    opacity: 0.4;
+    transition:
+      opacity 0.3s ease,
+      border-color 0.3s ease;
+  }
+  .media-placeholder:hover {
+    opacity: 0.6;
+    border-color: color-mix(in srgb, var(--color-accent) 20%, transparent);
+  }
+  .placeholder-icon {
+    font-size: 1.25rem;
+  }
+
+  /* ── Calculator ── */
+  .calc-box {
+    padding: 1.25rem;
+    border-radius: 0.75rem;
+    border: 1px solid color-mix(in srgb, var(--color-accent) 8%, transparent);
+    background: color-mix(in srgb, var(--color-accent) 2%, transparent);
+    margin-top: 0.75rem;
+  }
+  .calc-label {
+    font-size: 0.8125rem;
+    font-weight: 500;
+    opacity: 0.5;
+    display: block;
+    margin-bottom: 0.75rem;
+  }
+  .calc-input-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+  }
+  .calc-btn {
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 50%;
+    border: 1px solid color-mix(in srgb, var(--color-accent) 15%, transparent);
+    background: color-mix(in srgb, var(--color-accent) 5%, transparent);
+    cursor: pointer;
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: inherit;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .calc-btn:hover {
+    background: color-mix(in srgb, var(--color-accent) 12%, transparent);
+    transform: scale(1.1);
+  }
+  .calc-btn:active {
+    transform: scale(0.95);
+  }
+  .calc-input {
+    width: 3.5rem;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    background: transparent;
+    border: none;
+    color: inherit;
+    -moz-appearance: textfield;
+  }
+  .calc-input::-webkit-outer-spin-button,
+  .calc-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  .calc-result {
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+  .calc-ppm {
+    font-size: 1.25rem;
+    font-weight: 700;
+    opacity: 0.8;
+  }
+  .calc-verdict {
+    font-size: 0.8125rem;
+    opacity: 0.55;
+    transition: color 0.3s ease;
+  }
+  .verdict-good {
+    color: #43a047;
+    opacity: 0.8;
+  }
+  .verdict-warn {
+    color: #ff8f00;
+    opacity: 0.8;
+  }
+
+  /* ── Conversion card ── */
+  .conversion-card {
+    padding: 1rem 1.5rem;
+    border-radius: 0.75rem;
+    border: 1px solid color-mix(in srgb, var(--color-accent) 8%, transparent);
+    background: color-mix(in srgb, var(--color-accent) 3%, transparent);
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+  .conversion-title {
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    opacity: 0.35;
+    margin: 0 0 0.375rem;
+    font-weight: 600;
+  }
+  .conversion-formula {
+    font-size: 1.125rem;
+    margin: 0 0 0.25rem;
+    opacity: 0.7;
+  }
+  .conversion-formula strong {
+    opacity: 1;
+    font-weight: 700;
+  }
+  .conversion-example {
+    font-size: 0.8125rem;
+    opacity: 0.35;
+    margin: 0;
+  }
+
+  /* ── Tip box ── */
+  .tip-box {
+    padding: 1rem 1.25rem;
+    border-left: 2px solid
+      color-mix(in srgb, var(--color-accent) 15%, transparent);
+    background: color-mix(in srgb, var(--color-accent) 2%, transparent);
+    border-radius: 0 8px 8px 0;
+    margin-top: 2rem;
+  }
+  .tip-label {
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 700;
+    opacity: 0.45;
+    display: block;
+    margin-bottom: 0.375rem;
+  }
+  .tip-box p {
+    font-size: 0.875rem;
+    line-height: 1.7;
+    margin: 0;
+    opacity: 0.5;
+  }
+  .tip-box p strong {
+    opacity: 1;
+    font-weight: 600;
+  }
+
+  /* ── pH color guide ── */
+  .ph-color-guide {
+    margin: 1.5rem 0 2rem;
+  }
+  .ph-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.625rem 0;
+    border-bottom: 1px solid
+      color-mix(in srgb, var(--color-accent) 4%, transparent);
+  }
+  .ph-row.ideal {
+    background: color-mix(in srgb, #43a047 4%, transparent);
+    border-radius: 6px;
+    padding: 0.625rem 0.75rem;
+    margin: 0.25rem -0.75rem;
+  }
+  .ph-color-strip {
+    width: 3rem;
+    height: 1.125rem;
+    border-radius: 3px;
+    flex-shrink: 0;
+  }
+  .ph-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.125rem;
+  }
+  .ph-range {
+    font-size: 0.75rem;
+    font-weight: 700;
+    opacity: 0.6;
+  }
+  .ph-name {
+    font-size: 0.8125rem;
+    font-weight: 500;
+    opacity: 0.7;
+  }
+  .ph-example {
+    font-size: 0.6875rem;
+    opacity: 0.35;
+  }
+
+  /* ── Exercise ── */
+  .exercise-steps {
+    margin: 1.5rem 0;
+  }
+  .exercise-step {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  .exercise-num {
+    font-size: 0.75rem;
+    font-weight: 700;
+    opacity: 0.2;
+    font-family: ui-monospace, monospace;
+    flex-shrink: 0;
+    margin-top: 0.125rem;
+  }
+  .exercise-step h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0 0 0.375rem;
+    opacity: 0.8;
+  }
+  .exercise-step p {
+    font-size: 0.875rem;
+    line-height: 1.7;
+    margin: 0;
+    opacity: 0.5;
+  }
+  .exercise-step p strong {
+    opacity: 1;
+    font-weight: 600;
+  }
+
+  /* ── Table ── */
+  .table-wrapper {
+    overflow-x: auto;
+    margin: 1rem 0 2rem;
+    border-radius: 0.75rem;
+    border: 1px solid color-mix(in srgb, var(--color-accent) 6%, transparent);
+  }
+  .water-table {
+    width: 100%;
+    font-size: 0.875rem;
+    border-collapse: collapse;
+  }
+  .water-table th {
+    padding: 0.75rem 1rem;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.75rem;
+    opacity: 0.4;
+    border-bottom: 1px solid
+      color-mix(in srgb, var(--color-accent) 6%, transparent);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .water-table td {
+    padding: 0.625rem 1rem;
+    border-bottom: 1px solid
+      color-mix(in srgb, var(--color-accent) 4%, transparent);
+    opacity: 0.65;
+  }
+  .water-table td strong {
+    opacity: 1;
+    font-weight: 600;
+  }
+  .editable {
+    min-width: 60px;
+    cursor: text;
+    transition: background 0.3s ease;
+    border-radius: 4px;
+  }
+  .editable:focus {
+    background: color-mix(in srgb, var(--color-accent) 5%, transparent);
+    outline: 1px solid color-mix(in srgb, var(--color-accent) 15%, transparent);
+    outline-offset: -1px;
+  }
+  .editable:empty::before {
+    content: attr(data-placeholder);
+    opacity: 0.3;
+  }
+
+  /* ── Reference grid ── */
+  .reference-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+  @media (max-width: 580px) {
+    .reference-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  .ref-card {
+    padding: 1.25rem;
+    border-radius: 0.75rem;
+    border: 1px solid color-mix(in srgb, var(--color-accent) 6%, transparent);
+    background: color-mix(in srgb, var(--color-accent) 2%, transparent);
+  }
+  .ref-card h3 {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    opacity: 0.5;
+    margin: 0 0 0.75rem;
+  }
+  .ref-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.375rem 0;
+    border-bottom: 1px solid
+      color-mix(in srgb, var(--color-accent) 4%, transparent);
+    font-size: 0.8125rem;
+  }
+  .ref-item:last-child {
+    border-bottom: none;
+  }
+  .ref-item span {
+    opacity: 0.45;
+  }
+  .ref-item strong {
+    font-weight: 600;
+    opacity: 0.7;
+  }
+
+  /* ── Navigation ── */
+  .guide-nav {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  @media (max-width: 480px) {
+    .guide-nav {
+      grid-template-columns: 1fr;
+    }
+  }
+  .nav-link {
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+    padding: 1.25rem 1rem;
+    text-decoration: none;
+    color: inherit;
+    border: 1px solid color-mix(in srgb, var(--color-accent) 6%, transparent);
+    border-radius: 0.75rem;
+    background: transparent;
+    transition:
+      border-color 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+      background 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+      box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .nav-link:hover {
+    border-color: color-mix(in srgb, var(--color-accent) 15%, transparent);
+    background: color-mix(in srgb, var(--color-accent) 3%, transparent);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px
+      color-mix(in srgb, var(--color-accent) 4%, transparent);
+  }
+  .nav-link--prev::before {
+    content: '←';
+    font-size: 0.75rem;
+    opacity: 0.25;
+  }
+  .nav-link--next {
+    text-align: right;
+    align-items: flex-end;
+  }
+  .nav-link--next::after {
+    content: '→';
+    font-size: 0.75rem;
+    opacity: 0.25;
+  }
+  .nav-direction {
+    font-size: 0.6875rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    opacity: 0.3;
+  }
+  .nav-title {
+    font-size: 0.9375rem;
+    font-weight: 500;
+    opacity: 0.5;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .nav-link:hover .nav-title {
+    opacity: 1;
+    color: var(--color-accent);
+  }
+</style>

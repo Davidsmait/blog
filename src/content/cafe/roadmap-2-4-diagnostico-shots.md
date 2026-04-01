@@ -1,5 +1,4 @@
 ---
-draft: true
 title: 'Diagnóstico de shots'
 description: 'Aprende a leer un espresso como un barista profesional: identificar channeling, sub-extracción y sobre-extracción por sabor y apariencia visual.'
 publishedDate: 2026-03-05
@@ -25,7 +24,7 @@ Esta lección es tu guía de diagnóstico. Apréndela bien porque la vas a usar 
 
 **Qué sientes:** Acidez agresiva, agria, punzante. Sabor a "limón sin azúcar". El retrogusto es corto — desaparece rápidamente. El cuerpo es delgado, aguado. A veces tiene un toque salado. Le falta dulzura completamente.
 
-**Por qué pasa:** No extrajiste suficientes compuestos. Los ácidos se disuelven primero (son las moléculas más pequeñas y solubles), y si paras la extracción demasiado pronto, dominan la taza sin el contrapeso de los azúcares y los compuestos de Maillard que vienen después.
+**Por qué pasa:** No extrajiste suficientes compuestos. Los ácidos se disuelven primero (son los compuestos más simples y solubles del café), y si paras la extracción demasiado pronto, dominan la taza sin el contrapeso de los azúcares y los compuestos de Maillard que vienen después.
 
 **Qué ajustar:**
 - Muele más fino (primera opción, siempre)

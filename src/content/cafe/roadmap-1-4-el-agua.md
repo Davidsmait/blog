@@ -116,6 +116,8 @@ Si usas una máquina de espresso en casa, descalcifica regularmente según las i
 - Tu agua habitual (grifo, garrafón, filtrada, lo que uses)
 - Idealmente, una botella de agua destilada y acceso a agua mineral embotellada para comparar
 
+> **¿Ya tienes tus herramientas?** Consulta la [guía interactiva de herramientas para medir tu agua](/cafe/guia-herramientas-agua) — con instrucciones paso a paso para el medidor digital pH/TDS/EC y el kit API GH & KH, calculadoras interactivas y la tabla para registrar tus mediciones.
+
 ## Ejercicio práctico
 
 1. Mide el TDS de tu agua actual (grifo, filtrada, garrafón)
@@ -134,7 +136,7 @@ Si tu agua del grifo está por encima de 300 ppm (común en muchas ciudades de M
 - El TDS ideal para café está entre 75-150 ppm según la SCA
 - TDS mide cantidad total de minerales, no cuáles son — es un punto de partida, no la respuesta completa
 - Agua muy blanda sub-extrae; agua muy dura sobre-extrae y daña el equipo
-- Temperatura de preparación: 90-96°C — tan importante como la composición mineral
+- Temperatura de preparación: 92-96°C — tan importante como la composición mineral
 - Un medidor de TDS de $15 USD es la mejor inversión que puedes hacer ahora mismo
 - Filtrar el cloro es el paso mínimo; recetas de agua son el siguiente nivel
 - Los garrafones de purificadoras locales no son todos iguales — mide antes de asumir

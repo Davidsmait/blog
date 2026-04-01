@@ -281,13 +281,7 @@ function getPhaseState(phaseNum: number) {
                 </svg>
                 <span class="rm-node-default">
                   {isComplete ? (
-                    <svg
-                      viewBox="0 0 16 16"
-                      fill="currentColor"
-                      class="rm-node-icon rm-node-check"
-                    >
-                      <path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.75.75 0 0 1 1.06-1.06L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z" />
-                    </svg>
+                    <span class="rm-node-complete-dot" />
                   ) : isActive ? (
                     <span class="rm-node-pulse">
                       <span class="rm-pulse-ring" />
@@ -381,6 +375,37 @@ function getPhaseState(phaseNum: number) {
                       <span class="rm-lesson-title">{title}</span>
                     </div>
                   ))}
+
+                  {/* ── Bonus content after phase lessons ── */}
+                  {phase.num === 1 && (
+                    <div class="rm-bonus" data-bonus-phase="1">
+                      <div class="rm-bonus-divider">
+                        <span class="rm-bonus-divider-line"></span>
+                        <span class="rm-bonus-divider-label">Bonus</span>
+                        <span class="rm-bonus-divider-line"></span>
+                      </div>
+                      <a
+                        href="/cafe/guia-herramientas-agua"
+                        class="rm-lesson rm-lesson--bonus rm-bonus-locked"
+                        data-bonus-link
+                        data-requires-phase="1"
+                      >
+                        <span class="rm-lesson-status">
+                          <svg viewBox="0 0 16 16" fill="currentColor" class="rm-bonus-lock-icon">
+                            <path d="M8 1a4 4 0 0 0-4 4v3H3a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1h-1V5a4 4 0 0 0-4-4Zm2 7H6V5a2 2 0 1 1 4 0v3Z" />
+                          </svg>
+                          <svg viewBox="0 0 16 16" fill="currentColor" class="rm-bonus-star-icon" style="display:none">
+                            <path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z" />
+                          </svg>
+                        </span>
+                        <span class="rm-lesson-title">
+                          <span class="rm-bonus-title-text">Guía: Herramientas para medir tu agua</span>
+                          <span class="rm-bonus-unlock-hint" data-bonus-hint>Completa las 4 lecciones para desbloquear</span>
+                        </span>
+                        <span class="rm-lesson-arrow">&nearr;</span>
+                      </a>
+                    </div>
+                  )}
                 </div>
               )}
             </div>
@@ -716,6 +741,14 @@ function getPhaseState(phaseNum: number) {
     opacity: 0.25;
     width: 0.625rem;
     height: 0.625rem;
+  }
+
+  /* Phase complete but not yet read by user — filled dot */
+  .rm-node-complete-dot {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background: color-mix(in srgb, var(--color-accent) 35%, transparent);
   }
 
   /* User-complete overrides */
@@ -1091,6 +1124,66 @@ function getPhaseState(phaseNum: number) {
     color: var(--color-accent);
   }
 
+  /* ── Bonus content ── */
+  .rm-bonus {
+    margin-top: 0.25rem;
+  }
+  .rm-bonus-divider {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin: 0.75rem 0;
+  }
+  .rm-bonus-divider-line {
+    flex: 1;
+    height: 1px;
+    background: color-mix(in srgb, var(--color-accent) 6%, transparent);
+  }
+  .rm-bonus-divider-label {
+    font-size: 0.5625rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    opacity: 0.25;
+  }
+  .rm-lesson--bonus {
+    position: relative;
+  }
+  .rm-bonus-locked {
+    pointer-events: none;
+    opacity: 0.35;
+  }
+  .rm-bonus-locked .rm-lesson-arrow {
+    display: none;
+  }
+  .rm-bonus-unlocked {
+    pointer-events: auto;
+    opacity: 1;
+  }
+  .rm-bonus-unlocked .rm-bonus-unlock-hint {
+    display: none;
+  }
+  .rm-bonus-lock-icon {
+    width: 12px;
+    height: 12px;
+    opacity: 0.5;
+  }
+  .rm-bonus-star-icon {
+    width: 12px;
+    height: 12px;
+    color: color-mix(in srgb, var(--color-accent) 80%, gold);
+  }
+  .rm-bonus-title-text {
+    display: block;
+  }
+  .rm-bonus-unlock-hint {
+    display: block;
+    font-size: 0.625rem;
+    opacity: 0.5;
+    margin-top: 0.125rem;
+    font-style: italic;
+  }
+
   /* ── Responsive ── */
   @media (max-width: 480px) {
     .rm-phase-title {
@@ -1203,6 +1296,8 @@ function getPhaseState(phaseNum: number) {
     document
       .querySelectorAll<HTMLElement>('[data-lesson-slug]')
       .forEach((el) => {
+        if (el.hasAttribute('data-tracking-init')) return
+        el.setAttribute('data-tracking-init', '')
         el.addEventListener('click', () => {
           markLessonRead(el.dataset.lessonSlug!)
         })
@@ -1212,6 +1307,8 @@ function getPhaseState(phaseNum: number) {
   // ── Expand/collapse ──
   function initRoadmap() {
     document.querySelectorAll('[data-phase-toggle]').forEach((btn) => {
+      if (btn.hasAttribute('data-toggle-init')) return
+      btn.setAttribute('data-toggle-init', '')
       btn.addEventListener('click', () => {
         const phase = btn.closest('[data-phase]')
         const panel = phase?.querySelector(
@@ -1274,6 +1371,37 @@ function getPhaseState(phaseNum: number) {
 
     updateProgressUI()
     attachLessonTracking()
+    updateBonusContent()
+  }
+
+  // ── Bonus content unlock ──
+  function updateBonusContent() {
+    const read = getReadLessons()
+
+    document.querySelectorAll<HTMLElement>('[data-bonus-link]').forEach((link) => {
+      const requiredPhase = parseInt(link.dataset.requiresPhase || '0')
+      const phaseEl = document.querySelector(`[data-phase="${requiredPhase}"]`)
+      if (!phaseEl) return
+
+      const phaseLessons = phaseEl.querySelectorAll<HTMLElement>('[data-lesson-slug]')
+      const allRead = phaseLessons.length > 0 && [...phaseLessons].every(l => read.has(l.dataset.lessonSlug!))
+
+      if (allRead) {
+        link.classList.remove('rm-bonus-locked')
+        link.classList.add('rm-bonus-unlocked')
+        const lockIcon = link.querySelector('.rm-bonus-lock-icon') as HTMLElement
+        const starIcon = link.querySelector('.rm-bonus-star-icon') as HTMLElement
+        if (lockIcon) lockIcon.style.display = 'none'
+        if (starIcon) starIcon.style.display = 'block'
+      } else {
+        link.classList.add('rm-bonus-locked')
+        link.classList.remove('rm-bonus-unlocked')
+        const lockIcon = link.querySelector('.rm-bonus-lock-icon') as HTMLElement
+        const starIcon = link.querySelector('.rm-bonus-star-icon') as HTMLElement
+        if (lockIcon) lockIcon.style.display = 'block'
+        if (starIcon) starIcon.style.display = 'none'
+      }
+    })
   }
 
   initRoadmap()

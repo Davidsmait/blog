@@ -1,5 +1,4 @@
 ---
-draft: true
 title: 'Presión, temperatura y pre-infusión'
 description: 'Las variables de la máquina que afectan tu extracción: cómo funcionan los 9 bares, la estabilidad térmica y el poder de la pre-infusión.'
 publishedDate: 2026-03-05
@@ -49,7 +48,7 @@ Cada grado importa. Un cambio de 2°C puede ser la diferencia entre un shot áci
 
 ### Estabilidad térmica
 
-Más importante que la temperatura absoluta es la **estabilidad**: que la temperatura se mantenga constante durante toda la extracción. Las máquinas baratas con termobloque tienen fluctuaciones de hasta 10°C durante un shot — esto produce extracción inconsistente donde parte del café se sub-extrae y parte se sobre-extrae.
+Más importante que la temperatura absoluta es la **estabilidad**: que la temperatura se mantenga constante durante toda la extracción. Las máquinas baratas con termobloque tienen fluctuaciones de hasta 5°C durante un shot — esto produce extracción inconsistente donde parte del café se sub-extrae y parte se sobre-extrae.
 
 Los sistemas de calderas:
 
@@ -87,7 +86,7 @@ Cuando mojas la cama de café antes de aplicar presión completa:
 
 **Pre-infusión manual:** En máquinas de palanca, tú controlas la fase de pre-infusión levantando la palanca parcialmente. En máquinas con paddle (La Marzocco GS3 MP), puedes controlar el flujo manualmente.
 
-**Blooming espresso:** Una técnica popularizada por Scott Rao: pre-infusión larga (10-15 segundos) a baja presión, pausa de unos segundos para dejar que el CO2 escape, y luego extracción completa. Produce shots extremadamente limpios y uniformes.
+**Blooming espresso:** Una técnica popularizada por Scott Rao: pre-infusión larga (15-25 segundos) a baja presión, pausa de unos segundos para dejar que el CO2 escape, y luego extracción completa. Produce shots extremadamente limpios y uniformes.
 
 ### Si tu máquina no tiene pre-infusión
 
