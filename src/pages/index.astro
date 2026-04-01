@@ -128,33 +128,49 @@ const latestPhaseName = phaseNames[highestPhase] ?? `Fase ${highestPhase}`
           >
             <!-- ═══ MASSIVE TEXT ═══ -->
             <div class="relative z-20">
-              <!-- Desktop -->
-              <div
-                class="hero-title-wrap hidden w-full overflow-hidden sm:block"
-                id="hero-role-container"
-              >
-                <div class="hero-title-line" data-hero-delay="300">
-                  <h1
-                    class="hero-mega-text whitespace-nowrap font-display font-bold uppercase leading-[0.82] tracking-[-0.04em] text-accent"
-                    style="font-size: 10vw;"
-                    id="hero-role"
-                  >
-                    <span class="hero-letter-wrap"
-                      ><span class="hero-letter">W</span><span
-                        class="hero-letter">e</span
-                      ><span class="hero-letter">b</span></span
-                    >&nbsp;<span class="hero-letter-wrap"
-                      ><span class="hero-letter">D</span><span
-                        class="hero-letter">e</span
-                      ><span class="hero-letter">v</span><span
-                        class="hero-letter">e</span
-                      ><span class="hero-letter">l</span><span
-                        class="hero-letter">o</span
-                      ><span class="hero-letter">p</span><span
-                        class="hero-letter">e</span
-                      ><span class="hero-letter">r</span></span
+              <!-- Desktop — two-line title like Olha -->
+              <div class="hidden w-full sm:block" id="hero-role-container">
+                <div class="hero-title-wrap overflow-hidden">
+                  <div class="hero-title-line" data-hero-delay="300">
+                    <span
+                      class="hero-mega-text hero-role-line block whitespace-nowrap font-display font-bold uppercase leading-[0.85] tracking-[-0.035em] text-accent"
+                      style="font-size: 10vw;"
+                      id="hero-line-1"
                     >
-                  </h1>
+                      <span class="hero-letter-wrap"
+                        ><span class="hero-letter">F</span><span
+                          class="hero-letter">u</span
+                        ><span class="hero-letter">l</span><span
+                          class="hero-letter">l</span
+                        ><span class="hero-letter">s</span><span
+                          class="hero-letter">t</span
+                        ><span class="hero-letter">a</span><span
+                          class="hero-letter">c</span
+                        ><span class="hero-letter">k</span></span
+                      >
+                    </span>
+                  </div>
+                </div>
+                <div class="hero-title-wrap overflow-hidden">
+                  <div class="hero-title-line" data-hero-delay="420">
+                    <h1
+                      class="hero-mega-text hero-role-line block whitespace-nowrap font-display font-bold uppercase leading-[0.85] tracking-[-0.035em] text-accent"
+                      style="font-size: 10vw;"
+                      id="hero-line-2"
+                    >
+                      <span class="hero-letter-wrap"
+                        ><span class="hero-letter">D</span><span
+                          class="hero-letter">e</span
+                        ><span class="hero-letter">v</span><span
+                          class="hero-letter">e</span
+                        ><span class="hero-letter">l</span><span
+                          class="hero-letter">o</span
+                        ><span class="hero-letter">p</span><span
+                          class="hero-letter">e</span
+                        ><span class="hero-letter">r</span></span
+                      >
+                    </h1>
+                  </div>
                 </div>
                 <!-- "BASED IN MÉXICO" — desktop, tight under title, right-aligned -->
                 <div
@@ -162,24 +178,31 @@ const latestPhaseName = phaseNames[highestPhase] ?? `Fase ${highestPhase}`
                   data-hero-delay="500"
                 >
                   <span
-                    class="based-in-text float-right text-[10px] font-medium uppercase opacity-15"
+                    class="based-in-text block text-right text-[10px] font-medium uppercase opacity-15"
+                    id="based-in-desktop"
                   >
                     B&thinsp;A&thinsp;S&thinsp;E&thinsp;D&ensp;&ensp;I&thinsp;N&ensp;&ensp;M&thinsp;É&thinsp;X&thinsp;I&thinsp;C&thinsp;O
                   </span>
                 </div>
               </div>
-              <!-- Mobile -->
+              <!-- Mobile — two-line title -->
               <div class="w-full text-center sm:hidden">
                 <div class="hero-title-wrap overflow-hidden">
                   <div class="hero-title-line" data-hero-delay="300">
                     <h1
                       class="hero-mega-text font-display font-bold uppercase leading-[0.85] tracking-[-0.04em] text-accent"
-                      style="font-size: clamp(3.2rem, 19vw, 6rem);"
+                      style="font-size: clamp(2.4rem, 13vw, 5rem);"
                     >
                       <span class="hero-letter-wrap"
-                        ><span class="hero-letter">W</span><span
-                          class="hero-letter">e</span
-                        ><span class="hero-letter">b</span></span
+                        ><span class="hero-letter">F</span><span
+                          class="hero-letter">u</span
+                        ><span class="hero-letter">l</span><span
+                          class="hero-letter">l</span
+                        ><span class="hero-letter">s</span><span
+                          class="hero-letter">t</span
+                        ><span class="hero-letter">a</span><span
+                          class="hero-letter">c</span
+                        ><span class="hero-letter">k</span></span
                       >
                     </h1>
                   </div>
@@ -189,7 +212,7 @@ const latestPhaseName = phaseNames[highestPhase] ?? `Fase ${highestPhase}`
                     <span
                       id="hero-developer-mobile"
                       class="hero-mega-text font-display font-bold uppercase leading-[0.85] tracking-[-0.04em] text-accent"
-                      style="font-size: clamp(2.6rem, 15.5vw, 5.2rem);"
+                      style="font-size: clamp(2.2rem, 12vw, 4.5rem);"
                     >
                       <span class="hero-letter-wrap"
                         ><span class="hero-letter">D</span><span
@@ -219,8 +242,8 @@ const latestPhaseName = phaseNames[highestPhase] ?? `Fase ${highestPhase}`
               </div>
             </div>
 
-            <!-- ═══ PHOTO + INFO — pulled up under text ═══ -->
-            <div class="relative -mt-2 sm:-mt-[8vw]">
+            <!-- ═══ PHOTO + INFO — Olha-style: photo behind title ═══ -->
+            <div class="relative -mt-2 sm:-mt-[12vw]">
               <!-- Mobile: photo centered + descriptors below -->
               <div class="flex flex-col items-center gap-4 sm:hidden">
                 <!-- Photo — left, square crop -->
@@ -272,53 +295,60 @@ const latestPhaseName = phaseNames[highestPhase] ?? `Fase ${highestPhase}`
                 </div>
               </div>
 
-              <!-- Desktop: photo centered -->
-              <div
-                class="hero-fade relative z-10 mx-auto hidden sm:block"
-                data-hero-delay="500"
-              >
+              <!-- Desktop: Olha-style — photo center-right, horizontal gray rect extending left, descriptors on exposed left -->
+              <div class="relative hidden w-full sm:block">
+                <!-- Photo — center-right -->
                 <div
-                  class="hero-photo-wrap relative mx-auto aspect-[3/4] w-[24vw] max-w-[350px] overflow-hidden"
+                  class="hero-fade relative z-10 mx-auto"
+                  data-hero-delay="500"
+                  style="width: fit-content; margin-right: 10%;"
                 >
-                  <img
-                    src="/me/hoddie-hero-normal.jpg"
-                    alt="David San Luis Aguirre"
-                    width="400"
-                    height="533"
-                    loading="eager"
-                    class="hero-photo h-full w-full object-cover transition-transform duration-[1.5s]"
-                    style="transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1); object-position: center 30%; filter: saturate(0.85) contrast(1.05);"
-                  />
                   <div
-                    class="pointer-events-none absolute inset-0"
-                    style="background: linear-gradient(to top, rgb(var(--accent-bg)) 0%, transparent 30%);"
+                    class="hero-photo-wrap relative aspect-[3/4] overflow-hidden"
+                    style="width: clamp(250px, 26vw, 400px); margin-left: auto;"
                   >
+                    <img
+                      src="/me/hoddie-hero-normal.jpg"
+                      alt="David San Luis Aguirre"
+                      width="400"
+                      height="533"
+                      loading="eager"
+                      class="hero-photo h-full w-full object-cover transition-transform duration-[1.5s]"
+                      style="transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1); object-position: center 20%; filter: saturate(0.85) contrast(1.05);"
+                    />
+                    <div
+                      class="pointer-events-none absolute inset-0 opacity-[0.06] mix-blend-overlay"
+                      style="background-image: url(&quot;data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E&quot;);"
+                    >
+                    </div>
                   </div>
+
+                  <!-- Gray horizontal rectangle — extends left, with descriptors inside -->
                   <div
-                    class="pointer-events-none absolute inset-0 opacity-[0.06] mix-blend-overlay"
-                    style="background-image: url(&quot;data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E&quot;);"
+                    class="hero-fade absolute z-[-1] flex items-end"
+                    data-hero-delay="400"
+                    style="background: rgba(var(--accent), 0.07); bottom: 0; right: 0; width: 180%; height: 65%;"
                   >
+                    <!-- Descriptors — inside the gray rect, bottom-left, like Olha -->
+                    <div
+                      class="hero-fade flex flex-col gap-2 p-[clamp(1rem,2vw,1.8rem)]"
+                      data-hero-delay="850"
+                    >
+                      <span
+                        class="font-display text-[clamp(0.85rem,1.2vw,1.15rem)] font-extrabold uppercase tracking-[0.02em]"
+                        ><span class="opacity-40">/</span><span class="ml-1">Web Development</span></span
+                      >
+                      <span
+                        class="font-display text-[clamp(0.85rem,1.2vw,1.15rem)] font-extrabold uppercase tracking-[0.02em]"
+                        ><span class="opacity-40">/</span><span class="ml-1">Barista de Especialidad</span></span
+                      >
+                      <span
+                        class="font-display text-[clamp(0.85rem,1.2vw,1.15rem)] font-extrabold uppercase tracking-[0.02em]"
+                        ><span class="opacity-40">/</span><span class="ml-1">Open Source</span></span
+                      >
+                    </div>
                   </div>
                 </div>
-              </div>
-
-              <!-- Descriptors — desktop only, absolute left -->
-              <div
-                class="hero-fade absolute bottom-[18%] left-0 z-30 hidden flex-col gap-2.5 sm:flex"
-                data-hero-delay="850"
-              >
-                <span
-                  class="font-display text-[12px] font-semibold uppercase tracking-[0.12em] opacity-50"
-                  ><span class="text-accent opacity-70">/</span> Web Development</span
-                >
-                <span
-                  class="font-display text-[12px] font-semibold uppercase tracking-[0.12em] opacity-50"
-                  ><span class="text-accent opacity-70">/</span> Barista de Especialidad</span
-                >
-                <span
-                  class="font-display text-[12px] font-semibold uppercase tracking-[0.12em] opacity-50"
-                  ><span class="text-accent opacity-70">/</span> Open Source</span
-                >
               </div>
             </div>
 
@@ -914,17 +944,27 @@ const latestPhaseName = phaseNames[highestPhase] ?? `Fase ${highestPhase}`
         })
       }
 
-      // ── Auto-fit hero role text to full-bleed container ──
-      const heroRole = document.getElementById('hero-role')
+      // ── Auto-fit hero role text — two lines, each fills container ──
       const heroContainer = document.getElementById('hero-role-container')
-      if (heroRole && heroContainer) {
+      const heroLines = heroContainer?.querySelectorAll('.hero-role-line')
+      if (heroContainer && heroLines?.length) {
         const fitText = () => {
           const containerW = heroContainer.clientWidth
-          let size = Math.min(containerW * 0.2, 260)
-          heroRole.style.fontSize = size + 'px'
-          while (heroRole.scrollWidth > containerW && size > 20) {
-            size -= 2
-            heroRole.style.fontSize = size + 'px'
+          heroLines.forEach((line) => {
+            const el = line as HTMLElement
+            let size = Math.round(containerW * 0.2)
+            el.style.fontSize = size + 'px'
+            while (el.scrollWidth > containerW && size > 20) {
+              size -= 2
+              el.style.fontSize = size + 'px'
+            }
+          })
+
+          // Sync "BASED IN MÉXICO" width to the last line's rendered width
+          const lastLine = heroLines[heroLines.length - 1] as HTMLElement
+          const basedDesktop = document.getElementById('based-in-desktop')
+          if (basedDesktop && lastLine) {
+            basedDesktop.style.width = lastLine.scrollWidth + 'px'
           }
         }
         fitText()

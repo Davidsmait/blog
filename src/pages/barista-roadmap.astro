@@ -281,13 +281,7 @@ function getPhaseState(phaseNum: number) {
                 </svg>
                 <span class="rm-node-default">
                   {isComplete ? (
-                    <svg
-                      viewBox="0 0 16 16"
-                      fill="currentColor"
-                      class="rm-node-icon rm-node-check"
-                    >
-                      <path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.75.75 0 0 1 1.06-1.06L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z" />
-                    </svg>
+                    <span class="rm-node-complete-dot" />
                   ) : isActive ? (
                     <span class="rm-node-pulse">
                       <span class="rm-pulse-ring" />
@@ -716,6 +710,14 @@ function getPhaseState(phaseNum: number) {
     opacity: 0.25;
     width: 0.625rem;
     height: 0.625rem;
+  }
+
+  /* Phase complete but not yet read by user — filled dot */
+  .rm-node-complete-dot {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background: color-mix(in srgb, var(--color-accent) 35%, transparent);
   }
 
   /* User-complete overrides */
