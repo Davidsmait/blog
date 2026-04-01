@@ -20,16 +20,41 @@ const { page } = Astro.props
 
 const frontmatter: PageLayoutProps['frontmatter'] = {
   title: 'Proyectos',
+  description:
+    'Proyectos de desarrollo web de David San Luis Aguirre — aplicaciones fullstack, PWAs, herramientas y más.',
   activeHeaderLink: 'Proyectos',
   canonicalURL: new URL('/projects/1', Astro.site).toString()
 }
+
+const collectionPageSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: 'Proyectos — David San Luis Aguirre',
+  description: frontmatter.description,
+  url: new URL('/projects', Astro.site).href,
+  isPartOf: { '@id': 'https://davidsanluisaguirre.com/#website' },
+  author: { '@id': 'https://davidsanluisaguirre.com/#person' },
+  mainEntity: {
+    '@type': 'ItemList',
+    numberOfItems: page.data.length,
+    itemListElement: page.data.map((project, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      url: new URL(`/projects/${project.slug}`, Astro.site).href,
+      name: project.data.title
+    }))
+  }
+})
 ---
 
 <PageLayout {frontmatter}>
+  <script type="application/ld+json" set:html={collectionPageSchema} />
   <div class="reveal mb-10 sm:mb-16">
     <div class="flex items-center gap-4 sm:gap-6">
       <span class="font-serif text-[13px] italic opacity-20">(02)</span>
-      <h1 class="m-0 font-serif text-[clamp(2.5rem,6vw,4rem)] italic leading-[1] tracking-tight text-accent">
+      <h1
+        class="m-0 font-serif text-[clamp(2.5rem,6vw,4rem)] italic leading-[1] tracking-tight text-accent"
+      >
         Proyectos
       </h1>
     </div>

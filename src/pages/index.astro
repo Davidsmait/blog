@@ -48,7 +48,11 @@ const latestPhaseName = phaseNames[highestPhase] ?? `Fase ${highestPhase}`
 ---
 
 <BaseLayout
-  frontmatter={{ title: config.title, description: config.description }}
+  frontmatter={{
+    title:
+      'David San Luis Aguirre — Desarrollador Fullstack & Café de Especialidad',
+    description: config.description
+  }}
 >
   <!-- Custom cursor — hidden on touch devices -->
   <div class="custom-cursor hidden sm:block" id="custom-cursor"></div>
@@ -110,7 +114,10 @@ const latestPhaseName = phaseNames[highestPhase] ?? `Fase ${highestPhase}`
             <!-- ═══ MASSIVE TEXT ═══ -->
             <div class="relative z-20">
               <!-- Desktop — two-line title like Olha -->
-              <div class="hidden w-full max-w-[1800px] mx-auto sm:block" id="hero-role-container">
+              <div
+                class="mx-auto hidden w-full max-w-[1800px] sm:block"
+                id="hero-role-container"
+              >
                 <div class="hero-title-wrap overflow-hidden">
                   <div class="hero-title-line" data-hero-delay="300">
                     <span
@@ -191,10 +198,7 @@ const latestPhaseName = phaseNames[highestPhase] ?? `Fase ${highestPhase}`
                 </div>
 
                 <!-- Photo — full-bleed, interrupting the title -->
-                <div
-                  class="hero-fade -mx-5 mt-1"
-                  data-hero-delay="500"
-                >
+                <div class="hero-fade -mx-5 mt-1" data-hero-delay="500">
                   <div
                     class="hero-photo-wrap relative aspect-[4/3] w-full overflow-hidden"
                   >
@@ -245,15 +249,21 @@ const latestPhaseName = phaseNames[highestPhase] ?? `Fase ${highestPhase}`
                 >
                   <span
                     class="font-display text-[10px] font-bold uppercase tracking-[0.15em]"
-                    ><span class="opacity-30">/</span><span class="ml-1.5">Web Development</span></span
+                    ><span class="opacity-30">/</span><span class="ml-1.5"
+                      >Web Development</span
+                    ></span
                   >
                   <span
                     class="font-display text-[10px] font-bold uppercase tracking-[0.15em]"
-                    ><span class="opacity-30">/</span><span class="ml-1.5">Barista de Especialidad</span></span
+                    ><span class="opacity-30">/</span><span class="ml-1.5"
+                      >Barista de Especialidad</span
+                    ></span
                   >
                   <span
                     class="font-display text-[10px] font-bold uppercase tracking-[0.15em]"
-                    ><span class="opacity-30">/</span><span class="ml-1.5">Open Source</span></span
+                    ><span class="opacity-30">/</span><span class="ml-1.5"
+                      >Open Source</span
+                    ></span
                   >
                 </div>
 
@@ -314,15 +324,21 @@ const latestPhaseName = phaseNames[highestPhase] ?? `Fase ${highestPhase}`
                     >
                       <span
                         class="font-display text-[clamp(0.85rem,1.2vw,1.15rem)] font-extrabold uppercase tracking-[0.02em]"
-                        ><span class="opacity-40">/</span><span class="ml-1">Web Development</span></span
+                        ><span class="opacity-40">/</span><span class="ml-1"
+                          >Web Development</span
+                        ></span
                       >
                       <span
                         class="font-display text-[clamp(0.85rem,1.2vw,1.15rem)] font-extrabold uppercase tracking-[0.02em]"
-                        ><span class="opacity-40">/</span><span class="ml-1">Barista de Especialidad</span></span
+                        ><span class="opacity-40">/</span><span class="ml-1"
+                          >Barista de Especialidad</span
+                        ></span
                       >
                       <span
                         class="font-display text-[clamp(0.85rem,1.2vw,1.15rem)] font-extrabold uppercase tracking-[0.02em]"
-                        ><span class="opacity-40">/</span><span class="ml-1">Open Source</span></span
+                        ><span class="opacity-40">/</span><span class="ml-1"
+                          >Open Source</span
+                        ></span
                       >
                     </div>
                   </div>
@@ -331,7 +347,9 @@ const latestPhaseName = phaseNames[highestPhase] ?? `Fase ${highestPhase}`
             </div>
 
             <!-- Bottom row — editorial CTAs -->
-            <div class="hero-bottom-row flex flex-col gap-6 pb-6 pt-4 sm:pb-10 sm:pt-6">
+            <div
+              class="hero-bottom-row flex flex-col gap-6 pb-6 pt-4 sm:pb-10 sm:pt-6"
+            >
               <!-- Top: Colaborar + Lecciones -->
               <div class="flex items-end justify-between gap-6 sm:gap-10">
                 <!-- Left: Colaborar + email -->

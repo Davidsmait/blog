@@ -4,7 +4,7 @@ export default defineThemeConfig({
   site: 'https://davidsanluisaguirre.com',
   title: 'David San Luis Aguirre',
   description:
-    'Blog personal de David San Luis Aguirre — desarrollo web, proyectos y café de especialidad.',
+    'Blog personal de David San Luis Aguirre — desarrollador fullstack especializado en Angular, NestJS, TypeScript y AWS. Creador del Roadmap Barista de Especialidad.',
   author: 'David San Luis',
   navbarItems: [
     { label: 'Blog', href: '/posts' },

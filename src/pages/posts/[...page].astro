@@ -19,17 +19,42 @@ type Props = InferGetStaticPropsType<typeof getStaticPaths>
 const { page } = Astro.props
 
 const frontmatter: PageLayoutProps['frontmatter'] = {
-  title: 'Posts',
+  title: 'Blog — Desarrollo Web, TypeScript y Café de Especialidad',
+  description:
+    'Artículos de David San Luis Aguirre sobre desarrollo fullstack, Angular, NestJS, TypeScript, AWS y café de especialidad.',
   activeHeaderLink: 'Blog',
   canonicalURL: new URL('/posts/1', Astro.site).toString()
 }
+
+const collectionPageSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: 'Blog — David San Luis Aguirre',
+  description: frontmatter.description,
+  url: new URL('/posts', Astro.site).href,
+  isPartOf: { '@id': 'https://davidsanluisaguirre.com/#website' },
+  author: { '@id': 'https://davidsanluisaguirre.com/#person' },
+  mainEntity: {
+    '@type': 'ItemList',
+    numberOfItems: page.data.length,
+    itemListElement: page.data.map((post, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      url: new URL(`/posts/${post.slug}`, Astro.site).href,
+      name: post.data.title
+    }))
+  }
+})
 ---
 
 <PageLayout {frontmatter}>
+  <script type="application/ld+json" set:html={collectionPageSchema} />
   <div class="reveal mb-10 sm:mb-16">
     <div class="flex items-center gap-4 sm:gap-6">
       <span class="font-serif text-[13px] italic opacity-20">(01)</span>
-      <h1 class="m-0 font-serif text-[clamp(2.5rem,6vw,4rem)] italic leading-[1] tracking-tight text-accent">
+      <h1
+        class="m-0 font-serif text-[clamp(2.5rem,6vw,4rem)] italic leading-[1] tracking-tight text-accent"
+      >
         Blog
       </h1>
     </div>

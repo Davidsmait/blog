@@ -19,13 +19,36 @@ type Props = InferGetStaticPropsType<typeof getStaticPaths>
 const { page } = Astro.props
 
 const frontmatter: PageLayoutProps['frontmatter'] = {
-  title: 'Café',
+  title: 'Lecciones de Café de Especialidad',
+  description:
+    'Lecciones gratuitas de café de especialidad por David San Luis Aguirre: desde fundamentos hasta la física de la extracción. Roadmap completo para baristas.',
   activeHeaderLink: 'Café',
   canonicalURL: new URL('/cafe/1', Astro.site).toString()
 }
+
+const collectionPageSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: 'Lecciones de Café de Especialidad — David San Luis Aguirre',
+  description: frontmatter.description,
+  url: new URL('/cafe', Astro.site).href,
+  isPartOf: { '@id': 'https://davidsanluisaguirre.com/#website' },
+  author: { '@id': 'https://davidsanluisaguirre.com/#person' },
+  mainEntity: {
+    '@type': 'ItemList',
+    numberOfItems: page.data.length,
+    itemListElement: page.data.map((post, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      url: new URL(`/cafe/${post.slug}`, Astro.site).href,
+      name: post.data.title
+    }))
+  }
+})
 ---
 
 <PageLayout {frontmatter}>
+  <script type="application/ld+json" set:html={collectionPageSchema} />
   <h1>
     {frontmatter.title}
   </h1>
