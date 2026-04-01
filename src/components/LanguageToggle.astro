@@ -1,0 +1,30 @@
+---
+import { getLangFromUrl, getLocalizedPath, type Lang } from '@/util/i18n'
+
+const lang = getLangFromUrl(Astro.url)
+const currentPath = Astro.url.pathname
+
+const locales: { code: Lang; label: string }[] = [
+  { code: 'es', label: 'ES' },
+  { code: 'en', label: 'EN' },
+]
+---
+
+<nav aria-label="Language" class="flex items-center gap-1">
+  {locales.map((locale, i) => (
+    <>
+      {i > 0 && <span class="select-none opacity-30">|</span>}
+      <a
+        href={getLocalizedPath(currentPath, locale.code)}
+        class:list={[
+          'no-underline transition-opacity duration-300',
+          lang === locale.code ? 'opacity-100' : 'opacity-40 hover:opacity-80',
+        ]}
+        aria-current={lang === locale.code ? 'true' : undefined}
+        aria-label={locale.code === 'es' ? 'Español' : 'English'}
+      >
+        {locale.label}
+      </a>
+    </>
+  ))}
+</nav>

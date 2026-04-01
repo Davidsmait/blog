@@ -1,14 +1,18 @@
 ---
+import LanguageToggle from '@/components/LanguageToggle.astro'
 import MobileNavToggle from '@/components/layout/MobileNavToggle.astro'
 import NavItem from '@/components/layout/NavItem.astro'
 import ModeToggle from '@/components/mode/ModeToggle.astro'
 import config from '@/theme.config'
+import { getLangFromUrl, navbarItemsByLang } from '@/util/i18n'
 
 export interface Props {
   activeHeaderLink?: string
 }
 
 const { activeHeaderLink } = Astro.props
+const lang = getLangFromUrl(Astro.url)
+const navItems = navbarItemsByLang[lang]
 ---
 
 <header class="sticky top-0 z-50" style="backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); background: rgba(var(--accent-bg), 0.85);">
@@ -23,7 +27,7 @@ const { activeHeaderLink } = Astro.props
     <!-- Desktop nav — clean, no icons, spaced -->
     <nav class="hidden items-center gap-1 sm:flex">
       {
-        config.navbarItems.map((item) => (
+        navItems.map((item) => (
           <NavItem
             {item}
             isActive={
@@ -34,15 +38,22 @@ const { activeHeaderLink } = Astro.props
         ))
       }
       <span class="ml-3 h-4 w-[1px] bg-accent/8"></span>
-      <span class="ml-3 text-lg">
+      <span class="ml-3 text-[10px] font-medium uppercase tracking-[0.25em]">
+        <LanguageToggle />
+      </span>
+      <span class="ml-2 h-4 w-[1px] bg-accent/8"></span>
+      <span class="ml-2 text-lg">
         {config.modeToggle && <ModeToggle />}
       </span>
     </nav>
 
     <!-- Mobile -->
-    <div class="flex items-center gap-4 text-xl sm:hidden">
-      {config.modeToggle && <ModeToggle />}
-      <MobileNavToggle />
+    <div class="flex items-center gap-4 sm:hidden">
+      <span class="text-[10px] font-medium uppercase tracking-[0.25em]">
+        <LanguageToggle />
+      </span>
+      <span class="text-xl">{config.modeToggle && <ModeToggle />}</span>
+      <span class="text-xl"><MobileNavToggle /></span>
     </div>
   </div>
 
@@ -53,7 +64,7 @@ const { activeHeaderLink } = Astro.props
     <nav class="py-4">
       <ul class="flex flex-col gap-0.5 px-1">
         {
-          config.navbarItems.map((item) => (
+          navItems.map((item) => (
             <li class="list-none">
               <NavItem
                 {item}

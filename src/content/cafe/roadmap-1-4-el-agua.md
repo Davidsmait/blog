@@ -116,6 +116,8 @@ Si usas una máquina de espresso en casa, descalcifica regularmente según las i
 - Tu agua habitual (grifo, garrafón, filtrada, lo que uses)
 - Idealmente, una botella de agua destilada y acceso a agua mineral embotellada para comparar
 
+> **¿Ya tienes tus herramientas?** Consulta la [guía interactiva de herramientas para medir tu agua](/cafe/guia-herramientas-agua) — con instrucciones paso a paso para el medidor digital pH/TDS/EC y el kit API GH & KH, calculadoras interactivas y la tabla para registrar tus mediciones.
+
 ## Ejercicio práctico
 
 1. Mide el TDS de tu agua actual (grifo, filtrada, garrafón)

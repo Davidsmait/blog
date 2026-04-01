@@ -100,6 +100,8 @@ If you use an espresso machine at home, descale regularly according to the manuf
 - Your usual water (tap, filtered, bottled, whatever you use)
 - Ideally, a bottle of distilled water and access to mineral bottled water to compare
 
+> **Got your tools ready?** Check the [interactive water testing tools guide](/en/cafe-en/water-testing-tools-guide) — with step-by-step instructions for the digital pH/TDS/EC meter and the API GH & KH kit, interactive calculators, and a table to record your measurements.
+
 ## Practical exercise
 
 1. Measure the TDS of your current water (tap, filtered, bottled)
