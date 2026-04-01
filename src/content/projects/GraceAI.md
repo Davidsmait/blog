@@ -1,5 +1,6 @@
 ---
 title: Grace AI
+url: https://graceai.mx
 startDate: 2025-03-28
 tags:
   - Angular

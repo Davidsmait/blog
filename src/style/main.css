@@ -41,9 +41,11 @@
     }
   }
 
-  /* Safari needs overflow-x:hidden on BOTH html and body to prevent 100vw horizontal scroll */
+  /* Prevent 100vw horizontal overflow without creating a scroll container.
+     'clip' instead of 'hidden' avoids an implicit overflow-y:auto that would
+     render a second scrollbar next to the html one. */
   body {
-    overflow-x: hidden;
+    overflow-x: clip;
   }
 
   /* Focus */

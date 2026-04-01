@@ -1,6 +1,7 @@
 ---
 import PostsList from '@/components/PostsList.astro'
 import FooterItem from '@/components/layout/FooterItem.astro'
+import Header from '@/components/layout/Header.astro'
 import ModeToggle from '@/components/mode/ModeToggle.astro'
 import BaseLayout from '@/layouts/BaseLayout.astro'
 import config from '@/theme.config'
@@ -48,28 +49,21 @@ const latestPhaseName = phaseNames[highestPhase] ?? `Fase ${highestPhase}`
 <BaseLayout
   frontmatter={{ title: config.title, description: config.description }}
 >
-  <!-- ═══════════════════════════════════════════════════════════ -->
-  <!-- PRELOADER — Cinematic counter + split curtain               -->
-  <!-- ═══════════════════════════════════════════════════════════ -->
-  <div id="preloader" class="pl" aria-hidden="true">
-    <!-- Noise texture (same as site) -->
-    <div class="pl-noise"></div>
-
-    <!-- Top curtain half -->
-    <div class="pl-curtain pl-curtain--top" data-curtain="top"></div>
-    <!-- Bottom curtain half -->
-    <div class="pl-curtain pl-curtain--bottom" data-curtain="bottom"></div>
-
-    <!-- Center content -->
-    <div class="pl-center">
-      <div class="pl-counter-wrap">
-        <span class="pl-counter" id="pl-counter">0</span>
-      </div>
-    </div>
-  </div>
-
   <!-- Custom cursor — hidden on touch devices -->
   <div class="custom-cursor hidden sm:block" id="custom-cursor"></div>
+
+  <!-- Scroll-triggered sticky header — hidden while hero is visible -->
+  <div
+    id="scroll-header"
+    class="pointer-events-none fixed inset-x-0 top-0 z-[60] -translate-y-full opacity-0 transition-all duration-700"
+    style="transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);"
+  >
+    <div
+      class="pointer-events-auto mx-auto w-full max-w-full px-5 sm:max-w-[92%] sm:px-6 lg:max-w-5xl lg:px-0"
+    >
+      <Header />
+    </div>
+  </div>
 
   <div id="page-wrapper" class="noise-overlay">
     <div class="px-5 sm:px-6 lg:px-0">
@@ -95,7 +89,7 @@ const latestPhaseName = phaseNames[highestPhase] ?? `Fase ${highestPhase}`
               </a>
             </div>
             <div
-              class="hero-fade flex items-center gap-5 text-[10px] font-medium uppercase tracking-[0.25em] opacity-25 sm:gap-6"
+              class="hero-fade flex items-center gap-5 text-[10px] font-medium uppercase tracking-[0.25em] opacity-40 sm:gap-6"
               data-hero-delay="100"
             >
               <a
@@ -119,6 +113,12 @@ const latestPhaseName = phaseNames[highestPhase] ?? `Fase ${highestPhase}`
                 class="no-underline transition-opacity duration-300 hover:opacity-100"
                 >Ig</a
               >
+              <span class="h-3 w-[1px] bg-accent/10"></span>
+              <span
+                class="text-base transition-opacity duration-300 hover:opacity-100"
+              >
+                <ModeToggle />
+              </span>
             </div>
           </div>
 
@@ -162,7 +162,7 @@ const latestPhaseName = phaseNames[highestPhase] ?? `Fase ${highestPhase}`
                   data-hero-delay="500"
                 >
                   <span
-                    class="float-right text-[10px] font-medium uppercase tracking-[0.5em] opacity-15"
+                    class="based-in-text float-right text-[10px] font-medium uppercase opacity-15"
                   >
                     B&thinsp;A&thinsp;S&thinsp;E&thinsp;D&ensp;&ensp;I&thinsp;N&ensp;&ensp;M&thinsp;É&thinsp;X&thinsp;I&thinsp;C&thinsp;O
                   </span>
@@ -210,8 +210,8 @@ const latestPhaseName = phaseNames[highestPhase] ?? `Fase ${highestPhase}`
                 <div class="hero-fade -mt-1 sm:hidden" data-hero-delay="500">
                   <span
                     id="based-in-mexico"
-                    class="block text-[9px] font-medium uppercase opacity-15"
-                    style="text-align: center; letter-spacing: 0.3em;"
+                    class="based-in-text block text-[9px] font-medium uppercase opacity-15"
+                    style="text-align: center;"
                   >
                     B A S E D &ensp; I N &ensp; M É X I C O
                   </span>
@@ -232,13 +232,13 @@ const latestPhaseName = phaseNames[highestPhase] ?? `Fase ${highestPhase}`
                     class="hero-photo-wrap relative aspect-square w-[40vw] max-w-[200px] overflow-hidden"
                   >
                     <img
-                      src="/me/hoddie-hero.jpg"
+                      src="/me/hoddie-hero-normal.jpg"
                       alt="David San Luis Aguirre"
                       width="400"
                       height="533"
                       loading="eager"
                       class="hero-photo h-full w-full object-cover transition-transform duration-[1.5s]"
-                      style="transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1); object-position: center 30%;"
+                      style="transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1); object-position: center 30%; filter: saturate(0.85) contrast(1.05);"
                     />
                     <div
                       class="pointer-events-none absolute inset-0"
@@ -281,13 +281,13 @@ const latestPhaseName = phaseNames[highestPhase] ?? `Fase ${highestPhase}`
                   class="hero-photo-wrap relative mx-auto aspect-[3/4] w-[24vw] max-w-[350px] overflow-hidden"
                 >
                   <img
-                    src="/me/hoddie-hero.jpg"
+                    src="/me/hoddie-hero-normal.jpg"
                     alt="David San Luis Aguirre"
                     width="400"
                     height="533"
                     loading="eager"
                     class="hero-photo h-full w-full object-cover transition-transform duration-[1.5s]"
-                    style="transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1); object-position: center 30%;"
+                    style="transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1); object-position: center 30%; filter: saturate(0.85) contrast(1.05);"
                   />
                   <div
                     class="pointer-events-none absolute inset-0"
@@ -334,12 +334,12 @@ const latestPhaseName = phaseNames[highestPhase] ?? `Fase ${highestPhase}`
                   data-cursor-hover
                 >
                   <span
-                    class="text-[9px] font-medium uppercase tracking-[0.2em] opacity-20 transition-opacity duration-500 group-hover:opacity-40 sm:text-[10px]"
+                    class="text-[10px] font-medium uppercase tracking-[0.2em] opacity-40 transition-opacity duration-500 group-hover:opacity-70 sm:text-[11px]"
                   >
                     Disponible para colaborar
                   </span>
                   <span
-                    class="flex items-center gap-2 font-serif text-[clamp(0.9rem,2.5vw,1.4rem)] italic leading-[1.1] text-accent opacity-40 transition-all duration-500 group-hover:opacity-80 sm:gap-3"
+                    class="flex items-center gap-2 font-serif text-[clamp(0.9rem,2.5vw,1.4rem)] italic leading-[1.1] text-accent opacity-60 transition-all duration-500 group-hover:opacity-100 sm:gap-3"
                   >
                     david_sanluis@outlook.com
                     <svg
@@ -369,12 +369,12 @@ const latestPhaseName = phaseNames[highestPhase] ?? `Fase ${highestPhase}`
                   data-astro-prefetch
                 >
                   <span
-                    class="text-[9px] font-medium uppercase tracking-[0.2em] opacity-20 transition-opacity duration-500 group-hover:opacity-40 sm:text-[10px]"
+                    class="text-[10px] font-medium uppercase tracking-[0.2em] opacity-40 transition-opacity duration-500 group-hover:opacity-70 sm:text-[11px]"
                   >
                     Nuevas lecciones — Fase {highestPhase}
                   </span>
                   <span
-                    class="flex items-center gap-2 text-right font-serif text-[clamp(0.9rem,2.5vw,1.4rem)] italic leading-[1.1] text-accent opacity-40 transition-all duration-500 group-hover:opacity-80 sm:gap-3"
+                    class="flex items-center gap-2 text-right font-serif text-[clamp(0.9rem,2.5vw,1.4rem)] italic leading-[1.1] text-accent opacity-60 transition-all duration-500 group-hover:opacity-100 sm:gap-3"
                   >
                     {latestPhaseName}
                     <svg
@@ -398,8 +398,42 @@ const latestPhaseName = phaseNames[highestPhase] ?? `Fase ${highestPhase}`
 
               <!-- Bottom: Trabajo reciente -->
               <div class="flex items-end justify-between gap-6 sm:gap-10">
-                <!-- spacer to push right -->
-                <div></div>
+                <!-- Scroll cue — inline, left-aligned -->
+                <div
+                  class="hero-fade pointer-events-none flex items-end gap-2 sm:flex-col sm:items-center sm:gap-2"
+                  data-hero-delay="1400"
+                >
+                  <!-- Mobile: horizontal layout — chevron + text -->
+                  <div class="flex items-center gap-1.5 sm:hidden">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="10"
+                      height="10"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="scroll-cue-chevron opacity-25"
+                    >
+                      <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                    <span
+                      class="text-[8px] font-medium uppercase tracking-[0.3em] opacity-20"
+                      >Scroll</span
+                    >
+                  </div>
+                  <!-- Desktop: vertical layout — text + line -->
+                  <span
+                    class="hidden text-[9px] font-medium uppercase tracking-[0.3em] opacity-20 sm:block"
+                    >Scroll</span
+                  >
+                  <div
+                    class="scroll-cue-line hidden h-8 w-[1px] origin-top bg-accent/20 sm:block"
+                  >
+                  </div>
+                </div>
                 <!-- Right: Trabajo reciente + post title -->
                 {
                   recentPosts[0] && (
@@ -410,10 +444,10 @@ const latestPhaseName = phaseNames[highestPhase] ?? `Fase ${highestPhase}`
                       data-cursor-hover
                       data-astro-prefetch
                     >
-                      <span class="text-[9px] font-medium uppercase tracking-[0.2em] opacity-20 transition-opacity duration-500 group-hover:opacity-40 sm:text-[10px]">
+                      <span class="text-[10px] font-medium uppercase tracking-[0.2em] opacity-40 transition-opacity duration-500 group-hover:opacity-70 sm:text-[11px]">
                         Trabajo reciente
                       </span>
-                      <span class="flex items-center gap-2 text-right font-serif text-[clamp(0.9rem,2.5vw,1.4rem)] italic leading-[1.1] text-accent opacity-40 transition-all duration-500 group-hover:opacity-80 sm:gap-3">
+                      <span class="flex items-center gap-2 text-right font-serif text-[clamp(0.9rem,2.5vw,1.4rem)] italic leading-[1.1] text-accent opacity-60 transition-all duration-500 group-hover:opacity-100 sm:gap-3">
                         {recentPosts[0].data.title}
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -492,7 +526,7 @@ const latestPhaseName = phaseNames[highestPhase] ?? `Fase ${highestPhase}`
             <!-- Blog row -->
             <a
               href="/posts"
-              class="explore-row reveal group flex items-center justify-between border-b border-accent/[0.04] py-6 no-underline transition-all duration-700 sm:py-10"
+              class="explore-row reveal group flex items-center justify-between border-b border-accent/[0.08] py-6 no-underline transition-all duration-700 sm:py-10"
               data-cursor-hover
             >
               <div class="flex items-center gap-3 sm:gap-8">
@@ -508,12 +542,12 @@ const latestPhaseName = phaseNames[highestPhase] ?? `Fase ${highestPhase}`
               </div>
               <div class="flex items-center gap-3 sm:gap-8">
                 <span
-                  class="hidden text-[12px] leading-relaxed opacity-0 transition-all duration-700 group-hover:opacity-30 sm:block sm:max-w-[200px]"
+                  class="hidden text-[12px] leading-relaxed opacity-0 transition-all duration-700 group-hover:opacity-45 sm:block sm:max-w-[200px]"
                 >
                   Artículos sobre desarrollo web y herramientas modernas.
                 </span>
                 <div
-                  class="flex h-9 w-9 items-center justify-center rounded-full border border-accent/[0.06] text-sm opacity-30 transition-all duration-700 group-hover:scale-110 group-hover:border-accent/20 group-hover:opacity-70 sm:h-12 sm:w-12"
+                  class="flex h-9 w-9 items-center justify-center rounded-full border border-accent/[0.10] text-sm opacity-30 transition-all duration-700 group-hover:scale-110 group-hover:border-accent/20 group-hover:opacity-70 sm:h-12 sm:w-12"
                 >
                   <span
                     class="transition-transform duration-700 group-hover:translate-x-1"
@@ -526,7 +560,7 @@ const latestPhaseName = phaseNames[highestPhase] ?? `Fase ${highestPhase}`
             <!-- Projects row -->
             <a
               href="/projects"
-              class="explore-row reveal group flex items-center justify-between border-b border-accent/[0.04] py-6 no-underline transition-all duration-700 sm:py-10"
+              class="explore-row reveal group flex items-center justify-between border-b border-accent/[0.08] py-6 no-underline transition-all duration-700 sm:py-10"
               data-cursor-hover
             >
               <div class="flex items-center gap-3 sm:gap-8">
@@ -542,12 +576,12 @@ const latestPhaseName = phaseNames[highestPhase] ?? `Fase ${highestPhase}`
               </div>
               <div class="flex items-center gap-3 sm:gap-8">
                 <span
-                  class="hidden text-[12px] leading-relaxed opacity-0 transition-all duration-700 group-hover:opacity-30 sm:block sm:max-w-[200px]"
+                  class="hidden text-[12px] leading-relaxed opacity-0 transition-all duration-700 group-hover:opacity-45 sm:block sm:max-w-[200px]"
                 >
                   Apps open source con Angular, NestJS, Astro y más.
                 </span>
                 <div
-                  class="flex h-9 w-9 items-center justify-center rounded-full border border-accent/[0.06] text-sm opacity-30 transition-all duration-700 group-hover:scale-110 group-hover:border-accent/20 group-hover:opacity-70 sm:h-12 sm:w-12"
+                  class="flex h-9 w-9 items-center justify-center rounded-full border border-accent/[0.10] text-sm opacity-30 transition-all duration-700 group-hover:scale-110 group-hover:border-accent/20 group-hover:opacity-70 sm:h-12 sm:w-12"
                 >
                   <span
                     class="transition-transform duration-700 group-hover:translate-x-1"
@@ -576,12 +610,12 @@ const latestPhaseName = phaseNames[highestPhase] ?? `Fase ${highestPhase}`
               </div>
               <div class="flex items-center gap-3 sm:gap-8">
                 <span
-                  class="hidden text-[12px] leading-relaxed opacity-0 transition-all duration-700 group-hover:opacity-30 sm:block sm:max-w-[200px]"
+                  class="hidden text-[12px] leading-relaxed opacity-0 transition-all duration-700 group-hover:opacity-45 sm:block sm:max-w-[200px]"
                 >
                   Extracción, latte art y ciencia del café de especialidad.
                 </span>
                 <div
-                  class="flex h-9 w-9 items-center justify-center rounded-full border border-accent/[0.06] text-sm opacity-30 transition-all duration-700 group-hover:scale-110 group-hover:border-accent/20 group-hover:opacity-70 sm:h-12 sm:w-12"
+                  class="flex h-9 w-9 items-center justify-center rounded-full border border-accent/[0.10] text-sm opacity-30 transition-all duration-700 group-hover:scale-110 group-hover:border-accent/20 group-hover:opacity-70 sm:h-12 sm:w-12"
                 >
                   <span
                     class="transition-transform duration-700 group-hover:translate-x-1"
@@ -678,11 +712,11 @@ const latestPhaseName = phaseNames[highestPhase] ?? `Fase ${highestPhase}`
             <a
               href="mailto:david_sanluis@outlook.com"
               rel="me"
-              class="contact-link group flex flex-col gap-1 border-b border-accent/[0.04] py-4 no-underline transition-all duration-500 sm:flex-row sm:items-center sm:justify-between sm:py-6"
+              class="contact-link group flex flex-col gap-1 border-b border-accent/[0.08] py-4 no-underline transition-all duration-500 sm:flex-row sm:items-center sm:justify-between sm:py-6"
               data-cursor-hover
             >
               <span
-                class="text-[10px] font-medium uppercase tracking-[0.2em] opacity-20 transition-opacity duration-500 group-hover:opacity-50 sm:text-[11px]"
+                class="text-[10px] font-medium uppercase tracking-[0.2em] opacity-35 transition-opacity duration-500 group-hover:opacity-60 sm:text-[11px]"
                 >Email</span
               >
               <span
@@ -696,11 +730,11 @@ const latestPhaseName = phaseNames[highestPhase] ?? `Fase ${highestPhase}`
               href="https://www.linkedin.com/in/davidsanluisaguirre"
               target="_blank"
               rel="me noopener noreferrer"
-              class="contact-link group flex flex-col gap-1 border-b border-accent/[0.04] py-4 no-underline transition-all duration-500 sm:flex-row sm:items-center sm:justify-between sm:py-6"
+              class="contact-link group flex flex-col gap-1 border-b border-accent/[0.08] py-4 no-underline transition-all duration-500 sm:flex-row sm:items-center sm:justify-between sm:py-6"
               data-cursor-hover
             >
               <span
-                class="text-[10px] font-medium uppercase tracking-[0.2em] opacity-20 transition-opacity duration-500 group-hover:opacity-50 sm:text-[11px]"
+                class="text-[10px] font-medium uppercase tracking-[0.2em] opacity-35 transition-opacity duration-500 group-hover:opacity-60 sm:text-[11px]"
                 >LinkedIn</span
               >
               <span
@@ -714,11 +748,11 @@ const latestPhaseName = phaseNames[highestPhase] ?? `Fase ${highestPhase}`
               href="https://github.com/Davidsmait"
               target="_blank"
               rel="me noopener noreferrer"
-              class="contact-link group flex flex-col gap-1 border-b border-accent/[0.04] py-4 no-underline transition-all duration-500 sm:flex-row sm:items-center sm:justify-between sm:py-6"
+              class="contact-link group flex flex-col gap-1 border-b border-accent/[0.08] py-4 no-underline transition-all duration-500 sm:flex-row sm:items-center sm:justify-between sm:py-6"
               data-cursor-hover
             >
               <span
-                class="text-[10px] font-medium uppercase tracking-[0.2em] opacity-20 transition-opacity duration-500 group-hover:opacity-50 sm:text-[11px]"
+                class="text-[10px] font-medium uppercase tracking-[0.2em] opacity-35 transition-opacity duration-500 group-hover:opacity-60 sm:text-[11px]"
                 >GitHub</span
               >
               <span
@@ -736,7 +770,7 @@ const latestPhaseName = phaseNames[highestPhase] ?? `Fase ${highestPhase}`
               data-cursor-hover
             >
               <span
-                class="text-[10px] font-medium uppercase tracking-[0.2em] opacity-20 transition-opacity duration-500 group-hover:opacity-50 sm:text-[11px]"
+                class="text-[10px] font-medium uppercase tracking-[0.2em] opacity-35 transition-opacity duration-500 group-hover:opacity-60 sm:text-[11px]"
                 >Instagram</span
               >
               <span
@@ -809,6 +843,32 @@ const latestPhaseName = phaseNames[highestPhase] ?? `Fase ${highestPhase}`
 
   <!-- SCRIPTS -->
   <script>
+    // ── Scroll-triggered sticky header ──
+    function initScrollHeader() {
+      const heroSection = document.getElementById('hero-section')
+      const scrollHeader = document.getElementById('scroll-header')
+      if (!heroSection || !scrollHeader) return
+
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            // Hero visible → hide header
+            scrollHeader.style.opacity = '0'
+            scrollHeader.style.transform = 'translateY(-100%)'
+            scrollHeader.classList.add('pointer-events-none')
+          } else {
+            // Hero gone → show header
+            scrollHeader.style.opacity = '1'
+            scrollHeader.style.transform = 'translateY(0)'
+            scrollHeader.classList.remove('pointer-events-none')
+          }
+        },
+        { threshold: 0.05 }
+      )
+
+      observer.observe(heroSection)
+    }
+
     function initAwwwardsInteractions() {
       const isTouchDevice =
         'ontouchstart' in window || navigator.maxTouchPoints > 0
@@ -968,6 +1028,47 @@ const latestPhaseName = phaseNames[highestPhase] ?? `Fase ${highestPhase}`
         })
       }
 
+      // ── Scroll cue — hide on scroll ──
+      const heroSection = document.getElementById('hero-section')
+      if (heroSection) {
+        let scrollCueHidden = false
+        window.addEventListener(
+          'scroll',
+          () => {
+            if (!scrollCueHidden && window.scrollY > 50) {
+              heroSection.closest('.hero-bleed')?.classList.add('scrolled')
+              scrollCueHidden = true
+            }
+          },
+          { passive: true }
+        )
+      }
+
+      // ── Based-in text — tracking expand ──
+      document.querySelectorAll('.based-in-text').forEach((el) => {
+        setTimeout(() => el.classList.add('revealed'), 1200)
+      })
+
+      // ── Hero title parallax on scroll (desktop) ──
+      const heroTitle = document.getElementById('hero-role-container')
+      if (heroTitle && !isTouchDevice) {
+        let titleTicking = false
+        window.addEventListener(
+          'scroll',
+          () => {
+            if (!titleTicking) {
+              requestAnimationFrame(() => {
+                const rate = window.scrollY * 0.03
+                heroTitle.style.transform = `translateY(${rate}px)`
+                titleTicking = false
+              })
+              titleTicking = true
+            }
+          },
+          { passive: true }
+        )
+      }
+
       // ── Hero photo parallax on scroll ──
       const heroPhoto = document.querySelector(
         '.hero-photo'
@@ -1009,57 +1110,9 @@ const latestPhaseName = phaseNames[highestPhase] ?? `Fase ${highestPhase}`
       document.documentElement.style.scrollBehavior = 'smooth'
     }
 
-    // ── Preloader — Counter + split curtain ──
-    function initPreloader(onComplete: () => void) {
-      const pl = document.getElementById('preloader')
-      if (!pl) {
-        onComplete()
-        return
-      }
-
-      const key = 'pl_shown'
-      if (sessionStorage.getItem(key)) {
-        pl.classList.add('skip')
-        onComplete()
-        return
-      }
-      sessionStorage.setItem(key, '1')
-
-      const counter = document.getElementById('pl-counter')
-      document.body.style.overflow = 'hidden'
-
-      // Counter 0 → 100
-      const DURATION = 1400
-      const start = performance.now()
-
-      function ease(t: number) {
-        return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2
-      }
-
-      function tick(now: number) {
-        const t = Math.min((now - start) / DURATION, 1)
-        if (counter) counter.textContent = String(Math.round(ease(t) * 100))
-
-        if (t < 1) {
-          requestAnimationFrame(tick)
-        } else {
-          // Counter hits 100 → brief hold → curtains split
-          setTimeout(() => {
-            pl.classList.add('done')
-            document.body.style.overflow = ''
-            setTimeout(onComplete, 500)
-            setTimeout(() => pl.remove(), 1400)
-          }, 300)
-        }
-      }
-
-      requestAnimationFrame(tick)
-    }
-
     function initPage() {
-      initPreloader(() => {
-        initAwwwardsInteractions()
-      })
+      initScrollHeader()
+      initAwwwardsInteractions()
     }
 
     document.addEventListener('astro:page-load', initPage)
@@ -1138,6 +1191,99 @@ const latestPhaseName = phaseNames[highestPhase] ?? `Fase ${highestPhase}`
       /* Let Tailwind opacity classes take precedence */
     }
 
+    /* ── Scroll cue — breathing line ── */
+    .scroll-cue-line {
+      animation: scroll-cue-pulse 2s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+    }
+    @keyframes scroll-cue-pulse {
+      0%,
+      100% {
+        transform: scaleY(1);
+        opacity: 0.2;
+      }
+      50% {
+        transform: scaleY(0.4);
+        opacity: 0.5;
+      }
+    }
+
+    /* Mobile scroll chevron — gentle bounce */
+    .scroll-cue-chevron {
+      animation: scroll-cue-bounce 2s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+    }
+    @keyframes scroll-cue-bounce {
+      0%,
+      100% {
+        transform: translateY(0);
+        opacity: 0.25;
+      }
+      50% {
+        transform: translateY(3px);
+        opacity: 0.45;
+      }
+    }
+
+    /* Hide scroll cue once user scrolls */
+    .hero-bleed.scrolled .scroll-cue-line,
+    .hero-bleed.scrolled .scroll-cue-chevron {
+      opacity: 0 !important;
+      animation: none;
+      transition: opacity 0.5s ease;
+    }
+
+    /* ── Hero letter hover — interactive on desktop ── */
+    @media (hover: hover) {
+      .hero-letter {
+        transition:
+          transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+          opacity 0.6s ease,
+          color 0.3s ease;
+      }
+      .hero-letter.revealed:hover {
+        transform: translateY(-6%) scale(1.05);
+        color: rgb(var(--accent-glow, var(--accent)));
+      }
+    }
+
+    /* ── Hero ambient gradient glow ── */
+    .hero-bleed::before {
+      content: '';
+      position: absolute;
+      bottom: 10%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60%;
+      height: 40%;
+      background: radial-gradient(
+        ellipse,
+        rgba(var(--accent-glow, var(--accent)), 0.03) 0%,
+        transparent 70%
+      );
+      pointer-events: none;
+      z-index: 0;
+      animation: hero-glow-breathe 6s ease-in-out infinite;
+    }
+    @keyframes hero-glow-breathe {
+      0%,
+      100% {
+        opacity: 0.5;
+        transform: translateX(-50%) scale(1);
+      }
+      50% {
+        opacity: 1;
+        transform: translateX(-50%) scale(1.1);
+      }
+    }
+
+    /* ── BASED IN — tracking expand on reveal ── */
+    .based-in-text {
+      letter-spacing: 0.1em;
+      transition: letter-spacing 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .based-in-text.revealed {
+      letter-spacing: 0.5em;
+    }
+
     /* ── Explore rows ── */
     .explore-row h3 {
       transition:
@@ -1152,7 +1298,7 @@ const latestPhaseName = phaseNames[highestPhase] ?? `Fase ${highestPhase}`
     }
 
     .contact-link:hover {
-      background: rgba(var(--accent), 0.015);
+      background: rgba(var(--accent), 0.04);
     }
 
     /* ── Mobile active states ── */
@@ -1174,110 +1320,6 @@ const latestPhaseName = phaseNames[highestPhase] ?? `Fase ${highestPhase}`
       }
     }
 
-    /* ═══════════════════════════════════════════════ */
-    /* PRELOADER — Cinematic counter + split curtain  */
-    /* ═══════════════════════════════════════════════ */
-    .pl {
-      position: fixed;
-      inset: 0;
-      z-index: 100000;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: rgb(var(--accent-bg));
-      overflow: hidden;
-    }
-
-    /* Override root overflow clipping during preloader */
-    html:has(.pl:not(.skip):not(.done)) {
-      overflow: hidden !important;
-      scrollbar-gutter: auto;
-    }
-
-    .pl.skip {
-      display: none;
-    }
-
-    .pl.done {
-      pointer-events: none;
-    }
-
-    /* Noise layer */
-    .pl-noise {
-      position: absolute;
-      inset: 0;
-      opacity: 0.025;
-      pointer-events: none;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-    }
-
-    /* ── Split curtains ── */
-    .pl-curtain {
-      position: absolute;
-      left: 0;
-      right: 0;
-      height: 50%;
-      background: rgb(var(--accent-bg));
-      z-index: 2;
-      transition: transform 1s cubic-bezier(0.83, 0, 0.17, 1);
-    }
-
-    .pl-curtain--top {
-      top: 0;
-      transform-origin: top;
-    }
-    .pl-curtain--bottom {
-      bottom: 0;
-      transform-origin: bottom;
-    }
-
-    .pl.done .pl-curtain--top {
-      transform: translateY(-100%);
-    }
-    .pl.done .pl-curtain--bottom {
-      transform: translateY(100%);
-    }
-
-    /* ── Center content ── */
-    .pl-center {
-      position: relative;
-      z-index: 3;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0;
-      width: 100%;
-      max-width: 100vw;
-      overflow: visible;
-    }
-
-    /* Counter — giant serif italic */
-    .pl-counter-wrap {
-      overflow: visible;
-      perspective: 600px;
-    }
-
-    .pl-counter {
-      display: block;
-      font-family: 'Instrument Serif', serif;
-      font-style: italic;
-      font-size: clamp(4.5rem, 15vw, 10rem);
-      line-height: 1;
-      letter-spacing: -0.04em;
-      color: rgb(var(--accent));
-      font-variant-numeric: tabular-nums;
-      opacity: 0.9;
-    }
-
-    /* Exit: counter shrinks as curtains part */
-    .pl.done .pl-center {
-      opacity: 0;
-      transform: scale(0.92);
-      transition:
-        opacity 0.4s ease,
-        transform 0.6s cubic-bezier(0.83, 0, 0.17, 1);
-    }
-
     /* ── Reduced motion ── */
     @media (prefers-reduced-motion: reduce) {
       .hero-title-line,
@@ -1286,10 +1328,6 @@ const latestPhaseName = phaseNames[highestPhase] ?? `Fase ${highestPhase}`
         transition-duration: 0.01ms !important;
         transform: none !important;
         opacity: 1 !important;
-      }
-
-      .preloader {
-        display: none;
       }
     }
   </style>

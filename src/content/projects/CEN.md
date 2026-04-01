@@ -1,7 +1,7 @@
 ---
 title: CEN
+url: https://play.google.com/store/apps/details?id=com.qrsof.cen&pcampaignid=web_share
 startDate: 2024-04-15
-endDate: 2025-06-25
 tags:
   - Angular
   - Ionic
