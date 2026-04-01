@@ -7,7 +7,9 @@ import RoastCurve from '@/components/diagrams/RoastCurve.astro'
 import EspressoAnatomy from '@/components/diagrams/EspressoAnatomy.astro'
 import ExtractionChart from '@/components/diagrams/ExtractionChart.astro'
 import CoffeeBelt from '@/components/diagrams/CoffeeBelt.astro'
-import BaseLayout, { type Props as BaseLayoutProps } from '@/layouts/BaseLayout.astro'
+import BaseLayout, {
+  type Props as BaseLayoutProps
+} from '@/layouts/BaseLayout.astro'
 import HeadingAnchorsPlugin from '@/plugins/HeadingAnchorsPlugin.astro'
 import ScrollProgressPlugin from '@/plugins/ScrollProgressPlugin.astro'
 import { quizzes } from '@/data/quizzes'
@@ -22,7 +24,8 @@ export interface Props {
 const { post, collection: collectionProp } = Astro.props
 
 // Detect language from URL or prop
-const isEnglish = collectionProp === 'cafe-en' || Astro.url.pathname.startsWith('/en/')
+const isEnglish =
+  collectionProp === 'cafe-en' || Astro.url.pathname.startsWith('/en/')
 const lessonBasePath = isEnglish ? '/en/cafe-en' : '/cafe'
 const roadmapPath = isEnglish ? '/en/barista-roadmap' : '/barista-roadmap'
 const lang = isEnglish ? 'en' : 'es'
@@ -34,7 +37,7 @@ const {
 
 const frontmatter: BaseLayoutProps['frontmatter'] = {
   ...post.data,
-  openGraphImage: post.data.openGraphImage || `/cafe/${post.slug}.png`,
+  openGraphImage: post.data.openGraphImage || `/cafe/${post.slug}.png`
 }
 
 const allCafe = isEnglish
@@ -43,13 +46,14 @@ const allCafe = isEnglish
 const phase = post.data.phase
 const totalInPhase = phase
   ? allCafe
-      .filter(p => p.data.phase === phase && !p.data.draft)
+      .filter((p) => p.data.phase === phase && !p.data.draft)
       .sort((a, b) => (a.data.lessonOrder ?? 0) - (b.data.lessonOrder ?? 0))
   : []
 
-const currentIdx = totalInPhase.findIndex(p => p.slug === post.slug)
+const currentIdx = totalInPhase.findIndex((p) => p.slug === post.slug)
 const prev = currentIdx > 0 ? totalInPhase[currentIdx - 1] : null
-const next = currentIdx < totalInPhase.length - 1 ? totalInPhase[currentIdx + 1] : null
+const next =
+  currentIdx < totalInPhase.length - 1 ? totalInPhase[currentIdx + 1] : null
 
 const phaseNamesEs: Record<number, string> = {
   1: 'Fundamentos',
@@ -60,7 +64,7 @@ const phaseNamesEs: Record<number, string> = {
   6: 'Tueste',
   7: 'Metodología Rao',
   8: 'Física',
-  9: 'Carrera profesional',
+  9: 'Carrera profesional'
 }
 const phaseNamesEn: Record<number, string> = {
   1: 'Fundamentals',
@@ -71,85 +75,107 @@ const phaseNamesEn: Record<number, string> = {
   6: 'Roasting',
   7: 'Rao Methodology',
   8: 'Physics',
-  9: 'Professional career',
+  9: 'Professional career'
 }
 const phaseNames = isEnglish ? phaseNamesEn : phaseNamesEs
 const phaseName = phase ? phaseNames[phase] : null
-const lessonNum = post.data.lessonOrder ?? (currentIdx + 1)
+const lessonNum = post.data.lessonOrder ?? currentIdx + 1
 
 // i18n labels
 const labels = isEnglish
-  ? { lesson: 'Lesson', of: 'of', prev: 'Previous', next: 'Next', phaseComplete: 'Phase complete', backToRoadmap: 'Back to roadmap' }
-  : { lesson: 'Lección', of: 'de', prev: 'Anterior', next: 'Siguiente', phaseComplete: 'Fase completada', backToRoadmap: 'Volver al roadmap' }
+  ? {
+      lesson: 'Lesson',
+      of: 'of',
+      prev: 'Previous',
+      next: 'Next',
+      phaseComplete: 'Phase complete',
+      backToRoadmap: 'Back to roadmap'
+    }
+  : {
+      lesson: 'Lección',
+      of: 'de',
+      prev: 'Anterior',
+      next: 'Siguiente',
+      phaseComplete: 'Fase completada',
+      backToRoadmap: 'Volver al roadmap'
+    }
 
 const lessonUrl = new URL(`${lessonBasePath}/${post.slug}`, Astro.site).href
 const roadmapUrl = new URL(roadmapPath, Astro.site).href
 
 // Educational level based on phase
 const educationalLevels: Record<number, string> = {
-  1: 'Beginner', 2: 'Beginner', 3: 'Intermediate',
-  4: 'Intermediate', 5: 'Intermediate', 6: 'Advanced',
-  7: 'Advanced', 8: 'Advanced', 9: 'Expert'
+  1: 'Beginner',
+  2: 'Beginner',
+  3: 'Intermediate',
+  4: 'Intermediate',
+  5: 'Intermediate',
+  6: 'Advanced',
+  7: 'Advanced',
+  8: 'Advanced',
+  9: 'Expert'
 }
 
 const jsonLd = JSON.stringify({
-  "@context": "https://schema.org",
-  "@type": "Course",
-  "name": frontmatter.title,
-  "description": post.data.description,
-  "url": lessonUrl,
-  "provider": {
-    "@type": "Person",
-    "name": "David San Luis Aguirre",
-    "url": "https://davidsanluisaguirre.com"
+  '@context': 'https://schema.org',
+  '@type': 'Course',
+  name: frontmatter.title,
+  description: post.data.description,
+  url: lessonUrl,
+  provider: {
+    '@id': 'https://davidsanluisaguirre.com/#person'
   },
-  "courseCode": phase ? `BARISTA-${phase}.${lessonNum}` : undefined,
-  "inLanguage": lang,
-  "educationalLevel": phase ? educationalLevels[phase] : undefined,
-  "isPartOf": {
-    "@type": "Course",
-    "name": isEnglish ? `Phase ${phase}: ${phaseName}` : `Fase ${phase}: ${phaseName}`,
-    "url": roadmapUrl
+  courseCode: phase ? `BARISTA-${phase}.${lessonNum}` : undefined,
+  inLanguage: lang,
+  educationalLevel: phase ? educationalLevels[phase] : undefined,
+  isPartOf: {
+    '@type': 'Course',
+    name: isEnglish
+      ? `Phase ${phase}: ${phaseName}`
+      : `Fase ${phase}: ${phaseName}`,
+    url: roadmapUrl
   },
-  "hasCourseInstance": {
-    "@type": "CourseInstance",
-    "courseMode": "online",
-    "courseWorkload": readingTime
+  hasCourseInstance: {
+    '@type': 'CourseInstance',
+    courseMode: 'online',
+    courseWorkload: readingTime
   },
-  "author": {
-    "@type": "Person",
-    "name": "David San Luis Aguirre",
-    "url": "https://davidsanluisaguirre.com",
-    "sameAs": [
-      "https://www.instagram.com/davidsanluisaguirre/",
-      "https://www.linkedin.com/in/davidsanluisaguirre",
-      "https://github.com/Davidsmait"
-    ]
+  author: {
+    '@id': 'https://davidsanluisaguirre.com/#person'
+  },
+  isPartOf: {
+    '@id': 'https://davidsanluisaguirre.com/#website'
   }
 })
 
 // BreadcrumbList schema
 const breadcrumbLd = JSON.stringify({
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
     {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Roadmap",
-      "item": roadmapUrl
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Roadmap',
+      item: roadmapUrl
     },
-    ...(phase && phaseName ? [{
-      "@type": "ListItem",
-      "position": 2,
-      "name": isEnglish ? `Phase ${phase}: ${phaseName}` : `Fase ${phase}: ${phaseName}`,
-      "item": roadmapUrl
-    }] : []),
+    ...(phase && phaseName
+      ? [
+          {
+            '@type': 'ListItem',
+            position: 2,
+            name: isEnglish
+              ? `Phase ${phase}: ${phaseName}`
+              : `Fase ${phase}: ${phaseName}`,
+            item: roadmapUrl
+          }
+        ]
+      : []),
     {
-      "@type": "ListItem",
-      "position": phase ? 3 : 2,
-      "name": frontmatter.title,
-      "item": lessonUrl
+      '@type': 'ListItem',
+      position: phase ? 3 : 2,
+      name: frontmatter.title,
+      item: lessonUrl
     }
   ]
 })
@@ -165,7 +191,7 @@ const diagramMap: Record<string, string> = {
   'roadmap-2-1-anatomia-espresso': 'espresso-anatomy',
   'roadmap-1-3-ciencia-extraccion': 'extraction-chart',
   'roadmap-7-3-refractometro-tds': 'extraction-chart',
-  'roadmap-1-2-del-grano-a-la-taza': 'coffee-belt',
+  'roadmap-1-2-del-grano-a-la-taza': 'coffee-belt'
 }
 const diagram = diagramMap[post.slug] || null
 ---
@@ -173,8 +199,16 @@ const diagram = diagramMap[post.slug] || null
 <BaseLayout frontmatter={frontmatter}>
   <script type="application/ld+json" set:html={jsonLd} slot="head" />
   <script type="application/ld+json" set:html={breadcrumbLd} slot="head" />
-  {prev && <link rel="prev" href={`${lessonBasePath}/${prev.slug}`} slot="head" />}
-  {next && <link rel="next" href={`${lessonBasePath}/${next.slug}`} slot="head" />}
+  {
+    prev && (
+      <link rel="prev" href={`${lessonBasePath}/${prev.slug}`} slot="head" />
+    )
+  }
+  {
+    next && (
+      <link rel="next" href={`${lessonBasePath}/${next.slug}`} slot="head" />
+    )
+  }
 
   <div id="page-wrapper" class="noise-overlay">
     <div class="px-5 sm:px-6 lg:px-0">
@@ -183,16 +217,29 @@ const diagram = diagramMap[post.slug] || null
       <main class="lesson-main mt-8 sm:mt-14">
         <!-- ── Editorial breadcrumb ── -->
         <div class="reveal mb-8 sm:mb-12">
-          <div class="flex flex-wrap items-center gap-3 text-[11px] font-medium uppercase tracking-[0.15em] opacity-20">
-            <a href={roadmapPath} class="no-underline opacity-70 transition-opacity duration-300 hover:opacity-100">Roadmap</a>
+          <div
+            class="flex flex-wrap items-center gap-3 text-[11px] font-medium uppercase tracking-[0.15em] opacity-20"
+          >
+            <a
+              href={roadmapPath}
+              class="no-underline opacity-70 transition-opacity duration-300 hover:opacity-100"
+              >Roadmap</a
+            >
             <span class="h-[1px] w-4 bg-accent/10"></span>
-            {phaseName && (
-              <>
-                <span>{isEnglish ? `Phase ${phase}` : `Fase ${phase}`}</span>
-                <span class="h-[1px] w-4 bg-accent/10"></span>
-              </>
-            )}
-            <span>{labels.lesson} {lessonNum} {labels.of} {totalInPhase.length}</span>
+            {
+              phaseName && (
+                <>
+                  <span>{isEnglish ? `Phase ${phase}` : `Fase ${phase}`}</span>
+                  <span class="h-[1px] w-4 bg-accent/10" />
+                </>
+              )
+            }
+            <span
+              >{labels.lesson}
+              {lessonNum}
+              {labels.of}
+              {totalInPhase.length}</span
+            >
             <span class="h-[1px] w-4 bg-accent/10"></span>
             <span>{readingTime}</span>
           </div>
@@ -200,30 +247,41 @@ const diagram = diagramMap[post.slug] || null
 
         <!-- ── Title ── -->
         <div class="reveal mb-6 sm:mb-8">
-          <h1 class="m-0 font-display text-[clamp(1.8rem,5vw,3rem)] font-bold leading-[1.1] tracking-tighter-brand text-accent sm:text-[clamp(2rem,4vw,3.5rem)]">
+          <h1
+            class="m-0 font-display text-[clamp(1.8rem,5vw,3rem)] font-bold leading-[1.1] tracking-tighter-brand text-accent sm:text-[clamp(2rem,4vw,3.5rem)]"
+          >
             {frontmatter.title}
           </h1>
         </div>
 
         <!-- ── Description ── -->
-        {post.data.description && (
-          <div class="reveal mb-6 sm:mb-8">
-            <p class="m-0 max-w-xl text-[15px] leading-[1.7] opacity-35 sm:text-base">
-              {post.data.description}
-            </p>
-          </div>
-        )}
+        {
+          post.data.description && (
+            <div class="reveal mb-6 sm:mb-8">
+              <p class="m-0 max-w-xl text-[15px] leading-[1.7] opacity-35 sm:text-base">
+                {post.data.description}
+              </p>
+            </div>
+          )
+        }
 
         <!-- ── Progress steps ── -->
-        {totalInPhase.length > 1 && (
-          <div class="reveal mb-8 sm:mb-10">
-            <div class="lesson-steps" aria-hidden="true">
-              {totalInPhase.map((_, i) => (
-                <span class:list={['step', { done: i <= currentIdx, current: i === currentIdx }]} />
-              ))}
+        {
+          totalInPhase.length > 1 && (
+            <div class="reveal mb-8 sm:mb-10">
+              <div class="lesson-steps" aria-hidden="true">
+                {totalInPhase.map((_, i) => (
+                  <span
+                    class:list={[
+                      'step',
+                      { done: i <= currentIdx, current: i === currentIdx }
+                    ]}
+                  />
+                ))}
+              </div>
             </div>
-          </div>
-        )}
+          )
+        }
 
         <div class="hr-animated mb-8 sm:mb-12"></div>
 
@@ -232,39 +290,69 @@ const diagram = diagramMap[post.slug] || null
           <Content />
         </article>
 
-        {diagram === 'flavor-wheel' && <FlavorWheel lang={lang as 'es' | 'en'} />}
+        {
+          diagram === 'flavor-wheel' && (
+            <FlavorWheel lang={lang as 'es' | 'en'} />
+          )
+        }
         {diagram === 'roast-curve' && <RoastCurve lang={lang as 'es' | 'en'} />}
-        {diagram === 'espresso-anatomy' && <EspressoAnatomy lang={lang as 'es' | 'en'} />}
-        {diagram === 'extraction-chart' && <ExtractionChart lang={lang as 'es' | 'en'} />}
+        {
+          diagram === 'espresso-anatomy' && (
+            <EspressoAnatomy lang={lang as 'es' | 'en'} />
+          )
+        }
+        {
+          diagram === 'extraction-chart' && (
+            <ExtractionChart lang={lang as 'es' | 'en'} />
+          )
+        }
         {diagram === 'coffee-belt' && <CoffeeBelt lang={lang as 'es' | 'en'} />}
 
-        {quizQuestions.length > 0 && (
-          <Quiz questions={quizQuestions} lang={lang as 'es' | 'en'} />
-        )}
+        {
+          quizQuestions.length > 0 && (
+            <Quiz questions={quizQuestions} lang={lang as 'es' | 'en'} />
+          )
+        }
 
         <!-- ── Prev / Next navigation ── -->
         <div class="reveal mt-16 sm:mt-20">
           <div class="hr-animated mb-8"></div>
           <nav class="lesson-nav">
-            {prev ? (
-              <a href={`${lessonBasePath}/${prev.slug}`} class="nav-link nav-link--prev" data-cursor-hover>
-                <span class="nav-direction">{labels.prev}</span>
-                <span class="nav-title">{prev.data.title}</span>
-              </a>
-            ) : (
-              <div></div>
-            )}
-            {next ? (
-              <a href={`${lessonBasePath}/${next.slug}`} class="nav-link nav-link--next" data-cursor-hover>
-                <span class="nav-direction">{labels.next}</span>
-                <span class="nav-title">{next.data.title}</span>
-              </a>
-            ) : (
-              <a href={roadmapPath} class="nav-link nav-link--next" data-cursor-hover>
-                <span class="nav-direction">{labels.phaseComplete}</span>
-                <span class="nav-title">{labels.backToRoadmap}</span>
-              </a>
-            )}
+            {
+              prev ? (
+                <a
+                  href={`${lessonBasePath}/${prev.slug}`}
+                  class="nav-link nav-link--prev"
+                  data-cursor-hover
+                >
+                  <span class="nav-direction">{labels.prev}</span>
+                  <span class="nav-title">{prev.data.title}</span>
+                </a>
+              ) : (
+                <div />
+              )
+            }
+            {
+              next ? (
+                <a
+                  href={`${lessonBasePath}/${next.slug}`}
+                  class="nav-link nav-link--next"
+                  data-cursor-hover
+                >
+                  <span class="nav-direction">{labels.next}</span>
+                  <span class="nav-title">{next.data.title}</span>
+                </a>
+              ) : (
+                <a
+                  href={roadmapPath}
+                  class="nav-link nav-link--next"
+                  data-cursor-hover
+                >
+                  <span class="nav-direction">{labels.phaseComplete}</span>
+                  <span class="nav-title">{labels.backToRoadmap}</span>
+                </a>
+              )
+            }
           </nav>
         </div>
       </main>
@@ -279,7 +367,9 @@ const diagram = diagramMap[post.slug] || null
   <!-- Page animations -->
   <script>
     function initPageAnimations() {
-      const reveals = document.querySelectorAll('.reveal, .stagger-children, .hr-animated')
+      const reveals = document.querySelectorAll(
+        '.reveal, .stagger-children, .hr-animated'
+      )
       if (reveals.length) {
         const observer = new IntersectionObserver(
           (entries) => {
@@ -292,7 +382,8 @@ const diagram = diagramMap[post.slug] || null
         reveals.forEach((el) => observer.observe(el))
       }
 
-      const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0
+      const isTouchDevice =
+        'ontouchstart' in window || navigator.maxTouchPoints > 0
       if (!isTouchDevice && window.matchMedia('(pointer: fine)').matches) {
         const hoverTargets = document.querySelectorAll('[data-cursor-hover]')
         hoverTargets.forEach((el) => {
@@ -300,7 +391,9 @@ const diagram = diagramMap[post.slug] || null
             document.getElementById('custom-cursor')?.classList.add('hovering')
           })
           el.addEventListener('mouseleave', () => {
-            document.getElementById('custom-cursor')?.classList.remove('hovering')
+            document
+              .getElementById('custom-cursor')
+              ?.classList.remove('hovering')
           })
         })
       }
@@ -345,7 +438,9 @@ const diagram = diagramMap[post.slug] || null
     color: inherit;
   }
   @media (min-width: 640px) {
-    .lesson-body { font-size: 1.125rem; }
+    .lesson-body {
+      font-size: 1.125rem;
+    }
   }
 
   .lesson-body :global(h2) {
@@ -377,7 +472,11 @@ const diagram = diagramMap[post.slug] || null
   .lesson-body :global(a) {
     color: var(--color-accent);
     text-decoration: underline;
-    text-decoration-color: color-mix(in srgb, var(--color-accent) 25%, transparent);
+    text-decoration-color: color-mix(
+      in srgb,
+      var(--color-accent) 25%,
+      transparent
+    );
     text-underline-offset: 3px;
     transition: text-decoration-color 0.3s ease;
   }
@@ -403,7 +502,8 @@ const diagram = diagramMap[post.slug] || null
   }
 
   .lesson-body :global(blockquote) {
-    border-left: 2px solid color-mix(in srgb, var(--color-accent) 15%, transparent);
+    border-left: 2px solid
+      color-mix(in srgb, var(--color-accent) 15%, transparent);
     padding: 0.75rem 0 0.75rem 1.25rem;
     margin: 2rem 0;
     background: color-mix(in srgb, var(--color-accent) 2%, transparent);
@@ -459,7 +559,8 @@ const diagram = diagramMap[post.slug] || null
   .lesson-body :global(td) {
     padding: 0.625rem 0.875rem;
     text-align: left;
-    border-bottom: 1px solid color-mix(in srgb, var(--color-accent) 6%, transparent);
+    border-bottom: 1px solid
+      color-mix(in srgb, var(--color-accent) 6%, transparent);
   }
   .lesson-body :global(th) {
     font-weight: 600;
@@ -492,16 +593,18 @@ const diagram = diagramMap[post.slug] || null
     border: 1px solid color-mix(in srgb, var(--color-accent) 6%, transparent);
     border-radius: 0.75rem;
     background: transparent;
-    transition: border-color 0.5s cubic-bezier(0.16, 1, 0.3, 1),
-                background 0.5s cubic-bezier(0.16, 1, 0.3, 1),
-                transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
-                box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    transition:
+      border-color 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+      background 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+      box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   }
   .nav-link:hover {
     border-color: color-mix(in srgb, var(--color-accent) 15%, transparent);
     background: color-mix(in srgb, var(--color-accent) 3%, transparent);
     transform: translateY(-2px);
-    box-shadow: 0 4px 20px color-mix(in srgb, var(--color-accent) 4%, transparent);
+    box-shadow: 0 4px 20px
+      color-mix(in srgb, var(--color-accent) 4%, transparent);
   }
   .nav-link:active {
     transform: translateY(0);
@@ -511,7 +614,9 @@ const diagram = diagramMap[post.slug] || null
     content: '←';
     font-size: 0.75rem;
     opacity: 0.25;
-    transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    transition:
+      opacity 0.4s ease,
+      transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   }
   .nav-link--prev:hover::before {
     opacity: 0.5;
@@ -525,7 +630,9 @@ const diagram = diagramMap[post.slug] || null
     content: '→';
     font-size: 0.75rem;
     opacity: 0.25;
-    transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    transition:
+      opacity 0.4s ease,
+      transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   }
   .nav-link--next:hover::after {
     opacity: 0.5;
@@ -548,7 +655,9 @@ const diagram = diagramMap[post.slug] || null
     font-size: 0.9375rem;
     font-weight: 500;
     opacity: 0.5;
-    transition: opacity 0.4s ease, color 0.4s ease;
+    transition:
+      opacity 0.4s ease,
+      color 0.4s ease;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;

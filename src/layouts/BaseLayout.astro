@@ -150,57 +150,90 @@ const openGraphImageUrl = new URL(
         />
       )
     }
+    <meta name="theme-color" content="#1a1a2e" />
+    {
+      publishedDate && (
+        <>
+          <meta
+            property="article:author"
+            content={new URL('/about/', Astro.site).href}
+          />
+        </>
+      )
+    }
+
+    <slot name="head" />
+
     <ModeManager />
     <ViewTransitions />
     <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "David San Luis Aguirre",
-        "disambiguatingDescription": "Desarrollador Fullstack mexicano especializado en Angular, NestJS, TypeScript y AWS. Creador del Roadmap Barista de Especialidad. San Luis Aguirre es un apellido, no una referencia geográfica.",
-        "alternateName": ["David San Luis", "David Aguirre"],
-        "givenName": "David",
-        "familyName": "San Luis Aguirre",
-        "url": "https://davidsanluisaguirre.com",
-        "image": "https://davidsanluisaguirre.com/me/me4.jpeg",
-        "jobTitle": "Fullstack Developer",
-        "worksFor": {
-          "@type": "Organization",
-          "name": "QRSof",
-          "url": "https://qrsof.com"
+      [
+        {
+          "@context": "https://schema.org",
+          "@type": "Person",
+          "@id": "https://davidsanluisaguirre.com/#person",
+          "name": "David San Luis Aguirre",
+          "disambiguatingDescription": "Desarrollador Fullstack mexicano especializado en Angular, NestJS, TypeScript y AWS. Creador del Roadmap Barista de Especialidad. San Luis Aguirre es un apellido, no una referencia geográfica.",
+          "alternateName": ["David San Luis", "David Aguirre", "Davidsmait"],
+          "givenName": "David",
+          "familyName": "San Luis Aguirre",
+          "url": "https://davidsanluisaguirre.com",
+          "mainEntityOfPage": "https://davidsanluisaguirre.com/about/",
+          "image": "https://davidsanluisaguirre.com/me/me4.jpeg",
+          "jobTitle": "Fullstack Developer",
+          "worksFor": {
+            "@type": "Organization",
+            "name": "QRSof",
+            "url": "https://qrsof.com"
+          },
+          "alumniOf": {
+            "@type": "EducationalOrganization",
+            "name": "Instituto Tecnológico de Pachuca"
+          },
+          "knowsAbout": [
+            "Angular",
+            "NestJS",
+            "TypeScript",
+            "AWS",
+            "Ionic",
+            "Scala",
+            "React",
+            "Next.js",
+            "Astro",
+            "LegalTech",
+            "Specialty Coffee",
+            "Café de Especialidad",
+            "Barismo"
+          ],
+          "sameAs": [
+            "https://www.instagram.com/davidsanluisaguirre/",
+            "https://www.linkedin.com/in/davidsanluisaguirre",
+            "https://github.com/Davidsmait"
+          ],
+          "nationality": {
+            "@type": "Country",
+            "name": "Mexico"
+          },
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Pachuca de Soto",
+            "addressRegion": "Hidalgo",
+            "addressCountry": "MX"
+          }
         },
-        "alumniOf": {
-          "@type": "EducationalOrganization",
-          "name": "Instituto Tecnológico de Pachuca"
-        },
-        "knowsAbout": [
-          "Angular",
-          "NestJS",
-          "TypeScript",
-          "AWS",
-          "Ionic",
-          "Scala",
-          "React",
-          "Next.js",
-          "Specialty Coffee",
-          "Café de Especialidad"
-        ],
-        "sameAs": [
-          "https://www.instagram.com/davidsanluisaguirre/",
-          "https://www.linkedin.com/in/davidsanluisaguirre",
-          "https://github.com/Davidsmait"
-        ],
-        "nationality": {
-          "@type": "Country",
-          "name": "Mexico"
-        },
-        "address": {
-          "@type": "PostalAddress",
-          "addressLocality": "Pachuca de Soto",
-          "addressRegion": "Hidalgo",
-          "addressCountry": "MX"
+        {
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          "@id": "https://davidsanluisaguirre.com/#website",
+          "name": "David San Luis Aguirre",
+          "url": "https://davidsanluisaguirre.com",
+          "description": "Blog personal de David San Luis Aguirre — desarrollo web, proyectos y café de especialidad.",
+          "publisher": {
+            "@id": "https://davidsanluisaguirre.com/#person"
+          },
+          "inLanguage": ["es", "en"]
         }
-      }
+      ]
     </script>
   </head>
   <body>

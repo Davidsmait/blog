@@ -21,60 +21,94 @@ const {
 
 const frontmatter: PageLayoutProps['frontmatter'] = {
   ...post.data,
-  openGraphImage: post.data.openGraphImage || `/${post.collection}/${post.slug}.png`,
+  openGraphImage:
+    post.data.openGraphImage || `/${post.collection}/${post.slug}.png`,
   activeHeaderLink: post.collection === 'cafe' ? 'Café' : 'Blog',
   scrollProgress: true
 }
 
 const publishedStr = toDateString(post.data.publishedDate)
 
-const postUrl = new URL(`/${post.collection}/${post.slug}`, 'https://davidsanluisaguirre.com').href
-const ogImageUrl = new URL(post.data.openGraphImage || `/${post.collection}/${post.slug}.png`, 'https://davidsanluisaguirre.com').href
+const postUrl = new URL(`/${post.collection}/${post.slug}`, Astro.site).href
+const ogImageUrl = new URL(
+  post.data.openGraphImage || `/${post.collection}/${post.slug}.png`,
+  Astro.site
+).href
 
 const blogPostingSchema = JSON.stringify({
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline": post.data.title,
-  "description": post.data.description || '',
-  "url": postUrl,
-  "image": ogImageUrl,
-  "datePublished": post.data.publishedDate.toISOString(),
-  "dateModified": post.data.publishedDate.toISOString(),
-  "author": {
-    "@type": "Person",
-    "name": "David San Luis Aguirre",
-    "url": "https://davidsanluisaguirre.com",
-    "sameAs": [
-      "https://www.instagram.com/davidsanluisaguirre/",
-      "https://www.linkedin.com/in/davidsanluisaguirre",
-      "https://github.com/Davidsmait"
-    ]
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  '@id': postUrl,
+  headline: post.data.title,
+  description: post.data.description || '',
+  url: postUrl,
+  image: ogImageUrl,
+  datePublished: post.data.publishedDate.toISOString(),
+  dateModified: post.data.publishedDate.toISOString(),
+  author: {
+    '@id': 'https://davidsanluisaguirre.com/#person'
   },
-  "publisher": {
-    "@type": "Person",
-    "name": "David San Luis Aguirre",
-    "url": "https://davidsanluisaguirre.com"
+  publisher: {
+    '@id': 'https://davidsanluisaguirre.com/#person'
   },
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": postUrl
+  isPartOf: {
+    '@id': 'https://davidsanluisaguirre.com/#website'
   },
-  "keywords": post.data.tags?.join(', ') || ''
+  mainEntityOfPage: {
+    '@type': 'WebPage',
+    '@id': postUrl
+  },
+  keywords: post.data.tags?.join(', ') || ''
+})
+
+// BreadcrumbList for blog posts
+const isCafe = post.collection === 'cafe'
+const sectionName = isCafe ? 'Café' : 'Blog'
+const sectionUrl = new URL(isCafe ? '/barista-roadmap' : '/posts', Astro.site)
+  .href
+
+const breadcrumbSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: sectionName,
+      item: sectionUrl
+    },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: post.data.title,
+      item: postUrl
+    }
+  ]
 })
 ---
 
 <PageLayout {frontmatter}>
   <script type="application/ld+json" set:html={blogPostingSchema} />
+  <script type="application/ld+json" set:html={breadcrumbSchema} />
   <!-- Editorial post header -->
   <div class="reveal mb-8 sm:mb-12">
-    <h1 class="m-0 font-display text-[clamp(1.8rem,5vw,3rem)] font-bold leading-[1.1] tracking-tighter-brand text-accent sm:text-[clamp(2rem,4vw,3.5rem)]">
+    <h1
+      class="m-0 font-display text-[clamp(1.8rem,5vw,3rem)] font-bold leading-[1.1] tracking-tighter-brand text-accent sm:text-[clamp(2rem,4vw,3.5rem)]"
+    >
       {frontmatter.title}
     </h1>
 
-    <div class="mt-4 flex flex-wrap items-center gap-3 text-[11px] font-medium uppercase tracking-[0.15em] opacity-25 sm:mt-5 sm:gap-4 sm:text-[12px]">
-      <time datetime={post.data.publishedDate.toISOString()}>{publishedStr}</time>
+    <div
+      class="mt-4 flex flex-wrap items-center gap-3 text-[11px] font-medium uppercase tracking-[0.15em] opacity-25 sm:mt-5 sm:gap-4 sm:text-[12px]"
+    >
+      <time datetime={post.data.publishedDate.toISOString()}
+        >{publishedStr}</time
+      >
       <span class="h-[1px] w-4 bg-accent/10"></span>
-      <a class="no-underline opacity-70 transition-opacity duration-300 hover:opacity-100" href={`/authors/${post.data.author}`}>{post.data.author}</a>
+      <a
+        class="no-underline opacity-70 transition-opacity duration-300 hover:opacity-100"
+        href={`/authors/${post.data.author}`}>{post.data.author}</a
+      >
       <span class="h-[1px] w-4 bg-accent/10"></span>
       <span>{readingTime}</span>
     </div>
