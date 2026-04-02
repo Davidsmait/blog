@@ -37,6 +37,7 @@ const {
 
 const frontmatter: BaseLayoutProps['frontmatter'] = {
   ...post.data,
+  publishedDate: post.data.publishedDate,
   openGraphImage: post.data.openGraphImage || `/cafe/${post.slug}.png`
 }
 

@@ -19,7 +19,7 @@ Lo que hace único al espresso es la presión. Esa presión crea algo que ningú
 
 ## Los números del espresso
 
-Cada espresso se define por cuánto café usas (dosis), cuánto líquido obtienes (yield), la proporción entre ambos (ratio), y cuánto tarda (tiempo). Si solo recuerdas una cosa: **18g de café → 36g en taza en ~28 segundos**.
+Cada espresso se define por cuánto café usas (dosis), cuánto líquido obtienes (yield), la proporción entre ambos (ratio), y cuánto tarda (tiempo). Si solo recuerdas una cosa: **18g de café → 36g en taza en ~25 a 30 segundos**.
 
 <details>
 <summary>Dosis, yield, ratio y tiempo — los detalles</summary>
@@ -89,7 +89,7 @@ Antes de extraer, rompe los grumos del café con agujas (WDT) y luego compacta p
 <details>
 <summary>WDT, tamping y channeling — por qué importa cada paso</summary>
 
-Esta parte suena técnica, pero con práctica se vuelve automático — por ahora lo importante es entender *por qué* importa.
+Esta parte suena técnica, pero con práctica se vuelve automático — por ahora lo importante es entender _por qué_ importa.
 
 ### Distribución
 

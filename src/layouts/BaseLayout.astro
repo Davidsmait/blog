@@ -172,16 +172,11 @@ const openGraphImageUrl = new URL(
       )
     }
     <meta name="theme-color" content="#1a1a2e" />
-    {
-      publishedDate && (
-        <>
-          <meta
-            property="article:author"
-            content={new URL('/about/', Astro.site).href}
-          />
-        </>
-      )
-    }
+    <meta
+      property="article:author"
+      content={new URL('/about/', Astro.site).href}
+    />
+    <link rel="author" href={new URL('/about/', Astro.site).href} />
 
     <slot name="head" />
 
