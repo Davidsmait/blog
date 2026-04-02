@@ -114,16 +114,8 @@ function getPhaseState(phaseNum: number) {
       inLanguage: 'es',
       numberOfCredits: totalLessons,
       educationalLevel: 'Beginner to Expert',
-      provider: {
-        '@type': 'Person',
-        name: 'David San Luis Aguirre',
-        url: 'https://davidsanluisaguirre.com',
-        sameAs: [
-          'https://www.instagram.com/davidsanluisaguirre/',
-          'https://www.linkedin.com/in/davidsanluisaguirre',
-          'https://github.com/Davidsmait'
-        ]
-      },
+      provider: { '@id': 'https://davidsanluisaguirre.com/#person' },
+      isPartOf: { '@id': 'https://davidsanluisaguirre.com/#website' },
       hasCourseInstance: phases.map((p) => ({
         '@type': 'CourseInstance',
         name: `Fase ${p.num}: ${p.title}`,
@@ -136,6 +128,47 @@ function getPhaseState(phaseNum: number) {
         { '@type': 'Thing', name: 'Espresso' },
         { '@type': 'Thing', name: 'Latte art' },
         { '@type': 'Thing', name: 'SCA' }
+      ]
+    })}
+  />
+  <script
+    type="application/ld+json"
+    set:html={JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: [
+        {
+          '@type': 'Question',
+          name: '¿Qué es el Roadmap Barista de Especialidad?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: `Un currículum gratuito de ${phases.length} fases y ${totalLessons} lecciones creado por David San Luis Aguirre. Cubre desde los fundamentos del café hasta la física de la extracción, basado en metodologías de Scott Rao, la SCA y Jonathan Gagné.`
+          }
+        },
+        {
+          '@type': 'Question',
+          name: '¿Es gratis el roadmap de barista?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Sí, todas las lecciones son completamente gratuitas. El roadmap está disponible en español e inglés.'
+          }
+        },
+        {
+          '@type': 'Question',
+          name: '¿Qué temas cubre el roadmap de café de especialidad?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'El roadmap cubre fundamentos del café, espresso, métodos de filtrado, catación y paladar, leche y latte art, tueste y negocio, metodología Rao avanzada, física de la extracción y carrera profesional como barista.'
+          }
+        },
+        {
+          '@type': 'Question',
+          name: '¿Necesito experiencia previa para empezar?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'No. La Fase 1 comienza desde cero con los fundamentos del café. El roadmap avanza progresivamente hasta temas profesionales avanzados.'
+          }
+        }
       ]
     })}
   />

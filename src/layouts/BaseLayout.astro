@@ -107,7 +107,8 @@ const openGraphImageUrl = new URL(
           <link rel="alternate" hreflang="x-default" href={canonicalURL} />
         </>
       ) : Astro.url.pathname.includes('/cafe/') ||
-        Astro.url.pathname.includes('/barista-roadmap') ? (
+        Astro.url.pathname.includes('/barista-roadmap') ||
+        Astro.url.pathname.includes('/about') ? (
         <>
           <link rel="alternate" hreflang="es" href={canonicalURL} />
           <link

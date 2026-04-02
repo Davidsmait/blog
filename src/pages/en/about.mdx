@@ -1,14 +1,14 @@
 ---
 layout: '@/layouts/PageLayout.astro'
-title: Sobre mí — David San Luis Aguirre
-description: "David San Luis Aguirre — Desarrollador Fullstack especializado en Angular, NestJS, TypeScript y AWS. +3 años de experiencia construyendo aplicaciones web y móviles en producción."
-activeHeaderLink: Sobre mí
+title: About Me — David San Luis Aguirre
+description: "David San Luis Aguirre — Fullstack Developer specializing in Angular, NestJS, TypeScript and AWS. 3+ years of experience building production web and mobile applications."
+activeHeaderLink: About
 ---
 
 <script type="application/ld+json">{JSON.stringify({
   "@context": "https://schema.org",
   "@type": "ProfilePage",
-  "@id": "https://davidsanluisaguirre.com/about/#profilepage",
+  "@id": "https://davidsanluisaguirre.com/en/about/#profilepage",
   "mainEntity": {
     "@id": "https://davidsanluisaguirre.com/#person"
   },
@@ -18,7 +18,7 @@ activeHeaderLink: Sobre mí
 })}</script>
 
 <style>{`
-  /* ── Hero ── */
+  /* -- Hero -- */
   .about-hero {
     display: flex;
     flex-direction: column;
@@ -65,7 +65,7 @@ activeHeaderLink: Sobre mí
     opacity: 0.5;
   }
 
-  /* ── Stats ── */
+  /* -- Stats -- */
   .stats-grid {
     display: flex;
     gap: 2rem;
@@ -95,7 +95,7 @@ activeHeaderLink: Sobre mí
     font-weight: 500;
   }
 
-  /* ── Section titles ── */
+  /* -- Section titles -- */
   .section-title {
     display: flex;
     align-items: center;
@@ -118,7 +118,7 @@ activeHeaderLink: Sobre mí
     opacity: 0.5;
   }
 
-  /* ── Experience ── */
+  /* -- Experience -- */
   .exp-list {
     display: flex;
     flex-direction: column;
@@ -174,14 +174,14 @@ activeHeaderLink: Sobre mí
     font-weight: 500;
   }
   .exp-tech span::after {
-    content: ' · ';
+    content: ' \u00b7 ';
     opacity: 0.4;
   }
   .exp-tech span:last-child::after {
     content: '';
   }
 
-  /* ── Tech stack ── */
+  /* -- Tech stack -- */
   .tech-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -220,7 +220,7 @@ activeHeaderLink: Sobre mí
     opacity: 0.35;
   }
 
-  /* ── Contact & CV ── */
+  /* -- Contact & CV -- */
   .footer-section {
     display: flex;
     flex-direction: column;
@@ -292,7 +292,7 @@ activeHeaderLink: Sobre mí
     opacity: 0.5;
   }
 
-  /* ── Responsive ── */
+  /* -- Responsive -- */
   @media (max-width: 540px) {
     .stats-grid { gap: 1.5rem; }
     .stat-number { font-size: 1.5rem; }
@@ -303,7 +303,7 @@ activeHeaderLink: Sobre mí
   }
 `}</style>
 
-{/* ── Hero ── */}
+{/* -- Hero -- */}
 <div class="about-hero reveal">
   <img
     src="/me/me4.jpeg"
@@ -317,45 +317,45 @@ activeHeaderLink: Sobre mí
     <p class="about-title">Fullstack Developer · Angular · NestJS · TypeScript · AWS</p>
   </div>
   <p class="about-bio reveal reveal-delay-1">
-    Desarrollador Fullstack con +3 años de experiencia construyendo aplicaciones web y móviles en producción.
-    Actualmente desarrollo una plataforma SaaS LegalTech con IA, integrando APIs de LLM con infraestructura cloud escalable.
-    He publicado apps multiplataforma en iOS App Store y Google Play.
+    Fullstack Developer with 3+ years of experience building production web and mobile applications.
+    Currently developing an AI-powered LegalTech SaaS platform, integrating LLM APIs with scalable cloud infrastructure.
+    I've shipped cross-platform apps to both the iOS App Store and Google Play.
   </p>
 </div>
 
-{/* ── Stats ── */}
+{/* -- Stats -- */}
 <div class="stats-grid reveal reveal-delay-2">
   <div class="stat-card">
     <span class="stat-number">3+</span>
-    <span class="stat-label">Años de experiencia</span>
+    <span class="stat-label">Years of experience</span>
   </div>
   <div class="stat-card">
     <span class="stat-number">500+</span>
-    <span class="stat-label">Usuarios en producción</span>
+    <span class="stat-label">Users in production</span>
   </div>
   <div class="stat-card">
     <span class="stat-number">2</span>
-    <span class="stat-label">Apps en App Stores</span>
+    <span class="stat-label">Apps in App Stores</span>
   </div>
 </div>
 
-{/* ── Experience ── */}
+{/* -- Experience -- */}
 <div class="section-title reveal">
   <span class="iconify tabler--briefcase" aria-hidden="true"></span>
-  Experiencia
+  Experience
 </div>
 
 <div class="exp-list stagger-children">
   <div class="exp-card">
     <div class="exp-header">
-      <span class="exp-project">Grace AI — Plataforma SaaS LegalTech</span>
-      <span class="exp-badge">Proyecto actual</span>
+      <span class="exp-project">Grace AI — LegalTech SaaS Platform</span>
+      <span class="exp-badge">Current project</span>
     </div>
-    <div class="exp-company">QRSof · Feb 2023 – Presente · Remoto</div>
+    <div class="exp-company">QRSof · Feb 2023 – Present · Remote</div>
     <div class="exp-desc">
-      Desarrollo fullstack de una plataforma legal con IA que automatiza procesamiento de documentos y análisis legal.
-      Integración de APIs de LLM con backend NestJS, extracción vía OCR y generación de redacciones legales.
-      Infraestructura AWS (Lambda, S3, Cognito) con arquitectura multi-tenant.
+      Fullstack development of an AI-powered legal platform that automates document processing and legal analysis.
+      Integration of LLM APIs with NestJS backend, OCR-based extraction and legal drafting generation.
+      AWS infrastructure (Lambda, S3, Cognito) with multi-tenant architecture.
     </div>
     <div class="exp-tech">
       <span>Angular</span><span>NestJS</span><span>TypeScript</span><span>AWS</span><span>Prisma</span><span>PostgreSQL</span><span>LLM APIs</span>
@@ -364,13 +364,13 @@ activeHeaderLink: Sobre mí
 
   <div class="exp-card">
     <div class="exp-header">
-      <span class="exp-project">CEN — App Móvil ERP Multiplataforma</span>
-      <span class="exp-badge">Abr 2024 – Jun 2025</span>
+      <span class="exp-project">CEN — Cross-Platform Mobile ERP App</span>
+      <span class="exp-badge">Apr 2024 – Jun 2025</span>
     </div>
-    <div class="exp-company">QRSof · Remoto</div>
+    <div class="exp-company">QRSof · Remote</div>
     <div class="exp-desc">
-      Construcción y publicación de una app ERP completa en iOS App Store y Google Play para +300 empleados.
-      Arquitectura offline-first con SQLite y NgRx. Gestión del ciclo completo de release.
+      Built and published a complete ERP app on iOS App Store and Google Play for 300+ employees.
+      Offline-first architecture with SQLite and NgRx. Managed the full release cycle.
     </div>
     <div class="exp-tech">
       <span>Angular</span><span>Ionic</span><span>SQLite</span><span>NgRx</span><span>Capacitor</span><span>iOS</span><span>Android</span>
@@ -379,14 +379,14 @@ activeHeaderLink: Sobre mí
 
   <div class="exp-card">
     <div class="exp-header">
-      <span class="exp-project">Slird — Networking Profesional con NFC</span>
-      <span class="exp-badge">Abr 2023 – Sep 2024</span>
+      <span class="exp-project">Slird — Professional NFC Networking</span>
+      <span class="exp-badge">Apr 2023 – Sep 2024</span>
     </div>
-    <div class="exp-company">QRSof · Remoto</div>
+    <div class="exp-company">QRSof · Remote</div>
     <div class="exp-desc">
-      Plataforma fullstack que digitalizó el networking profesional con tecnología NFC.
-      Frontend con Angular/Ionic, backend con Scala (Akka HTTP + Slick).
-      Creé una librería de componentes que redujo el esfuerzo de desarrollo frontend en un 70%.
+      Fullstack platform that digitized professional networking with NFC technology.
+      Frontend with Angular/Ionic, backend with Scala (Akka HTTP + Slick).
+      Built a component library that reduced frontend development effort by 70%.
     </div>
     <div class="exp-tech">
       <span>Angular</span><span>Ionic</span><span>Scala</span><span>Akka HTTP</span><span>Play Framework</span><span>PostgreSQL</span><span>NFC</span>
@@ -394,10 +394,10 @@ activeHeaderLink: Sobre mí
   </div>
 </div>
 
-{/* ── Tech Stack ── */}
+{/* -- Tech Stack -- */}
 <div class="section-title reveal">
   <span class="iconify tabler--stack-2" aria-hidden="true"></span>
-  Stack Tecnológico
+  Tech Stack
 </div>
 
 <div class="tech-grid stagger-children">
@@ -432,55 +432,32 @@ activeHeaderLink: Sobre mí
   <div class="tech-card">
     <div class="tech-card-title">
       <span class="iconify tabler--robot" aria-hidden="true"></span>
-      IA / ML
+      AI / ML
     </div>
     <div class="tech-card-items">LLM APIs · OCR · Claude Code · AI-assisted dev</div>
   </div>
   <div class="tech-card">
     <div class="tech-card-title">
       <span class="iconify tabler--layout-grid" aria-hidden="true"></span>
-      Arquitectura
+      Architecture
     </div>
-    <div class="tech-card-items">Microservicios · Clean Architecture · Offline-first · Scrum</div>
+    <div class="tech-card-items">Microservices · Clean Architecture · Offline-first · Scrum</div>
   </div>
 </div>
 
-{/* ── Contact & CV ── */}
+{/* -- Contact & CV -- */}
 <div class="footer-section reveal">
-  {/* <div class="footer-row">
-    <span class="footer-label">Contacto</span>
-    <div class="footer-links">
-      <a class="contact-link" href="mailto:david_sanluis@outlook.com" rel="me">
-        <span class="iconify tabler--mail" aria-hidden="true"></span>
-        Email
-      </a>
-      <a class="contact-link" href="https://www.linkedin.com/in/davidsanluisaguirre" target="_blank" rel="me noopener noreferrer">
-        <span class="iconify tabler--brand-linkedin" aria-hidden="true"></span>
-        LinkedIn
-      </a>
-      <a class="contact-link" href="https://github.com/Davidsmait" target="_blank" rel="me noopener noreferrer">
-        <span class="iconify tabler--brand-github" aria-hidden="true"></span>
-        GitHub
-      </a>
-      <a class="contact-link" href="https://www.instagram.com/davidsanluisaguirre/" target="_blank" rel="me noopener noreferrer">
-        <span class="iconify tabler--brand-instagram" aria-hidden="true"></span>
-        Instagram
-      </a>
-    </div>
-  </div> */}
-
-
   <div class="footer-row">
-    <span class="footer-label">Descargar CV</span>
+    <span class="footer-label">Download Resume</span>
     <div class="footer-links">
-      <a class="cv-btn" href="/files/David_San_Luis_Aguirre_CV_Espanol.pdf" download="David_San_Luis_Aguirre_CV_Espanol.pdf">
-        <span class="iconify tabler--file-text" aria-hidden="true"></span>
-        Español
-        <span class="iconify tabler--download cv-arrow" aria-hidden="true"></span>
-      </a>
       <a class="cv-btn" href="/files/David_San_Luis_Aguirre_Resume.pdf" download="David_San_Luis_Aguirre_Resume.pdf">
         <span class="iconify tabler--file-text" aria-hidden="true"></span>
         English
+        <span class="iconify tabler--download cv-arrow" aria-hidden="true"></span>
+      </a>
+      <a class="cv-btn" href="/files/David_San_Luis_Aguirre_CV_Espanol.pdf" download="David_San_Luis_Aguirre_CV_Espanol.pdf">
+        <span class="iconify tabler--file-text" aria-hidden="true"></span>
+        Español
         <span class="iconify tabler--download cv-arrow" aria-hidden="true"></span>
       </a>
     </div>
