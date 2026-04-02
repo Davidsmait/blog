@@ -393,13 +393,26 @@ export const quizzes: Record<string, QuizData> = {
           '¿Qué indica la crema sobre la frescura del café?',
         options: [
           'Café de 1-3 días post-tueste',
-          'Café de 7-14 días post-tueste',
+          'Café de 7-21 días post-tueste',
           'Café de más de 30 días',
           'La crema no tiene relación con la frescura'
         ],
         correct: 1,
         explanation:
-          'Una crema abundante y estable indica café fresco de 7-14 días post-tueste. Antes de 7 días hay demasiado CO2 (extracción errática), y después de 14 días la crema se vuelve pálida y delgada.'
+          'Una crema abundante y estable indica café fresco de 7-21 días post-tueste. Café de 1-3 días también produce mucha crema, pero es inestable (burbujas grandes que se disipan rápido) porque el exceso de CO2 causa una extracción errática. Después de 21-30 días la crema se vuelve pálida y delgada.'
+      },
+      {
+        question:
+          '¿Cuál es el objetivo principal de la técnica WDT antes de tampar?',
+        options: [
+          'Compactar el café lo más posible',
+          'Romper grumos y homogeneizar la distribución del café',
+          'Calentar el portafiltro',
+          'Medir la dosis exacta'
+        ],
+        correct: 1,
+        explanation:
+          'La técnica WDT (Weiss Distribution Technique) usa agujas finas para romper grumos y distribuir el café uniformemente en la canasta. Sin esto, el agua encuentra caminos fáciles (channeling), causando zonas de sobre-extracción junto a zonas de sub-extracción.'
       }
     ],
     en: [
@@ -424,13 +437,26 @@ export const quizzes: Record<string, QuizData> = {
           'What does crema indicate about coffee freshness?',
         options: [
           'Coffee 1-3 days post-roast',
-          'Coffee 7-14 days post-roast',
+          'Coffee 7-21 days post-roast',
           'Coffee over 30 days old',
           'Crema has no relation to freshness'
         ],
         correct: 1,
         explanation:
-          'Abundant, stable crema indicates fresh coffee 7-14 days post-roast. Before 7 days there is too much CO2 (erratic extraction), and after 14 days crema becomes pale and thin.'
+          'Abundant, stable crema indicates fresh coffee 7-21 days post-roast. Coffee at 1-3 days also produces lots of crema, but it is unstable (large bubbles that dissipate quickly) because excess CO2 causes erratic extraction. After 21-30 days crema becomes pale and thin.'
+      },
+      {
+        question:
+          'What is the main goal of the WDT technique before tamping?',
+        options: [
+          'Compact the coffee as much as possible',
+          'Break clumps and homogenize coffee distribution',
+          'Heat the portafilter',
+          'Measure the exact dose'
+        ],
+        correct: 1,
+        explanation:
+          'The WDT (Weiss Distribution Technique) uses fine needles to break clumps and distribute coffee evenly in the basket. Without this, water finds easy paths (channeling), causing zones of over-extraction next to zones of under-extraction.'
       }
     ]
   },

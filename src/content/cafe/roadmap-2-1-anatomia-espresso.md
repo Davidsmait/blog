@@ -13,13 +13,16 @@ isPremium: false
 
 ## Qué es realmente un espresso
 
-Un espresso no es simplemente "café fuerte". Es un método de extracción específico: agua a alta presión (~9 bares) forzada a través de una cama compacta de café finamente molido durante un tiempo corto. El resultado es una bebida concentrada de 25-45ml con un TDS de 8-12% — entre 6 y 10 veces más concentrada que un café filtrado.
+Un espresso no es simplemente "café fuerte". Es un método de extracción específico: agua a alta presión (~9 bares) forzada a través de una cama compacta de café finamente molido durante un tiempo corto. El resultado es una bebida concentrada de 25-45ml — entre 6 y 10 veces más concentrada que un café filtrado (técnicamente, un TDS de 8-12%).
 
 Lo que hace único al espresso es la presión. Esa presión crea algo que ningún otro método puede: emulsión de aceites, suspensión de sólidos finos y la producción de crema. Un espresso bien extraído tiene cuerpo denso, dulzura concentrada, acidez integrada y un retrogusto prolongado.
 
 ## Los números del espresso
 
-Cada espresso se define por cuatro parámetros que puedes medir:
+Cada espresso se define por cuánto café usas (dosis), cuánto líquido obtienes (yield), la proporción entre ambos (ratio), y cuánto tarda (tiempo). Si solo recuerdas una cosa: **18g de café → 36g en taza en ~28 segundos**.
+
+<details>
+<summary>Dosis, yield, ratio y tiempo — los detalles</summary>
 
 ### Dosis (dose)
 
@@ -49,6 +52,8 @@ El ratio **1:2** es tu punto de partida universal. De ahí ajustas según el caf
 
 Desde que activas la bomba hasta que paras la extracción. El rango estándar es **25-35 segundos** para un ratio de 1:2. Pero el tiempo es un resultado, no un objetivo — es consecuencia de tu molienda, dosis y distribución. Si tu shot tarda 40 segundos para llegar a 36g, no lo dejas correr 25 y ya: ajustas la molienda.
 
+</details>
+
 ## La receta
 
 Cuando un barista dice "mi receta", se refiere a la combinación de estos cuatro parámetros:
@@ -59,20 +64,32 @@ Eso es una receta de espresso. Es tu punto de referencia. Cada café nuevo neces
 
 ## La crema: lo que te dice y lo que no
 
+La crema te dice si el café es fresco y si la extracción fue razonable, pero **no te dice si sabe bien**. No la uses como único indicador — confía en tu paladar.
+
+<details>
+<summary>Cómo leer la crema — guía visual</summary>
+
 La crema es la capa de espuma dorada-rojiza en la superficie del espresso. Se forma por la emulsión de aceites del café con CO2 atrapado bajo presión.
 
 Lo que la crema te indica:
 
-- **Crema abundante y estable:** Café fresco (7-14 días post-tueste), buena presión, extracción decente.
+- **Crema abundante y estable:** Café fresco (7-21 días post-tueste, dependiendo del tueste), buena presión, extracción decente.
 - **Crema pálida y delgada:** Café viejo (más de 30 días), molienda muy gruesa o sub-extracción.
 - **Crema muy oscura con manchas:** Sobre-extracción o molienda demasiado fina.
 - **Sin crema:** Café rancio, problema de presión en la máquina, o canasta dañada.
 
 Lo que la crema NO te indica: si el espresso sabe bien. Un shot puede tener crema hermosa y saber terrible. La crema es un indicador visual, pero tu paladar es el juez final. De hecho, la crema por sí sola es bastante amarga — si la mezclas con una cuchara antes de probar, la experiencia general mejora.
 
+</details>
+
 ## Distribución y tamping
 
-Antes de extraer, necesitas que el agua pase uniformemente por toda la cama de café. Dos pasos críticos:
+Antes de extraer, rompe los grumos del café con agujas (WDT) y luego compacta parejo con el tamper (~13-15 kg). Si no lo haces, el agua busca el camino fácil y tu shot sale desbalanceado (channeling). La secuencia ideal: **moler → WDT → nivelar → tampar → extraer**.
+
+<details>
+<summary>WDT, tamping y channeling — por qué importa cada paso</summary>
+
+Esta parte suena técnica, pero con práctica se vuelve automático — por ahora lo importante es entender *por qué* importa.
 
 ### Distribución
 
@@ -86,23 +103,15 @@ Técnicas de distribución:
 
 ### Tamping
 
-Comprimir el café en la canasta para crear una cama uniforme y resistente. La presión recomendada es de unos **13-20 kg** dependiendo de la dosis — suficiente para compactar pero sin forzar. Lo más importante no es la fuerza exacta, sino la **consistencia y nivelación**: un tamp inclinado crea un lado más delgado por donde el agua pasa más rápido.
+Comprimir el café en la canasta para crear una cama uniforme y resistente. La presión recomendada es de unos **13-15 kg** (~30 libras) — suficiente para compactar pero sin forzar. Lo más importante no es la fuerza exacta, sino la **consistencia y nivelación**: un tamp inclinado crea un lado más delgado por donde el agua pasa más rápido.
 
 Tamps de calibración (como el Normcore o el Decent calibrated tamper) aplican una presión constante y garantizan nivelación. Son una buena inversión si estás empezando.
 
-La secuencia ideal: **moler → WDT → nivelar → tampar → extraer**.
+</details>
 
-## Tipos de máquina
+## Referencia rápida: tipos de máquina
 
-No todas las máquinas de espresso son iguales. Los tipos principales:
-
-**Máquinas manuales (lever):** Tú controlas la presión con una palanca. Total control pero curva de aprendizaje alta. Flair, Cafelat Robot, La Pavoni.
-
-**Máquinas semi-automáticas:** Bomba eléctrica, tú controlas inicio y fin de extracción. El estándar en cafeterías y para uso serio en casa. Breville Barista Express, Rancilio Silvia, La Marzocco Linea Mini.
-
-**Máquinas automáticas:** La máquina controla el volumen o peso de extracción. Comunes en cafeterías de alto volumen.
-
-**Máquinas super-automáticas:** Todo integrado (molino, dosificación, extracción). Conveniencia total pero poco control. No recomendadas para aprender barismo serio.
+Para esta lección puedes usar cualquier máquina de espresso, pero es útil saber dónde cae la tuya. En resumen: **manuales (lever)** como Flair o Cafelat Robot te dan control total de la presión; **semi-automáticas** como Rancilio Silvia o La Marzocco Linea Mini son el estándar en cafeterías y para uso serio en casa (tú controlas inicio y fin de extracción); **automáticas** controlan el volumen por ti; y **super-automáticas** hacen todo (conveniencia total, poco control).
 
 Para aprender, una semi-automática con PID (control de temperatura) es el sweet spot entre control y practicidad.
 

@@ -1,0 +1,226 @@
+---
+layout: '@/layouts/PageLayout.astro'
+title: Uses — David San Luis Aguirre
+description: "Herramientas, hardware, software y setup que usa David San Luis Aguirre para desarrollo fullstack, diseño y café de especialidad."
+---
+
+<script type="application/ld+json">{JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Uses — David San Luis Aguirre",
+  "description": "Herramientas, hardware, software y setup que usa David San Luis Aguirre para desarrollo fullstack, diseño y café de especialidad.",
+  "url": "https://davidsanluisaguirre.com/uses",
+  "inLanguage": "es",
+  "isPartOf": { "@id": "https://davidsanluisaguirre.com/#website" },
+  "author": { "@id": "https://davidsanluisaguirre.com/#person" },
+  "mainEntity": { "@id": "https://davidsanluisaguirre.com/#person" }
+})}</script>
+
+<style>{`
+  .uses-intro {
+    font-size: 0.9rem;
+    line-height: 1.8;
+    max-width: 560px;
+    opacity: 0.5;
+    margin-bottom: 3rem;
+  }
+  .uses-section-title {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.7rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    opacity: 0.35;
+    margin: 3rem 0 1.25rem;
+  }
+  .uses-section-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(var(--accent), 0.08);
+  }
+  .uses-section-title .iconify {
+    font-size: 0.9rem;
+    opacity: 0.5;
+  }
+  .uses-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .uses-item {
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(var(--accent), 0.04);
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .uses-item:hover {
+    padding-left: 12px;
+  }
+  .uses-item-name {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: rgb(var(--accent));
+    margin-bottom: 0.25rem;
+  }
+  .uses-item-desc {
+    font-size: 0.8rem;
+    line-height: 1.6;
+    opacity: 0.45;
+  }
+  .uses-footnote {
+    font-family: 'Instrument Serif', serif;
+    font-size: 0.9rem;
+    line-height: 1.7;
+    opacity: 0.25;
+    max-width: 480px;
+    font-style: italic;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(var(--accent), 0.04);
+  }
+`}</style>
+
+<div class="reveal">
+  <p class="uses-intro">
+    Las herramientas que uso a diario para desarrollo fullstack, diseño, y para preparar café de especialidad. Inspirado por <a href="https://uses.tech" target="_blank" rel="noopener noreferrer">uses.tech</a>.
+  </p>
+</div>
+
+{/* -- Editor & Terminal -- */}
+<div class="uses-section-title reveal">
+  <span class="iconify tabler--code" aria-hidden="true"></span>
+  Editor & Terminal
+</div>
+
+<div class="uses-list stagger-children">
+  <div class="uses-item">
+    <div class="uses-item-name">Cursor</div>
+    <div class="uses-item-desc">Mi editor principal. IDE con IA integrada basado en VS Code, con autocompletado y chat contextual.</div>
+  </div>
+  <div class="uses-item">
+    <div class="uses-item-name">Claude Code</div>
+    <div class="uses-item-desc">Agente de IA en terminal para desarrollo asistido. Lo uso para refactorizar, generar tests y resolver problemas complejos.</div>
+  </div>
+  <div class="uses-item">
+    <div class="uses-item-name">Warp</div>
+    <div class="uses-item-desc">Terminal moderna con autocompletado inteligente y bloques de comandos.</div>
+  </div>
+  <div class="uses-item">
+    <div class="uses-item-name">Git + GitHub</div>
+    <div class="uses-item-desc">Control de versiones. PRs, code review y CI/CD con GitHub Actions.</div>
+  </div>
+  <div class="uses-item">
+    <div class="uses-item-name">Bruno</div>
+    <div class="uses-item-desc">Cliente de API open-source. Mi alternativa a Postman: rápido, local y con versionado en Git.</div>
+  </div>
+</div>
+
+{/* -- Desarrollo -- */}
+<div class="uses-section-title reveal">
+  <span class="iconify tabler--stack-2" aria-hidden="true"></span>
+  Stack de Desarrollo
+</div>
+
+<div class="uses-list stagger-children">
+  <div class="uses-item">
+    <div class="uses-item-name">Angular + NestJS + TypeScript</div>
+    <div class="uses-item-desc">Mi stack principal para aplicaciones enterprise. Lo uso a diario en Grace AI (LegalTech SaaS).</div>
+  </div>
+  <div class="uses-item">
+    <div class="uses-item-name">Astro + Tailwind CSS</div>
+    <div class="uses-item-desc">Para este blog y sitios estáticos. Rendimiento perfecto y experiencia de desarrollo excelente.</div>
+  </div>
+  <div class="uses-item">
+    <div class="uses-item-name">Prisma + PostgreSQL</div>
+    <div class="uses-item-desc">ORM y base de datos principal. Migraciones tipadas, queries seguras.</div>
+  </div>
+  <div class="uses-item">
+    <div class="uses-item-name">Docker</div>
+    <div class="uses-item-desc">Contenedores para desarrollo local y despliegues consistentes.</div>
+  </div>
+  <div class="uses-item">
+    <div class="uses-item-name">Ionic + Capacitor</div>
+    <div class="uses-item-desc">Para apps móviles multiplataforma. Publiqué 2 apps en iOS App Store y Google Play.</div>
+  </div>
+</div>
+
+{/* -- Diseño -- */}
+<div class="uses-section-title reveal">
+  <span class="iconify tabler--palette" aria-hidden="true"></span>
+  Diseño
+</div>
+
+<div class="uses-list stagger-children">
+  <div class="uses-item">
+    <div class="uses-item-name">Figma</div>
+    <div class="uses-item-desc">Diseño de interfaces, prototipos y sistemas de diseño.</div>
+  </div>
+</div>
+
+{/* -- Productividad -- */}
+<div class="uses-section-title reveal">
+  <span class="iconify tabler--layout-grid" aria-hidden="true"></span>
+  Productividad
+</div>
+
+<div class="uses-list stagger-children">
+  <div class="uses-item">
+    <div class="uses-item-name">Notion</div>
+    <div class="uses-item-desc">Segundo cerebro: notas, documentación de proyectos, planificación personal.</div>
+  </div>
+  <div class="uses-item">
+    <div class="uses-item-name">Jira</div>
+    <div class="uses-item-desc">Gestión de proyectos y tracking de issues en equipo.</div>
+  </div>
+  <div class="uses-item">
+    <div class="uses-item-name">Arc Browser</div>
+    <div class="uses-item-desc">Mi navegador principal. Espacios organizados por proyecto y perfiles separados.</div>
+  </div>
+</div>
+
+{/* -- Café -- */}
+<div class="uses-section-title reveal">
+  <span class="iconify tabler--coffee" aria-hidden="true"></span>
+  Café de Especialidad
+</div>
+
+<div class="uses-list stagger-children">
+  <div class="uses-item">
+    <div class="uses-item-name">Gemilai Owl G3006</div>
+    <div class="uses-item-desc">Mi máquina de espresso. Semiautomática de 15 bar con PID, grupo térmico de 58mm y bomba ULKA italiana. Mi método de extracción favorito.</div>
+  </div>
+  <div class="uses-item">
+    <div class="uses-item-name">Chemex</div>
+    <div class="uses-item-desc">Mi segundo método favorito. Filtrado limpio y elegante, perfecto para resaltar notas florales y frutales.</div>
+  </div>
+  <div class="uses-item">
+    <div class="uses-item-name">MOKKOM 64mm Flat Burr</div>
+    <div class="uses-item-desc">Molino profesional de fresas planas de 64mm con 100 ajustes de molienda, cuerpo de acero inoxidable y temporizador electrónico. Consistencia excelente para espresso y filtrado.</div>
+  </div>
+  <div class="uses-item">
+    <div class="uses-item-name">Alpura Selecta Deslactosada</div>
+    <div class="uses-item-desc">Mi leche favorita para espumar. El equilibrio entre proteína y grasa da una microespuma estable y cremosa, ideal para latte art.</div>
+  </div>
+  <div class="uses-item">
+    <div class="uses-item-name">Tazas Artilugios — Colección Amantes del Café</div>
+    <div class="uses-item-desc">Mis tazas favoritas para latte. Cerámica de alta temperatura, hechas a mano, 294 ml. Tengo una colección de sus tazas — el diseño y la calidad son increíbles.</div>
+  </div>
+  <div class="uses-item">
+    <div class="uses-item-name">HWCMJY — Estación de apisonamiento 58mm</div>
+    <div class="uses-item-desc">Base de soporte para portafiltro con altura ajustable. Organizador 3 en 1 de nogal. Indispensable para un workflow de espresso limpio.</div>
+  </div>
+  <div class="uses-item">
+    <div class="uses-item-name">Diyife — Báscula de café con temporizador</div>
+    <div class="uses-item-desc">2 kg / 0.1g de precisión, recargable y portátil con paneles de vidrio. Excelente relación calidad-precio para espresso y pour-over.</div>
+  </div>
+  <div class="uses-item">
+    <div class="uses-item-name">Proceso favorito: lavado</div>
+    <div class="uses-item-desc">Prefiero cafés de proceso lavado (washed). Me gusta la taza limpia y dulce, sin la acidez marcada que suelen tener los naturales y honeys.</div>
+  </div>
+</div>
+
+<p class="uses-footnote reveal">
+  Esta página se actualiza cuando cambio mis herramientas. Última actualización: abril 2026.
+</p>

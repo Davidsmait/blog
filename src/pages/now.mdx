@@ -1,0 +1,163 @@
+---
+layout: '@/layouts/PageLayout.astro'
+title: Now — David San Luis Aguirre
+description: "Qué está haciendo David San Luis Aguirre ahora mismo: proyectos actuales, aprendizajes y enfoque profesional."
+---
+
+<script type="application/ld+json">{JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Now — David San Luis Aguirre",
+  "description": "Qué está haciendo David San Luis Aguirre ahora mismo: proyectos actuales, aprendizajes y enfoque.",
+  "url": "https://davidsanluisaguirre.com/now",
+  "inLanguage": "es",
+  "isPartOf": { "@id": "https://davidsanluisaguirre.com/#website" },
+  "author": { "@id": "https://davidsanluisaguirre.com/#person" },
+  "mainEntity": { "@id": "https://davidsanluisaguirre.com/#person" }
+})}</script>
+
+<style>{`
+  .now-intro {
+    font-size: 0.9rem;
+    line-height: 1.8;
+    max-width: 560px;
+    opacity: 0.5;
+    margin-bottom: 3rem;
+  }
+  .now-section-title {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.7rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    opacity: 0.35;
+    margin: 3rem 0 1.25rem;
+  }
+  .now-section-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(var(--accent), 0.08);
+  }
+  .now-section-title .iconify {
+    font-size: 0.9rem;
+    opacity: 0.5;
+  }
+  .now-card {
+    padding: 1.25rem 0;
+    border-bottom: 1px solid rgba(var(--accent), 0.04);
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .now-card:hover {
+    padding-left: 12px;
+  }
+  .now-card-title {
+    font-size: 0.925rem;
+    font-weight: 600;
+    color: rgb(var(--accent));
+    margin-bottom: 0.35rem;
+  }
+  .now-card-desc {
+    font-size: 0.825rem;
+    line-height: 1.7;
+    opacity: 0.5;
+    max-width: 540px;
+  }
+  .now-badge {
+    display: inline-block;
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 0.75rem;
+    opacity: 0.3;
+    margin-left: 0.5rem;
+  }
+  .now-footnote {
+    font-family: 'Instrument Serif', serif;
+    font-size: 0.9rem;
+    line-height: 1.7;
+    opacity: 0.25;
+    max-width: 480px;
+    font-style: italic;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(var(--accent), 0.04);
+  }
+  .now-footnote a {
+    opacity: 0.6;
+  }
+`}</style>
+
+<div class="reveal">
+  <p class="now-intro">
+    Esta es mi <a href="https://nownownow.com/about" target="_blank" rel="noopener noreferrer">página /now</a> — un resumen de en qué estoy enfocado ahora mismo. Se actualiza regularmente.
+  </p>
+</div>
+
+{/* -- Trabajo -- */}
+<div class="now-section-title reveal">
+  <span class="iconify tabler--briefcase" aria-hidden="true"></span>
+  Trabajo
+</div>
+
+<div class="stagger-children">
+  <div class="now-card">
+    <div class="now-card-title">Grace AI <span class="now-badge">LegalTech SaaS</span></div>
+    <div class="now-card-desc">
+      Desarrollando nuevos módulos de automatización legal con IA. Integrando modelos de lenguaje para análisis de documentos jurídicos, extracción de datos vía OCR y generación de redacciones legales. Stack: Angular + NestJS + AWS.
+    </div>
+  </div>
+  <div class="now-card">
+    <div class="now-card-title">QRSof <span class="now-badge">Fullstack Developer</span></div>
+    <div class="now-card-desc">
+      Trabajo remoto desde México. Enfocado en arquitectura multi-tenant, pipelines de procesamiento de documentos con IA, y mejoras de UX en el frontend de Grace.
+    </div>
+  </div>
+</div>
+
+{/* -- Aprendiendo -- */}
+<div class="now-section-title reveal">
+  <span class="iconify tabler--book" aria-hidden="true"></span>
+  Aprendiendo
+</div>
+
+<div class="stagger-children">
+  <div class="now-card">
+    <div class="now-card-title">AI-assisted Development</div>
+    <div class="now-card-desc">
+      Explorando flujos de trabajo con Claude Code y herramientas de IA para desarrollo. Integrando agentes en mi día a día para code review, refactoring y arquitectura.
+    </div>
+  </div>
+  <div class="now-card">
+    <div class="now-card-title">Café de especialidad</div>
+    <div class="now-card-desc">
+      Continuando mi formación como barista. Actualmente profundizando en métodos de filtrado, catación (protocolo SCA) y la ciencia detrás de la extracción del café. Documentando todo en mi <a href="/barista-roadmap">Roadmap Barista</a>.
+    </div>
+  </div>
+</div>
+
+{/* -- Proyectos personales -- */}
+<div class="now-section-title reveal">
+  <span class="iconify tabler--rocket" aria-hidden="true"></span>
+  Proyectos Personales
+</div>
+
+<div class="stagger-children">
+  <div class="now-card">
+    <div class="now-card-title">Este blog</div>
+    <div class="now-card-desc">
+      Escribiendo sobre desarrollo web, TypeScript, arquitectura de software y café de especialidad. Mejorando continuamente el SEO, rendimiento y diseño del sitio con Astro + Tailwind.
+    </div>
+  </div>
+  <div class="now-card">
+    <div class="now-card-title">Roadmap Barista de Especialidad</div>
+    <div class="now-card-desc">
+      Currículo gratuito y bilingüe de 9 fases. Ya tengo publicadas las primeras fases con lecciones sobre fundamentos, espresso, métodos de filtrado y catación. Próximamente: leche y latte art.
+    </div>
+  </div>
+</div>
+
+<p class="now-footnote reveal">
+  Última actualización: abril 2026 · Inspirado por el movimiento <a href="https://nownownow.com" target="_blank" rel="noopener noreferrer">/now</a> de Derek Sivers.
+</p>

@@ -13,13 +13,16 @@ isPremium: false
 
 ## What espresso really is
 
-Espresso is not simply "strong coffee." It's a specific extraction method: water at high pressure (~9 bars) forced through a compact bed of finely ground coffee in a short time. The result is a concentrated beverage of 25-45ml with an 8-12% TDS — between 6 and 10 times more concentrated than filter coffee.
+Espresso is not simply "strong coffee." It's a specific extraction method: water at high pressure (~9 bars) forced through a compact bed of finely ground coffee in a short time. The result is a concentrated beverage of 25-45ml — between 6 and 10 times more concentrated than filter coffee (technically, an 8-12% TDS).
 
 What makes espresso unique is the pressure. That pressure creates something no other method can: emulsion of oils, suspension of fine solids, and the production of crema. A well-extracted espresso has dense body, concentrated sweetness, integrated acidity, and a prolonged aftertaste.
 
 ## The numbers of espresso
 
-Every espresso is defined by four measurable parameters:
+Every espresso is defined by how much coffee you use (dose), how much liquid you get (yield), the proportion between them (ratio), and how long it takes (time). If you only remember one thing: **18g of coffee → 36g in the cup in ~28 seconds**.
+
+<details>
+<summary>Dose, yield, ratio and time — the details</summary>
 
 ### Dose (dose)
 
@@ -49,6 +52,8 @@ The **1:2** ratio is your universal starting point. From there you adjust accord
 
 From when you activate the pump until you stop the extraction. The standard range is **25-35 seconds** for a 1:2 ratio. But time is a result, not a goal — it's a consequence of your grind, dose, and distribution. If your shot takes 40 seconds to reach 36g, you don't stop at 25 and call it done: you adjust the grind.
 
+</details>
+
 ## The recipe
 
 When a barista says "my recipe," they mean the combination of these four parameters:
@@ -58,6 +63,11 @@ When a barista says "my recipe," they mean the combination of these four paramet
 That's an espresso recipe. It's your reference point. Every new coffee needs a new recipe — what works for a natural Brazil doesn't work for a washed Ethiopia.
 
 ## Crema: what it tells you and what it doesn't
+
+Crema tells you if the coffee is fresh and if the extraction was reasonable, but **it doesn't tell you if it tastes good**. Don't use it as your only indicator — trust your palate.
+
+<details>
+<summary>How to read crema — visual guide</summary>
 
 Crema is the golden-reddish foam layer on the surface of espresso. It forms from the emulsion of coffee oils with CO2 trapped under pressure.
 
@@ -70,9 +80,16 @@ What crema indicates:
 
 What crema does NOT indicate: if the espresso tastes good. A shot can have beautiful crema and taste terrible. Crema is a visual indicator, but your palate is the final judge. Actually, crema by itself is quite bitter — if you stir it with a spoon before tasting, the overall experience improves.
 
+</details>
+
 ## Distribution and tamping
 
-Before extracting, you need water to pass uniformly through the entire coffee bed. Two critical steps:
+Before extracting, break up coffee clumps with needles (WDT) then compress evenly with the tamper (~13-15 kg). If you skip this, water takes the easy path and your shot comes out unbalanced (channeling). The ideal sequence: **grind → WDT → level → tamp → extract**.
+
+<details>
+<summary>WDT, tamping and channeling — why each step matters</summary>
+
+This part sounds technical, but it becomes second nature with practice — for now, the important thing is understanding *why* it matters.
 
 ### Distribution
 
@@ -86,23 +103,15 @@ Distribution techniques:
 
 ### Tamping
 
-Compress the coffee in the basket to create a uniform, resistant bed. The recommended pressure is about **15-20 kg** — enough to compact but without forcing. Most important isn't the exact force, but **leveling**: an angled tamp creates a thinner side where water passes faster.
+Compress the coffee in the basket to create a uniform, resistant bed. The recommended pressure is about **13-15 kg** (~30 lbs) — enough to compact but without forcing. Most important isn't the exact force, but **consistency and leveling**: an angled tamp creates a thinner side where water passes faster.
 
 Calibrated tampers (like Normcore or Decent calibrated tamper) apply constant pressure and guarantee leveling. They're a good investment if you're starting out.
 
-The ideal sequence: **grind → WDT → level → tamp → extract**.
+</details>
 
-## Types of machines
+## Quick reference: machine types
 
-Not all espresso machines are the same. Main types:
-
-**Manual machines (lever):** You control pressure with a lever. Total control but steep learning curve. Flair, Cafelat Robot, La Pavoni.
-
-**Semi-automatic machines:** Electric pump, you control start and end of extraction. The standard in coffee shops and for serious home use. Breville Barista Express, Rancilio Silvia, La Marzocco Linea Mini.
-
-**Automatic machines:** The machine controls extraction volume or weight. Common in high-volume coffee shops.
-
-**Super-automatic machines:** Everything integrated (grinder, dosing, extraction). Total convenience but little control. Not recommended for learning serious barista work.
+You can use any espresso machine for this lesson, but it's useful to know where yours falls. In short: **manual (lever)** machines like Flair or Cafelat Robot give you total pressure control; **semi-automatics** like Rancilio Silvia or La Marzocco Linea Mini are the standard in coffee shops and for serious home use (you control start and end of extraction); **automatics** control volume for you; and **super-automatics** do everything (total convenience, little control).
 
 For learning, a semi-automatic with PID (temperature control) is the sweet spot between control and practicality.
 
