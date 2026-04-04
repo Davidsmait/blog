@@ -365,6 +365,47 @@ const diagram = diagramMap[post.slug] || null
   <ScrollProgressPlugin />
   <HeadingAnchorsPlugin />
 
+  <!-- Mark lesson as read in roadmap cookie -->
+  <script data-lesson-slug={post.slug} is:inline>
+    ;(function () {
+      const COOKIE_NAME = 'roadmap_read'
+      const COOKIE_DAYS = 365
+      const script = document.querySelector('script[data-lesson-slug]')
+      const slug = script?.getAttribute('data-lesson-slug')
+      if (!slug) return
+
+      function getReadLessons() {
+        const match = document.cookie.match(
+          new RegExp('(?:^|; )' + COOKIE_NAME + '=([^;]*)')
+        )
+        if (!match) return new Set()
+        try {
+          return new Set(JSON.parse(decodeURIComponent(match[1])))
+        } catch {
+          return new Set()
+        }
+      }
+
+      function saveReadLessons(slugs) {
+        const expires = new Date(Date.now() + COOKIE_DAYS * 864e5).toUTCString()
+        const value = encodeURIComponent(JSON.stringify([...slugs]))
+        document.cookie =
+          COOKIE_NAME +
+          '=' +
+          value +
+          '; expires=' +
+          expires +
+          '; path=/; SameSite=Lax'
+      }
+
+      const read = getReadLessons()
+      if (!read.has(slug)) {
+        read.add(slug)
+        saveReadLessons(read)
+      }
+    })()
+  </script>
+
   <!-- Page animations -->
   <script>
     function initPageAnimations() {
@@ -436,7 +477,9 @@ const diagram = diagramMap[post.slug] || null
             }
             content.addEventListener('transitionend', onEnd, { once: true })
             // Fallback in case transitionend doesn't fire
-            setTimeout(() => { if (details.open) details.open = false }, 600)
+            setTimeout(() => {
+              if (details.open) details.open = false
+            }, 600)
           } else {
             // Opening: set open first, then animate in next frame
             details.open = true
@@ -638,12 +681,15 @@ const diagram = diagramMap[post.slug] || null
     border: 1px solid color-mix(in srgb, var(--color-accent) 10%, transparent);
     border-radius: 12px;
     overflow: hidden;
-    transition: border-color 0.4s var(--ease-out-expo), box-shadow 0.4s var(--ease-out-expo);
+    transition:
+      border-color 0.4s var(--ease-out-expo),
+      box-shadow 0.4s var(--ease-out-expo);
   }
 
   .lesson-body :global(details:hover) {
     border-color: color-mix(in srgb, var(--color-accent) 22%, transparent);
-    box-shadow: 0 0 0 1px color-mix(in srgb, var(--color-accent) 6%, transparent);
+    box-shadow: 0 0 0 1px
+      color-mix(in srgb, var(--color-accent) 6%, transparent);
   }
 
   .lesson-body :global(details[open]) {
@@ -662,7 +708,9 @@ const diagram = diagramMap[post.slug] || null
     list-style: none;
     padding: 0.875rem 1.25rem;
     background: color-mix(in srgb, var(--color-accent) 5%, transparent);
-    transition: opacity 0.2s ease, background 0.2s ease;
+    transition:
+      opacity 0.2s ease,
+      background 0.2s ease;
     user-select: none;
   }
 
@@ -672,7 +720,8 @@ const diagram = diagramMap[post.slug] || null
   }
 
   .lesson-body :global(details[open] > summary) {
-    border-bottom: 1px solid color-mix(in srgb, var(--color-accent) 8%, transparent);
+    border-bottom: 1px solid
+      color-mix(in srgb, var(--color-accent) 8%, transparent);
   }
 
   .lesson-body :global(summary::-webkit-details-marker) {
@@ -698,7 +747,10 @@ const diagram = diagramMap[post.slug] || null
     justify-content: center;
     color: var(--color-accent);
     opacity: 0.5;
-    transition: transform 0.5s var(--ease-out-expo), background 0.3s ease, opacity 0.3s ease;
+    transition:
+      transform 0.5s var(--ease-out-expo),
+      background 0.3s ease,
+      opacity 0.3s ease;
   }
 
   .lesson-body :global(summary:hover::after) {
@@ -716,8 +768,9 @@ const diagram = diagramMap[post.slug] || null
     display: grid;
     grid-template-rows: 0fr;
     opacity: 0;
-    transition: grid-template-rows 0.5s var(--ease-out-expo),
-                opacity 0.4s ease;
+    transition:
+      grid-template-rows 0.5s var(--ease-out-expo),
+      opacity 0.4s ease;
   }
 
   .lesson-body :global(.details-content > .details-inner) {
