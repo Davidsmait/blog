@@ -88,17 +88,24 @@ This means your day-10 recipe might need adjustment for day-20 of the same coffe
 
 ## Dial-in for different roast profiles
 
+The process is the same, but the starting point changes with roast level. Light roasts need more extraction (finer, hotter, longer ratio); dark roasts, less (coarser, cooler, shorter ratio).
+
+<details>
+<summary>Adjustments by roast level — temperatures and ratios</summary>
+
 **Light roast:** Light roasts are denser, less soluble, harder to extract. Generally they need finer grind, higher temperature (93-96°C), and longer ratios (1:2.2 to 1:2.5). Acidity will be prominent — your job is to extract enough sweetness to balance it.
 
 **Medium roast:** The sweet spot for many baristas. Natural balance between acidity and sweetness. 1:2 ratio works well. Temperatures of 92-94°C.
 
 **Dark roast:** Very soluble, easy to over-extract. Slightly coarser grind, lower temperature (88-92°C), shorter ratios (1:1.5 to 1:2). The risk here is bitterness — if it appears, grind coarser or shorten the ratio.
 
+</details>
+
 ## What you need for this lesson
 
 - 0.1g scale under the portafilter
 - Timer
-- Fresh coffee (ideally 7-14 days post-roast)
+- Fresh coffee (ideally 7-21 days post-roast)
 - Your notebook — you'll make a table like the example
 
 ## Practical exercise

@@ -19,7 +19,7 @@ What makes espresso unique is the pressure. That pressure creates something no o
 
 ## The numbers of espresso
 
-Every espresso is defined by how much coffee you use (dose), how much liquid you get (yield), the proportion between them (ratio), and how long it takes (time). If you only remember one thing: **18g of coffee → 36g in the cup in ~28 seconds**.
+Every espresso is defined by how much coffee you use (dose), how much liquid you get (yield), the proportion between them (ratio), and how long it takes (time). If you only remember one thing: **18g of coffee → 36g in the cup in ~25 to 30 seconds**.
 
 <details>
 <summary>Dose, yield, ratio and time — the details</summary>

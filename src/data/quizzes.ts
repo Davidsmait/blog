@@ -477,29 +477,42 @@ export const quizzes: Record<string, QuizData> = {
       },
       {
         question:
-          '¿Qué significa "canalización" en el contexto de la extracción de espresso?',
+          'Durante el dial-in, si tu shot sabe ácido y agrio, ¿qué deberías hacer?',
         options: [
-          'El agua fluye uniformemente',
-          'El agua encuentra caminos de menor resistencia a través del puck',
-          'La presión aumenta uniformemente',
-          'El café se quema'
+          'Moler más grueso o acortar el ratio',
+          'Moler más fino o alargar el ratio',
+          'Aumentar la dosis y la temperatura',
+          'Cambiar de café inmediatamente'
         ],
         correct: 1,
         explanation:
-          'La canalización ocurre cuando el agua encuentra caminos de menor resistencia y fluye rápidamente a través de ciertos puntos del puck, resultando en una extracción desigual e incompleta.'
+          'Un shot ácido/agrio indica sub-extracción. Para extraer más, puedes moler más fino (más resistencia = más tiempo de contacto) o alargar el ratio (ej: de 1:2 a 1:2.5), lo que pasa más agua por el café.'
       },
       {
         question:
-          '¿Cuál es el tamaño de molido ideal para espresso en comparación con café de filtro?',
+          '¿Cuál es la "regla de oro" del proceso de dial-in?',
         options: [
-          'Más grueso',
-          'Más fino',
-          'El mismo',
-          'Depende de la máquina'
+          'Siempre usar 18g de dosis',
+          'Cambiar una sola variable a la vez',
+          'Nunca superar los 30 segundos',
+          'Usar ratio 1:2 para todo café'
         ],
         correct: 1,
         explanation:
-          'El molido para espresso debe ser significativamente más fino que el de filtro para resistir los 9 bares de presión y lograr el tiempo de extracción de 25-30 segundos.'
+          'La regla más importante del dial-in es cambiar una sola variable a la vez. Si cambias molienda, ratio y temperatura simultáneamente, no sabrás qué causó el cambio en sabor. El orden de prioridad es: molienda → ratio → temperatura → dosis.'
+      },
+      {
+        question:
+          '¿Cuál es el ratio de inicio recomendado para hacer dial-in con un café nuevo?',
+        options: [
+          '1:1 (ristretto)',
+          '1:1.5',
+          '1:2',
+          '1:3 (lungo)'
+        ],
+        correct: 2,
+        explanation:
+          'El ratio 1:2 es el punto de partida universal para dial-in. Con 18g de dosis, produces 36g de bebida. Es un punto medio balanceado desde el cual puedes acortar (más cuerpo) o alargar (más claridad) según el sabor.'
       }
     ],
     en: [
@@ -518,24 +531,42 @@ export const quizzes: Record<string, QuizData> = {
       },
       {
         question:
-          'What does "channeling" mean in the context of espresso extraction?',
+          'During dial-in, if your shot tastes acidic and sour, what should you do?',
         options: [
-          'Water flows uniformly',
-          'Water finds paths of less resistance through the puck',
-          'Pressure increases uniformly',
-          'Coffee is burned'
+          'Grind coarser or shorten the ratio',
+          'Grind finer or lengthen the ratio',
+          'Increase dose and temperature',
+          'Switch to a different coffee immediately'
         ],
         correct: 1,
         explanation:
-          'Channeling occurs when water finds paths of less resistance and flows quickly through certain points in the puck, resulting in uneven and incomplete extraction.'
+          'A sour/acidic shot indicates under-extraction. To extract more, you can grind finer (more resistance = more contact time) or lengthen the ratio (e.g., from 1:2 to 1:2.5), passing more water through the coffee.'
       },
       {
         question:
-          'What is the ideal grind size for espresso compared to filter coffee?',
-        options: ['Coarser', 'Finer', 'The same', 'Depends on the machine'],
+          'What is the "golden rule" of the dial-in process?',
+        options: [
+          'Always use an 18g dose',
+          'Change only one variable at a time',
+          'Never exceed 30 seconds',
+          'Use a 1:2 ratio for every coffee'
+        ],
         correct: 1,
         explanation:
-          'The grind for espresso must be significantly finer than filter coffee to resist the 9 bars of pressure and achieve the 25-30 second extraction time.'
+          'The most important dial-in rule is to change only one variable at a time. If you change grind, ratio, and temperature simultaneously, you won\'t know what caused the flavor change. The priority order is: grind → ratio → temperature → dose.'
+      },
+      {
+        question:
+          'What is the recommended starting ratio when dialing in a new coffee?',
+        options: [
+          '1:1 (ristretto)',
+          '1:1.5',
+          '1:2',
+          '1:3 (lungo)'
+        ],
+        correct: 2,
+        explanation:
+          'A 1:2 ratio is the universal starting point for dial-in. With an 18g dose, you produce 36g of beverage. It\'s a balanced middle ground from which you can shorten (more body) or lengthen (more clarity) based on taste.'
       }
     ]
   },
@@ -574,6 +605,19 @@ export const quizzes: Record<string, QuizData> = {
         correct: 1,
         explanation:
           'El pressure profiling permite variar la presión durante la extracción (ej: comenzar baja, luego aumentar). Esto optimiza la extracción y permite más control sobre los sabores finales.'
+      },
+      {
+        question:
+          '¿Cuál es el beneficio principal de la pre-infusión antes de la extracción completa?',
+        options: [
+          'Calentar el café antes de extraer',
+          'Saturar la cama de café uniformemente y liberar CO2 para reducir channeling',
+          'Aumentar la presión a más de 9 bares',
+          'Enfriar el agua a la temperatura correcta'
+        ],
+        correct: 1,
+        explanation:
+          'La pre-infusión satura el café a baja presión (2-4 bares) antes de aplicar los 9 bares completos. Esto permite que el CO2 escape del café fresco y que el agua se distribuya uniformemente, reduciendo enormemente el channeling y produciendo una extracción más homogénea.'
       }
     ],
     en: [
@@ -610,6 +654,19 @@ export const quizzes: Record<string, QuizData> = {
         correct: 1,
         explanation:
           'Pressure profiling allows varying pressure during extraction (e.g., start low, then increase). This optimizes extraction and provides more control over final flavors.'
+      },
+      {
+        question:
+          'What is the main benefit of pre-infusion before full extraction?',
+        options: [
+          'Heating the coffee before extraction',
+          'Uniformly saturating the coffee bed and releasing CO2 to reduce channeling',
+          'Increasing pressure above 9 bars',
+          'Cooling water to the correct temperature'
+        ],
+        correct: 1,
+        explanation:
+          'Pre-infusion saturates the coffee at low pressure (2-4 bars) before applying the full 9 bars. This allows CO2 to escape from fresh coffee and water to distribute evenly, enormously reducing channeling and producing a more homogeneous extraction.'
       }
     ]
   },
@@ -653,6 +710,19 @@ export const quizzes: Record<string, QuizData> = {
         correct: 2,
         explanation:
           'Un shot bien extraído empieza oscuro y viscoso (como miel), y gradualmente se aclara a caramelo dorado. Si se vuelve rubio claro demasiado rápido (blonding), la extracción se agotó prematuramente.'
+      },
+      {
+        question:
+          '¿Qué significa "canalización" (channeling) en el contexto de la extracción de espresso?',
+        options: [
+          'El agua fluye uniformemente por todo el puck',
+          'El agua encuentra caminos de menor resistencia a través del puck',
+          'La presión aumenta uniformemente durante la extracción',
+          'El café se quema por exceso de temperatura'
+        ],
+        correct: 1,
+        explanation:
+          'La canalización ocurre cuando el agua encuentra caminos de menor resistencia y fluye rápidamente a través de ciertos puntos del puck, resultando en una extracción desigual e incompleta. Es uno de los problemas más comunes al diagnosticar shots.'
       }
     ],
     en: [
@@ -694,6 +764,19 @@ export const quizzes: Record<string, QuizData> = {
         correct: 2,
         explanation:
           'A well-extracted shot starts dark and viscous (like honey), gradually lightening to golden caramel. If it turns pale blonde too quickly (blonding), the extraction ran out prematurely.'
+      },
+      {
+        question:
+          'What does "channeling" mean in the context of espresso extraction?',
+        options: [
+          'Water flows uniformly through the entire puck',
+          'Water finds paths of less resistance through the puck',
+          'Pressure increases uniformly during extraction',
+          'Coffee is burned due to excess temperature'
+        ],
+        correct: 1,
+        explanation:
+          'Channeling occurs when water finds paths of less resistance and flows quickly through certain points in the puck, resulting in uneven and incomplete extraction. It is one of the most common problems when diagnosing shots.'
       }
     ]
   },
@@ -727,16 +810,16 @@ export const quizzes: Record<string, QuizData> = {
       },
       {
         question:
-          '¿Cuál es el procedimiento correcto para mantener una válvula de 3 vías en una máquina de espresso?',
+          '¿Por qué nunca debes usar vinagre o jabón de cocina para limpiar tu máquina de espresso?',
         options: [
-          'Cambiarla cada mes',
-          'Limpiarla regularmente con agua caliente',
-          'Aplicar grasa cada semana',
-          'No requiere mantenimiento'
+          'Porque no disuelven los aceites de café',
+          'Porque pueden dañar juntas, sellos y metales de la máquina',
+          'Porque dejan un aroma agradable que interfiere con el café',
+          'Porque son demasiado caros comparados con los detergentes específicos'
         ],
         correct: 1,
         explanation:
-          'Las válvulas de 3 vías deben limpiarse regularmente con agua caliente para evitar que se atasquen con residuos de café, lo que afectaría el drenaje y presión del grupo.'
+          'El vinagre es demasiado agresivo para ciertos metales internos de la máquina, y el jabón de cocina puede dañar juntas y sellos. Los detergentes específicos para espresso (Cafiza, Puly Caff) están formulados para disolver aceites de café sin dañar los componentes de la máquina.'
       }
     ],
     en: [
@@ -763,16 +846,16 @@ export const quizzes: Record<string, QuizData> = {
       },
       {
         question:
-          'What is the correct procedure for maintaining a 3-way solenoid valve in an espresso machine?',
+          'Why should you never use vinegar or kitchen soap to clean your espresso machine?',
         options: [
-          'Replace it monthly',
-          'Clean it regularly with hot water',
-          'Apply grease weekly',
-          'Requires no maintenance'
+          'Because they don\'t dissolve coffee oils',
+          'Because they can damage gaskets, seals, and machine metals',
+          'Because they leave a pleasant aroma that interferes with coffee',
+          'Because they are too expensive compared to specific detergents'
         ],
         correct: 1,
         explanation:
-          'Three-way valves should be cleaned regularly with hot water to prevent them from clogging with coffee residue, which would affect group drainage and pressure.'
+          'Vinegar is too aggressive for certain internal machine metals, and kitchen soap can damage gaskets and seals. Espresso-specific detergents (Cafiza, Puly Caff) are formulated to dissolve coffee oils without damaging machine components.'
       }
     ]
   },

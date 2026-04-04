@@ -52,7 +52,10 @@ Backflush is the most important cleaning process for machines with a solenoid va
 
 If your machine does NOT have a solenoid (some entry machines like Flair or pure lever machines), skip this step.
 
-### How to backflush
+Backflushing uses a blank basket (no holes) to force water up through the group and solenoid, dragging out accumulated oils. First water-only cycles, then with detergent (Cafiza), and a final rinse. Takes ~10 minutes.
+
+<details>
+<summary>Step-by-step backflush procedure</summary>
 
 1. Insert a blank basket (backflush disc) in the portafilter. It's a basket without holes that blocks the outlet.
 2. **Backflush with water only (first):** Activate the pump for 10 seconds, turn off for 10 seconds. Repeat 5 times. This pushes water up through the group and solenoid, dragging out residue.
@@ -61,6 +64,8 @@ If your machine does NOT have a solenoid (some entry machines like Flair or pure
 5. Activate the pump without the portafilter to rinse the group.
 
 After backflush, your first shot might taste slightly like detergent if you didn't rinse enough. Make a "throwaway" shot before serving.
+
+</details>
 
 ### Use the right detergents
 

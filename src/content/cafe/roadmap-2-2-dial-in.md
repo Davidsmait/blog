@@ -31,8 +31,8 @@ Empieza con **1:2**. Si tu dosis es 18g, tu yield objetivo es 36g. Este ratio te
 
 Aquí es donde empieza el trabajo real. Extrae un shot apuntando a tu yield de 36g y observa cuánto tarda:
 
-- **Menos de 22 segundos:** La molienda está demasiado gruesa. El agua pasa demasiado rápido, sub-extrae. Muele más fino.
-- **22-35 segundos:** Estás en el rango correcto. Prueba el shot y ajusta desde ahí.
+- **Menos de 20 segundos:** La molienda está demasiado gruesa. El agua pasa demasiado rápido, sub-extrae. Muele más fino.
+- **20-35 segundos:** Estás en el rango correcto. Prueba el shot y ajusta desde ahí.
 - **Más de 40 segundos:** La molienda está demasiado fina. El agua no puede pasar, sobre-extrae o incluso se atasca. Muele más grueso.
 
 Haz ajustes pequeños en tu molino — en la mayoría de los grinders, un cambio de 1-2 números o clicks es suficiente. Cada ajuste, extrae un shot nuevo con la misma dosis y yield.
@@ -88,17 +88,24 @@ Esto significa que tu receta del día 10 puede necesitar ajuste para el día 20 
 
 ## Dial-in para diferentes perfiles de tueste
 
+El proceso es el mismo, pero el punto de partida cambia según el nivel de tueste. Los claros necesitan más extracción (más fino, más caliente, ratio más largo); los oscuros, menos (más grueso, más frío, ratio más corto).
+
+<details>
+<summary>Ajustes por nivel de tueste — temperaturas y ratios</summary>
+
 **Tueste claro:** Los cafés de tueste claro son más densos, menos solubles y más difíciles de extraer. Generalmente necesitan molienda más fina, temperatura más alta (93-96°C) y ratios más largos (1:2.2 a 1:2.5). La acidez va a ser protagonista — tu trabajo es extraer suficiente dulzura para balancearla.
 
 **Tueste medio:** El sweet spot para muchos baristas. Equilibrio natural entre acidez y dulzura. Ratio 1:2 funciona bien. Temperaturas de 92-94°C.
 
-**Tueste oscuro:** Muy soluble, fácil de sobre-extraer. Molienda ligeramente más gruesa, temperatura más baja (88-91°C), ratios más cortos (1:1.5 a 1:2). El riesgo aquí es el amargor — si aparece, muele más grueso o acorta el ratio.
+**Tueste oscuro:** Muy soluble, fácil de sobre-extraer. Molienda ligeramente más gruesa, temperatura más baja (88-92°C), ratios más cortos (1:1.5 a 1:2). El riesgo aquí es el amargor — si aparece, muele más grueso o acorta el ratio.
+
+</details>
 
 ## Lo que necesitas para esta lección
 
 - Báscula de 0.1g bajo el portafiltro
 - Cronómetro
-- Un café fresco (idealmente 7-14 días post-tueste)
+- Un café fresco (idealmente 7-21 días post-tueste)
 - Tu cuaderno — vas a hacer una tabla como la del ejemplo
 
 ## Ejercicio práctico

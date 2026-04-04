@@ -40,7 +40,7 @@ La temperatura del agua afecta qué compuestos se disuelven y a qué velocidad. 
 
 ### El rango de trabajo
 
-- **88-91°C:** Ideal para tuestes oscuros. Menor temperatura = menos extracción de compuestos amargos.
+- **88-92°C:** Ideal para tuestes oscuros. Menor temperatura = menos extracción de compuestos amargos.
 - **92-94°C:** El rango medio, funciona para la mayoría de los cafés de tueste medio.
 - **94-96°C:** Para tuestes claros que son densos y necesitan más energía para extraerse.
 
@@ -50,7 +50,10 @@ Cada grado importa. Un cambio de 2°C puede ser la diferencia entre un shot áci
 
 Más importante que la temperatura absoluta es la **estabilidad**: que la temperatura se mantenga constante durante toda la extracción. Las máquinas baratas con termobloque tienen fluctuaciones de hasta 5°C durante un shot — esto produce extracción inconsistente donde parte del café se sub-extrae y parte se sobre-extrae.
 
-Los sistemas de calderas:
+Las máquinas manejan la estabilidad térmica de formas muy diferentes según su sistema de calentamiento. Desde termobloques (rápidos pero imprecisos) hasta grupos saturados (el gold standard), cada sistema tiene sus compromisos entre precio, estabilidad y conveniencia.
+
+<details>
+<summary>Los 5 sistemas de calderas — comparativa</summary>
 
 **Termobloque:** Un bloque de metal con un canal por donde pasa el agua. Calienta rápido pero la temperatura fluctúa. Común en máquinas de entrada (Breville Bambino, De'Longhi). Funcional pero impreciso.
 
@@ -61,6 +64,8 @@ Los sistemas de calderas:
 **Doble caldera:** Una caldera para espresso y otra para vapor. Puedes hacer espresso y vaporizar simultáneamente, cada una a su temperatura óptima. El estándar en máquinas prosumer y comerciales (Breville Dual Boiler, Profitec Pro 600, La Marzocco).
 
 **Saturada (saturated group):** El grupo de extracción está conectado directamente a la caldera, manteniendo una temperatura extremadamente estable. La Marzocco GS3, Slayer, Synesso. El gold standard.
+
+</details>
 
 ### Temperature surfing
 
@@ -78,7 +83,10 @@ Cuando mojas la cama de café antes de aplicar presión completa:
 2. **La cama se satura uniformemente.** El agua tiene tiempo de distribuirse antes de que la presión la fuerce a través. Esto reduce enormemente el channeling.
 3. **La extracción es más homogénea.** Menos canales = cada partícula de café se extrae de forma más parecida = mejor sabor.
 
-### Tipos de pre-infusión
+Hay varias formas de lograr pre-infusión, desde la automática de un grupo E61 hasta técnicas manuales avanzadas como el blooming espresso de Scott Rao.
+
+<details>
+<summary>Tipos de pre-infusión — cuál tiene tu máquina</summary>
 
 **Pre-infusión por presión de línea:** La máquina usa la presión del agua de tu casa (~2-3 bares) para saturar el café antes de activar la bomba. La E61 y muchas máquinas de palanca hacen esto naturalmente.
 
@@ -86,7 +94,9 @@ Cuando mojas la cama de café antes de aplicar presión completa:
 
 **Pre-infusión manual:** En máquinas de palanca, tú controlas la fase de pre-infusión levantando la palanca parcialmente. En máquinas con paddle (La Marzocco GS3 MP), puedes controlar el flujo manualmente.
 
-**Blooming espresso:** Una técnica popularizada por Scott Rao: pre-infusión larga (15-25 segundos) a baja presión, pausa de unos segundos para dejar que el CO2 escape, y luego extracción completa. Produce shots extremadamente limpios y uniformes.
+**Blooming espresso:** Una técnica popularizada por Scott Rao: pre-infusión de 15-25 segundos a baja presión, pausa de 20-30 segundos para dejar que el CO2 escape completamente, y luego extracción completa. Produce shots extremadamente limpios y uniformes.
+
+</details>
 
 ### Si tu máquina no tiene pre-infusión
 

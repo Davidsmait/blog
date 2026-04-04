@@ -52,7 +52,10 @@ El backflush es el proceso de limpieza más importante para máquinas con electr
 
 Si tu máquina NO tiene electroválvula (algunas máquinas de entrada como la Flair o máquinas de palanca puras), sáltate este paso.
 
-### Cómo hacer backflush
+El backflush usa un disco ciego (sin agujeros) para forzar agua hacia arriba por el grupo y la electroválvula, arrastrando aceites acumulados. Primero ciclos solo con agua, después con detergente (Cafiza), y enjuague final. Toma ~10 minutos.
+
+<details>
+<summary>Procedimiento paso a paso del backflush</summary>
 
 1. Inserta un disco ciego (blank basket o backflush disc) en el portafiltro. Es una canasta sin agujeros que bloquea la salida.
 2. **Backflush solo con agua (primero):** Activa la bomba 10 segundos, desactiva 10 segundos. Repite 5 veces. Esto empuja agua hacia arriba a través del grupo y la electroválvula, arrastrando residuos.
@@ -61,6 +64,8 @@ Si tu máquina NO tiene electroválvula (algunas máquinas de entrada como la Fl
 5. Activa la bomba sin portafiltro para enjuagar el grupo.
 
 Después de un backflush, tu primer shot puede saber ligeramente a detergente si no enjuagaste suficiente. Haz un shot de "descarte" antes de servir.
+
+</details>
 
 ### Detergentes: usa los correctos
 

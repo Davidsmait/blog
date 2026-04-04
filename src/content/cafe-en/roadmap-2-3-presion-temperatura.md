@@ -40,7 +40,7 @@ Water temperature affects which compounds dissolve and at what speed. It's your 
 
 ### The working range
 
-- **88-91°C:** Ideal for dark roasts. Lower temperature = less extraction of bitter compounds.
+- **88-92°C:** Ideal for dark roasts. Lower temperature = less extraction of bitter compounds.
 - **92-94°C:** The middle range, works for most medium roast coffees.
 - **94-96°C:** For light roasts that are dense and need more energy to extract.
 
@@ -48,9 +48,12 @@ Every degree matters. A 2°C change can be the difference between an acidic shot
 
 ### Thermal stability
 
-More important than absolute temperature is **stability**: that temperature stays constant throughout extraction. Cheap machines with thermoblocks have fluctuations up to 10°C during a shot — this produces inconsistent extraction where part of the coffee under-extracts and part over-extracts.
+More important than absolute temperature is **stability**: that temperature stays constant throughout extraction. Cheap machines with thermoblocks have fluctuations up to 5°C during a shot — this produces inconsistent extraction where part of the coffee under-extracts and part over-extracts.
 
-Boiler systems:
+Machines handle thermal stability very differently depending on their heating system. From thermoblocks (fast but imprecise) to saturated groups (the gold standard), each system has its trade-offs between price, stability, and convenience.
+
+<details>
+<summary>The 5 boiler systems — comparison</summary>
 
 **Thermoblock:** A metal block with a channel where water passes. Heats fast but temperature fluctuates. Common in entry machines (Breville Bambino, De'Longhi). Functional but imprecise.
 
@@ -61,6 +64,8 @@ Boiler systems:
 **Double boiler:** One boiler for espresso, another for steam. You can do espresso and steam simultaneously, each at its optimal temperature. The standard in prosumer and commercial machines (Breville Dual Boiler, Profitec Pro 600, La Marzocco).
 
 **Saturated (saturated group):** The extraction group is directly connected to the boiler, maintaining extremely stable temperature. The gold standard. La Marzocco GS3, Slayer, Synesso.
+
+</details>
 
 ### Temperature surfing
 
@@ -78,7 +83,10 @@ When you wet the coffee bed before applying full pressure:
 2. **The bed saturates uniformly.** Water has time to distribute before pressure forces it through. This enormously reduces channeling.
 3. **Extraction is more homogeneous.** Fewer channels = each coffee particle extracts more similarly = better flavor.
 
-### Types of pre-infusion
+There are several ways to achieve pre-infusion, from the automatic pre-infusion of an E61 group to advanced manual techniques like Scott Rao's blooming espresso.
+
+<details>
+<summary>Types of pre-infusion — which one does your machine have</summary>
 
 **Line pressure pre-infusion:** The machine uses the pressure from your house water (~2-3 bars) to saturate the coffee before activating the pump. The E61 and many lever machines do this naturally.
 
@@ -86,7 +94,9 @@ When you wet the coffee bed before applying full pressure:
 
 **Manual pre-infusion:** On lever machines, you control the pre-infusion phase by lifting the lever partially. On machines with paddle (La Marzocco GS3 MP), you can control flow manually.
 
-**Blooming espresso:** A technique popularized by Scott Rao: long pre-infusion (10-15 seconds) at low pressure, pause for a few seconds to let CO2 escape, then full extraction. Produces extremely clean and uniform shots.
+**Blooming espresso:** A technique popularized by Scott Rao: pre-infusion of 15-25 seconds at low pressure, pause of 20-30 seconds to let CO2 escape completely, then full extraction. Produces extremely clean and uniform shots.
+
+</details>
 
 ### If your machine doesn't have pre-infusion
 
