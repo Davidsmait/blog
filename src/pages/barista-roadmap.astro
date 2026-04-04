@@ -30,59 +30,22 @@ const phases = [
     num: 2,
     title: 'Espresso',
     desc: 'Anatomía del shot, dial-in, presión, temperatura, diagnóstico y mantenimiento.',
-    totalLessons: 5
+    totalLessons: 5,
+    eta: 'Semana del 14 de abril'
   },
-  {
-    num: 3,
-    title: 'Métodos de filtrado',
-    desc: 'Pour-over, Chemex, V60, Aeropress, French press, Clever y cold brew.',
-    totalLessons: 5
-  },
-  {
-    num: 4,
-    title: 'Paladar y catación',
-    desc: 'Fisiología del gusto, protocolo SCA, rueda de sabores y entrenamiento sensorial.',
-    totalLessons: 4
-  },
-  {
-    num: 5,
-    title: 'Leche y latte art',
-    desc: 'Ciencia de la leche, vaporizado, corazón, rosetta, tulipán y etching.',
-    totalLessons: 4
-  },
-  {
-    num: 6,
-    title: 'Tueste y negocio',
-    desc: 'Reacciones químicas, curvas de tueste, cadena de suministro y abrir tu cafetería.',
-    totalLessons: 4
-  },
-  {
-    num: 7,
-    title: 'Profesional — Metodología Rao',
-    desc: 'Grooming avanzado, pressure profiling, refractómetro, TDS, Rao Spin y turbo shots.',
-    totalLessons: 4
-  },
-  {
-    num: 8,
-    title: 'Física de la extracción',
-    desc: 'Distribución de partículas, ley de Darcy, geometría de drippers, dinámica del puck y flow profiling.',
-    totalLessons: 4
-  },
-  {
-    num: 9,
-    title: 'Carrera profesional',
-    desc: 'Gestión de cafetería, barismo competitivo, certificación Q Grader y marca personal.',
-    totalLessons: 4
-  }
 ]
 
 const plannedLessons: Record<number, string[]> = {}
 
-const totalLessons = phases.reduce((acc, p) => acc + p.totalLessons, 0)
-const completedLessons = roadmapLessons.length
+// Phases that are not ready for public launch yet — force locked state
+const lockedPhases = new Set([2])
+
+const totalLessons = phases.filter(p => !lockedPhases.has(p.num)).reduce((acc, p) => acc + p.totalLessons, 0)
+const completedLessons = roadmapLessons.filter(l => !lockedPhases.has(l.data.phase)).length
 const progressPercent = Math.round((completedLessons / totalLessons) * 100)
 
 function getPhaseState(phaseNum: number) {
+  if (lockedPhases.has(phaseNum)) return 'locked'
   const lessons = lessonsByPhase[phaseNum] ?? []
   const total = phases.find((p) => p.num === phaseNum)!.totalLessons
   if (lessons.length >= total) return 'complete'
@@ -99,7 +62,7 @@ function getPhaseState(phaseNum: number) {
 <PageLayout
   frontmatter={{
     title: 'Roadmap Barista de Especialidad',
-    description: `${totalLessons} lecciones en ${phases.length} fases: desde los fundamentos del café hasta la física de la extracción. Aprende a ser barista profesional con Scott Rao, Gagné y la SCA.`,
+    description: `${totalLessons} lecciones en ${phases.length} fases publicadas (9 fases planeadas). Fundamentos del café y espresso. Aprende barismo de especialidad con Scott Rao, Gagné y la SCA.`,
     activeHeaderLink: 'Café'
   }}
 >
@@ -109,7 +72,7 @@ function getPhaseState(phaseNum: number) {
       '@context': 'https://schema.org',
       '@type': 'Course',
       name: 'Roadmap Barista de Especialidad',
-      description: `${totalLessons} lecciones en ${phases.length} fases: desde los fundamentos del café hasta la física de la extracción.`,
+      description: `${totalLessons} lecciones en ${phases.length} fases publicadas (9 fases planeadas). Fundamentos del café y espresso.`,
       url: 'https://davidsanluisaguirre.com/barista-roadmap',
       inLanguage: 'es',
       numberOfCredits: totalLessons,
@@ -142,7 +105,7 @@ function getPhaseState(phaseNum: number) {
           name: '¿Qué es el Roadmap Barista de Especialidad?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: `Un currículum gratuito de ${phases.length} fases y ${totalLessons} lecciones creado por David San Luis Aguirre. Cubre desde los fundamentos del café hasta la física de la extracción, basado en metodologías de Scott Rao, la SCA y Jonathan Gagné.`
+            text: `Un currículum gratuito con ${phases.length} fases publicadas (9 planeadas) y ${totalLessons} lecciones, creado por David San Luis Aguirre. Cubre fundamentos del café y espresso, basado en metodologías de Scott Rao, la SCA y Jonathan Gagné.`
           }
         },
         {
@@ -286,12 +249,13 @@ function getPhaseState(phaseNum: number) {
   <div class="rm-timeline stagger-children">
     {
       phases.map((phase, idx) => {
-        const lessons = lessonsByPhase[phase.num] ?? []
         const state = getPhaseState(phase.num)
         const isComplete = state === 'complete'
         const isActive = state === 'active'
         const isLocked = state === 'locked'
-        const planned = plannedLessons[phase.num] ?? []
+        // Hide lessons for force-locked phases
+        const lessons = isLocked ? [] : (lessonsByPhase[phase.num] ?? [])
+        const planned = isLocked ? [] : (plannedLessons[phase.num] ?? [])
         const hasContent = lessons.length > 0 || planned.length > 0
         const isLast = idx === phases.length - 1
 
@@ -358,6 +322,9 @@ function getPhaseState(phaseNum: number) {
                     <span class="rm-phase-title">{phase.title}</span>
                   </div>
                   <span class="rm-phase-desc">{phase.desc}</span>
+                  {isLocked && phase.eta && (
+                    <span class="rm-phase-eta">{phase.eta}</span>
+                  )}
                 </div>
                 <span class="rm-phase-meta">
                   <span class="rm-phase-counter">
@@ -446,6 +413,19 @@ function getPhaseState(phaseNum: number) {
         )
       })
     }
+  </div>
+
+  <!-- ── Teaser: Upcoming phases ── -->
+  <div class="reveal mt-12 sm:mt-16">
+    <div class="rm-teaser">
+      <div class="rm-teaser-line"></div>
+      <div class="rm-teaser-content">
+        <span class="rm-teaser-label">En desarrollo</span>
+        <p class="rm-teaser-text">
+          7 fases más en camino — métodos de filtrado, catación, latte art, tueste, metodología Rao y más.
+        </p>
+      </div>
+    </div>
   </div>
 
   <!-- ── Bibliography ── -->
@@ -938,8 +918,23 @@ function getPhaseState(phaseNum: number) {
     max-width: 28rem;
   }
   .rm-phase-header[aria-expanded='true'] .rm-phase-desc,
-  .rm-phase--active .rm-phase-desc {
+  .rm-phase--active .rm-phase-desc,
+  .rm-phase--locked .rm-phase-desc {
     display: block;
+  }
+
+  .rm-phase-eta {
+    display: inline-block;
+    margin-top: 0.5rem;
+    font-size: 0.625rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    opacity: 0.45;
+    padding: 0.15rem 0.5rem;
+    border: 1px solid color-mix(in srgb, var(--color-accent) 12%, transparent);
+    border-radius: 2px;
   }
 
   .rm-phase-meta {
@@ -1229,6 +1224,51 @@ function getPhaseState(phaseNum: number) {
     }
     .rm-biblio-list li {
       font-size: 0.75rem;
+    }
+  }
+
+  /* ── Teaser: upcoming phases ── */
+  .rm-teaser {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+    padding-left: 0.75rem;
+  }
+  .rm-teaser-line {
+    width: 1px;
+    min-height: 4rem;
+    background: repeating-linear-gradient(
+      to bottom,
+      color-mix(in srgb, var(--color-accent) 15%, transparent) 0px,
+      color-mix(in srgb, var(--color-accent) 15%, transparent) 4px,
+      transparent 4px,
+      transparent 10px
+    );
+    flex-shrink: 0;
+    margin-top: 0.25rem;
+  }
+  .rm-teaser-content {
+    padding-top: 0.25rem;
+  }
+  .rm-teaser-label {
+    display: inline-block;
+    font-size: 0.625rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    opacity: 0.5;
+    margin-bottom: 0.5rem;
+  }
+  .rm-teaser-text {
+    font-size: 0.8125rem;
+    line-height: 1.7;
+    opacity: 0.3;
+    max-width: 28rem;
+  }
+  @media (min-width: 640px) {
+    .rm-teaser {
+      padding-left: 1.375rem;
     }
   }
 </style>

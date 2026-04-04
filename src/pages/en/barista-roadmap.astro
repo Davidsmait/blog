@@ -37,59 +37,22 @@ const phases = [
     num: 2,
     title: 'Espresso',
     desc: 'Shot anatomy, dial-in, pressure, temperature, diagnosis and maintenance.',
-    totalLessons: 5
+    totalLessons: 5,
+    eta: 'Week of April 14'
   },
-  {
-    num: 3,
-    title: 'Filter methods',
-    desc: 'Pour-over, Chemex, V60, Aeropress, French press, Clever and cold brew.',
-    totalLessons: 5
-  },
-  {
-    num: 4,
-    title: 'Palate and cupping',
-    desc: 'Taste physiology, SCA protocol, flavor wheel and sensory training.',
-    totalLessons: 4
-  },
-  {
-    num: 5,
-    title: 'Milk and latte art',
-    desc: 'Milk science, steaming, heart, rosetta, tulip and etching.',
-    totalLessons: 4
-  },
-  {
-    num: 6,
-    title: 'Roasting and business',
-    desc: 'Chemical reactions, roast curves, supply chain and opening your cafe.',
-    totalLessons: 4
-  },
-  {
-    num: 7,
-    title: 'Professional — Rao Methodology',
-    desc: 'Advanced grooming, pressure profiling, refractometer, TDS, Rao Spin and turbo shots.',
-    totalLessons: 4
-  },
-  {
-    num: 8,
-    title: 'Physics of extraction',
-    desc: "Particle distribution, Darcy's law, dripper geometry, puck dynamics and flow profiling.",
-    totalLessons: 4
-  },
-  {
-    num: 9,
-    title: 'Professional career',
-    desc: 'Cafe management, competitive barismo, Q Grader certification and personal branding.',
-    totalLessons: 4
-  }
 ]
 
 const plannedLessons: Record<number, string[]> = {}
 
-const totalLessons = phases.reduce((acc, p) => acc + p.totalLessons, 0)
-const completedLessons = roadmapLessons.length
+// Phases that are not ready for public launch yet — force locked state
+const lockedPhases = new Set([2])
+
+const totalLessons = phases.filter(p => !lockedPhases.has(p.num)).reduce((acc, p) => acc + p.totalLessons, 0)
+const completedLessons = roadmapLessons.filter(l => !lockedPhases.has(l.data.phase)).length
 const progressPercent = Math.round((completedLessons / totalLessons) * 100)
 
 function getPhaseState(phaseNum: number) {
+  if (lockedPhases.has(phaseNum)) return 'locked'
   const lessons = lessonsByPhase[phaseNum] ?? []
   const total = phases.find((p) => p.num === phaseNum)!.totalLessons
   if (lessons.length >= total) return 'complete'
@@ -106,7 +69,7 @@ function getPhaseState(phaseNum: number) {
 <PageLayout
   frontmatter={{
     title: 'Specialty Barista Roadmap',
-    description: `${totalLessons} lessons in ${phases.length} phases: from coffee fundamentals to extraction physics. Become a pro barista with Scott Rao, Gagné and the SCA.`,
+    description: `${totalLessons} lessons in ${phases.length} published phases (9 planned). Coffee fundamentals and espresso. Learn specialty barismo with Scott Rao, Gagné and the SCA.`,
     activeHeaderLink: 'Café'
   }}
 >
@@ -116,7 +79,7 @@ function getPhaseState(phaseNum: number) {
       '@context': 'https://schema.org',
       '@type': 'Course',
       name: 'Specialty Barista Roadmap',
-      description: `${totalLessons} lessons in ${phases.length} phases: from coffee fundamentals to the physics of extraction.`,
+      description: `${totalLessons} lessons in ${phases.length} published phases (9 planned). Coffee fundamentals and espresso.`,
       url: 'https://davidsanluisaguirre.com/en/barista-roadmap',
       inLanguage: 'en',
       numberOfCredits: totalLessons,
@@ -149,7 +112,7 @@ function getPhaseState(phaseNum: number) {
           name: 'What is the Specialty Barista Roadmap?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: `A free ${phases.length}-phase, ${totalLessons}-lesson curriculum created by David San Luis Aguirre. It covers everything from coffee fundamentals to extraction physics, based on methodologies by Scott Rao, the SCA, and Jonathan Gagné.`
+            text: `A free curriculum with ${phases.length} published phases (9 planned) and ${totalLessons} lessons, created by David San Luis Aguirre. Covers coffee fundamentals and espresso, based on methodologies by Scott Rao, the SCA, and Jonathan Gagné.`
           }
         },
         {
@@ -255,12 +218,13 @@ function getPhaseState(phaseNum: number) {
   <div class="rm-timeline stagger-children">
     {
       phases.map((phase, idx) => {
-        const lessons = lessonsByPhase[phase.num] ?? []
         const state = getPhaseState(phase.num)
         const isComplete = state === 'complete'
         const isActive = state === 'active'
         const isLocked = state === 'locked'
-        const planned = plannedLessons[phase.num] ?? []
+        // Hide lessons for force-locked phases
+        const lessons = isLocked ? [] : (lessonsByPhase[phase.num] ?? [])
+        const planned = isLocked ? [] : (plannedLessons[phase.num] ?? [])
         const hasContent = lessons.length > 0 || planned.length > 0
         const isLast = idx === phases.length - 1
 
@@ -324,6 +288,9 @@ function getPhaseState(phaseNum: number) {
                     <span class="rm-phase-title">{phase.title}</span>
                   </div>
                   <span class="rm-phase-desc">{phase.desc}</span>
+                  {isLocked && phase.eta && (
+                    <span class="rm-phase-eta">{phase.eta}</span>
+                  )}
                 </div>
                 <span class="rm-phase-meta">
                   <span class="rm-phase-counter">
@@ -424,6 +391,19 @@ function getPhaseState(phaseNum: number) {
         )
       })
     }
+  </div>
+
+  <!-- ── Teaser: Upcoming phases ── -->
+  <div class="reveal mt-12 sm:mt-16">
+    <div class="rm-teaser">
+      <div class="rm-teaser-line"></div>
+      <div class="rm-teaser-content">
+        <span class="rm-teaser-label">In development</span>
+        <p class="rm-teaser-text">
+          7 more phases on the way — filter methods, cupping, latte art, roasting, Rao methodology and more.
+        </p>
+      </div>
+    </div>
   </div>
 
   <!-- ── Bibliography ── -->
@@ -778,8 +758,23 @@ function getPhaseState(phaseNum: number) {
     max-width: 28rem;
   }
   .rm-phase-header[aria-expanded='true'] .rm-phase-desc,
-  .rm-phase--active .rm-phase-desc {
+  .rm-phase--active .rm-phase-desc,
+  .rm-phase--locked .rm-phase-desc {
     display: block;
+  }
+
+  .rm-phase-eta {
+    display: inline-block;
+    margin-top: 0.5rem;
+    font-size: 0.625rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    opacity: 0.45;
+    padding: 0.15rem 0.5rem;
+    border: 1px solid color-mix(in srgb, var(--color-accent) 12%, transparent);
+    border-radius: 2px;
   }
 
   .rm-phase-meta {
@@ -1044,6 +1039,51 @@ function getPhaseState(phaseNum: number) {
     }
     .rm-biblio-list li {
       font-size: 0.75rem;
+    }
+  }
+
+  /* ── Teaser: upcoming phases ── */
+  .rm-teaser {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+    padding-left: 0.75rem;
+  }
+  .rm-teaser-line {
+    width: 1px;
+    min-height: 4rem;
+    background: repeating-linear-gradient(
+      to bottom,
+      color-mix(in srgb, var(--color-accent) 15%, transparent) 0px,
+      color-mix(in srgb, var(--color-accent) 15%, transparent) 4px,
+      transparent 4px,
+      transparent 10px
+    );
+    flex-shrink: 0;
+    margin-top: 0.25rem;
+  }
+  .rm-teaser-content {
+    padding-top: 0.25rem;
+  }
+  .rm-teaser-label {
+    display: inline-block;
+    font-size: 0.625rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    opacity: 0.5;
+    margin-bottom: 0.5rem;
+  }
+  .rm-teaser-text {
+    font-size: 0.8125rem;
+    line-height: 1.7;
+    opacity: 0.3;
+    max-width: 28rem;
+  }
+  @media (min-width: 640px) {
+    .rm-teaser {
+      padding-left: 1.375rem;
     }
   }
 </style>
