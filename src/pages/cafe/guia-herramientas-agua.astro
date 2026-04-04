@@ -88,7 +88,19 @@ const frontmatter = {
           <!-- Quick context -->
           <div class="reveal mb-8">
             <div class="context-card">
-              <div class="context-icon">💧</div>
+              <div class="context-icon">
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  ><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path></svg
+                >
+              </div>
               <div>
                 <p class="context-title">¿Por qué medir tu agua?</p>
                 <p class="context-text">
@@ -119,7 +131,21 @@ const frontmatter = {
                 class="tab-btn active"
                 data-tab="digital"
               >
-                <span class="tab-icon">📱</span>
+                <span class="tab-icon"
+                  ><svg
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    ><rect x="5" y="2" width="14" height="20" rx="2" ry="2"
+                    ></rect><line x1="12" y1="18" x2="12.01" y2="18"
+                    ></line></svg
+                  ></span
+                >
                 <span class="tab-label">Medidor Digital</span>
                 <span class="tab-sub">pH / TDS / EC</span>
               </button>
@@ -131,7 +157,21 @@ const frontmatter = {
                 class="tab-btn"
                 data-tab="api"
               >
-                <span class="tab-icon">🧪</span>
+                <span class="tab-icon"
+                  ><svg
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    ><path
+                      d="M9 3h6v7l4 8a2 2 0 0 1-1.8 2.8H6.8A2 2 0 0 1 5 18l4-8V3z"
+                    ></path><line x1="9" y1="3" x2="15" y2="3"></line></svg
+                  ></span
+                >
                 <span class="tab-label">Kit API</span>
                 <span class="tab-sub">GH & KH</span>
               </button>
@@ -143,7 +183,26 @@ const frontmatter = {
                 class="tab-btn"
                 data-tab="strips"
               >
-                <span class="tab-icon">📄</span>
+                <span class="tab-icon"
+                  ><svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    ><path
+                      d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+                    ></path><polyline points="14 2 14 8 20 8"></polyline><line
+                      x1="16"
+                      y1="13"
+                      x2="8"
+                      y2="13"></line><line x1="16" y1="17" x2="8" y2="17"
+                    ></line></svg
+                  ></span
+                >
                 <span class="tab-label">Tiritas pH</span>
                 <span class="tab-sub">Papel indicador</span>
               </button>
@@ -244,6 +303,25 @@ const frontmatter = {
                       buffer. Espera unos segundos a que la lectura se
                       estabilice.
                     </p>
+                    <figure class="step-photo">
+                      <picture>
+                        <source
+                          srcset="/images/water-guide/ph-calibration-686.webp"
+                          type="image/webp"
+                        />
+                        <img
+                          src="/images/water-guide/ph-calibration-686.jpg"
+                          alt="Pluma de pH sumergida en solución buffer 6.86, mostrando la lectura en pantalla"
+                          loading="lazy"
+                          width="900"
+                          height="1200"
+                        />
+                      </picture>
+                      <figcaption>
+                        Calibrando con la solución buffer pH 6.86 — se ve el
+                        sobre de referencia al lado
+                      </figcaption>
+                    </figure>
                   </div>
                 </div>
                 <div class="step-item">
@@ -267,6 +345,24 @@ const frontmatter = {
                       puntos de calibración tu medidor es preciso en todo el
                       rango.
                     </p>
+                    <figure class="step-photo">
+                      <picture>
+                        <source
+                          srcset="/images/water-guide/ph-calibration-400.webp"
+                          type="image/webp"
+                        />
+                        <img
+                          src="/images/water-guide/ph-calibration-400.jpg"
+                          alt="Pluma de pH calibrando en solución buffer 4.00, pantalla con lectura verde"
+                          loading="lazy"
+                          width="900"
+                          height="1200"
+                        />
+                      </picture>
+                      <figcaption>
+                        Segundo punto de calibración: solución pH 4.00
+                      </figcaption>
+                    </figure>
                   </div>
                 </div>
               </div>
@@ -381,6 +477,27 @@ const frontmatter = {
                 </div>
               </div>
 
+              <!-- Kit photo -->
+              <figure class="step-photo step-photo--wide">
+                <picture>
+                  <source
+                    srcset="/images/water-guide/api-kit-overview.webp"
+                    type="image/webp"
+                  />
+                  <img
+                    src="/images/water-guide/api-kit-overview.jpg"
+                    alt="Kit API GH & KH: frasco de reactivo KH y tubo de ensayo, con pizarrón de estándares SCA de fondo"
+                    loading="lazy"
+                    width="900"
+                    height="1200"
+                  />
+                </picture>
+                <figcaption>
+                  Frasco de reactivo KH y tubo de ensayo del kit API, con los
+                  estándares SCA anotados en la pizarrón
+                </figcaption>
+              </figure>
+
               <!-- Conversion callout -->
               <div class="conversion-card">
                 <p class="conversion-title">Conversión</p>
@@ -447,6 +564,40 @@ const frontmatter = {
                         >azul a amarillo</strong
                       >.
                     </p>
+                    <div class="photo-comparison">
+                      <figure class="step-photo step-photo--half">
+                        <picture>
+                          <source
+                            srcset="/images/water-guide/kh-test-blue-start.webp"
+                            type="image/webp"
+                          />
+                          <img
+                            src="/images/water-guide/kh-test-blue-start.jpg"
+                            alt="Tubo de ensayo KH con agua azul al inicio del test"
+                            loading="lazy"
+                            width="900"
+                            height="1200"
+                          />
+                        </picture>
+                        <figcaption>Inicio: azul</figcaption>
+                      </figure>
+                      <figure class="step-photo step-photo--half">
+                        <picture>
+                          <source
+                            srcset="/images/water-guide/kh-test-yellow-end.webp"
+                            type="image/webp"
+                          />
+                          <img
+                            src="/images/water-guide/kh-test-yellow-end.jpg"
+                            alt="Tubo de ensayo KH con agua amarilla al final del test — 6 gotas"
+                            loading="lazy"
+                            width="900"
+                            height="1200"
+                          />
+                        </picture>
+                        <figcaption>Gota 6: amarillo — ¡listo!</figcaption>
+                      </figure>
+                    </div>
                   </div>
                 </div>
                 <div class="step-item">
@@ -535,6 +686,24 @@ const frontmatter = {
                   <div class="step-number">4</div>
                   <div class="step-content">
                     <h3>Repite gota a gota hasta verde</h3>
+                    <figure class="step-photo">
+                      <picture>
+                        <source
+                          srcset="/images/water-guide/gh-test-green-end.webp"
+                          type="image/webp"
+                        />
+                        <img
+                          src="/images/water-guide/gh-test-green-end.jpg"
+                          alt="Tubo de ensayo GH con agua verde al final del test — 7 gotas"
+                          loading="lazy"
+                          width="900"
+                          height="1200"
+                        />
+                      </picture>
+                      <figcaption>
+                        Gota 7: verde — 7 × 17.9 = 125.3 ppm de dureza general
+                      </figcaption>
+                    </figure>
                   </div>
                 </div>
                 <div class="step-item">
@@ -884,7 +1053,7 @@ const frontmatter = {
           <div class="reveal">
             <div class="real-tests-card">
               <div class="real-tests-header">
-                <div class="real-tests-badge">📊 Pruebas reales</div>
+                <div class="real-tests-badge">Pruebas reales</div>
                 <h2 class="section-title" style="margin-bottom: 0.25rem">
                   Mis mediciones reales
                 </h2>
@@ -893,6 +1062,28 @@ const frontmatter = {
                   guía — para que veas datos reales de alguien que está
                   aprendiendo.
                 </p>
+                <figure
+                  class="step-photo step-photo--wide"
+                  style="margin-top: 1rem"
+                >
+                  <picture>
+                    <source
+                      srcset="/images/water-guide/water-testing-setup.webp"
+                      type="image/webp"
+                    />
+                    <img
+                      src="/images/water-guide/water-testing-setup.jpg"
+                      alt="Setup completo de pruebas de agua: vasos con agua, tubos de ensayo con resultados GH verde y KH amarillo, frasco de reactivo KH, con pizarrón de notas de fondo"
+                      loading="lazy"
+                      width="1200"
+                      height="900"
+                    />
+                  </picture>
+                  <figcaption>
+                    Mi setup de pruebas: resultados de KH (amarillo, 6 gotas) y
+                    GH (verde, 7 gotas) con el frasco de reactivo
+                  </figcaption>
+                </figure>
               </div>
 
               <div class="real-tests-grid">
@@ -935,7 +1126,7 @@ const frontmatter = {
                 <!-- Water: Café -->
                 <div class="real-test-item real-test-highlight">
                   <div class="real-test-label">Agua para mi café</div>
-                  <div class="real-test-star">★ La que uso para preparar</div>
+                  <div class="real-test-star">La que uso para preparar</div>
                   <div class="real-test-readings">
                     <div class="real-test-reading">
                       <span class="real-test-metric">TDS</span>
@@ -955,18 +1146,19 @@ const frontmatter = {
                     </div>
                   </div>
                   <p class="real-test-note">
-                    TDS y GH en rango ideal SCA — buenos minerales de extracción.
-                    Pero KH alto (107 vs. 40-70 recomendado) y pH 8.04 confirman
-                    exceso de bicarbonato: la acidez del café se aplana. Notas
-                    frutales y cítricas pierden brillo.
+                    TDS y GH en rango ideal SCA — buenos minerales de
+                    extracción. Pero KH alto (107 vs. 40-70 recomendado) y pH
+                    8.04 confirman exceso de bicarbonato: la acidez del café se
+                    aplana. Notas frutales y cítricas pierden brillo.
                   </p>
                 </div>
               </div>
 
               <div class="real-tests-footer">
                 <p>
-                  Mediciones realizadas en abril 2026 con medidor digital pH/TDS/EC y kit API GH &amp; KH. Se irán actualizando conforme pruebe más
-                  aguas y complete los tests de GH y KH.
+                  Mediciones realizadas en abril 2026 con medidor digital
+                  pH/TDS/EC y kit API GH &amp; KH. Se irán actualizando conforme
+                  pruebe más aguas y complete los tests de GH y KH.
                 </p>
               </div>
             </div>
@@ -1055,6 +1247,78 @@ const frontmatter = {
   </div>
 
   <ScrollProgressPlugin />
+
+  <!-- ═══ PHOTO LIGHTBOX ═══ -->
+  <div
+    class="lightbox"
+    id="photo-lightbox"
+    aria-hidden="true"
+    role="dialog"
+    aria-label="Foto ampliada"
+  >
+    <button class="lightbox-close" aria-label="Cerrar">&times;</button>
+    <img class="lightbox-img" id="lightbox-img" alt="" />
+    <p class="lightbox-caption" id="lightbox-caption"></p>
+  </div>
+
+  <script>
+    function initLightbox() {
+      const lightbox = document.getElementById('photo-lightbox')
+      const lightboxImg = document.getElementById(
+        'lightbox-img'
+      ) as HTMLImageElement
+      const lightboxCaption = document.getElementById('lightbox-caption')
+      if (!lightbox || !lightboxImg || !lightboxCaption) return
+
+      // Only enable on non-touch devices (desktop)
+      const isTouchDevice =
+        'ontouchstart' in window || navigator.maxTouchPoints > 0
+      if (isTouchDevice) return
+
+      document
+        .querySelectorAll<HTMLElement>('.step-photo')
+        .forEach((figure) => {
+          const img = figure.querySelector('img')
+          const caption = figure.querySelector('figcaption')
+          if (!img) return
+
+          figure.style.cursor = 'zoom-in'
+          figure.addEventListener('click', () => {
+            // Use the WebP source if available, else the img src
+            const source = figure.querySelector(
+              'source[type="image/webp"]'
+            ) as HTMLSourceElement
+            lightboxImg.src = source?.srcset || img.src
+            lightboxImg.alt = img.alt
+            lightboxCaption.textContent = caption?.textContent || ''
+            lightbox.classList.add('lightbox--open')
+            lightbox.setAttribute('aria-hidden', 'false')
+            document.body.style.overflow = 'hidden'
+          })
+        })
+
+      // Close on click anywhere
+      lightbox.addEventListener('click', closeLightbox)
+
+      // Close on Escape
+      document.addEventListener('keydown', (e) => {
+        if (
+          e.key === 'Escape' &&
+          lightbox.classList.contains('lightbox--open')
+        ) {
+          closeLightbox()
+        }
+      })
+
+      function closeLightbox() {
+        lightbox.classList.remove('lightbox--open')
+        lightbox.setAttribute('aria-hidden', 'true')
+        document.body.style.overflow = ''
+      }
+    }
+
+    document.addEventListener('astro:page-load', initLightbox)
+  </script>
 
   <!-- ═══ UNLOCK GATE ═══ -->
   <script>
@@ -1172,9 +1436,9 @@ const frontmatter = {
               const n = parseFloat(ppm)
               if (val === 0) verdictEl.textContent = ''
               else if (n < 40)
-                verdictEl.textContent = '⚠️ Baja — acidez puede ser agresiva'
-              else if (n <= 70) verdictEl.textContent = '✅ Rango ideal SCA'
-              else verdictEl.textContent = '⚠️ Alta — puede aplastar la acidez'
+                verdictEl.textContent = '△ Baja — acidez puede ser agresiva'
+              else if (n <= 70) verdictEl.textContent = '● Rango ideal SCA'
+              else verdictEl.textContent = '△ Alta — puede aplastar la acidez'
               verdictEl.className =
                 'calc-verdict' +
                 (n >= 40 && n <= 70 && val > 0
@@ -1186,11 +1450,11 @@ const frontmatter = {
               const n = parseFloat(ppm)
               if (val === 0) verdictEl.textContent = ''
               else if (n < 50)
-                verdictEl.textContent = '⚠️ Baja — poca extracción de sabor'
-              else if (n <= 175) verdictEl.textContent = '✅ Rango ideal SCA'
+                verdictEl.textContent = '△ Baja — poca extracción de sabor'
+              else if (n <= 175) verdictEl.textContent = '● Rango ideal SCA'
               else
                 verdictEl.textContent =
-                  '⚠️ Alta — riesgo de sobre-extracción y escala'
+                  '△ Alta — riesgo de sobre-extracción y escala'
               verdictEl.className =
                 'calc-verdict' +
                 (n >= 50 && n <= 175 && val > 0
@@ -2090,6 +2354,137 @@ const frontmatter = {
   .nav-link:hover .nav-title {
     opacity: 1;
     color: var(--color-accent);
+  }
+
+  /* ── Lightbox ── */
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.92);
+    backdrop-filter: blur(8px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    padding: 2rem;
+    gap: 1rem;
+  }
+  .lightbox--open {
+    opacity: 1;
+    pointer-events: all;
+  }
+  .lightbox-close {
+    position: absolute;
+    top: 1.25rem;
+    right: 1.5rem;
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 2rem;
+    cursor: pointer;
+    transition: color 0.2s ease;
+    line-height: 1;
+    padding: 0.25rem;
+  }
+  .lightbox-close:hover {
+    color: rgba(255, 255, 255, 0.9);
+  }
+  .lightbox-img {
+    max-width: min(90vw, 800px);
+    max-height: 80vh;
+    object-fit: contain;
+    border-radius: 0.5rem;
+    transform: scale(0.95);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .lightbox--open .lightbox-img {
+    transform: scale(1);
+  }
+  .lightbox-caption {
+    color: rgba(255, 255, 255, 0.45);
+    font-size: 0.8125rem;
+    text-align: center;
+    max-width: 500px;
+    margin: 0;
+  }
+
+  /* ── Zoom-in hint on hover (desktop) ── */
+  @media (pointer: fine) {
+    .step-photo {
+      position: relative;
+    }
+    .step-photo::after {
+      content: '⤢';
+      position: absolute;
+      top: 0.5rem;
+      right: 0.5rem;
+      width: 1.75rem;
+      height: 1.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 0, 0, 0.5);
+      color: rgba(255, 255, 255, 0.7);
+      border-radius: 4px;
+      font-size: 0.875rem;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+      pointer-events: none;
+    }
+    .step-photo:hover::after {
+      opacity: 1;
+    }
+  }
+
+  /* ── Step photos ── */
+  .step-photo {
+    margin: 1rem 0 0;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    border: 1px solid color-mix(in srgb, var(--color-accent) 8%, transparent);
+  }
+  .step-photo img {
+    width: 100%;
+    height: auto;
+    display: block;
+    max-height: 400px;
+    object-fit: cover;
+    object-position: center;
+  }
+  .step-photo figcaption {
+    font-size: 0.75rem;
+    line-height: 1.5;
+    opacity: 0.35;
+    padding: 0.625rem 0.75rem;
+    background: color-mix(in srgb, var(--color-accent) 2%, transparent);
+    margin: 0;
+  }
+  .step-photo--wide img {
+    max-height: 500px;
+  }
+  .step-photo--half {
+    margin: 0;
+  }
+  .step-photo--half img {
+    max-height: 320px;
+  }
+  .photo-comparison {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    margin-top: 1rem;
+  }
+  @media (max-width: 480px) {
+    .photo-comparison {
+      grid-template-columns: 1fr;
+    }
+    .step-photo--half img {
+      max-height: 280px;
+    }
   }
 
   /* ── Real test results ── */
