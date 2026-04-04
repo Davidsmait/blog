@@ -893,6 +893,67 @@ const frontmatter = {
 
           <div class="hr-animated my-10 sm:my-14"></div>
 
+          <!-- ═══ REAL TEST RESULTS ═══ -->
+          <div class="reveal">
+            <div class="real-tests-card">
+              <div class="real-tests-header">
+                <div class="real-tests-badge">📊 Real tests</div>
+                <h2 class="section-title" style="margin-bottom: 0.25rem">My actual measurements</h2>
+                <p class="section-note">Results from my own tests using the same tools from this guide — so you can see real data from someone who's learning.</p>
+              </div>
+
+              <div class="real-tests-grid">
+                <!-- Water: Sterile -->
+                <div class="real-test-item">
+                  <div class="real-test-label">Sterile injectable water</div>
+                  <div class="real-test-purpose">Zero-baseline reference</div>
+                  <div class="real-test-readings">
+                    <div class="real-test-reading">
+                      <span class="real-test-metric">TDS</span>
+                      <span class="real-test-value">1 ppm</span>
+                    </div>
+                  </div>
+                  <p class="real-test-note">Confirmed my tools are calibrated: virtually zero minerals.</p>
+                </div>
+
+                <!-- Water: Bottled (drinking) -->
+                <div class="real-test-item">
+                  <div class="real-test-label">Bottled water (drinking)</div>
+                  <div class="real-test-readings">
+                    <div class="real-test-reading">
+                      <span class="real-test-metric">TDS</span>
+                      <span class="real-test-value value-warn">29 ppm</span>
+                    </div>
+                  </div>
+                  <p class="real-test-note">Way below the SCA range (75-150). Reverse osmosis water without remineralization — fine for drinking, bad for coffee.</p>
+                </div>
+
+                <!-- Water: Coffee -->
+                <div class="real-test-item real-test-highlight">
+                  <div class="real-test-label">My coffee water</div>
+                  <div class="real-test-star">★ The one I brew with</div>
+                  <div class="real-test-readings">
+                    <div class="real-test-reading">
+                      <span class="real-test-metric">TDS</span>
+                      <span class="real-test-value value-good">108 ppm</span>
+                    </div>
+                    <div class="real-test-reading">
+                      <span class="real-test-metric">pH</span>
+                      <span class="real-test-value value-warn">8.04</span>
+                    </div>
+                  </div>
+                  <p class="real-test-note">TDS right in the SCA sweet spot. pH a bit high (alkaline) — suggests significant bicarbonate, which may flatten some acidity in the cup. Pending: GH and KH tests to confirm.</p>
+                </div>
+              </div>
+
+              <div class="real-tests-footer">
+                <p>These measurements will be updated as I test more waters and complete the GH and KH tests.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="hr-animated my-10 sm:my-14"></div>
+
           <!-- ═══ QUICK REFERENCE ═══ -->
           <div class="reveal">
             <h2 class="section-title">Quick reference</h2>
@@ -2009,5 +2070,106 @@ const frontmatter = {
   .nav-link:hover .nav-title {
     opacity: 1;
     color: var(--color-accent);
+  }
+
+  /* ── Real test results ── */
+  .real-tests-card {
+    border-radius: 0.75rem;
+    border: 1px solid color-mix(in srgb, var(--color-accent) 10%, transparent);
+    background: color-mix(in srgb, var(--color-accent) 2%, transparent);
+    padding: 2rem 1.5rem;
+  }
+  .real-tests-header { margin-bottom: 1.5rem; }
+  .real-tests-badge {
+    display: inline-block;
+    font-size: 0.6875rem;
+    font-weight: 650;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    opacity: 0.5;
+    margin-bottom: 0.75rem;
+  }
+  .real-tests-grid {
+    display: grid;
+    gap: 1rem;
+  }
+  @media (min-width: 640px) {
+    .real-tests-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .real-tests-card { padding: 2.5rem 2rem; }
+  }
+  .real-test-item {
+    padding: 1.25rem;
+    border-radius: 0.5rem;
+    border: 1px solid color-mix(in srgb, var(--color-accent) 6%, transparent);
+    background: color-mix(in srgb, var(--color-accent) 1%, transparent);
+  }
+  .real-test-highlight {
+    border-color: color-mix(in srgb, var(--color-accent) 15%, transparent);
+    background: color-mix(in srgb, var(--color-accent) 4%, transparent);
+  }
+  .real-test-label {
+    font-weight: 600;
+    font-size: 0.9375rem;
+    margin-bottom: 0.25rem;
+    opacity: 0.8;
+  }
+  .real-test-purpose {
+    font-size: 0.75rem;
+    opacity: 0.35;
+    margin-bottom: 0.75rem;
+  }
+  .real-test-star {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    color: var(--color-accent);
+    opacity: 0.7;
+    margin-bottom: 0.75rem;
+  }
+  .real-test-readings {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+  }
+  .real-test-reading {
+    display: flex;
+    align-items: baseline;
+    gap: 0.375rem;
+    padding: 0.375rem 0.625rem;
+    border-radius: 6px;
+    background: color-mix(in srgb, var(--color-accent) 4%, transparent);
+  }
+  .real-test-metric {
+    font-size: 0.6875rem;
+    font-weight: 650;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    opacity: 0.4;
+  }
+  .real-test-value {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    opacity: 0.8;
+  }
+  .value-good { color: #43a047; }
+  .value-warn { color: #f9a825; }
+  .real-test-note {
+    font-size: 0.8125rem;
+    line-height: 1.65;
+    opacity: 0.4;
+    margin: 0;
+  }
+  .real-tests-footer {
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid color-mix(in srgb, var(--color-accent) 6%, transparent);
+  }
+  .real-tests-footer p {
+    font-size: 0.75rem;
+    opacity: 0.3;
+    margin: 0;
+    font-style: italic;
   }
 </style>
