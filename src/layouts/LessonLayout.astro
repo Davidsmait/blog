@@ -366,29 +366,33 @@ const diagram = diagramMap[post.slug] || null
   <HeadingAnchorsPlugin />
 
   <!-- Mark lesson as read in roadmap cookie -->
-  <script data-lesson-slug={post.slug} is:inline>
-    ;(function () {
+  <div id="lesson-marker" data-lesson-slug={post.slug} style="display:none">
+  </div>
+  <script>
+    function markCurrentLessonRead() {
       const COOKIE_NAME = 'roadmap_read'
       const COOKIE_DAYS = 365
-      const script = document.querySelector('script[data-lesson-slug]')
-      const slug = script?.getAttribute('data-lesson-slug')
+
+      // Get slug from the marker element
+      const marker = document.getElementById('lesson-marker')
+      const slug = marker?.getAttribute('data-lesson-slug')
       if (!slug) return
 
-      function getReadLessons() {
+      function getReadLessons(): string[] {
         const match = document.cookie.match(
           new RegExp('(?:^|; )' + COOKIE_NAME + '=([^;]*)')
         )
-        if (!match) return new Set()
+        if (!match) return []
         try {
-          return new Set(JSON.parse(decodeURIComponent(match[1])))
+          return JSON.parse(decodeURIComponent(match[1])) || []
         } catch {
-          return new Set()
+          return []
         }
       }
 
-      function saveReadLessons(slugs) {
+      function saveReadLessons(arr: string[]) {
         const expires = new Date(Date.now() + COOKIE_DAYS * 864e5).toUTCString()
-        const value = encodeURIComponent(JSON.stringify([...slugs]))
+        const value = encodeURIComponent(JSON.stringify(arr))
         document.cookie =
           COOKIE_NAME +
           '=' +
@@ -399,11 +403,15 @@ const diagram = diagramMap[post.slug] || null
       }
 
       const read = getReadLessons()
-      if (!read.has(slug)) {
-        read.add(slug)
+      if (!read.includes(slug)) {
+        read.push(slug)
         saveReadLessons(read)
       }
-    })()
+    }
+
+    // Run on every page load including View Transitions
+    markCurrentLessonRead()
+    document.addEventListener('astro:after-swap', markCurrentLessonRead)
   </script>
 
   <!-- Page animations -->
@@ -413,6 +421,14 @@ const diagram = diagramMap[post.slug] || null
         '.reveal, .stagger-children, .hr-animated'
       )
       if (reveals.length) {
+        // Immediately reveal elements already in viewport (fixes View Transitions)
+        reveals.forEach((el) => {
+          const rect = el.getBoundingClientRect()
+          if (rect.top < window.innerHeight && rect.bottom > 0) {
+            el.classList.add('revealed')
+          }
+        })
+
         const observer = new IntersectionObserver(
           (entries) => {
             entries.forEach((entry) => {
@@ -421,7 +437,9 @@ const diagram = diagramMap[post.slug] || null
           },
           { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
         )
-        reveals.forEach((el) => observer.observe(el))
+        reveals.forEach((el) => {
+          if (!el.classList.contains('revealed')) observer.observe(el)
+        })
       }
 
       const isTouchDevice =
