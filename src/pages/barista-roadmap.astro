@@ -167,7 +167,7 @@ function getPhaseState(phaseNum: number) {
         >
           Barista de Especialidad
         </p>
-        <p class="mt-2 text-[13px] leading-relaxed opacity-30 sm:max-w-sm">
+        <p class="mt-2 text-sm leading-relaxed opacity-50 sm:max-w-sm">
           {totalLessons} lecciones de cero a profesional. Desde los fundamentos del
           grano hasta la física de la extracción.
         </p>
@@ -184,7 +184,7 @@ function getPhaseState(phaseNum: number) {
           >
           </div>
         </div>
-        <span class="text-[11px] font-medium tabular-nums opacity-25"
+        <span class="text-xs font-medium tabular-nums opacity-40"
           >{completedLessons}/{totalLessons}</span
         >
       </div>
@@ -200,7 +200,7 @@ function getPhaseState(phaseNum: number) {
           </div>
         </div>
         <span
-          class="text-[11px] font-medium tabular-nums opacity-25"
+          class="text-xs font-medium tabular-nums opacity-40"
           data-user-progress-text></span>
       </div>
     </div>
@@ -209,14 +209,14 @@ function getPhaseState(phaseNum: number) {
   <!-- ── Intro — Editorial prose ── -->
   <div class="reveal reveal-delay-2 mb-14 sm:mb-20">
     <div class="sm:ml-12">
-      <p class="text-[13px] leading-[1.8] opacity-40 sm:max-w-lg">
+      <p class="text-sm leading-[1.8] opacity-55 sm:max-w-lg">
         No soy barista profesional — soy un developer que intenta tomarse la
         vida en serio. Este roadmap lo armé a partir de libros de especialidad y
         el programa de la SCA. El contenido lo construyo con la ayuda de Claude,
         yo lo valido, lo estudio, lo practico, y cuando estoy seguro de que
         tiene sentido, lo publico.
       </p>
-      <p class="mt-3 text-[13px] leading-[1.8] opacity-40 sm:max-w-lg">
+      <p class="mt-3 text-sm leading-[1.8] opacity-55 sm:max-w-lg">
         El objetivo es abrir cafeterías con diferentes enfoques y temáticas,
         siempre con el café de especialidad como base.
         <strong class="font-semibold text-accent opacity-100"
@@ -234,7 +234,7 @@ function getPhaseState(phaseNum: number) {
       </p>
       <a
         href="/cafe/2025-03-05-mi-camino-barista-especialidad"
-        class="mt-4 inline-flex items-center gap-2 text-[12px] font-medium uppercase tracking-[0.12em] text-accent no-underline opacity-40 transition-opacity duration-500 hover:opacity-80"
+        class="mt-4 inline-flex items-center gap-2 text-[13px] font-medium uppercase tracking-[0.12em] text-accent no-underline opacity-50 transition-opacity duration-500 hover:opacity-85"
       >
         Leer la historia completa
         <span
@@ -316,7 +316,7 @@ function getPhaseState(phaseNum: number) {
               >
                 <div class="rm-phase-info">
                   <div class="flex items-center gap-3">
-                    <span class="font-serif text-[12px] italic opacity-15">
+                    <span class="font-serif text-[13px] italic opacity-20">
                       ({String(phase.num).padStart(2, '0')})
                     </span>
                     <span class="rm-phase-title">{phase.title}</span>
@@ -782,7 +782,7 @@ function getPhaseState(phaseNum: number) {
     background: color-mix(in srgb, #22c55e 15%, transparent);
   }
   .rm-phase.user-phase-complete .rm-phase-title {
-    opacity: 0.45;
+    opacity: 0.55;
   }
 
   .rm-node-empty {
@@ -883,37 +883,38 @@ function getPhaseState(phaseNum: number) {
   }
 
   .rm-phase-title {
-    font-size: 0.9375rem;
+    font-size: 1rem;
     font-weight: 600;
-    line-height: 1.2;
+    line-height: 1.25;
     letter-spacing: -0.01em;
     transition:
       opacity 0.3s ease,
       color 0.3s ease;
   }
   .rm-phase--complete .rm-phase-title {
-    opacity: 0.5;
+    opacity: 0.6;
   }
   .rm-phase--active .rm-phase-title {
     color: var(--color-accent);
   }
   .rm-phase--next .rm-phase-title {
-    opacity: 0.5;
+    opacity: 0.55;
   }
   .rm-phase--locked .rm-phase-title {
-    opacity: 0.3;
+    opacity: 0.4;
   }
   .rm-phase-header:hover .rm-phase-title {
-    opacity: 0.8;
+    opacity: 0.85;
   }
   .rm-phase--active .rm-phase-header:hover .rm-phase-title {
     opacity: 1;
   }
 
   .rm-phase-desc {
-    font-size: 0.6875rem;
-    line-height: 1.5;
-    opacity: 0.3;
+    font-size: 0.8125rem;
+    line-height: 1.55;
+    opacity: 0.50;
+    letter-spacing: 0.005em;
     display: none;
     max-width: 28rem;
   }
@@ -926,12 +927,12 @@ function getPhaseState(phaseNum: number) {
   .rm-phase-eta {
     display: inline-block;
     margin-top: 0.5rem;
-    font-size: 0.625rem;
+    font-size: 0.6875rem;
     font-weight: 600;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--color-accent);
-    opacity: 0.45;
+    opacity: 0.55;
     padding: 0.15rem 0.5rem;
     border: 1px solid color-mix(in srgb, var(--color-accent) 12%, transparent);
     border-radius: 2px;
@@ -946,30 +947,30 @@ function getPhaseState(phaseNum: number) {
   }
 
   .rm-phase-counter {
-    font-size: 0.6875rem;
+    font-size: 0.75rem;
     font-weight: 500;
     font-variant-numeric: tabular-nums;
-    opacity: 0.35;
+    opacity: 0.45;
   }
   .rm-phase--complete .rm-phase-counter {
     color: #22c55e;
-    opacity: 0.5;
+    opacity: 0.6;
   }
   .rm-phase--active .rm-phase-counter {
     color: var(--color-accent);
-    opacity: 0.55;
+    opacity: 0.65;
   }
 
   .rm-phase-chevron {
     width: 0.75rem;
     height: 0.75rem;
-    opacity: 0.2;
+    opacity: 0.3;
     transition:
       transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
       opacity 0.3s ease;
   }
   .rm-phase-header:hover .rm-phase-chevron {
-    opacity: 0.4;
+    opacity: 0.5;
   }
 
   /* ── Lessons (animated expand/collapse) ── */
@@ -996,9 +997,9 @@ function getPhaseState(phaseNum: number) {
     display: flex;
     align-items: center;
     gap: 0.625rem;
-    padding: 0.4rem 0.625rem;
+    padding: 0.5rem 0.625rem;
     margin: 0 -0.625rem;
-    font-size: 0.8125rem;
+    font-size: 0.875rem;
     text-decoration: none;
     color: inherit;
     border-radius: 0.5rem;
@@ -1060,10 +1061,10 @@ function getPhaseState(phaseNum: number) {
     display: none;
   }
   .rm-lesson--available.is-read .rm-lesson-title {
-    opacity: 0.5;
+    opacity: 0.6;
   }
   .rm-lesson--available:not(.is-read) .rm-lesson-title {
-    opacity: 0.75;
+    opacity: 0.85;
   }
   a.rm-lesson--available:hover .rm-lesson-title {
     opacity: 1;
@@ -1077,17 +1078,17 @@ function getPhaseState(phaseNum: number) {
   }
 
   .rm-lesson--pending .rm-lesson-title {
-    opacity: 0.3;
+    opacity: 0.4;
   }
 
   /* ── Bibliography ── */
   .rm-biblio-toggle {
     cursor: pointer;
-    font-size: 0.6875rem;
+    font-size: 0.75rem;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.12em;
-    opacity: 0.3;
+    opacity: 0.45;
     transition: opacity 0.3s ease;
     list-style: none;
   }
@@ -1099,7 +1100,7 @@ function getPhaseState(phaseNum: number) {
     content: '';
   }
   .rm-biblio-toggle:hover {
-    opacity: 0.5;
+    opacity: 0.65;
   }
 
   .rm-biblio {
@@ -1109,9 +1110,9 @@ function getPhaseState(phaseNum: number) {
     margin-bottom: 1.5rem;
   }
   .rm-biblio-heading {
-    font-size: 0.6875rem;
+    font-size: 0.75rem;
     font-weight: 600;
-    opacity: 0.3;
+    opacity: 0.45;
     margin-bottom: 0.5rem;
     text-transform: uppercase;
     letter-spacing: 0.06em;
@@ -1125,9 +1126,9 @@ function getPhaseState(phaseNum: number) {
     gap: 0.5rem;
   }
   .rm-biblio-list li {
-    font-size: 0.8125rem;
-    line-height: 1.6;
-    opacity: 0.45;
+    font-size: 0.875rem;
+    line-height: 1.65;
+    opacity: 0.55;
   }
   .rm-biblio-list li strong {
     opacity: 1;
@@ -1142,9 +1143,9 @@ function getPhaseState(phaseNum: number) {
     gap: 0.375rem;
   }
   .rm-phase-refs p {
-    font-size: 0.8125rem;
-    line-height: 1.6;
-    opacity: 0.45;
+    font-size: 0.875rem;
+    line-height: 1.65;
+    opacity: 0.55;
     margin: 0;
   }
   .rm-phase-refs p strong {
@@ -1168,11 +1169,11 @@ function getPhaseState(phaseNum: number) {
     background: color-mix(in srgb, var(--color-accent) 6%, transparent);
   }
   .rm-bonus-divider-label {
-    font-size: 0.5625rem;
+    font-size: 0.625rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.15em;
-    opacity: 0.25;
+    opacity: 0.4;
   }
   .rm-lesson--bonus {
     position: relative;
@@ -1215,15 +1216,15 @@ function getPhaseState(phaseNum: number) {
   /* ── Responsive ── */
   @media (max-width: 480px) {
     .rm-phase-title {
-      font-size: 0.8125rem;
+      font-size: 0.9375rem;
     }
     .rm-lesson {
-      font-size: 0.75rem;
-      padding: 0.3rem 0.5rem;
+      font-size: 0.8125rem;
+      padding: 0.4rem 0.5rem;
       margin: 0 -0.5rem;
     }
     .rm-biblio-list li {
-      font-size: 0.75rem;
+      font-size: 0.8125rem;
     }
   }
 
@@ -1252,18 +1253,18 @@ function getPhaseState(phaseNum: number) {
   }
   .rm-teaser-label {
     display: inline-block;
-    font-size: 0.625rem;
+    font-size: 0.6875rem;
     font-weight: 600;
     letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--color-accent);
-    opacity: 0.5;
+    opacity: 0.6;
     margin-bottom: 0.5rem;
   }
   .rm-teaser-text {
-    font-size: 0.8125rem;
+    font-size: 0.875rem;
     line-height: 1.7;
-    opacity: 0.3;
+    opacity: 0.45;
     max-width: 28rem;
   }
   @media (min-width: 640px) {
