@@ -35,3 +35,8 @@ linkedin-post-roadmap.md
 linkedin-roadmap-card.png
 linkedin-post-copiar.txt
 linkedin-roadmap-fase1.png
+linkedin-carousel-fase1.pdf
+scripts/linkedin-carousel-screenshots.mjs
+.gitignore
+scripts/linkedin-carousel-pdf.py
+scripts/carousel-slides/
