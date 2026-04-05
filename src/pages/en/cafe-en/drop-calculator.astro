@@ -1,0 +1,413 @@
+---
+import PageLayout from '../../../layouts/PageLayout.astro'
+---
+
+<PageLayout
+  frontmatter={{
+    title: 'Drop Calculator — GH & KH',
+    description:
+      'Convert your API GH & KH kit drops to ppm instantly. Quick tool with SCA ideal ranges for specialty coffee.',
+    activeHeaderLink: 'Café'
+  }}
+>
+  <script
+    type="application/ld+json"
+    set:html={JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'WebApplication',
+      name: 'GH & KH Drop Calculator',
+      description:
+        'Convert API kit drops to ppm with SCA ranges for specialty coffee.',
+      url: 'https://davidsanluisaguirre.com/en/cafe-en/drop-calculator',
+      inLanguage: 'en',
+      applicationCategory: 'UtilityApplication',
+      offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+      author: { '@id': 'https://davidsanluisaguirre.com/#person' }
+    })}
+  />
+
+  <div class="calc-page">
+    <!-- Header -->
+    <div class="reveal">
+      <div class="calc-page-header">
+        <span class="calc-page-label">Quick tool</span>
+        <h1 class="calc-page-title">Drop Calculator</h1>
+        <p class="calc-page-sub">
+          API GH & KH kit → ppm with SCA ranges
+        </p>
+      </div>
+    </div>
+
+    <div class="hr-animated mb-8 sm:mb-12"></div>
+
+    <!-- Calculators -->
+    <div class="reveal calc-grid">
+
+      <!-- KH Calculator -->
+      <div class="calc-card">
+        <div class="calc-card-header">
+          <h2 class="calc-card-title">KH</h2>
+          <span class="calc-card-subtitle">Carbonate alkalinity</span>
+        </div>
+        <p class="calc-card-hint">Color change: blue → yellow</p>
+
+        <div class="calc-box" id="calc-kh">
+          <label class="calc-label" for="kh-drops">How many drops did you use?</label>
+          <div class="calc-input-row">
+            <button class="calc-btn minus" data-calc="kh" data-action="minus" aria-label="Less">−</button>
+            <input type="number" id="kh-drops" class="calc-input" value="0" min="0" max="30" readonly />
+            <button class="calc-btn plus" data-calc="kh" data-action="plus" aria-label="More">+</button>
+          </div>
+          <div class="calc-result" id="kh-result">
+            <span class="calc-ppm">0 ppm</span>
+            <span class="calc-verdict" id="kh-verdict"></span>
+          </div>
+        </div>
+
+        <div class="calc-range">
+          <div class="calc-range-bar">
+            <span class="range-zone range-low" style="width:30%">
+              <span class="range-label">&lt; 40</span>
+            </span>
+            <span class="range-zone range-ideal" style="width:23%">
+              <span class="range-label">40 – 70</span>
+            </span>
+            <span class="range-zone range-high" style="width:47%">
+              <span class="range-label">&gt; 70</span>
+            </span>
+          </div>
+          <span class="calc-range-unit">ppm · SCA ideal range</span>
+        </div>
+      </div>
+
+      <!-- GH Calculator -->
+      <div class="calc-card">
+        <div class="calc-card-header">
+          <h2 class="calc-card-title">GH</h2>
+          <span class="calc-card-subtitle">General hardness</span>
+        </div>
+        <p class="calc-card-hint">Color change: orange → green</p>
+
+        <div class="calc-box" id="calc-gh">
+          <label class="calc-label" for="gh-drops">How many drops did you use?</label>
+          <div class="calc-input-row">
+            <button class="calc-btn minus" data-calc="gh" data-action="minus" aria-label="Less">−</button>
+            <input type="number" id="gh-drops" class="calc-input" value="0" min="0" max="30" readonly />
+            <button class="calc-btn plus" data-calc="gh" data-action="plus" aria-label="More">+</button>
+          </div>
+          <div class="calc-result" id="gh-result">
+            <span class="calc-ppm">0 ppm</span>
+            <span class="calc-verdict" id="gh-verdict"></span>
+          </div>
+        </div>
+
+        <div class="calc-range">
+          <div class="calc-range-bar">
+            <span class="range-zone range-low" style="width:28%">
+              <span class="range-label">&lt; 50</span>
+            </span>
+            <span class="range-zone range-ideal" style="width:42%">
+              <span class="range-label">50 – 175</span>
+            </span>
+            <span class="range-zone range-high" style="width:30%">
+              <span class="range-label">&gt; 175</span>
+            </span>
+          </div>
+          <span class="calc-range-unit">ppm · SCA ideal range</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick reference -->
+    <div class="reveal mt-8 sm:mt-12">
+      <div class="calc-reference">
+        <h3 class="calc-ref-title">Quick reference</h3>
+        <p class="calc-ref-formula">1 drop = 1 dGH/dKH = 17.9 ppm</p>
+        <div class="calc-ref-table">
+          <div class="calc-ref-row"><span>2 drops</span><strong>35.8 ppm</strong></div>
+          <div class="calc-ref-row"><span>3 drops</span><strong>53.7 ppm</strong></div>
+          <div class="calc-ref-row"><span>4 drops</span><strong>71.6 ppm</strong></div>
+          <div class="calc-ref-row"><span>5 drops</span><strong>89.5 ppm</strong></div>
+          <div class="calc-ref-row"><span>6 drops</span><strong>107.4 ppm</strong></div>
+          <div class="calc-ref-row"><span>7 drops</span><strong>125.3 ppm</strong></div>
+          <div class="calc-ref-row"><span>8 drops</span><strong>143.2 ppm</strong></div>
+          <div class="calc-ref-row"><span>10 drops</span><strong>179.0 ppm</strong></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Back link -->
+    <div class="reveal mt-8">
+      <a href="/en/barista-roadmap" class="calc-back-link">
+        ← Back to roadmap
+      </a>
+    </div>
+  </div>
+</PageLayout>
+
+<style>
+  .calc-page {
+    max-width: 52rem;
+    margin: 0 auto;
+    padding: 2rem 1rem 4rem;
+  }
+  .calc-page-header {
+    margin-bottom: 2rem;
+  }
+  .calc-page-label {
+    display: inline-block;
+    font-size: 0.625rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    opacity: 0.4;
+    margin-bottom: 0.75rem;
+  }
+  .calc-page-title {
+    font-family: var(--font-display, 'Instrument Serif', serif);
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: 400;
+    line-height: 1.15;
+    margin: 0;
+  }
+  .calc-page-sub {
+    font-size: 0.875rem;
+    opacity: 0.4;
+    margin-top: 0.5rem;
+  }
+  .calc-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  @media (min-width: 640px) {
+    .calc-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+  }
+  .calc-card {
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    border: 1px solid color-mix(in srgb, var(--color-accent) 8%, transparent);
+    background: color-mix(in srgb, var(--color-accent) 2%, transparent);
+  }
+  .calc-card-header {
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+    margin-bottom: 0.25rem;
+  }
+  .calc-card-title {
+    font-family: var(--font-display, 'Instrument Serif', serif);
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin: 0;
+  }
+  .calc-card-subtitle {
+    font-size: 0.75rem;
+    opacity: 0.35;
+  }
+  .calc-card-hint {
+    font-size: 0.75rem;
+    opacity: 0.4;
+    margin-bottom: 1rem;
+    font-style: italic;
+  }
+  .calc-box {
+    padding: 1.25rem;
+    border-radius: 0.5rem;
+    border: 1px solid color-mix(in srgb, var(--color-accent) 6%, transparent);
+    background: color-mix(in srgb, var(--color-accent) 1%, transparent);
+    margin-bottom: 1rem;
+  }
+  .calc-label {
+    font-size: 0.8125rem;
+    font-weight: 500;
+    opacity: 0.5;
+    display: block;
+    margin-bottom: 0.75rem;
+  }
+  .calc-input-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+  }
+  .calc-btn {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    border: 1px solid color-mix(in srgb, var(--color-accent) 15%, transparent);
+    background: color-mix(in srgb, var(--color-accent) 5%, transparent);
+    cursor: pointer;
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: inherit;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .calc-btn:hover {
+    background: color-mix(in srgb, var(--color-accent) 12%, transparent);
+    transform: scale(1.1);
+  }
+  .calc-btn:active {
+    transform: scale(0.95);
+  }
+  .calc-input {
+    width: 3.5rem;
+    text-align: center;
+    font-size: 1.75rem;
+    font-weight: 700;
+    background: transparent;
+    border: none;
+    color: inherit;
+    -moz-appearance: textfield;
+  }
+  .calc-input::-webkit-outer-spin-button,
+  .calc-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  .calc-result {
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+  .calc-ppm {
+    font-size: 1.5rem;
+    font-weight: 700;
+    opacity: 0.8;
+  }
+  .calc-verdict {
+    font-size: 0.8125rem;
+    opacity: 0.55;
+    transition: color 0.3s ease;
+  }
+  .verdict-good { color: #43a047; opacity: 0.8; }
+  .verdict-warn { color: #ff8f00; opacity: 0.8; }
+  .calc-range { margin-top: 0.5rem; }
+  .calc-range-bar {
+    display: flex;
+    height: 6px;
+    border-radius: 3px;
+    overflow: hidden;
+    margin-bottom: 0.4rem;
+  }
+  .range-zone { position: relative; }
+  .range-low { background: color-mix(in srgb, #ff8f00 40%, transparent); }
+  .range-ideal { background: color-mix(in srgb, #43a047 50%, transparent); }
+  .range-high { background: color-mix(in srgb, #ff8f00 40%, transparent); }
+  .range-label {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.5625rem;
+    opacity: 0.35;
+    white-space: nowrap;
+  }
+  .calc-range-unit {
+    display: block;
+    font-size: 0.5625rem;
+    opacity: 0.25;
+    text-align: right;
+    margin-top: 1rem;
+  }
+  .calc-reference {
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    border: 1px solid color-mix(in srgb, var(--color-accent) 6%, transparent);
+    background: color-mix(in srgb, var(--color-accent) 2%, transparent);
+  }
+  .calc-ref-title {
+    font-family: var(--font-display, 'Instrument Serif', serif);
+    font-size: 1.125rem;
+    font-weight: 400;
+    margin: 0 0 0.25rem;
+  }
+  .calc-ref-formula {
+    font-size: 0.75rem;
+    opacity: 0.4;
+    margin-bottom: 1rem;
+    font-family: var(--font-mono, monospace);
+  }
+  .calc-ref-table {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.375rem 2rem;
+  }
+  @media (min-width: 640px) {
+    .calc-ref-table {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+  .calc-ref-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8125rem;
+    padding: 0.25rem 0;
+    border-bottom: 1px solid color-mix(in srgb, var(--color-accent) 5%, transparent);
+  }
+  .calc-ref-row span { opacity: 0.4; }
+  .calc-ref-row strong { font-weight: 600; opacity: 0.7; }
+  .calc-back-link {
+    font-size: 0.75rem;
+    opacity: 0.35;
+    text-decoration: none;
+    color: inherit;
+    transition: opacity 0.3s ease;
+  }
+  .calc-back-link:hover { opacity: 0.7; }
+</style>
+
+<script>
+  function initCalculators() {
+    document.querySelectorAll<HTMLButtonElement>('.calc-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const calc = btn.dataset.calc!
+        const action = btn.dataset.action!
+        const input = document.getElementById(`${calc}-drops`) as HTMLInputElement
+        let val = parseInt(input.value) || 0
+        if (action === 'plus') val++
+        if (action === 'minus' && val > 0) val--
+        input.value = String(val)
+
+        const ppm = (val * 17.9).toFixed(1)
+        const resultEl = document.getElementById(`${calc}-result`)!
+        resultEl.querySelector('.calc-ppm')!.textContent = `${ppm} ppm`
+
+        const verdictEl = document.getElementById(`${calc}-verdict`)!
+        if (calc === 'kh') {
+          const n = parseFloat(ppm)
+          if (val === 0) verdictEl.textContent = ''
+          else if (n < 40)
+            verdictEl.textContent = '△ Low — acidity may be aggressive'
+          else if (n <= 70) verdictEl.textContent = '● SCA ideal range'
+          else verdictEl.textContent = '△ High — may flatten acidity'
+          verdictEl.className =
+            'calc-verdict' +
+            (n >= 40 && n <= 70 && val > 0 ? ' verdict-good' : val > 0 ? ' verdict-warn' : '')
+        } else {
+          const n = parseFloat(ppm)
+          if (val === 0) verdictEl.textContent = ''
+          else if (n < 50)
+            verdictEl.textContent = '△ Low — poor flavor extraction'
+          else if (n <= 175) verdictEl.textContent = '● SCA ideal range'
+          else
+            verdictEl.textContent = '△ High — risk of over-extraction and scaling'
+          verdictEl.className =
+            'calc-verdict' +
+            (n >= 50 && n <= 175 && val > 0 ? ' verdict-good' : val > 0 ? ' verdict-warn' : '')
+        }
+      })
+    })
+  }
+
+  initCalculators()
+  document.addEventListener('astro:after-swap', initCalculators)
+</script>
