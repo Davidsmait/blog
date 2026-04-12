@@ -32,16 +32,20 @@ const phases = [
     desc: 'Anatomía del shot, dial-in, presión, temperatura, diagnóstico y mantenimiento.',
     totalLessons: 5,
     eta: 'Semana del 21 de abril'
-  },
+  }
 ]
 
 const plannedLessons: Record<number, string[]> = {}
 
 // Phases that are not ready for public launch yet — force locked state
-const lockedPhases = new Set([2])
+const lockedPhases = new Set<number>([])
 
-const totalLessons = phases.filter(p => !lockedPhases.has(p.num)).reduce((acc, p) => acc + p.totalLessons, 0)
-const completedLessons = roadmapLessons.filter(l => !lockedPhases.has(l.data.phase)).length
+const totalLessons = phases
+  .filter((p) => !lockedPhases.has(p.num))
+  .reduce((acc, p) => acc + p.totalLessons, 0)
+const completedLessons = roadmapLessons.filter(
+  (l) => !lockedPhases.has(l.data.phase)
+).length
 const progressPercent = Math.round((completedLessons / totalLessons) * 100)
 
 function getPhaseState(phaseNum: number) {
@@ -210,14 +214,15 @@ function getPhaseState(phaseNum: number) {
   <div class="reveal reveal-delay-2 mb-14 sm:mb-20">
     <div class="sm:ml-12">
       <p class="text-sm leading-[1.8] opacity-55 sm:max-w-lg">
-        No soy barista profesional — soy un developer que armó este roadmap a partir
-        de la SCA, Scott Rao y Gagné. Lo valido, lo practico, y cuando estoy seguro
-        de que tiene sentido, lo publico.
+        No soy barista profesional — soy un developer que armó este roadmap a
+        partir de la SCA, Scott Rao y Gagné. Lo valido, lo practico, y cuando
+        estoy seguro de que tiene sentido, lo publico.
         <strong class="font-semibold text-accent opacity-100"
           ><a href="/projects" class="text-accent no-underline opacity-100"
             >La Commune</a
           ></strong
-        > es el brazo tecnológico — POS, fidelidad y menú digital para cafeterías de especialidad.
+        > es el brazo tecnológico — POS, fidelidad y menú digital para cafeterías
+        de especialidad.
       </p>
       <a
         href="/cafe/2025-03-05-mi-camino-barista-especialidad"
@@ -367,9 +372,9 @@ function getPhaseState(phaseNum: number) {
                   {phase.num === 1 && (
                     <div class="rm-bonus" data-bonus-phase="1">
                       <div class="rm-bonus-divider">
-                        <span class="rm-bonus-divider-line"></span>
+                        <span class="rm-bonus-divider-line" />
                         <span class="rm-bonus-divider-label">Bonus</span>
-                        <span class="rm-bonus-divider-line"></span>
+                        <span class="rm-bonus-divider-line" />
                       </div>
                       <a
                         href="/cafe/guia-herramientas-agua"
@@ -378,16 +383,29 @@ function getPhaseState(phaseNum: number) {
                         data-requires-phase="1"
                       >
                         <span class="rm-lesson-status">
-                          <svg viewBox="0 0 16 16" fill="currentColor" class="rm-bonus-lock-icon">
+                          <svg
+                            viewBox="0 0 16 16"
+                            fill="currentColor"
+                            class="rm-bonus-lock-icon"
+                          >
                             <path d="M8 1a4 4 0 0 0-4 4v3H3a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1h-1V5a4 4 0 0 0-4-4Zm2 7H6V5a2 2 0 1 1 4 0v3Z" />
                           </svg>
-                          <svg viewBox="0 0 16 16" fill="currentColor" class="rm-bonus-star-icon" style="display:none">
+                          <svg
+                            viewBox="0 0 16 16"
+                            fill="currentColor"
+                            class="rm-bonus-star-icon"
+                            style="display:none"
+                          >
                             <path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z" />
                           </svg>
                         </span>
                         <span class="rm-lesson-title">
-                          <span class="rm-bonus-title-text">Guía: Herramientas para medir tu agua</span>
-                          <span class="rm-bonus-unlock-hint" data-bonus-hint>Completa las 4 lecciones para desbloquear</span>
+                          <span class="rm-bonus-title-text">
+                            Guía: Herramientas para medir tu agua
+                          </span>
+                          <span class="rm-bonus-unlock-hint" data-bonus-hint>
+                            Completa las 4 lecciones para desbloquear
+                          </span>
                         </span>
                         <span class="rm-lesson-arrow">&nearr;</span>
                       </a>
@@ -398,16 +416,29 @@ function getPhaseState(phaseNum: number) {
                         data-requires-phase="1"
                       >
                         <span class="rm-lesson-status">
-                          <svg viewBox="0 0 16 16" fill="currentColor" class="rm-bonus-lock-icon">
+                          <svg
+                            viewBox="0 0 16 16"
+                            fill="currentColor"
+                            class="rm-bonus-lock-icon"
+                          >
                             <path d="M8 1a4 4 0 0 0-4 4v3H3a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1h-1V5a4 4 0 0 0-4-4Zm2 7H6V5a2 2 0 1 1 4 0v3Z" />
                           </svg>
-                          <svg viewBox="0 0 16 16" fill="currentColor" class="rm-bonus-star-icon" style="display:none">
+                          <svg
+                            viewBox="0 0 16 16"
+                            fill="currentColor"
+                            class="rm-bonus-star-icon"
+                            style="display:none"
+                          >
                             <path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z" />
                           </svg>
                         </span>
                         <span class="rm-lesson-title">
-                          <span class="rm-bonus-title-text">Calculadora de Gotas — GH & KH</span>
-                          <span class="rm-bonus-unlock-hint" data-bonus-hint>Completa las 4 lecciones para desbloquear</span>
+                          <span class="rm-bonus-title-text">
+                            Calculadora de Gotas — GH & KH
+                          </span>
+                          <span class="rm-bonus-unlock-hint" data-bonus-hint>
+                            Completa las 4 lecciones para desbloquear
+                          </span>
                         </span>
                         <span class="rm-lesson-arrow">&nearr;</span>
                       </a>
@@ -429,7 +460,8 @@ function getPhaseState(phaseNum: number) {
       <div class="rm-teaser-content">
         <span class="rm-teaser-label">En desarrollo</span>
         <p class="rm-teaser-text">
-          7 fases más en camino — métodos de filtrado, catación, latte art, tueste, metodología Rao y más.
+          7 fases más en camino — métodos de filtrado, catación, latte art,
+          tueste, metodología Rao y más.
         </p>
       </div>
     </div>
@@ -920,7 +952,7 @@ function getPhaseState(phaseNum: number) {
   .rm-phase-desc {
     font-size: 0.8125rem;
     line-height: 1.55;
-    opacity: 0.50;
+    opacity: 0.5;
     letter-spacing: 0.005em;
     display: none;
     max-width: 28rem;
@@ -1459,30 +1491,45 @@ function getPhaseState(phaseNum: number) {
   function updateBonusContent() {
     const read = getReadLessons()
 
-    document.querySelectorAll<HTMLElement>('[data-bonus-link]').forEach((link) => {
-      const requiredPhase = parseInt(link.dataset.requiresPhase || '0')
-      const phaseEl = document.querySelector(`[data-phase="${requiredPhase}"]`)
-      if (!phaseEl) return
+    document
+      .querySelectorAll<HTMLElement>('[data-bonus-link]')
+      .forEach((link) => {
+        const requiredPhase = parseInt(link.dataset.requiresPhase || '0')
+        const phaseEl = document.querySelector(
+          `[data-phase="${requiredPhase}"]`
+        )
+        if (!phaseEl) return
 
-      const phaseLessons = phaseEl.querySelectorAll<HTMLElement>('[data-lesson-slug]')
-      const allRead = phaseLessons.length > 0 && [...phaseLessons].every(l => read.has(l.dataset.lessonSlug!))
+        const phaseLessons =
+          phaseEl.querySelectorAll<HTMLElement>('[data-lesson-slug]')
+        const allRead =
+          phaseLessons.length > 0 &&
+          [...phaseLessons].every((l) => read.has(l.dataset.lessonSlug!))
 
-      if (allRead) {
-        link.classList.remove('rm-bonus-locked')
-        link.classList.add('rm-bonus-unlocked')
-        const lockIcon = link.querySelector('.rm-bonus-lock-icon') as HTMLElement
-        const starIcon = link.querySelector('.rm-bonus-star-icon') as HTMLElement
-        if (lockIcon) lockIcon.style.display = 'none'
-        if (starIcon) starIcon.style.display = 'block'
-      } else {
-        link.classList.add('rm-bonus-locked')
-        link.classList.remove('rm-bonus-unlocked')
-        const lockIcon = link.querySelector('.rm-bonus-lock-icon') as HTMLElement
-        const starIcon = link.querySelector('.rm-bonus-star-icon') as HTMLElement
-        if (lockIcon) lockIcon.style.display = 'block'
-        if (starIcon) starIcon.style.display = 'none'
-      }
-    })
+        if (allRead) {
+          link.classList.remove('rm-bonus-locked')
+          link.classList.add('rm-bonus-unlocked')
+          const lockIcon = link.querySelector(
+            '.rm-bonus-lock-icon'
+          ) as HTMLElement
+          const starIcon = link.querySelector(
+            '.rm-bonus-star-icon'
+          ) as HTMLElement
+          if (lockIcon) lockIcon.style.display = 'none'
+          if (starIcon) starIcon.style.display = 'block'
+        } else {
+          link.classList.add('rm-bonus-locked')
+          link.classList.remove('rm-bonus-unlocked')
+          const lockIcon = link.querySelector(
+            '.rm-bonus-lock-icon'
+          ) as HTMLElement
+          const starIcon = link.querySelector(
+            '.rm-bonus-star-icon'
+          ) as HTMLElement
+          if (lockIcon) lockIcon.style.display = 'block'
+          if (starIcon) starIcon.style.display = 'none'
+        }
+      })
   }
 
   initRoadmap()

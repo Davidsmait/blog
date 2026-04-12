@@ -45,7 +45,7 @@ const phases = [
 const plannedLessons: Record<number, string[]> = {}
 
 // Phases that are not ready for public launch yet — force locked state
-const lockedPhases = new Set([2])
+const lockedPhases = new Set<number>([])
 
 const totalLessons = phases.filter(p => !lockedPhases.has(p.num)).reduce((acc, p) => acc + p.totalLessons, 0)
 const completedLessons = roadmapLessons.filter(l => !lockedPhases.has(l.data.phase)).length

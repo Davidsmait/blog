@@ -413,6 +413,19 @@ export const quizzes: Record<string, QuizData> = {
         correct: 1,
         explanation:
           'La técnica WDT (Weiss Distribution Technique) usa agujas finas para romper grumos y distribuir el café uniformemente en la canasta. Sin esto, el agua encuentra caminos fáciles (channeling), causando zonas de sobre-extracción junto a zonas de sub-extracción.'
+      },
+      {
+        question:
+          '¿Cuál es la variable más importante que controla el flujo en un espresso: la presión de tamping o la molienda?',
+        options: [
+          'La presión de tamping exacta (13-15 kg)',
+          'La molienda — es la variable que realmente controla el flujo',
+          'Ambas son igualmente importantes',
+          'Ninguna — solo importa la presión de la máquina'
+        ],
+        correct: 1,
+        explanation:
+          'La molienda es la variable primaria que controla el flujo. Si tu molienda está mal ajustada, ni 13-15 kg de presión ni un tamper perfecto te van a salvar. Primero ajusta molienda (más grueso = más rápido; más fino = más lento), después mantén una presión de tamping consistente. La presión exacta importa menos que la consistencia.'
       }
     ],
     en: [
@@ -457,6 +470,19 @@ export const quizzes: Record<string, QuizData> = {
         correct: 1,
         explanation:
           'The WDT (Weiss Distribution Technique) uses fine needles to break clumps and distribute coffee evenly in the basket. Without this, water finds easy paths (channeling), causing zones of over-extraction next to zones of under-extraction.'
+      },
+      {
+        question:
+          'Which is the most important variable for controlling flow in espresso: tamping pressure or grind size?',
+        options: [
+          'Exact tamping pressure (13-15 kg)',
+          'Grind size — it\'s the variable that really controls flow',
+          'Both are equally important',
+          'Neither — only machine pressure matters'
+        ],
+        correct: 1,
+        explanation:
+          'Grind size is the primary variable controlling flow. If your grind is poorly adjusted, neither 13-15 kg of pressure nor a perfect tamper will save you. First adjust grind (coarser = faster; finer = slower), then maintain consistent tamping pressure. Exact pressure matters less than consistency.'
       }
     ]
   },

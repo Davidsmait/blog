@@ -15,7 +15,7 @@ isPremium: false
 
 Espresso is not simply "strong coffee." It's a specific extraction method: water at high pressure (~9 bars) forced through a compact bed of finely ground coffee in a short time. The result is a concentrated beverage of 25-45ml — between 6 and 10 times more concentrated than filter coffee (technically, an 8-12% TDS).
 
-What makes espresso unique is the pressure. That pressure creates something no other method can: emulsion of oils, suspension of fine solids, and the production of crema. A well-extracted espresso has dense body, concentrated sweetness, integrated acidity, and a prolonged aftertaste.
+What makes espresso unique is the pressure. That pressure creates something no other method can: emulsion of oils, suspension of fine solids, and the production of crema. A well-extracted espresso has **dense, buttery body** (a heavy, oily mouthfeel — much thicker than filter coffee, like a dense oil coating your mouth), concentrated sweetness, integrated acidity, and a prolonged aftertaste. That's why espresso "weighs" more in your mouth.
 
 ## The numbers of espresso
 
@@ -103,9 +103,11 @@ Distribution techniques:
 
 ### Tamping
 
-Compress the coffee in the basket to create a uniform, resistant bed. The recommended pressure is about **13-15 kg** (~30 lbs) — enough to compact but without forcing. Most important isn't the exact force, but **consistency and leveling**: an angled tamp creates a thinner side where water passes faster.
+Compress the coffee in the basket to create a uniform, resistant bed. **Most important isn't the exact force, but consistency and leveling**: an angled tamp creates a thinner side where water passes faster.
 
-Calibrated tampers (like Normcore or Decent calibrated tamper) apply constant pressure and guarantee leveling. They're a good investment if you're starting out.
+A range of **13-15 kg** (~30 lbs) is sensible to start, but the truth is any consistent pressure works — what matters is repeatability. The variable that really controls flow is **grind size**: if your grind is poorly adjusted, neither 13-15 kg nor a perfect tamper will save you. First adjust grind (coarser = faster; finer = slower). Then, with stable grind, maintain any consistent tamping pressure.
+
+Calibrated tampers (like Normcore or Decent calibrated tamper) simply guarantee consistent pressure automatically without you having to control force manually. They're a good investment if you're starting out, but they're a luxury, not a necessity.
 
 </details>
 

@@ -15,7 +15,7 @@ isPremium: false
 
 Un espresso no es simplemente "café fuerte". Es un método de extracción específico: agua a alta presión (~9 bares) forzada a través de una cama compacta de café finamente molido durante un tiempo corto. El resultado es una bebida concentrada de 25-45ml — entre 6 y 10 veces más concentrada que un café filtrado (técnicamente, un TDS de 8-12%).
 
-Lo que hace único al espresso es la presión. Esa presión crea algo que ningún otro método puede: emulsión de aceites, suspensión de sólidos finos y la producción de crema. Un espresso bien extraído tiene cuerpo denso, dulzura concentrada, acidez integrada y un retrogusto prolongado.
+Lo que hace único al espresso es la presión. Esa presión crea algo que ningún otro método puede: emulsión de aceites, suspensión de sólidos finos y la producción de crema. Un espresso bien extraído tiene **cuerpo denso y untuoso** (sensación grasa y pesada en boca, como un aceite denso — mucho más que un café filtrado), dulzura concentrada, acidez integrada y un retrogusto prolongado. Por eso un espresso "pesa" más en boca.
 
 ## Los números del espresso
 
@@ -103,9 +103,11 @@ Técnicas de distribución:
 
 ### Tamping
 
-Comprimir el café en la canasta para crear una cama uniforme y resistente. La presión recomendada es de unos **13-15 kg** (~30 libras) — suficiente para compactar pero sin forzar. Lo más importante no es la fuerza exacta, sino la **consistencia y nivelación**: un tamp inclinado crea un lado más delgado por donde el agua pasa más rápido.
+Comprimir el café en la canasta para crear una cama uniforme y resistente. **Lo más importante no es la presión exacta, sino la consistencia y nivelación**: un tamp inclinado crea un lado más delgado por donde el agua pasa más rápido.
 
-Tamps de calibración (como el Normcore o el Decent calibrated tamper) aplican una presión constante y garantizan nivelación. Son una buena inversión si estás empezando.
+Un rango de **13-15 kg** (~30 libras) es sensato para comenzar, pero la verdad es que cualquier presión consistente funciona — lo que importa es repetibilidad. La variable que realmente controla el flujo es la **molienda**: si tu molienda está mal ajustada, ni 13-15 kg ni un tamper perfecto te van a salvar. Primero ajusta molienda (más grueso = más rápido; más fino = más lento). Después, con molienda estable, mantén cualquier presión de tamping consistente.
+
+Tamps de calibración (como el Normcore o el Decent calibrated tamper) simplemente garantizan consistencia automática sin que tengas que controlar la fuerza manualmente. Son una buena inversión si estás empezando, pero son un lujo, no una necesidad.
 
 </details>
 
