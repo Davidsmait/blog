@@ -1,0 +1,1378 @@
+---
+import PageLayout from '../../../layouts/PageLayout.astro'
+---
+
+<PageLayout
+  frontmatter={{
+    title: 'Espresso — Bonus: Calculator and Flavor Diagnosis',
+    description:
+      'Practical tools to master espresso: dose and yield calculator, interactive flavor diagnosis with solutions.',
+    activeHeaderLink: 'Café'
+  }}
+>
+  <script
+    type="application/ld+json"
+    set:html={JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'WebApplication',
+      name: 'Espresso Bonus — Calculator and Flavor Diagnosis',
+      description:
+        'Tools to optimize espresso: calculate yield, diagnose flavor and get concrete solutions.',
+      url: 'https://davidsanluisaguirre.com/en/cafe-en/espresso-bonus',
+      inLanguage: 'en',
+      applicationCategory: 'UtilityApplication',
+      offers: { '@type': 'Offer', price: '0', priceCurrency: 'MXN' },
+      author: { '@id': 'https://davidsanluisaguirre.com/#person' }
+    })}
+  />
+
+  <div class="bonus-page">
+    <!-- Header -->
+    <div class="reveal">
+      <div class="bonus-header">
+        <span class="bonus-label">Bonus — Phase 2: Espresso</span>
+        <h1 class="bonus-title">Calculator and Diagnosis</h1>
+        <p class="bonus-sub">
+          Two tools to dial in your recipe and solve flavor problems
+        </p>
+      </div>
+    </div>
+
+    <div class="hr-animated mb-8 sm:mb-12"></div>
+
+    <!-- ──── SECTION 1: CALCULATOR ──── -->
+    <div class="bonus-section reveal" id="calculator-section">
+      <div class="section-header">
+        <span class="section-number">01</span>
+        <h2 class="section-title">Dose and Yield Calculator</h2>
+        <p class="section-desc">
+          Enter your dose and choose a ratio to calculate your espresso's target
+          yield
+        </p>
+      </div>
+
+      <!-- Dose input -->
+      <div class="calc-card">
+        <div class="calc-card-header">
+          <h3 class="calc-card-title">Dose</h3>
+          <span class="calc-card-subtitle">Dry coffee in the portafilter</span>
+        </div>
+
+        <div class="calc-box">
+          <label class="calc-label" for="dose-input">Grams of coffee (g)</label>
+          <div class="calc-input-row">
+            <button class="calc-btn" id="dose-minus" aria-label="Decrease"
+              >−</button
+            >
+            <div class="calc-input-wrap">
+              <input
+                type="number"
+                id="dose-input"
+                class="calc-input"
+                value="18"
+                min="7"
+                max="30"
+              />
+              <span class="calc-unit">g</span>
+            </div>
+            <button class="calc-btn" id="dose-plus" aria-label="Increase"
+              >+</button
+            >
+          </div>
+          <p class="calc-hint">Typical range: 14–20g for double portafilter</p>
+        </div>
+      </div>
+
+      <!-- Ratio selector -->
+      <div class="calc-card">
+        <div class="calc-card-header">
+          <h3 class="calc-card-title">Ratio</h3>
+          <span class="calc-card-subtitle">Coffee to beverage proportion</span>
+        </div>
+
+        <div class="calc-box">
+          <label class="calc-label">Select your target ratio</label>
+          <div class="ratio-buttons" id="ratio-buttons">
+            <button class="ratio-btn" data-ratio="1.0" data-label="Ristretto"
+              >1:1</button
+            >
+            <button
+              class="ratio-btn"
+              data-ratio="1.5"
+              data-label="Long Ristretto">1:1.5</button
+            >
+            <button
+              class="ratio-btn ratio-btn--active"
+              data-ratio="2.0"
+              data-label="Standard">1:2</button
+            >
+            <button class="ratio-btn" data-ratio="2.5" data-label="Lungo"
+              >1:2.5</button
+            >
+            <button class="ratio-btn" data-ratio="3.0" data-label="Long Lungo"
+              >1:3</button
+            >
+          </div>
+          <p class="ratio-name" id="ratio-name">
+            Standard — universal starting point
+          </p>
+        </div>
+      </div>
+
+      <!-- Result -->
+      <div class="calc-result-card reveal" id="result-card">
+        <span class="result-label">Your target yield</span>
+        <div class="result-main">
+          <span class="result-number" id="result-yield">36</span>
+          <span class="result-unit">g in cup</span>
+        </div>
+        <div class="result-formula" id="result-formula">18g × 2.0 = 36g</div>
+        <div class="result-time">
+          <span class="result-time-label">Expected time:</span>
+          <span class="result-time-value" id="result-time">25–35 sec</span>
+        </div>
+        <p class="result-note" id="result-note">
+          Adjust your grind until you reach this yield in the indicated time.
+        </p>
+      </div>
+
+      <!-- Ratio reference -->
+      <div class="ref-table-wrap">
+        <div class="ref-table-header">
+          <h3 class="ref-title">Ratio Reference</h3>
+          <p class="ref-subtitle">
+            How yield varies based on your chosen ratio
+          </p>
+        </div>
+        <div class="ref-table">
+          <div class="ref-row ref-row--header">
+            <span>Ratio</span>
+            <span>Name</span>
+            <span>18g → yield</span>
+            <span>Profile</span>
+          </div>
+          <div class="ref-row">
+            <strong>1:1</strong>
+            <span>Ristretto</span>
+            <span>18g</span>
+            <span class="ref-tag ref-tag--under">Intense, sweet</span>
+          </div>
+          <div class="ref-row">
+            <strong>1:1.5</strong>
+            <span>Long Ristretto</span>
+            <span>27g</span>
+            <span class="ref-tag ref-tag--under">Concentrated</span>
+          </div>
+          <div class="ref-row ref-row--highlight">
+            <strong>1:2</strong>
+            <span>Standard</span>
+            <span>36g</span>
+            <span class="ref-tag ref-tag--ideal">Balanced</span>
+          </div>
+          <div class="ref-row">
+            <strong>1:2.5</strong>
+            <span>Lungo</span>
+            <span>45g</span>
+            <span class="ref-tag ref-tag--over">Softer</span>
+          </div>
+          <div class="ref-row">
+            <strong>1:3</strong>
+            <span>Long Lungo</span>
+            <span>54g</span>
+            <span class="ref-tag ref-tag--over">Light</span>
+          </div>
+        </div>
+        <p class="ref-note">
+          All yields calculated with 18g base dose · Ideal time: 25–35 sec
+        </p>
+      </div>
+    </div>
+
+    <!-- Divider -->
+    <div class="section-divider"></div>
+
+    <!-- ──── SECTION 2: FLAVOR DIAGNOSIS ──── -->
+    <div class="bonus-section reveal" id="diagnosis-section">
+      <div class="section-header">
+        <span class="section-number">02</span>
+        <h2 class="section-title">Flavor Diagnosis</h2>
+        <p class="section-desc">
+          Taste your shot, identify what you perceive, and get solutions ordered
+          by impact
+        </p>
+      </div>
+
+      <!-- Step 1: What does it taste like? -->
+      <div id="step-1">
+        <p class="step-label">
+          Step 1 — Taste your shot and choose what best describes it
+        </p>
+
+        <div class="symptom-grid">
+          <button class="symptom-card" data-symptom="under">
+            <span class="symptom-icon">↑</span>
+            <span class="symptom-name">Acidic / Sour</span>
+            <span class="symptom-desc"
+              >Short aftertaste, sharp flavor, lacks sweetness and body</span
+            >
+          </button>
+
+          <button class="symptom-card" data-symptom="over">
+            <span class="symptom-icon">↓</span>
+            <span class="symptom-name">Bitter / Harsh</span>
+            <span class="symptom-desc"
+              >Dry mouth, astringency, ashy taste, unpleasant aftertaste</span
+            >
+          </button>
+
+          <button class="symptom-card" data-symptom="weak">
+            <span class="symptom-icon">−</span>
+            <span class="symptom-name">Watery / Thin</span>
+            <span class="symptom-desc"
+              >Lacks intensity, thin flavor, tastes like weak filter coffee</span
+            >
+          </button>
+
+          <button class="symptom-card" data-symptom="balanced">
+            <span class="symptom-icon">✓</span>
+            <span class="symptom-name">Sweet and Balanced</span>
+            <span class="symptom-desc"
+              >Pleasant acidity, natural sweetness, present body, clean
+              aftertaste</span
+            >
+          </button>
+        </div>
+      </div>
+
+      <!-- Step 2: Diagnosis -->
+      <div id="step-2" class="diag-result" style="display:none">
+        <!-- Under-extracted -->
+        <div id="result-under" class="result-panel" style="display:none">
+          <div class="result-header result-header--under">
+            <div class="result-icon-box">↑</div>
+            <div>
+              <h3 class="result-title">Under-extraction</h3>
+              <p class="result-subtitle">
+                Water didn't extract enough compounds from the coffee
+              </p>
+            </div>
+          </div>
+
+          <div class="result-body">
+            <p class="result-explain">
+              Acids are the first compounds to extract. If you stop too soon (or
+              water passes too quickly), acidity dominates without sweetness or
+              body. The result: a sharp, short shot with no balance.
+            </p>
+
+            <h4 class="solutions-title">
+              Solutions — highest to lowest impact
+            </h4>
+            <ol class="solutions-list">
+              <li>
+                <strong>Grind finer</strong>
+                <span
+                  >More resistance = slower flow = longer contact = more
+                  extraction. Adjust in small increments (1-2 clicks).</span
+                >
+              </li>
+              <li>
+                <strong>Extend your ratio</strong>
+                <span
+                  >Change from 1:2 to 1:2.2 or 1:2.5 — more water passes
+                  through, extracting more without changing grind.</span
+                >
+              </li>
+              <li>
+                <strong>Raise water temperature</strong>
+                <span
+                  >+1°C can make a difference. Hotter water extracts faster. Try
+                  93°C → 94°C if you have PID.</span
+                >
+              </li>
+              <li>
+                <strong>Check your distribution</strong>
+                <span
+                  >If there are channels, water escapes on one side without
+                  uniform extraction. Use WDT.</span
+                >
+              </li>
+            </ol>
+
+            <div class="diag-tip">
+              <p>
+                <strong>Start here:</strong> Always begin with grind adjustment. It
+                has the highest impact and is easiest to change without adjusting
+                your recipe.
+              </p>
+            </div>
+          </div>
+
+          <button class="reset-btn" id="reset-under"
+            >← Try another flavor</button
+          >
+        </div>
+
+        <!-- Over-extracted -->
+        <div id="result-over" class="result-panel" style="display:none">
+          <div class="result-header result-header--over">
+            <div class="result-icon-box">↓</div>
+            <div>
+              <h3 class="result-title">Over-extraction</h3>
+              <p class="result-subtitle">
+                Water extracted too much — including unwanted bitter compounds
+              </p>
+            </div>
+          </div>
+
+          <div class="result-body">
+            <p class="result-explain">
+              Bitter and astringent compounds are the last to extract. If water
+              contacts the coffee too long (too fine grind or too long shot),
+              these dominate. The result: dry mouth, harsh aftertaste, ashy
+              flavor.
+            </p>
+
+            <h4 class="solutions-title">
+              Solutions — highest to lowest impact
+            </h4>
+            <ol class="solutions-list">
+              <li>
+                <strong>Grind coarser</strong>
+                <span
+                  >Less resistance = faster flow = shorter contact = less
+                  extraction. Adjust 1-2 clicks at a time.</span
+                >
+              </li>
+              <li>
+                <strong>Shorten your ratio</strong>
+                <span
+                  >Change from 1:2 to 1:1.8 or 1:1.5 — less water, less
+                  extraction. Shot ends before bitter compounds emerge.</span
+                >
+              </li>
+              <li>
+                <strong>Lower water temperature</strong>
+                <span
+                  >-1°C can soften bitterness. Try 93°C → 92°C if you have PID.</span
+                >
+              </li>
+              <li>
+                <strong>Check if you're pulling through the tail</strong>
+                <span
+                  >The last seconds of the shot (the "tail") are most bitter.
+                  Stop extraction earlier to see if it improves.</span
+                >
+              </li>
+            </ol>
+
+            <div class="diag-tip">
+              <p>
+                <strong>Start here:</strong> If the shot takes over 40 seconds to
+                reach your yield, the grind is definitely too fine. Begin there.
+              </p>
+            </div>
+          </div>
+
+          <button class="reset-btn" id="reset-over">← Try another flavor</button
+          >
+        </div>
+
+        <!-- Weak -->
+        <div id="result-weak" class="result-panel" style="display:none">
+          <div class="result-header result-header--weak">
+            <div class="result-icon-box">−</div>
+            <div>
+              <h3 class="result-title">Weak or watery shot</h3>
+              <p class="result-subtitle">
+                Lacks concentration — either from ratio or dose
+              </p>
+            </div>
+          </div>
+
+          <div class="result-body">
+            <p class="result-explain">
+              A "watery" shot that's neither acidic nor bitter but also lacks
+              sweetness or body could be a concentration problem (low TDS) more
+              than an extraction one. The flavor simply doesn't come through.
+            </p>
+
+            <h4 class="solutions-title">
+              Solutions — highest to lowest impact
+            </h4>
+            <ol class="solutions-list">
+              <li>
+                <strong>Reduce the ratio</strong>
+                <span
+                  >If you're using 1:2.5 or higher, try 1:2. Less water = more
+                  concentration = more presence in mouth.</span
+                >
+              </li>
+              <li>
+                <strong>Increase your dose</strong>
+                <span
+                  >More coffee in the portafilter (e.g., 17g → 18g → 19g)
+                  produces a more intense shot with the same ratio.</span
+                >
+              </li>
+              <li>
+                <strong>Verify your time</strong>
+                <span
+                  >If the shot finishes in under 20 seconds, the grind is too
+                  coarse — water passes before extracting. Grind finer.</span
+                >
+              </li>
+              <li>
+                <strong>Check your machine's pressure</strong>
+                <span
+                  >A machine with low pressure (below 8 bars) won't emulsify
+                  oils well. Your shot will be thin regardless of recipe.</span
+                >
+              </li>
+            </ol>
+
+            <div class="diag-tip">
+              <p>
+                <strong>Start here:</strong> Try adjusting the ratio first. It's quick
+                and doesn't require resetting your machine.
+              </p>
+            </div>
+          </div>
+
+          <button class="reset-btn" id="reset-weak">← Try another flavor</button
+          >
+        </div>
+
+        <!-- Balanced -->
+        <div id="result-balanced" class="result-panel" style="display:none">
+          <div class="result-header result-header--balanced">
+            <div class="result-icon-box">✓</div>
+            <div>
+              <h3 class="result-title">Balanced shot</h3>
+              <p class="result-subtitle">
+                Your extraction is dialed in — maintain consistency
+              </p>
+            </div>
+          </div>
+
+          <div class="result-body">
+            <p class="result-explain">
+              A sweet, balanced shot means your grind, dose, temperature, and
+              time are working together. The acidity is pleasant, the body has
+              presence, and the aftertaste is clean. This is the goal.
+            </p>
+
+            <h4 class="maintainance-title">How to maintain consistency</h4>
+            <ul class="maintain-list">
+              <li>
+                <strong>Write down your recipe.</strong> Exact dose, ratio, temperature,
+                time. Return to these numbers.
+              </li>
+              <li>
+                <strong>Consistent distribution.</strong> If you use WDT, always use
+                the same technique and tool.
+              </li>
+              <li>
+                <strong>Uniform tamping pressure.</strong> 13-15 kg (≈30 lbs), level.
+                Avoid angles.
+              </li>
+              <li>
+                <strong>Regular cleaning.</strong> Oil buildup on the portafilter
+                and shower head affects future shots.
+              </li>
+              <li>
+                <strong>Monitor variables.</strong> As coffee ages (1-3 weeks post-roast),
+                it may need minor grind adjustments.
+              </li>
+            </ul>
+
+            <div class="diag-tip">
+              <p>
+                <strong>Next step:</strong> Now experiment by varying one variable
+                at a time (ratio, temperature, coffee) to discover your personal preferences.
+              </p>
+            </div>
+          </div>
+
+          <button class="reset-btn" id="reset-balanced"
+            >← Try another flavor</button
+          >
+        </div>
+      </div>
+    </div>
+
+    <!-- Back link -->
+    <div class="reveal mt-8">
+      <a href="/en/barista-roadmap" class="bonus-back-link">← Back to roadmap</a
+      >
+    </div>
+  </div>
+</PageLayout>
+
+<style>
+  .bonus-page {
+    max-width: 52rem;
+    margin: 0 auto;
+    padding: 2rem 1rem 4rem;
+  }
+
+  /* ── Header ── */
+  .bonus-header {
+    margin-bottom: 2rem;
+  }
+  .bonus-label {
+    display: inline-block;
+    font-size: 0.625rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    opacity: 0.4;
+    margin-bottom: 0.75rem;
+  }
+  .bonus-title {
+    font-family: var(--font-display, 'Instrument Serif', serif);
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: 400;
+    line-height: 1.15;
+    margin: 0;
+  }
+  .bonus-sub {
+    font-size: 0.875rem;
+    opacity: 0.4;
+    margin-top: 0.5rem;
+  }
+
+  /* ── Sections ── */
+  .bonus-section {
+    margin-bottom: 3rem;
+  }
+
+  .section-header {
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+  }
+
+  .section-number {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    opacity: 0.3;
+    flex-shrink: 0;
+    margin-top: 0.25rem;
+  }
+
+  .section-header > div {
+    flex: 1;
+  }
+
+  .section-title {
+    font-family: var(--font-display, 'Instrument Serif', serif);
+    font-size: 1.5rem;
+    font-weight: 400;
+    line-height: 1.2;
+    margin: 0 0 0.5rem;
+  }
+
+  .section-desc {
+    font-size: 0.875rem;
+    opacity: 0.6;
+    margin: 0;
+  }
+
+  .section-divider {
+    height: 1px;
+    background: linear-gradient(
+      to right,
+      var(--color-accent),
+      var(--color-accent) 30%,
+      transparent 100%
+    );
+    opacity: 0.2;
+    margin: 3rem 0;
+  }
+
+  /* ── Calculator ── */
+  .calc-card {
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    border: 1px solid var(--color-accent);
+    border-radius: 0.5rem;
+    background: color-mix(in srgb, var(--color-accent) 2%, transparent);
+  }
+
+  .calc-card-header {
+    margin-bottom: 1.25rem;
+  }
+  .calc-card-title {
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0;
+    color: var(--color-accent);
+  }
+  .calc-card-subtitle {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--color-accent);
+    opacity: 0.5;
+    margin-top: 0.25rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .calc-box {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .calc-label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    display: block;
+  }
+
+  .calc-input-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .calc-btn {
+    flex-shrink: 0;
+    width: 2.5rem;
+    height: 2.5rem;
+    border: 1px solid var(--color-accent);
+    border-radius: 0.375rem;
+    background: transparent;
+    color: var(--color-accent);
+    font-size: 1.25rem;
+    font-weight: 300;
+    cursor: pointer;
+    transition: all 0.2s ease-out;
+  }
+  .calc-btn:hover {
+    background: color-mix(in srgb, var(--color-accent) 10%, transparent);
+  }
+
+  .calc-input-wrap {
+    flex: 1;
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .calc-input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--color-accent);
+    border-radius: 0.375rem;
+    background: color-mix(in srgb, var(--color-accent) 5%, transparent);
+    color: inherit;
+    font-size: 1rem;
+    font-family: inherit;
+  }
+  .calc-input:focus {
+    outline: none;
+    border-color: var(--color-accent);
+    background: color-mix(in srgb, var(--color-accent) 8%, transparent);
+  }
+
+  .calc-unit {
+    position: absolute;
+    right: 0.75rem;
+    font-size: 0.875rem;
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  .calc-hint {
+    font-size: 0.8rem;
+    opacity: 0.5;
+    margin: 0;
+  }
+
+  .ratio-buttons {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(6rem, 1fr));
+    gap: 0.75rem;
+  }
+
+  .ratio-btn {
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--color-accent);
+    border-radius: 0.375rem;
+    background: transparent;
+    color: var(--color-accent);
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease-out;
+  }
+  .ratio-btn:hover {
+    background: color-mix(in srgb, var(--color-accent) 8%, transparent);
+  }
+  .ratio-btn--active {
+    background: var(--color-accent);
+    color: var(--bg-primary);
+    border-color: var(--color-accent);
+  }
+
+  .ratio-name {
+    font-size: 0.8rem;
+    opacity: 0.5;
+    margin: 0.5rem 0 0;
+  }
+
+  .calc-result-card {
+    margin-top: 2rem;
+    padding: 2rem;
+    border: 2px solid var(--color-accent);
+    border-radius: 0.5rem;
+    background: color-mix(in srgb, var(--color-accent) 4%, transparent);
+  }
+
+  .result-label {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    opacity: 0.5;
+    margin-bottom: 1rem;
+  }
+
+  .result-main {
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .result-number {
+    font-family: var(--font-display, 'Instrument Serif', serif);
+    font-size: clamp(2.5rem, 6vw, 3.5rem);
+    font-weight: 400;
+    line-height: 1;
+  }
+
+  .result-unit {
+    font-size: 0.875rem;
+    opacity: 0.6;
+  }
+
+  .result-formula {
+    font-size: 0.875rem;
+    opacity: 0.5;
+    margin-bottom: 1.5rem;
+    font-family: 'IBM Plex Mono', monospace;
+  }
+
+  .result-time {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+  }
+
+  .result-time-label {
+    opacity: 0.6;
+  }
+
+  .result-time-value {
+    color: var(--color-accent);
+    font-weight: 500;
+  }
+
+  .result-note {
+    font-size: 0.875rem;
+    opacity: 0.6;
+    margin: 0;
+  }
+
+  .ref-table-wrap {
+    margin-top: 2rem;
+  }
+
+  .ref-table-header {
+    margin-bottom: 1.5rem;
+  }
+
+  .ref-title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-accent);
+    margin: 0 0 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    opacity: 0.7;
+    position: relative;
+    padding-bottom: 0.5rem;
+  }
+
+  .ref-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 2rem;
+    height: 1px;
+    background: var(--color-accent);
+    opacity: 0.3;
+  }
+
+  .ref-subtitle {
+    font-size: 0.8rem;
+    opacity: 0.5;
+    margin: 0;
+  }
+
+  .ref-table {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1px;
+    background: color-mix(in srgb, var(--color-accent) 20%, transparent);
+    border-radius: 0.375rem;
+    overflow: hidden;
+  }
+
+  .ref-row {
+    padding: 1rem;
+    background: var(--bg-primary);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.5rem;
+    align-items: center;
+    font-size: 0.875rem;
+  }
+
+  .ref-row--header {
+    background: color-mix(in srgb, var(--color-accent) 8%, transparent);
+    font-weight: 600;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    opacity: 0.7;
+  }
+
+  .ref-row--highlight {
+    background: color-mix(in srgb, var(--color-accent) 6%, transparent);
+  }
+
+  .ref-tag {
+    display: inline-block;
+    padding: 0.35rem 0.75rem;
+    border-radius: 0.375rem;
+    background: color-mix(in srgb, var(--color-accent) 15%, transparent);
+    border: 1px solid color-mix(in srgb, var(--color-accent) 25%, transparent);
+    font-size: 0.75rem;
+    font-weight: 500;
+    opacity: 0.85;
+    transition: all 0.2s ease-out;
+  }
+
+  .ref-tag--ideal {
+    background: color-mix(in srgb, var(--color-accent) 28%, transparent);
+    border-color: var(--color-accent);
+    font-weight: 600;
+    opacity: 1;
+  }
+
+  .ref-tag--under {
+    background: color-mix(in srgb, #d4a574 12%, transparent);
+    border-color: color-mix(in srgb, #d4a574 20%, transparent);
+  }
+
+  .ref-tag--over {
+    background: color-mix(in srgb, #8b6f47 12%, transparent);
+    border-color: color-mix(in srgb, #8b6f47 20%, transparent);
+  }
+
+  .ref-note {
+    font-size: 0.75rem;
+    opacity: 0.5;
+    margin-top: 0.75rem;
+  }
+
+  /* ── Flavor Diagnosis ── */
+  .step-label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+    color: var(--color-accent);
+  }
+
+  .symptom-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .symptom-card {
+    padding: 1.5rem;
+    border: 1px solid var(--color-accent);
+    border-radius: 0.5rem;
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.2s ease-out;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .symptom-card:hover {
+    background: color-mix(in srgb, var(--color-accent) 8%, transparent);
+    border-color: var(--color-accent);
+  }
+
+  .symptom-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 50%;
+    background: color-mix(in srgb, var(--color-accent) 12%, transparent);
+    border: 2px solid var(--color-accent);
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-accent);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .symptom-card:hover .symptom-icon {
+    transform: scale(1.1);
+    border-color: var(--color-accent);
+    background: color-mix(in srgb, var(--color-accent) 18%, transparent);
+  }
+
+  .symptom-name {
+    display: block;
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+
+  .symptom-desc {
+    display: block;
+    font-size: 0.8rem;
+    opacity: 0.7;
+  }
+
+  .diag-result {
+    margin-top: 2rem;
+  }
+
+  .result-panel {
+    padding: 2rem;
+    border: 2px solid var(--color-accent);
+    border-radius: 0.5rem;
+    background: color-mix(in srgb, var(--color-accent) 3%, transparent);
+  }
+
+  .result-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .result-icon-box {
+    flex-shrink: 0;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 0.375rem;
+    background: color-mix(in srgb, var(--color-accent) 15%, transparent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-accent);
+  }
+
+  .result-header--under .result-icon-box {
+    background: color-mix(in srgb, #d4a574 15%, transparent);
+    color: #d4a574;
+  }
+
+  .result-header--over .result-icon-box {
+    background: color-mix(in srgb, #8b6f47 15%, transparent);
+    color: #8b6f47;
+  }
+
+  .result-header--weak .result-icon-box {
+    background: color-mix(in srgb, #a8956b 15%, transparent);
+    color: #a8956b;
+  }
+
+  .result-header--balanced .result-icon-box {
+    background: color-mix(in srgb, #c4a876 15%, transparent);
+    color: #c4a876;
+  }
+
+  .result-title {
+    font-family: var(--font-display, 'Instrument Serif', serif);
+    font-size: 1.25rem;
+    font-weight: 400;
+    margin: 0 0 0.25rem;
+  }
+
+  .result-subtitle {
+    font-size: 0.875rem;
+    opacity: 0.6;
+    margin: 0;
+  }
+
+  .result-body {
+    margin: 1.5rem 0;
+  }
+
+  .result-explain {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+
+  .solutions-title,
+  .maintainance-title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-accent);
+    margin: 1.5rem 0 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    opacity: 0.7;
+  }
+
+  .solutions-list,
+  .maintain-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .solutions-list li {
+    padding-left: 0;
+  }
+
+  .solutions-list strong {
+    display: block;
+    margin-bottom: 0.25rem;
+    color: var(--color-accent);
+  }
+
+  .solutions-list span,
+  .maintain-list li {
+    font-size: 0.875rem;
+    opacity: 0.8;
+    line-height: 1.5;
+  }
+
+  .diag-tip {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    border-left: 3px solid var(--color-accent);
+    background: color-mix(in srgb, var(--color-accent) 4%, transparent);
+  }
+
+  .diag-tip p {
+    margin: 0;
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
+
+  .diag-tip strong {
+    color: var(--color-accent);
+  }
+
+  .reset-btn {
+    margin-top: 1.5rem;
+    padding: 0.75rem 1.25rem;
+    border: 1px solid var(--color-accent);
+    border-radius: 0.375rem;
+    background: transparent;
+    color: var(--color-accent);
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease-out;
+  }
+
+  .reset-btn:hover {
+    background: color-mix(in srgb, var(--color-accent) 10%, transparent);
+  }
+
+  /* ── Back Link ── */
+  .bonus-back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    color: var(--color-accent);
+    opacity: 0.6;
+    text-decoration: none;
+    transition: opacity 0.2s ease-out;
+  }
+
+  .bonus-back-link:hover {
+    opacity: 1;
+  }
+
+  /* ── Animations and interactions ── */
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(1rem);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .calc-card,
+  .diag-result,
+  .result-panel {
+    animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: var(--animation-delay, 0s);
+  }
+
+  .symptom-card {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .symptom-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      color-mix(in srgb, var(--color-accent) 10%, transparent),
+      transparent
+    );
+    transition: left 0.5s ease-out;
+    pointer-events: none;
+  }
+
+  .symptom-card:hover::before {
+    left: 100%;
+  }
+
+  .calc-result-card {
+    animation: slideUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+    animation-fill-mode: both;
+  }
+
+  .result-panel {
+    animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  /* ── Enhanced typography ── */
+  .section-title {
+    position: relative;
+    padding-bottom: 0.75rem;
+  }
+
+  .section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 3rem;
+    height: 2px;
+    background: linear-gradient(to right, var(--color-accent), transparent);
+    opacity: 0.4;
+  }
+
+  /* ── Input focus states ── */
+  .calc-input:focus-visible {
+    box-shadow: 0 0 0 3px
+      color-mix(in srgb, var(--color-accent) 15%, transparent);
+  }
+
+  .ratio-btn:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 640px) {
+    .bonus-page {
+      padding: 1rem 0.75rem 2rem;
+    }
+
+    .section-header {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .section-number {
+      margin-top: 0;
+      margin-right: 0.5rem;
+    }
+
+    .ref-row {
+      grid-template-columns: 1fr 1fr;
+      font-size: 0.75rem;
+    }
+
+    .symptom-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .result-main {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.25rem;
+    }
+
+    .section-divider {
+      margin: 2rem 0;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .bonus-title {
+      font-size: 1.5rem;
+    }
+
+    .calc-card {
+      padding: 1rem;
+    }
+
+    .result-panel {
+      padding: 1.5rem 1rem;
+    }
+
+    .ratio-buttons {
+      grid-template-columns: repeat(auto-fit, minmax(5rem, 1fr));
+      gap: 0.5rem;
+    }
+  }
+</style>
+
+<script>
+  // ──── CALCULATOR ────
+  const doseInput = document.getElementById('dose-input') as HTMLInputElement
+  const doseMinus = document.getElementById('dose-minus') as HTMLButtonElement
+  const dosePlus = document.getElementById('dose-plus') as HTMLButtonElement
+  const ratioButtons = document.querySelectorAll(
+    '.ratio-btn'
+  ) as NodeListOf<HTMLButtonElement>
+  const resultYield = document.getElementById('result-yield') as HTMLElement
+  const resultFormula = document.getElementById('result-formula') as HTMLElement
+  const resultTime = document.getElementById('result-time') as HTMLElement
+  const ratioName = document.getElementById('ratio-name') as HTMLElement
+
+  let currentRatio = 2.0
+
+  const ratioLabels: Record<string, { label: string; desc: string }> = {
+    '1.0': { label: 'Ristretto', desc: 'Intense, sweet' },
+    '1.5': { label: 'Long Ristretto', desc: 'Concentrated' },
+    '2.0': { label: 'Standard', desc: 'universal starting point' },
+    '2.5': { label: 'Lungo', desc: 'Softer' },
+    '3.0': { label: 'Long Lungo', desc: 'Light' }
+  }
+
+  const ratioTimeRanges: Record<string, string> = {
+    '1.0': '18–22 sec',
+    '1.5': '20–28 sec',
+    '2.0': '25–35 sec',
+    '2.5': '28–40 sec',
+    '3.0': '30–45 sec'
+  }
+
+  function updateCalculator() {
+    const dose = parseFloat(doseInput.value) || 18
+    const yield_ = Math.round(dose * currentRatio * 10) / 10
+    resultYield.textContent = yield_.toString()
+    resultFormula.textContent = `${dose}g × ${currentRatio} = ${yield_}g`
+    resultTime.textContent =
+      ratioTimeRanges[currentRatio.toString()] || '25–35 sec'
+  }
+
+  doseMinus.addEventListener('click', () => {
+    const val = Math.max(7, parseFloat(doseInput.value) - 1)
+    doseInput.value = val.toString()
+    updateCalculator()
+  })
+
+  dosePlus.addEventListener('click', () => {
+    const val = Math.min(30, parseFloat(doseInput.value) + 1)
+    doseInput.value = val.toString()
+    updateCalculator()
+  })
+
+  doseInput.addEventListener('input', updateCalculator)
+
+  ratioButtons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      ratioButtons.forEach((b) => b.classList.remove('ratio-btn--active'))
+      btn.classList.add('ratio-btn--active')
+      currentRatio = parseFloat(btn.dataset.ratio || '2.0')
+      const label = ratioLabels[currentRatio.toString()]
+      ratioName.textContent = `${label.label} — ${label.desc}`
+      updateCalculator()
+    })
+  })
+
+  // ──── FLAVOR DIAGNOSIS ────
+  const symptomCards = document.querySelectorAll(
+    '.symptom-card'
+  ) as NodeListOf<HTMLButtonElement>
+  const step1 = document.getElementById('step-1') as HTMLElement
+  const step2 = document.getElementById('step-2') as HTMLElement
+  const resultPanels: Record<string, HTMLElement | null> = {
+    under: document.getElementById('result-under'),
+    over: document.getElementById('result-over'),
+    weak: document.getElementById('result-weak'),
+    balanced: document.getElementById('result-balanced')
+  }
+  const resetButtons = document.querySelectorAll(
+    '.reset-btn'
+  ) as NodeListOf<HTMLButtonElement>
+
+  symptomCards.forEach((card) => {
+    card.addEventListener('click', () => {
+      const symptom = card.dataset.symptom
+      step1.style.display = 'none'
+      step2.style.display = 'block'
+
+      Object.keys(resultPanels).forEach((key) => {
+        if (resultPanels[key]) {
+          resultPanels[key].style.display = key === symptom ? 'block' : 'none'
+        }
+      })
+    })
+  })
+
+  resetButtons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      step1.style.display = 'block'
+      step2.style.display = 'none'
+      Object.keys(resultPanels).forEach((key) => {
+        if (resultPanels[key]) {
+          resultPanels[key].style.display = 'none'
+        }
+      })
+    })
+  })
+</script>
