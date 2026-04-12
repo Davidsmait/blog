@@ -82,6 +82,42 @@ What crema does NOT indicate: if the espresso tastes good. A shot can have beaut
 
 </details>
 
+## The 3 phases of espresso during extraction
+
+An espresso is not homogeneous. As it flows from your portafilter, compounds are extracted at different moments, creating three visible "phases" with very different flavors.
+
+<details>
+<summary>Head, heart, and tail — what comes out when</summary>
+
+### Head — First 5-10 seconds
+
+Very dark liquid flowing quickly. These are the gases (CO₂) and oils that came out first, along with bitter and astringent flavors. The head is the least desirable part of the shot.
+
+**In practice:** Many baristas deliberately discard the head, especially in milk drinks (cappuccino, latte). Why? Because if you include it, the final flavor is more bitter and the crema is less creamy. For straight shots (simple espresso), you can include it, but it will change the flavor profile.
+
+### Heart — Approximately 10-25 seconds
+
+**The best part of the shot.** Here the flow is consistent and desirable compounds are extracted: natural sweetness, balanced acidity, flavor complexity, texture. The color is dark brown to bright reddish.
+
+The heart is what you want to taste when evaluating whether the coffee is well-extracted. It's the concentrated essence of the coffee. It's where the flavors are that you paid for in the beans.
+
+### Tail — Last 5-10 seconds
+
+Very slow flow, clear and watery liquid. More insoluble solids and bitter compounds are being extracted, producing excessive bitterness and lack of body. The tail is the over-extracted part.
+
+**In practice:** Many baristas deliberately discard the tail. A cappuccino made with head+heart+tail will be more bitter and thin than one made with heart only.
+
+### By the numbers
+
+If you pull a standard 25-30 second shot:
+- **Seconds 0-5:** Head (often discarded)
+- **Seconds 5-20:** Heart (the part that matters)
+- **Seconds 20-30:** Tail (sometimes discarded or accepted)
+
+For **straight espresso** (ristretto/simple shot), many baristas use the complete shot and the balance of head+heart+tail is what defines the "espresso shot." But for **milk drinks**, many professionals discard the head to get a cleaner, sweeter taste in the final cappuccino.
+
+</details>
+
 ## Distribution and tamping
 
 Before extracting, break up coffee clumps with needles (WDT) then compress evenly with the tamper (~13-15 kg). If you skip this, water takes the easy path and your shot comes out unbalanced (channeling). The ideal sequence: **grind → WDT → level → tamp → extract**.

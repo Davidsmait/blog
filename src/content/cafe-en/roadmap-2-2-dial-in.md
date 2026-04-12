@@ -39,7 +39,9 @@ Make small adjustments to your grinder — on most grinders, a change of 1-2 num
 
 ### Step 4: Taste and evaluate
 
-Once your shot falls in 25-35 seconds with your 1:2 ratio, taste it. Three possibilities:
+Once your shot falls in 25-35 seconds with your 1:2 ratio, taste it. **Note:** If you remember lesson 2.1, you know that espresso has 3 phases (head, heart, tail). For a more precise evaluation, many professionals discard the first 5 seconds (head) and taste only the heart. As a beginner, you can taste the complete shot, but as you progress, consider tasting only the heart for a purer evaluation of the coffee.
+
+Three possibilities:
 
 **If it tastes acidic, sour, with a short aftertaste → under-extracted.** You need more extraction. Options: grind a bit finer, or adjust your ratio to 1:2.2 or 1:2.5 (more water, more extraction).
 

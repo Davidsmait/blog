@@ -82,6 +82,42 @@ Lo que la crema NO te indica: si el espresso sabe bien. Un shot puede tener crem
 
 </details>
 
+## Las 3 fases del espresso durante la extracción
+
+Un espresso no es homogéneo. Mientras fluye desde tu portafiltro, los compuestos se extraen en diferentes momentos, creando tres "fases" visibles y con sabores muy distintos.
+
+<details>
+<summary>Cabeza, corazón y cola — qué sale cuándo</summary>
+
+### Cabeza (Head) — Primeros 5-10 segundos
+
+Líquido muy oscuro que fluye rápido. Son los gases (CO₂) y aceites que salen primero, junto a sabores amargos y astringentes. La cabeza es la parte menos deseable del shot.
+
+**En la práctica:** Muchos baristas descartan deliberadamente la cabeza, especialmente en bebidas con leche (cappuccino, latte). ¿Por qué? Porque si la incluyes, el sabor final es más amargo y el crema es menos cremoso. Para bebidas puras (espresso simple), puedes incluirla, pero cambiarás el perfil de sabor.
+
+### Corazón (Heart) — Aproximadamente 10-25 segundos
+
+**La mejor parte del shot.** Aquí el flujo es consistente y se extraen los compuestos deseables: dulzura natural, acidez balanceada, complejidad de sabores, textura. El color es marrón oscuro a rojizo brillante. 
+
+El corazón es lo que quieres probar cuando evalúas si el café está bien extraído. Es la esencia concentrada del café. Es donde están los sabores que pagaste por el grano.
+
+### Cola (Tail) — Últimos 5-10 segundos
+
+Flujo muy lentísimo, líquido claro y acuoso. Se están extrayendo más sólidos insolubles y compuestos amargos, lo que produce amargor excesivo y falta de cuerpo. La cola es la parte sobre-extraída.
+
+**En la práctica:** Muchos baristas descartan la cola deliberadamente. Un cappuccino hecho con cabeza+corazón+cola será más amargo y flojo que uno hecho con solo corazón.
+
+### En números
+
+Si haces un shot estándar de 25-30 segundos:
+- **Segundos 0-5:** Cabeza (a menudo descartada)
+- **Segundos 5-20:** Corazón (la parte que importa)
+- **Segundos 20-30:** Cola (a veces descartada o aceptada)
+
+Para **espresso puro** (ristretto/shot simple), muchos baristas usan el shot completo y el balance de cabeza+corazón+cola es lo que define el "shot de espresso". Pero para **bebidas con leche**, muchos profesionales tiran la cabeza para obtener un sabor más limpio y dulce en el cappuccino final.
+
+</details>
+
 ## Distribución y tamping
 
 Antes de extraer, rompe los grumos del café con agujas (WDT) y luego compacta parejo con el tamper (~13-15 kg). Si no lo haces, el agua busca el camino fácil y tu shot sale desbalanceado (channeling). La secuencia ideal: **moler → WDT → nivelar → tampar → extraer**.

@@ -39,7 +39,9 @@ Haz ajustes pequeños en tu molino — en la mayoría de los grinders, un cambio
 
 ### Paso 4: Probar y evaluar
 
-Una vez que tu shot cae en 25-35 segundos con tu ratio de 1:2, pruébalo. Hay tres posibilidades:
+Una vez que tu shot cae en 25-35 segundos con tu ratio de 1:2, pruébalo. **Nota:** Si recuerdas la lección 2.1, sabes que el espresso tiene 3 fases (cabeza, corazón, cola). Para una evaluación más precisa, muchos profesionales tiran los primeros 5 segundos (cabeza) y prueban solo el corazón. Como principiante, puedes probar el shot completo, pero conforme avanzes, considera probar solo el corazón para una evaluación más pura del café.
+
+Hay tres posibilidades:
 
 **Si sabe ácido, agrio, con retrogusto corto → sub-extraído.** Necesitas extraer más. Opciones: muele un poco más fino, o cambia tu ratio a 1:2.2 o 1:2.5 (más agua, más extracción).
 
