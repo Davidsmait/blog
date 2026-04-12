@@ -175,6 +175,9 @@ Prepara 3 espressos del mismo café con la misma molienda, midiendo todo:
 - Los 4 parámetros: dosis (g café), yield (g en taza), ratio (dosis:yield), tiempo
 - Ratio 1:2 es el punto de partida universal (ej: 18g → 36g)
 - El tiempo es un resultado de la molienda, no un objetivo que fijar
+- **La molienda es la variable primaria que controla el flujo** — ajusta esto antes que el tamping
+- El tamping es importante por consistencia y nivelación, no por presión exacta (13-15 kg es solo un rango sensato)
 - La distribución (WDT) y el tamping uniforme son críticos para evitar channeling
+- Un espresso tiene 3 fases: cabeza (amarga, a menudo descartada), corazón (la mejor parte), cola (sobre-extraída)
 - La crema es un indicador visual, no un indicador de sabor
 - Siempre mide con báscula — el espresso no se mide a ojo

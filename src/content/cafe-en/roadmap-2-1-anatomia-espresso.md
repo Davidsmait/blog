@@ -175,6 +175,9 @@ Prepare 3 espressos from the same coffee with the same grind, measuring everythi
 - The 4 parameters: dose (g coffee), yield (g in cup), ratio (dose:yield), time
 - 1:2 ratio is the universal starting point (ex: 18g → 36g)
 - Time is a result of grind, not a target to set
+- **Grind size is the primary variable controlling flow** — adjust this before tamping
+- Tamping matters for consistency and leveling, not exact pressure (13-15 kg is just a sensible range)
 - Distribution (WDT) and uniform tamping are critical for avoiding channeling
+- An espresso has 3 phases: head (bitter, often discarded), heart (the best part), tail (over-extracted)
 - Crema is a visual indicator, not a flavor indicator
 - Always measure with a scale — espresso isn't guessed
