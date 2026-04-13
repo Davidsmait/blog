@@ -20,6 +20,21 @@ En las lecciones anteriores nos enfocamos en dosis, molienda y ratio — las var
 
 El estándar de la industria para espresso es **9 bares de presión** (aproximadamente 130 PSI). Este número viene de los años 1960 cuando Faema diseñó la E61, la máquina que definió el espresso moderno. ¿Por qué 9? Porque a esa presión se logra un equilibrio entre velocidad de extracción, emulsión de aceites y producción de crema.
 
+<details>
+<summary>La historia detrás de los 9 bares — por qué ese número exacto</summary>
+
+El número 9 no fue resultado de investigación científica deliberada. Fue **accidental**, pero el accidente ocurrió antes de la E61.
+
+En 1946, **Achille Gaggia** introdujo la máquina de palanca con resorte. El pistón, la cámara y el tamaño de la palanca fueron diseñados por intuición práctica, no calculados para un objetivo técnico específico. El resorte simplemente generaba ~8-10 bares de presión — 9 como promedio natural. Resultó que a esa presión el agua emulsionaba los aceites del café y creaba una capa de espuma dorada encima: la crema. Nadie lo planeó; simplemente funcionó, y la industria lo adoptó.
+
+Cuando Ernesto Valente diseñó la **Faema E61 en 1961**, no reinventó la presión — la replicó. La bomba eléctrica de la E61 fue diseñada para producir los mismos 9 bares que las palancas Gaggia ya habían establecido como estándar. Lo que sí fue genuinamente revolucionario en la E61 fue otra cosa: introdujo la **bomba eléctrica** (eliminando el esfuerzo físico del barista), la **pre-infusión automática** y el **termosifón** — un sistema de circulación continua de agua caliente que mantiene la temperatura del grupo estable sin necesidad de hacer flush antes de cada shot.
+
+El diseño del grupo E61 fue tan bueno que sigue siendo estándar 60+ años después — máquinas modernas como la Lelit Bianca o la ECM Synchronika todavía usan grupos E61 o derivados directos.
+
+En resumen: 9 bares es estándar porque una palanca de 1946 los producía por accidente mecánico, resultó ser un excelente punto de equilibrio, y la industria entera lo adoptó sin cuestionarlo.
+
+</details>
+
 ### Qué hace la presión
 
 La presión fuerza al agua a atravesar la cama de café compactada. Sin presión, el agua simplemente se sentaría encima del café y gotearia lentamente por gravedad (que es básicamente lo que hace un pour-over). A 9 bares, el agua penetra los poros del café molido fino de una forma que extrae compuestos que otros métodos no pueden alcanzar — especialmente los aceites insolubles que dan al espresso su cuerpo y textura únicos.

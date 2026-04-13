@@ -20,6 +20,21 @@ In previous lessons we focused on dose, grind, and ratio — the variables you c
 
 The industry standard for espresso is **9 bars of pressure** (approximately 130 PSI). This number comes from the 1960s when Faema designed the E61, the machine that defined modern espresso. Why 9? Because at that pressure you achieve a balance between extraction speed, oil emulsion, and crema production.
 
+<details>
+<summary>The story behind 9 bars — why that exact number</summary>
+
+The number 9 wasn't the result of deliberate scientific research. It was **accidental** — but the accident happened before the E61.
+
+In 1946, **Achille Gaggia** introduced the spring lever machine. The piston, chamber, and lever size were designed by practical intuition, not calculated toward a specific technical target. The spring naturally produced ~8-10 bars of pressure — 9 as a natural average. At that pressure, water emulsified the coffee's oils and created a golden foam layer on top: crema. Nobody planned it; it simply worked, and the industry adopted it.
+
+When Ernesto Valente designed the **Faema E61 in 1961**, he didn't reinvent the pressure — he replicated it. The E61's electric pump was engineered to produce the same 9 bars that Gaggia's levers had already established as the standard. What was genuinely revolutionary in the E61 was something else: it introduced the **electric pump** (eliminating the barista's physical effort), **automatic pre-infusion**, and the **thermosiphon** — a continuous hot water circulation system that keeps the group head temperature stable without needing to flush before each shot.
+
+The E61 group design was so good it remains the standard 60+ years later — modern machines like the Lelit Bianca or ECM Synchronika still use E61 groups or direct derivatives.
+
+In short: 9 bars is standard because a 1946 lever accidentally produced them through mechanical design, it turned out to be an excellent equilibrium point, and the entire industry adopted it without question.
+
+</details>
+
 ### What pressure does
 
 Pressure forces water through the compacted coffee bed. Without pressure, water would just sit on top of the coffee and drip slowly by gravity (basically what a pour-over does). At 9 bars, water penetrates the pores of finely ground coffee in a way that extracts compounds other methods can't reach — especially the insoluble oils that give espresso its unique body and texture.

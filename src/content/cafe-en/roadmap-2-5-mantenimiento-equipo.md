@@ -24,9 +24,24 @@ Good news: keeping your equipment in optimal condition requires very little time
 
 These are things you should do every day you use your machine:
 
-### Purge before extracting
+### Purge before extracting (Flush)
 
 Before your first shot of the day, activate the pump without the portafilter for 3-5 seconds. This does two things: eliminates stale water in the group (which has absorbed flavors from the gasket and shower) and stabilizes the group temperature.
+
+<details>
+<summary>Why flush? — the history behind this routine</summary>
+
+Before the **E61** (1961), flushing was absolutely critical. Old lever machines didn't have a thermosiphon — the group would cool significantly between shots, and if you didn't purge with hot water, your first shot of the day came out lukewarm and flavorless. Also, stale water in the group would absorb unpleasant flavors from gaskets and rubber.
+
+Modern machines with thermosiphon systems (like yours or most semi-automatics) keep temperature more stable, so flushing is **less critical** than it was 60 years ago. But it's still good practice:
+
+- Ensures the water entering your puck is at the right temperature
+- Flushes out residue from the previous shot (oxidized oils) before they contaminate the next one
+- Takes literally 3 seconds — costs nothing
+
+On machines with thermoblock (like your Gemilai), a 2-3 second flush each morning is plenty. If you're switching between radically different coffees (from a dark roast to a light one), it's also good to do a small flush to clear residue from the previous coffee.
+
+</details>
 
 ### Clean the portafilter between shots
 

@@ -24,9 +24,24 @@ La buena noticia: mantener tu equipo en condiciones óptimas requiere muy poco t
 
 Estas son las cosas que deberías hacer cada día que uses tu máquina:
 
-### Purga antes de extraer
+### Purga antes de extraer (Flush)
 
 Antes de tu primer shot del día, activa la bomba sin portafiltro durante 3-5 segundos. Esto hace dos cosas: elimina agua estancada en el grupo (que ha absorbido sabores del junta y la ducha) y estabiliza la temperatura del grupo.
+
+<details>
+<summary>¿Por qué hacer flush? — la historia detrás de esta rutina</summary>
+
+Antes de la **E61** (1961), hacer flush era absolutamente crítico. Las máquinas antiguas de palanca no tenían termosifón — el grupo se enfriaba significativamente entre shots, y si no purgabas con agua caliente, tu primer shot del día salía tibio e insípido. Además, el agua estancada en el grupo absorbía sabores desagradables de los juntes y caucho.
+
+Las máquinas modernas con termosifón (como la tuya o la mayoría de máquinas semi-automáticas) mantienen la temperatura más estable, así que el flush es **menos crítico** que hace 60 años. Pero sigue siendo buena práctica:
+
+- Asegura que el agua que entra a tu puck esté a la temperatura correcta
+- Arrastra residuos del shot anterior (aceites oxidados) antes de que contaminen el siguiente
+- Toma literalmente 3 segundos — no cuesta nada
+
+En máquinas con thermoblock (como tu Gemilai), un flush de 2-3 segundos cada mañana es suficiente. Si cambias de café radicalmente (de un tueste oscuro a uno claro), también es buena idea hacer un pequeño flush para limpiar residuos del café anterior.
+
+</details>
 
 ### Limpia el portafiltro entre shots
 
