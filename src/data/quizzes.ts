@@ -276,7 +276,7 @@ export const quizzes: Record<string, QuizData> = {
         ],
         correct: 1,
         explanation:
-          'Compounds extract in a predictable order: first acids (which is why under-extracted coffee tastes sour), then sugars and caramels (the sweet spot you\'re aiming for), and finally bitter and astringent compounds. Understanding this order is key to knowing what to adjust when your coffee doesn\'t taste right.'
+          "Compounds extract in a predictable order: first acids (which is why under-extracted coffee tastes sour), then sugars and caramels (the sweet spot you're aiming for), and finally bitter and astringent compounds. Understanding this order is key to knowing what to adjust when your coffee doesn't taste right."
       }
     ]
   },
@@ -314,12 +314,7 @@ export const quizzes: Record<string, QuizData> = {
       {
         question:
           '¿Qué mineral del agua tiene mayor afinidad por los compuestos ácidos y afrutados del café?',
-        options: [
-          'Calcio',
-          'Magnesio',
-          'Sodio',
-          'Bicarbonato'
-        ],
+        options: ['Calcio', 'Magnesio', 'Sodio', 'Bicarbonato'],
         correct: 1,
         explanation:
           'El magnesio tiene mayor afinidad por los ácidos y compuestos aromáticos — es el responsable de las notas afrutadas, florales y la acidez brillante. El calcio, en cambio, extrae más los compuestos que dan cuerpo y dulzura. Por eso el balance entre ambos moldea el perfil final de tu taza.'
@@ -358,15 +353,10 @@ export const quizzes: Record<string, QuizData> = {
       {
         question:
           'Which mineral in water has the highest affinity for acidic and fruity compounds in coffee?',
-        options: [
-          'Calcium',
-          'Magnesium',
-          'Sodium',
-          'Bicarbonate'
-        ],
+        options: ['Calcium', 'Magnesium', 'Sodium', 'Bicarbonate'],
         correct: 1,
         explanation:
-          'Magnesium has the highest affinity for acids and aromatic compounds — it\'s responsible for fruity, floral notes and bright acidity. Calcium, on the other hand, extracts more of the compounds that give body and sweetness. The balance between both shapes the final profile of your cup.'
+          "Magnesium has the highest affinity for acids and aromatic compounds — it's responsible for fruity, floral notes and bright acidity. Calcium, on the other hand, extracts more of the compounds that give body and sweetness. The balance between both shapes the final profile of your cup."
       }
     ]
   },
@@ -389,8 +379,7 @@ export const quizzes: Record<string, QuizData> = {
           'Las máquinas de espresso operan típicamente a 9 bares de presión (~130 PSI). Este estándar viene de la Faema E61 (1961) y crea el balance ideal entre velocidad de extracción y emulsión de aceites.'
       },
       {
-        question:
-          '¿Qué indica la crema sobre la frescura del café?',
+        question: '¿Qué indica la crema sobre la frescura del café?',
         options: [
           'Café de 1-3 días post-tueste',
           'Café de 7-21 días post-tueste',
@@ -446,8 +435,7 @@ export const quizzes: Record<string, QuizData> = {
           'Espresso machines typically operate at 9 bars of pressure (~130 PSI). This standard comes from the Faema E61 (1961) and creates the ideal balance between extraction speed and oil emulsion.'
       },
       {
-        question:
-          'What does crema indicate about coffee freshness?',
+        question: 'What does crema indicate about coffee freshness?',
         options: [
           'Coffee 1-3 days post-roast',
           'Coffee 7-21 days post-roast',
@@ -459,8 +447,7 @@ export const quizzes: Record<string, QuizData> = {
           'Abundant, stable crema indicates fresh coffee 7-21 days post-roast. Coffee at 1-3 days also produces lots of crema, but it is unstable (large bubbles that dissipate quickly) because excess CO2 causes erratic extraction. After 21-30 days crema becomes pale and thin.'
       },
       {
-        question:
-          'What is the main goal of the WDT technique before tamping?',
+        question: 'What is the main goal of the WDT technique before tamping?',
         options: [
           'Compact the coffee as much as possible',
           'Break clumps and homogenize coffee distribution',
@@ -476,7 +463,7 @@ export const quizzes: Record<string, QuizData> = {
           'Which is the most important variable for controlling flow in espresso: tamping pressure or grind size?',
         options: [
           'Exact tamping pressure (13-15 kg)',
-          'Grind size — it\'s the variable that really controls flow',
+          "Grind size — it's the variable that really controls flow",
           'Both are equally important',
           'Neither — only machine pressure matters'
         ],
@@ -515,8 +502,7 @@ export const quizzes: Record<string, QuizData> = {
           'Un shot ácido/agrio indica sub-extracción. Para extraer más, puedes moler más fino (más resistencia = más tiempo de contacto) o alargar el ratio (ej: de 1:2 a 1:2.5), lo que pasa más agua por el café.'
       },
       {
-        question:
-          '¿Cuál es la "regla de oro" del proceso de dial-in?',
+        question: '¿Cuál es la "regla de oro" del proceso de dial-in?',
         options: [
           'Siempre usar 18g de dosis',
           'Cambiar una sola variable a la vez',
@@ -530,12 +516,7 @@ export const quizzes: Record<string, QuizData> = {
       {
         question:
           '¿Cuál es el ratio de inicio recomendado para hacer dial-in con un café nuevo?',
-        options: [
-          '1:1 (ristretto)',
-          '1:1.5',
-          '1:2',
-          '1:3 (lungo)'
-        ],
+        options: ['1:1 (ristretto)', '1:1.5', '1:2', '1:3 (lungo)'],
         correct: 2,
         explanation:
           'El ratio 1:2 es el punto de partida universal para dial-in. Con 18g de dosis, produces 36g de bebida. Es un punto medio balanceado desde el cual puedes acortar (más cuerpo) o alargar (más claridad) según el sabor.'
@@ -569,8 +550,7 @@ export const quizzes: Record<string, QuizData> = {
           'A sour/acidic shot indicates under-extraction. To extract more, you can grind finer (more resistance = more contact time) or lengthen the ratio (e.g., from 1:2 to 1:2.5), passing more water through the coffee.'
       },
       {
-        question:
-          'What is the "golden rule" of the dial-in process?',
+        question: 'What is the "golden rule" of the dial-in process?',
         options: [
           'Always use an 18g dose',
           'Change only one variable at a time',
@@ -579,20 +559,15 @@ export const quizzes: Record<string, QuizData> = {
         ],
         correct: 1,
         explanation:
-          'The most important dial-in rule is to change only one variable at a time. If you change grind, ratio, and temperature simultaneously, you won\'t know what caused the flavor change. The priority order is: grind → ratio → temperature → dose.'
+          "The most important dial-in rule is to change only one variable at a time. If you change grind, ratio, and temperature simultaneously, you won't know what caused the flavor change. The priority order is: grind → ratio → temperature → dose."
       },
       {
         question:
           'What is the recommended starting ratio when dialing in a new coffee?',
-        options: [
-          '1:1 (ristretto)',
-          '1:1.5',
-          '1:2',
-          '1:3 (lungo)'
-        ],
+        options: ['1:1 (ristretto)', '1:1.5', '1:2', '1:3 (lungo)'],
         correct: 2,
         explanation:
-          'A 1:2 ratio is the universal starting point for dial-in. With an 18g dose, you produce 36g of beverage. It\'s a balanced middle ground from which you can shorten (more body) or lengthen (more clarity) based on taste.'
+          "A 1:2 ratio is the universal starting point for dial-in. With an 18g dose, you produce 36g of beverage. It's a balanced middle ground from which you can shorten (more body) or lengthen (more clarity) based on taste."
       }
     ]
   },
@@ -749,6 +724,14 @@ export const quizzes: Record<string, QuizData> = {
         correct: 1,
         explanation:
           'La canalización ocurre cuando el agua encuentra caminos de menor resistencia y fluye rápidamente a través de ciertos puntos del puck, resultando en una extracción desigual e incompleta. Es uno de los problemas más comunes al diagnosticar shots.'
+      },
+      {
+        question:
+          '¿Cuál es el rango óptimo de extracción (TDS) para un espresso bien balanceado?',
+        options: ['5-8%', '8-12%', '12-15%', '15-20%'],
+        correct: 1,
+        explanation:
+          'El rango óptimo de extracción para espresso es 8-12%, con el objetivo competitivo en 10-12%. Si tu shot es ácido, probablemente esté < 8% (subextraído). Si es amargo, probablemente esté > 12% (sobreextraído). El sabor es tu mejor indicador.'
       }
     ],
     en: [
@@ -803,6 +786,14 @@ export const quizzes: Record<string, QuizData> = {
         correct: 1,
         explanation:
           'Channeling occurs when water finds paths of less resistance and flows quickly through certain points in the puck, resulting in uneven and incomplete extraction. It is one of the most common problems when diagnosing shots.'
+      },
+      {
+        question:
+          'What is the optimal extraction range (TDS) for a well-balanced espresso?',
+        options: ['5-8%', '8-12%', '12-15%', '15-20%'],
+        correct: 1,
+        explanation:
+          "The optimal extraction range for espresso is 8-12%, with the competitive target at 10-12%. If your shot tastes sour, it's probably < 8% (under-extracted). If bitter, probably > 12% (over-extracted). Taste is your best indicator."
       }
     ]
   },
@@ -874,7 +865,7 @@ export const quizzes: Record<string, QuizData> = {
         question:
           'Why should you never use vinegar or kitchen soap to clean your espresso machine?',
         options: [
-          'Because they don\'t dissolve coffee oils',
+          "Because they don't dissolve coffee oils",
           'Because they can damage gaskets, seals, and machine metals',
           'Because they leave a pleasant aroma that interferes with coffee',
           'Because they are too expensive compared to specific detergents'

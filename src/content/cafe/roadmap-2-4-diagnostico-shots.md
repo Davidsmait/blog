@@ -50,6 +50,8 @@ Esta lección es tu guía de diagnóstico. Apréndela bien porque la vas a usar 
 
 Este es el objetivo de cada dial-in. Cuando lo encuentras, lo sabes.
 
+**En números:** Para espresso, el rango óptimo de extracción (TDS — Total Dissolved Solids) es **8-12%**, con el objetivo competitivo en **10-12%**. En términos prácticos: si tu shot está ácido, tu extracción es probablemente < 8% (sub-extraído). Si está amargo, probablemente > 12% (sobre-extraído). El sabor te lo dice mejor que cualquier número, pero es útil entender que existe ese rango.
+
 ## Diagnóstico visual: la extracción en vivo
 
 Observar el flujo de espresso saliendo del portafiltro te dice mucho antes de que pruebes el shot.
@@ -60,7 +62,7 @@ Un shot bien extraído fluye así: las primeras gotas aparecen a los 3-6 segundo
 
 ### Señales de problema
 
-**Flujo demasiado rápido (gushing):** El espresso sale como agua — rápido, claro, sin viscosidad. La molienda es demasiado gruesa, la dosis muy baja, o el tamping fue insuficiente. El resultado: sub-extracción.
+**Flujo demasiado rápido (gushing):** El espresso sale como agua — rápido, claro, sin viscosidad. Típicamente el shot termina en menos de 20 segundos. La molienda es demasiado gruesa, la dosis muy baja, o el tamping fue insuficiente. El resultado: sub-extracción.
 
 **Flujo demasiado lento (choking):** Las gotas apenas caen, el espresso es oscuro y extremadamente lento. La molienda es demasiado fina, la dosis excesiva, o algo bloquea el filtro. Si la máquina se atasca completamente (no sale nada), el puck está impenetrable. Resultado: sobre-extracción de lo poco que pasa.
 

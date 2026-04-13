@@ -50,6 +50,8 @@ This lesson is your diagnostic guide. Learn it well because you'll use it every 
 
 This is the goal of every dial-in. When you find it, you know.
 
+**In numbers:** For espresso, the optimal extraction range (TDS — Total Dissolved Solids) is **8-12%**, with the competitive target at **10-12%**. In practical terms: if your shot tastes sour, your extraction is probably < 8% (under-extracted). If it tastes bitter, probably > 12% (over-extracted). Taste tells you better than any number, but it's useful to know that range exists.
+
 ## Visual diagnosis: extraction in real time
 
 Watching the espresso flow from the portafilter tells you a lot before you even taste the shot.
@@ -60,7 +62,7 @@ A well-extracted shot flows like this: the first drops appear at 3-6 seconds (de
 
 ### Problem signals
 
-**Flow too fast (gushing):** Espresso pours like water — fast, clear, without viscosity. Grind is too coarse, dose too low, or tamping was insufficient. Result: under-extraction.
+**Flow too fast (gushing):** Espresso pours like water — fast, clear, without viscosity. Typically the shot finishes in less than 20 seconds. Grind is too coarse, dose too low, or tamping was insufficient. Result: under-extraction.
 
 **Flow too slow (choking):** Drops barely come out, espresso is dark and extremely slow. Grind is too fine, dose excessive, or something blocks the filter. If the machine gets completely stuck (nothing comes out), the puck is impenetrable. Result: over-extraction of what little passes.
 
