@@ -93,6 +93,23 @@ This means your day-10 recipe might need adjustment for day-20 of the same coffe
 The process is the same, but the starting point changes with roast level. Light roasts need more extraction (finer, hotter, longer ratio); dark roasts, less (coarser, cooler, shorter ratio).
 
 <details>
+<summary>General roast rules are a starting point, not a law — a real case</summary>
+
+The rule "dark = coarser, light = finer" is backed by science: dark roasting breaks down the cellular structure of the bean, making it more porous and soluble, and produces more fines when ground. All of that speeds up extraction, so you open up the grind to slow things down and avoid over-extraction and bitterness.
+
+But in practice, when dialing in two different coffees you can find yourself adjusting in unexpected directions. In my case: a **medium-roast** specialty roasted on March 23rd (day 20 of freshness) and a **very dark** commercial bean with no clear roast date. With the specialty I landed on **setting 20** on my grinder (coarser); with the dark commercial I needed **setting 18** (finer) to get the same mouse-tail extraction.
+
+Why? Probably a combination of variables that no general rule can predict for you:
+
+- The dark commercial bean, being softer, may produce a different particle distribution in your specific grinder — more irregular fines that create channels in the puck, and those channels require going finer to compensate for the lost resistance.
+- The freshness of the specialty (active CO₂ at day 20) adds natural flow resistance that the commercial bean no longer has.
+- Bean quality, variety, origin, and processing method also affect how the coffee behaves under pressure.
+
+The practical conclusion is always the same: **roast rules give you a starting point, but dial-in gives you the real answer**. Trust what you see in the cup and in the flow, not the roast label.
+
+</details>
+
+<details>
 <summary>Adjustments by roast level — temperatures and ratios</summary>
 
 **Light roast:** Light roasts are denser, less soluble, harder to extract. Generally they need finer grind, higher temperature (93-96°C), and longer ratios (1:2.2 to 1:2.5). Acidity will be prominent — your job is to extract enough sweetness to balance it.

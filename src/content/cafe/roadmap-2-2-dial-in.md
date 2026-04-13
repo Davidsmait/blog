@@ -93,6 +93,23 @@ Esto significa que tu receta del día 10 puede necesitar ajuste para el día 20 
 El proceso es el mismo, pero el punto de partida cambia según el nivel de tueste. Los claros necesitan más extracción (más fino, más caliente, ratio más largo); los oscuros, menos (más grueso, más frío, ratio más corto).
 
 <details>
+<summary>Las reglas generales de tueste son un punto de partida, no una ley — un caso real</summary>
+
+La regla "oscuro = más grueso, claro = más fino" está respaldada por la ciencia: el tueste oscuro degrada la estructura celular del grano, lo vuelve más poroso y soluble, y produce más finos al molerlo. Todo eso acelera la extracción, así que necesitas abrir la molienda para frenarla y evitar sobre-extracción y amargor.
+
+Pero en la práctica, al hacer dial-in con dos cafés distintos puedes encontrarte ajustando en direcciones que no esperas. En mi caso: un specialty de **tueste medio** tostado el 23 de marzo (día 20 de frescura) y un grano comercial de **tueste muy oscuro** sin fecha clara. Con el specialty llegué a **setting 20** en mi molino (más grueso); con el comercial oscuro necesité **setting 18** (más fino) para lograr la misma cola de ratón.
+
+¿Por qué? Probablemente una combinación de variables que ninguna regla general puede predecir por ti:
+
+- El grano comercial oscuro, al ser más blando, puede generar una distribución de partículas diferente en tu molino específico — más finos irregulares que crean canales en el puck, y esos canales requieren ir más fino para compensar la resistencia perdida.
+- La frescura del specialty (CO₂ activo a día 20) añade resistencia natural al flujo que el comercial ya no tiene.
+- La calidad del grano, la variedad, el origen y cómo fue procesado también afectan cómo se comporta bajo presión.
+
+La conclusión práctica es siempre la misma: **las reglas de tueste te dan un punto de partida, pero el dial-in te da la respuesta real**. Confía en lo que ves en la taza y en el flujo, no en la etiqueta del tueste.
+
+</details>
+
+<details>
 <summary>Ajustes por nivel de tueste — temperaturas y ratios</summary>
 
 **Tueste claro:** Los cafés de tueste claro son más densos, menos solubles y más difíciles de extraer. Generalmente necesitan molienda más fina, temperatura más alta (93-96°C) y ratios más largos (1:2.2 a 1:2.5). La acidez va a ser protagonista — tu trabajo es extraer suficiente dulzura para balancearla.
