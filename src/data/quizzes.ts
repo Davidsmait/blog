@@ -2971,5 +2971,107 @@ export const quizzes: Record<string, QuizData> = {
           'While social media helps, a strong personal brand as a barista is built mainly through local community, loyal customers, and genuine relationships.'
       }
     ]
+  },
+  'bonus-domina-tu-extraccion': {
+    es: [
+      {
+        question: '¿Qué es la "cola de ratón" en el contexto del espresso?',
+        options: [
+          'Un defecto de extracción causado por molienda muy gruesa',
+          'El chorro delgado y simétrico que sale del portafiltro sin fondo durante una extracción uniforme',
+          'La última parte de la extracción que hay que descartar',
+          'Un tipo de channeling localizado en el centro del puck'
+        ],
+        correct: 1,
+        explanation:
+          'La "cola de ratón" es el chorro delgado, simétrico y ámbar que emerge del centro de la canasta al usar un portafiltro sin fondo (bottomless/naked). Indica que el agua pasa de forma homogénea por toda la cama de café — es la señal visual de una extracción equilibrada.'
+      },
+      {
+        question: '¿Qué compuestos se extraen predominantemente durante la "cabeza" del espresso?',
+        options: [
+          'Azúcares y melanoidinas',
+          'Aceites y compuestos de Maillard',
+          'Ácidos orgánicos y cafeína',
+          'Taninos y celulosa'
+        ],
+        correct: 2,
+        explanation:
+          'La cabeza (los primeros segundos de extracción) contiene principalmente ácidos orgánicos y cafeína, que son los compuestos más solubles del café. Por eso sabe tan ácido e intenso si lo pruebas solo. Los azúcares y aceites vienen después, en el cuerpo.'
+      },
+      {
+        question: '¿Cuál es la diferencia clave entre una canasta de pared simple y una de doble pared?',
+        options: [
+          'La de doble pared produce más crema real',
+          'La de pared simple tiene más agujeros y extrae más rápido',
+          'La de doble pared presuriza artificialmente el flujo, enmascarando errores de técnica',
+          'No hay diferencia significativa en el resultado final'
+        ],
+        correct: 2,
+        explanation:
+          'La canasta de doble pared genera presión artificial a través de un pequeño orificio, independientemente de la técnica o la molienda. Esto simula crema y enmascara problemas de extracción. La pared simple requiere técnica correcta pero da crema real, más cuerpo y mayor complejidad — y te permite diagnosticar tu extracción visualmente.'
+      },
+      {
+        question: 'Cuando extraes solo con café muy tostado/comercial, ¿qué ratio de trabajo es más recomendable?',
+        options: [
+          '1:2.5 a 1:3 para diluir el amargor',
+          '1:1.5 a 1:1.8 para quedarte en la zona del cuerpo',
+          '1:2 exacto, igual que con cualquier café',
+          '1:4 o más para suavizar la extracción'
+        ],
+        correct: 1,
+        explanation:
+          'Con café oscuro o comercial, trabajar con ratio corto (1:1.5 a 1:1.8) te permite quedarte en la zona del cuerpo sin entrar en la cola amarga. Combinado con temperatura más baja (91-93°C) y cortar al primer blondeo, puedes obtener un resultado sorprendentemente bueno incluso con café de supermercado.'
+      }
+    ],
+    en: [
+      {
+        question: 'What is the "rat tail" in the context of espresso?',
+        options: [
+          'An extraction defect caused by too coarse a grind',
+          'The thin, symmetrical stream that exits the bottomless portafilter during an even extraction',
+          'The last part of the extraction that should be discarded',
+          'A type of channeling localized in the center of the puck'
+        ],
+        correct: 1,
+        explanation:
+          'The "rat tail" is the thin, symmetrical amber stream that emerges from the center of the basket when using a bottomless (naked) portafilter. It indicates that water is passing homogeneously through the entire coffee bed — it\'s the visual signal of a balanced extraction.'
+      },
+      {
+        question: 'Which compounds are predominantly extracted during the "head" of the espresso?',
+        options: [
+          'Sugars and melanoidins',
+          'Oils and Maillard compounds',
+          'Organic acids and caffeine',
+          'Tannins and cellulose'
+        ],
+        correct: 2,
+        explanation:
+          'The head (the first seconds of extraction) contains mainly organic acids and caffeine, which are the most soluble compounds in coffee. That\'s why it tastes so acidic and intense when tasted alone. Sugars and oils come later, in the body.'
+      },
+      {
+        question: 'What is the key difference between a single-wall and double-wall basket?',
+        options: [
+          'The double-wall produces more real crema',
+          'The single-wall has more holes and extracts faster',
+          'The double-wall artificially pressurizes the flow, masking technique errors',
+          'There is no significant difference in the final result'
+        ],
+        correct: 2,
+        explanation:
+          'The double-wall basket generates artificial pressure through a small hole, regardless of technique or grind. This simulates crema and masks extraction problems. The single-wall requires correct technique but gives real crema, more body and greater complexity — and allows you to visually diagnose your extraction.'
+      },
+      {
+        question: 'When pulling shots with very dark/commercial roasted coffee, what working ratio is most recommended?',
+        options: [
+          '1:2.5 to 1:3 to dilute the bitterness',
+          '1:1.5 to 1:1.8 to stay in the body zone',
+          'Exactly 1:2, same as with any coffee',
+          '1:4 or more to soften the extraction'
+        ],
+        correct: 1,
+        explanation:
+          'With dark or commercial coffee, working with a short ratio (1:1.5 to 1:1.8) lets you stay in the body zone without entering the bitter tail. Combined with a lower temperature (91-93°C) and cutting at the first blonding, you can get a surprisingly good result even with supermarket coffee.'
+      }
+    ]
   }
 }
