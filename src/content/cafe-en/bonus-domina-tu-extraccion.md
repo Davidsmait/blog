@@ -81,20 +81,42 @@ The ideal flow is called the **rat tail**: a thin, symmetrical stream that emerg
 
 ### Video examples — rat tail vs. channeling
 
-<div class="media-grid media-grid--2">
-  <div class="media-placeholder media-placeholder--video">
-    <div class="mp-icon">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="m15.75 10.5 4.72-4.72a.75.75 0 0 1 1.28.53v11.38a.75.75 0 0 1-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 0 0 2.25-2.25v-9a2.25 2.25 0 0 0-2.25-2.25h-9A2.25 2.25 0 0 0 2.25 7.5v9A2.25 2.25 0 0 0 4.5 18.75Z" /></svg>
+<div class="video-row">
+  <div class="video-block">
+    <div class="video-label">Rat tail — extraction 1</div>
+    <div class="video-short">
+      <iframe
+        src="https://www.youtube.com/embed/6PZAW0F_qn8?rel=0&modestbranding=1"
+        title="Perfect rat tail — extraction 1"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+      ></iframe>
     </div>
-    <div class="mp-label">Video — Perfect rat tail</div>
-    <div class="mp-hint">Your reference extraction here</div>
   </div>
-  <div class="media-placeholder media-placeholder--video">
-    <div class="mp-icon">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="m15.75 10.5 4.72-4.72a.75.75 0 0 1 1.28.53v11.38a.75.75 0 0 1-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 0 0 2.25-2.25v-9a2.25 2.25 0 0 0-2.25-2.25h-9A2.25 2.25 0 0 0 2.25 7.5v9A2.25 2.25 0 0 0 4.5 18.75Z" /></svg>
+  <div class="video-block">
+    <div class="video-label">Rat tail — extraction 2</div>
+    <div class="video-short">
+      <iframe
+        src="https://www.youtube.com/embed/EHiv_9sV0Pc?rel=0&modestbranding=1"
+        title="Perfect rat tail — extraction 2"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+      ></iframe>
     </div>
-    <div class="mp-label">Video — Channeling in action</div>
-    <div class="mp-hint">An example with poor distribution</div>
+  </div>
+  <div class="video-block">
+    <div class="video-label">Channeling — what to avoid</div>
+    <div class="video-short">
+      <iframe
+        src="https://www.youtube.com/embed/ozthKLF16NA?rel=0&modestbranding=1"
+        title="Channeling in espresso"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+      ></iframe>
+    </div>
   </div>
 </div>
 
@@ -152,14 +174,21 @@ The **salami technique** (or salami shot) is the most revealing exercise you can
 
 ### The experiment on video
 
-<div class="media-grid media-grid--2">
-  <div class="media-placeholder media-placeholder--video">
-    <div class="mp-icon">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="m15.75 10.5 4.72-4.72a.75.75 0 0 1 1.28.53v11.38a.75.75 0 0 1-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 0 0 2.25-2.25v-9a2.25 2.25 0 0 0-2.25-2.25h-9A2.25 2.25 0 0 0 2.25 7.5v9A2.25 2.25 0 0 0 4.5 18.75Z" /></svg>
-    </div>
-    <div class="mp-label">Video — Full salami experiment</div>
-    <div class="mp-hint">The 4 cups and the tasting</div>
+<div class="video-block video-block--wide">
+  <div class="video-label">Salami technique — reference demonstration</div>
+  <div class="video-wide">
+    <iframe
+      src="https://www.youtube.com/embed/_yIpi5KPUys?rel=0&modestbranding=1"
+      title="Salami technique — reference demonstration"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen
+    ></iframe>
   </div>
+  <p class="video-caption">This video uses 12 cups switching every 5 seconds — finer resolution than the 4-cup exercise we do here, but useful to see the complete gradual shift of the extraction.</p>
+</div>
+
+<div class="media-grid media-grid--1">
   <div class="media-placeholder media-placeholder--image">
     <div class="mp-icon">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" /></svg>
@@ -414,12 +443,74 @@ This exercise integrates everything you learned in this bonus. You need 30–45 
 ---
 
 <style>
+/* ── Video embeds ── */
+.video-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin: 1.25rem 0;
+}
+@media (max-width: 700px) { .video-row { grid-template-columns: 1fr; } }
+
+.video-block { display: flex; flex-direction: column; gap: 0.5rem; }
+.video-block--wide { margin: 1.25rem 0; }
+
+.video-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--color-text-muted, #888);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.video-short {
+  position: relative;
+  width: 100%;
+  padding-bottom: 177.78%;
+  background: color-mix(in srgb, var(--color-accent) 6%, var(--color-bg));
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--color-accent) 15%, transparent);
+}
+.video-short iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.video-wide {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%;
+  background: color-mix(in srgb, var(--color-accent) 6%, var(--color-bg));
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--color-accent) 15%, transparent);
+}
+.video-wide iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.video-caption {
+  font-size: 0.78rem;
+  color: var(--color-text-muted, #888);
+  margin-top: 0.4rem;
+  line-height: 1.5;
+}
+
 /* ── Media placeholders ── */
 .media-grid { display: grid; gap: 1rem; margin: 1.25rem 0; }
+.media-grid--1 { grid-template-columns: 1fr; max-width: 400px; }
 .media-grid--2 { grid-template-columns: repeat(2, 1fr); }
 .media-grid--3 { grid-template-columns: repeat(3, 1fr); }
 @media (max-width: 640px) {
-  .media-grid--2, .media-grid--3 { grid-template-columns: 1fr; }
+  .media-grid--1, .media-grid--2, .media-grid--3 { grid-template-columns: 1fr; }
 }
 .media-placeholder {
   border: 1.5px dashed color-mix(in srgb, var(--color-accent) 35%, transparent);
