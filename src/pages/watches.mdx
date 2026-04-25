@@ -1,0 +1,158 @@
+---
+layout: '@/layouts/PageLayout.astro'
+title: Watches — David San Luis Aguirre
+description: "Películas que he visto este mes con mi calificación personal y una breve reseña."
+---
+
+<script type="application/ld+json">{JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Watches — David San Luis Aguirre",
+  "description": "Películas que he visto este mes con mi calificación personal y una breve reseña.",
+  "url": "https://davidsanluisaguirre.com/watches",
+  "dateModified": "2026-04-24",
+  "inLanguage": "es",
+  "isPartOf": { "@id": "https://davidsanluisaguirre.com/#website" },
+  "author": { "@id": "https://davidsanluisaguirre.com/#person" },
+  "mainEntity": { "@id": "https://davidsanluisaguirre.com/#person" }
+})}</script>
+
+<style>{`
+  .watches-intro {
+    font-size: 0.9rem;
+    line-height: 1.8;
+    max-width: 560px;
+    opacity: 0.5;
+    margin-bottom: 3rem;
+  }
+  .watches-month-title {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.7rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    opacity: 0.35;
+    margin: 3rem 0 1.25rem;
+  }
+  .watches-month-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(var(--accent), 0.08);
+  }
+  .watches-month-title .iconify {
+    font-size: 0.9rem;
+    opacity: 0.5;
+  }
+  .watches-item {
+    padding: 1.5rem 0;
+    border-bottom: 1px solid rgba(var(--accent), 0.04);
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .watches-item:hover {
+    padding-left: 12px;
+  }
+  .watches-item-header {
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+    margin-bottom: 0.5rem;
+    flex-wrap: wrap;
+  }
+  .watches-item-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: rgb(var(--accent));
+    line-height: 1.3;
+  }
+  .watches-item-meta {
+    font-size: 0.75rem;
+    opacity: 0.3;
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+  }
+  .watches-item-score {
+    margin-left: auto;
+    font-size: 0.8rem;
+    font-weight: 600;
+    opacity: 0.6;
+    white-space: nowrap;
+    letter-spacing: 0.02em;
+  }
+  .watches-item-score span {
+    opacity: 0.4;
+    font-weight: 400;
+  }
+  .watches-item-review {
+    font-size: 0.825rem;
+    line-height: 1.75;
+    opacity: 0.5;
+    max-width: 580px;
+  }
+  .watches-footnote {
+    font-family: 'Instrument Serif', serif;
+    font-size: 0.9rem;
+    line-height: 1.7;
+    opacity: 0.25;
+    max-width: 480px;
+    font-style: italic;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(var(--accent), 0.04);
+  }
+`}</style>
+
+<div class="reveal">
+  <p class="watches-intro">
+    Las películas que he visto cada mes, con una calificación del 1 al 10 y mis pensamientos honestos sobre cada una.
+  </p>
+</div>
+
+{/* ── Abril 2026 ── */}
+<div class="watches-month-title reveal">
+  <span class="iconify tabler--calendar-month" aria-hidden="true"></span>
+  Abril 2026
+</div>
+
+<div class="stagger-children">
+
+  <div class="watches-item">
+    <div class="watches-item-header">
+      <div class="watches-item-title">Alien: Romulus</div>
+      <div class="watches-item-meta">2024 · Fede Álvarez</div>
+      <div class="watches-item-score">10<span>/10</span></div>
+    </div>
+    <p class="watches-item-review">
+      Simplemente espectacular. Una película de terror actual que sabe exactamente lo que hace — de esas que puedes volver a ver y siguen funcionando. Me acuerdo de haber visto el Alien original y reírnos de los efectos de la época; Romulus demuestra hasta dónde ha llegado el género sin perder lo que lo hace funcionar: el miedo. Profundiza en los sintéticos con más matiz que entregas anteriores, y tiene secuencias espaciales que te dejan clavado en el asiento — escenas que literalmente derrenan naves y te recuerdan lo hostil que es ese universo. El 10 no es por perfección técnica sino por algo más difícil: es una película que da ganas de volver a ella.
+    </p>
+  </div>
+
+  <div class="watches-item">
+    <div class="watches-item-header">
+      <div class="watches-item-title">Alien: Covenant</div>
+      <div class="watches-item-meta">2017 · Ridley Scott</div>
+      <div class="watches-item-score">6<span>/10</span></div>
+    </div>
+    <p class="watches-item-review">
+      Predecible, aunque de una manera particular: desde el primer acto sabes qué va a pasar, pero no exactamente cómo — y la película abusa de eso. Mejora notablemente a partir de la mitad, cuando David toma más protagonismo, pero el daño ya está hecho. Haberla visto después de Romulus y de haber jugado el videojuego no ayuda: la nave y la ambientación se sienten genéricas comparadas con lo que vino después. Lo que sí queda pendiente — y es lo más interesante — es la historia del sintético que juega a ser dios. No tengo claro si esa línea se resuelve en otra entrega o simplemente queda inconclusa, y esa incertidumbre pesa en la calificación.
+    </p>
+  </div>
+
+  <div class="watches-item">
+    <div class="watches-item-header">
+      <div class="watches-item-title">Un Poeta</div>
+      <div class="watches-item-meta">2025 · Simón Mesa Soto · Colombia — Premio del Jurado, Un Certain Regard (Cannes)</div>
+      <div class="watches-item-score">9<span>/10</span></div>
+    </div>
+    <p class="watches-item-review">
+      Me hizo reencuentrarme con ese pesimista que vive dentro de mí, el que lee a Schopenhauer, a Cioran, a Dostoievski. Hay algo curioso en la película: al protagonista no le gusta la filosofía, y a mí no me gusta la poesía — somos el mismo tipo de persona mirando desde lados distintos el mismo abismo. Mesa Soto filma fuera de las paredes bien pintadas, sin actores de catálogo ni realidades maquilladas, y eso se agradece. Lo que queda es el dolor de la pobreza, el nulo reconocimiento, la sencillez de dos personas con situaciones llenas de peso. Él parece disfrutar su propia lástima; ella, simplemente, disfruta estar ahí y vivir. Ese contraste es toda la película.
+    </p>
+  </div>
+
+</div>
+
+<p class="watches-footnote reveal">
+  Última actualización: abril 2026 · Calificaciones del 1 al 10, sin decimales forzados — lo que sentí al terminar de verla.
+</p>

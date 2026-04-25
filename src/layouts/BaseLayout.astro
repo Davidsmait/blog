@@ -103,14 +103,19 @@ const openGraphImageUrl = new URL(
       ) : Astro.url.pathname === '/' ? (
         <>
           <link rel="alternate" hreflang="es" href={canonicalURL} />
-          <link rel="alternate" hreflang="en" href={new URL('/en/', Astro.site).href} />
+          <link
+            rel="alternate"
+            hreflang="en"
+            href={new URL('/en/', Astro.site).href}
+          />
           <link rel="alternate" hreflang="x-default" href={canonicalURL} />
         </>
       ) : Astro.url.pathname.includes('/cafe/') ||
         Astro.url.pathname.includes('/barista-roadmap') ||
         Astro.url.pathname.includes('/about') ||
         Astro.url.pathname.includes('/uses') ||
-        Astro.url.pathname.includes('/now') ? (
+        Astro.url.pathname.includes('/now') ||
+        Astro.url.pathname.includes('/watches') ? (
         <>
           <link rel="alternate" hreflang="es" href={canonicalURL} />
           <link

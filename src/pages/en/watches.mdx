@@ -1,0 +1,158 @@
+---
+layout: '@/layouts/PageLayout.astro'
+title: Watches — David San Luis Aguirre
+description: "Movies I've watched this month with my personal rating and a short review."
+---
+
+<script type="application/ld+json">{JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Watches — David San Luis Aguirre",
+  "description": "Movies I've watched this month with my personal rating and a short review.",
+  "url": "https://davidsanluisaguirre.com/en/watches",
+  "dateModified": "2026-04-24",
+  "inLanguage": "en",
+  "isPartOf": { "@id": "https://davidsanluisaguirre.com/#website" },
+  "author": { "@id": "https://davidsanluisaguirre.com/#person" },
+  "mainEntity": { "@id": "https://davidsanluisaguirre.com/#person" }
+})}</script>
+
+<style>{`
+  .watches-intro {
+    font-size: 0.9rem;
+    line-height: 1.8;
+    max-width: 560px;
+    opacity: 0.5;
+    margin-bottom: 3rem;
+  }
+  .watches-month-title {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.7rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    opacity: 0.35;
+    margin: 3rem 0 1.25rem;
+  }
+  .watches-month-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(var(--accent), 0.08);
+  }
+  .watches-month-title .iconify {
+    font-size: 0.9rem;
+    opacity: 0.5;
+  }
+  .watches-item {
+    padding: 1.5rem 0;
+    border-bottom: 1px solid rgba(var(--accent), 0.04);
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .watches-item:hover {
+    padding-left: 12px;
+  }
+  .watches-item-header {
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+    margin-bottom: 0.5rem;
+    flex-wrap: wrap;
+  }
+  .watches-item-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: rgb(var(--accent));
+    line-height: 1.3;
+  }
+  .watches-item-meta {
+    font-size: 0.75rem;
+    opacity: 0.3;
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+  }
+  .watches-item-score {
+    margin-left: auto;
+    font-size: 0.8rem;
+    font-weight: 600;
+    opacity: 0.6;
+    white-space: nowrap;
+    letter-spacing: 0.02em;
+  }
+  .watches-item-score span {
+    opacity: 0.4;
+    font-weight: 400;
+  }
+  .watches-item-review {
+    font-size: 0.825rem;
+    line-height: 1.75;
+    opacity: 0.5;
+    max-width: 580px;
+  }
+  .watches-footnote {
+    font-family: 'Instrument Serif', serif;
+    font-size: 0.9rem;
+    line-height: 1.7;
+    opacity: 0.25;
+    max-width: 480px;
+    font-style: italic;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(var(--accent), 0.04);
+  }
+`}</style>
+
+<div class="reveal">
+  <p class="watches-intro">
+    Movies I watch each month, rated from 1 to 10 with my honest thoughts on each one.
+  </p>
+</div>
+
+{/* ── April 2026 ── */}
+<div class="watches-month-title reveal">
+  <span class="iconify tabler--calendar-month" aria-hidden="true"></span>
+  April 2026
+</div>
+
+<div class="stagger-children">
+
+  <div class="watches-item">
+    <div class="watches-item-header">
+      <div class="watches-item-title">Alien: Romulus</div>
+      <div class="watches-item-meta">2024 · Fede Álvarez</div>
+      <div class="watches-item-score">10<span>/10</span></div>
+    </div>
+    <p class="watches-item-review">
+      Simply spectacular. A genuinely scary horror film that knows exactly what it's doing — the kind you can watch again and it still works. I remember watching the original Alien and laughing at the effects of the era; Romulus shows how far the genre has come without losing what makes it work: the fear. It goes deeper into the synthetics with more nuance than previous entries, and has space sequences that pin you to your seat — scenes that literally melt ships and remind you how hostile that universe is. The 10 isn't for technical perfection but for something harder to achieve: it makes you want to go back to it.
+    </p>
+  </div>
+
+  <div class="watches-item">
+    <div class="watches-item-header">
+      <div class="watches-item-title">Alien: Covenant</div>
+      <div class="watches-item-meta">2017 · Ridley Scott</div>
+      <div class="watches-item-score">6<span>/10</span></div>
+    </div>
+    <p class="watches-item-review">
+      Predictable, but in a specific way: from the first act you know what's going to happen, just not exactly how — and the film leans on that too hard. It gets noticeably better halfway through once David takes center stage, but by then the damage is done. Watching it after Romulus and having played the video game doesn't help either: the ship and the atmosphere feel generic by comparison. What does stay with you — and what's genuinely interesting — is the story of the synthetic who plays god. I'm still not sure whether that thread gets resolved in another entry or simply left unfinished, and that uncertainty weighs on the score.
+    </p>
+  </div>
+
+  <div class="watches-item">
+    <div class="watches-item-header">
+      <div class="watches-item-title">A Poet (Un Poeta)</div>
+      <div class="watches-item-meta">2025 · Simón Mesa Soto · Colombia — Jury Prize, Un Certain Regard (Cannes)</div>
+      <div class="watches-item-score">9<span>/10</span></div>
+    </div>
+    <p class="watches-item-review">
+      This film brought me face to face with the pessimist that lives inside me — the one who reads Schopenhauer, Cioran, Dostoevsky. There's something curious about it: the protagonist dislikes philosophy, and I dislike poetry. We're the same type of person staring into the same abyss from opposite sides. Mesa Soto shoots outside freshly painted walls, without catalog actors or airbrushed realities, and you feel it. What remains is the weight of poverty, the absence of recognition, the plainness of two people carrying heavy situations. He seems to enjoy his own self-pity; she simply enjoys being there and being alive. That contrast is the whole film.
+    </p>
+  </div>
+
+</div>
+
+<p class="watches-footnote reveal">
+  Last updated: April 2026 · Ratings out of 10, no forced decimals — just how I felt when the credits rolled.
+</p>
