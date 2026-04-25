@@ -1569,15 +1569,12 @@ function getPhaseState(phaseNum: number) {
       })
     })
 
-    // Auto-open active phase
-    const active = document.querySelector(
-      '[data-state="active"] [data-phase-toggle]'
-    ) as HTMLElement | null
-    const firstComplete = document.querySelector(
-      '[data-state="complete"] [data-phase-toggle]'
-    ) as HTMLElement | null
-    if (active) active.click()
-    else if (firstComplete) firstComplete.click()
+    // Auto-open all started phases (active + complete)
+    document
+      .querySelectorAll(
+        '[data-state="active"] [data-phase-toggle], [data-state="complete"] [data-phase-toggle]'
+      )
+      .forEach((btn) => (btn as HTMLElement).click())
 
     // Animate progress bar on load
     const fill = document.querySelector(
