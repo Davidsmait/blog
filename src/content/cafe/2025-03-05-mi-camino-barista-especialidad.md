@@ -1,6 +1,6 @@
 ---
-title: 'De developer a barista: preparando todo para abrir mi cafetería'
-description: 'Cómo pasé de la curiosidad por el café a construir un POS, una app de fidelidad y un roadmap de barismo — todo mientras ahorro para abrir La Commune.'
+title: 'De developer a estudiante de café: aprendiendo para no improvisar'
+description: 'No soy barista ni planeo abrir una cafetería mañana. Pero llevo meses estudiando, midiendo y practicando para que el día que lo haga, no haya lugar para el error.'
 publishedDate: 2026-03-05
 author: 'David San Luis Aguirre'
 tags:
@@ -10,53 +10,53 @@ tags:
   - aprendizaje
 ---
 
-## Cómo empezó todo
+## Por qué el café y no otra cosa
 
-Un día preparé mi primer Chemex y algo cambió. Dejé de ver el café como una bebida funcional y empecé a entenderlo como algo con origen, con proceso, con historia. Después vino el espresso, los primeros intentos de latte art (bastante malos), y la pregunta que no se me ha quitado de la cabeza: *¿y si abro mi propia cafetería?*
+No lo veo como un hobby de nicho ni como una obsesión con la perfección. Lo veo como una salida.
 
-Todavía no la abro. Pero llevo meses preparándome como si fuera mañana.
+Vivimos en un sistema donde trabajas para que alguien más acumule lo que tú produces. El café, para mí, representa lo contrario: un espacio donde el trabajo tiene nombre, origen y dignidad — desde el productor hasta la taza. Y si algún día abro algo, quiero que ese espacio opere con esa misma lógica: donde quienes trabajan sean los mismos que reciben las pérdidas y las ganancias, sin explotación de por medio. Una comuna, literalmente.
 
-## La Commune — el proyecto
+Pero eso está más adelante. Lo de ahora es aprender bien.
 
-**La Commune** es el nombre del café de especialidad que quiero abrir en Mineral de la Reforma, Hidalgo. Aún no existe físicamente, pero la infraestructura tecnológica ya está lista. Soy developer, y decidí aprovechar eso para construir todo lo que voy a necesitar:
+## Dónde estoy realmente
 
-- **Sistema Punto de Venta** — un POS completo hecho a medida con Next.js y Supabase. Mesas, órdenes, cocina (KDS), cobros, cortes de caja, reportes. Todo en tiempo real, todo probado.
-- **App de fidelidad** — una PWA donde los clientes van a acumular sellos y canjear recompensas. Ya está desplegada en [lacommune.netlify.app](https://lacommune.netlify.app/).
-- **Menú digital** — integrado con el POS para que cuando un producto se agote o cambie de precio, se refleje automáticamente.
+No me considero barista. Soy un developer que está estudiando café de especialidad con seriedad — que no es lo mismo que tomárselo demasiado en serio.
 
-¿Es construir el software antes de tener el local? Sí. Pero prefiero llegar al día uno con las herramientas listas que improvisar después.
+**Lo que ya manejo:**
 
-## Lo que sé hacer (y lo que no)
+- Espresso — tengo controlados la dosis, el yield y el tiempo. Diagnostico shots sub y sobre-extraídos y sé qué perfil me gusta. Con mi Gemilai Owl G3006 y el molino MOKKOM 64mm flat burr, el proceso ya es bastante consistente.
+- Latte art — mejoré bastante. Ya hago tulipanes. Las rosetas siguen siendo irregulares, pero la texturización de la leche ya está más en orden. Uso Alpura Selecta Deslactosada, que da buen microespuma por su relación proteína-grasa.
+- Química del agua — empecé a medir TDS y minerales. Todavía no encuentro la marca que me dé el perfil ideal, pero el proceso ya es parte de mi rutina. Cada agua que pruebo es un dato más.
 
-Siendo honesto sobre dónde estoy como barista:
+**Lo que se está oxidando:**
 
-**Ya lo manejo bien:**
-- Espresso — aquí ya encontré mi punto. Controlo grind size, dosis, yield y tiempo. Puedo diagnosticar shots sub o sobre-extraídos y sé exactamente qué perfil me gusta.
-- Chemex — mi método favorito, pero por una razón diferente: nunca termino de explorarlo. Filtro de papel, de metal, molienda más gruesa, más fina, vertidos distintos... cada variable cambia la taza. Todavía no encuentro *mi* sabor perfecto, y eso es lo que lo hace adictivo.
+El Chemex. Es mi método favorito y el que me metió al café de especialidad, pero como no suelto el espresso, lo tengo un poco abandonado. No es que lo haya olvidado — es que el espresso absorbe todo el tiempo disponible.
 
-**Sigo aprendiendo:**
-- Latte art — me salen rosetas deformes y de vez en cuando alguna flor exótica cuando hay suerte. La texturización va mejorando, pero el vertido es otra historia.
-- Catación — es un mundo que todavía no toco. Sé que existe el protocolo SCA y la rueda de sabores, pero no he hecho una catación formal nunca.
-- Tueste — solo he visto cómo lo hacen otros. No tengo idea de la teoría detrás ni he tostado yo mismo.
+**Lo que no toco todavía:**
 
-No soy barista profesional. Soy un developer que se toma el café muy en serio y está trabajando para llegar ahí.
+Catación formal y tueste. Son mundos que reconozco que existen y que llegarán cuando los anteriores estén más asentados.
 
-## El roadmap
+## La Commune — qué es y qué no es
 
-Armé un roadmap a partir de libros que encontré sobre café de especialidad y el programa de la SCA. El contenido lo construyo con la ayuda de Claude — yo lo valido, lo estudio, lo practico, y cuando estoy seguro de que tiene sentido, lo publico para que le sirva a alguien más.
+**La Commune** no es una cafetería que voy a abrir pronto. Es un proyecto que tiene infraestructura tecnológica lista — un POS completo con Next.js y Supabase, una PWA de fidelidad, un menú digital integrado — porque soy developer y aproveché eso. Pero el local no es el objetivo inmediato.
 
-Puedes verlo completo en la [sección de Café](/barista-roadmap) de este blog. Lo voy liberando por fases conforme avanzo.
+El nombre viene de una idea: una comuna. Un espacio donde no haya patrón que se quede con lo que generan los demás. Donde las ganancias y las pérdidas sean de quienes trabajan. Donde la democracia no sea un privilegio de quienes ya lo tienen todo.
 
-## Lo que viene
+No sé si eso suena radical. Para mí es simplemente la lógica correcta.
 
-- **Seguir ahorrando** — la realidad es que abrir un café cuesta dinero, y siendo developer en México los sueldos no ayudan mucho. Pero se va avanzando.
-- **Certificaciones SCA** — formalizar lo que ya sé y llenar los huecos.
-- **Más práctica** — no hay sustituto para esto. Cada día preparo café y trato de hacerlo mejor que ayer.
-- **Mejorar el POS** — un proyecto así nunca está "terminado". Siempre hay algo que agregar.
+La ubicación también cambió — ya no pienso en Mineral de la Reforma. Todavía no tengo un lugar definido, y está bien así. Primero el conocimiento, luego el espacio.
 
-## Para quien esté en algo similar
+## El roadmap — para quién es y para qué
 
-Si tienes un proyecto que parece lejano: empieza por lo que puedes hacer hoy. Yo no puedo abrir el café todavía, pero puedo construir el software, estudiar barismo, practicar en casa y documentar todo. Cuando llegue el momento, no voy a estar empezando de cero.
+Armé un roadmap de barismo de especialidad basado en libros, el programa SCA y lo que voy aplicando en casa. Lo construyo con ayuda de Claude, lo valido, lo practico y lo publico cuando tiene sentido.
+
+Llevo 6 lecciones publicadas — cinco de la fase 1 y la primera de la fase 2. No es mucho, pero cada una está verificada y tiene sustento real.
+
+Puedes verlo completo en la [sección de Café](/barista-roadmap).
+
+Lo que viene: seguir aumentando la calidad del contenido y liberar más fases. Cada lección que publico es una que yo mismo tuve que estudiar y practicar para poder escribirla.
+
+Este roadmap no es para quien quiere ser barista para Instagram. Es para quien piensa que el conocimiento debería estar disponible para todos — y que si vas a abrir algo algún día, lo mejor que puedes hacer es prepararte para que no haya espacio para la improvisación.
 
 ---
 
