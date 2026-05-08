@@ -188,15 +188,6 @@ La **técnica salami** (o *salami shot*) es el ejercicio más revelador que pued
   <p class="video-caption">Este video usa 12 vasos cambiando cada 5 segundos — una resolución más fina que la del ejercicio de 4 vasos que hacemos aquí, pero útil para ver la gradualidad completa de la extracción.</p>
 </div>
 
-<div class="media-grid media-grid--1">
-  <div class="media-placeholder media-placeholder--image">
-    <div class="mp-icon">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" /></svg>
-    </div>
-    <div class="mp-label">Imagen — Los 4 vasitos del salami</div>
-    <div class="mp-hint">Foto del color de cada fase</div>
-  </div>
-</div>
 
 ### Por qué esto importa
 
@@ -318,31 +309,6 @@ Aquí está uno de los hacks más contraintuitivos del espresso: puedes hacer al
   </div>
 </div>
 
-### Ejemplos de rescate en video
-
-<div class="media-grid media-grid--3">
-  <div class="media-placeholder media-placeholder--video">
-    <div class="mp-icon">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="m15.75 10.5 4.72-4.72a.75.75 0 0 1 1.28.53v11.38a.75.75 0 0 1-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 0 0 2.25-2.25v-9a2.25 2.25 0 0 0-2.25-2.25h-9A2.25 2.25 0 0 0 2.25 7.5v9A2.25 2.25 0 0 0 4.5 18.75Z" /></svg>
-    </div>
-    <div class="mp-label">Video — Shot sin ajustes</div>
-    <div class="mp-hint">El resultado del café comercial sin técnica</div>
-  </div>
-  <div class="media-placeholder media-placeholder--video">
-    <div class="mp-icon">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="m15.75 10.5 4.72-4.72a.75.75 0 0 1 1.28.53v11.38a.75.75 0 0 1-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 0 0 2.25-2.25v-9a2.25 2.25 0 0 0-2.25-2.25h-9A2.25 2.25 0 0 0 2.25 7.5v9A2.25 2.25 0 0 0 4.5 18.75Z" /></svg>
-    </div>
-    <div class="mp-label">Video — Shot con ratio corto y corte</div>
-    <div class="mp-hint">La diferencia con ratio 1:1.6 y corte al blondeo</div>
-  </div>
-  <div class="media-placeholder media-placeholder--image">
-    <div class="mp-icon">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" /></svg>
-    </div>
-    <div class="mp-label">Imagen — Café utilizado</div>
-    <div class="mp-hint">El empaque, origen y fecha de tueste</div>
-  </div>
-</div>
 
 ---
 
@@ -388,24 +354,6 @@ El **puck screen** es un disco metálico delgado con pequeñas perforaciones que
 
 </details>
 
-### Comparativa visual
-
-<div class="media-grid media-grid--2">
-  <div class="media-placeholder media-placeholder--image">
-    <div class="mp-icon">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" /></svg>
-    </div>
-    <div class="mp-label">Imagen — Canasta doble pared</div>
-    <div class="mp-hint">La "crema" artificial vs. el flujo real</div>
-  </div>
-  <div class="media-placeholder media-placeholder--image">
-    <div class="mp-icon">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" /></svg>
-    </div>
-    <div class="mp-label">Imagen — Canasta simple + puck screen</div>
-    <div class="mp-hint">La configuración y el resultado</div>
-  </div>
-</div>
 
 ---
 
@@ -421,24 +369,6 @@ Este es el ejercicio que integra todo lo que aprendiste en este bonus. Necesitas
 
 **Shot 4 (opcional) — Aplicación al café comercial:** Si tienes café oscuro o comercial, aplica la estrategia de la Parte 3. Compara con el shot 3.
 
-### Tu extracción de referencia
-
-<div class="media-grid media-grid--2">
-  <div class="media-placeholder media-placeholder--video">
-    <div class="mp-icon">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="m15.75 10.5 4.72-4.72a.75.75 0 0 1 1.28.53v11.38a.75.75 0 0 1-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 0 0 2.25-2.25v-9a2.25 2.25 0 0 0-2.25-2.25h-9A2.25 2.25 0 0 0 2.25 7.5v9A2.25 2.25 0 0 0 4.5 18.75Z" /></svg>
-    </div>
-    <div class="mp-label">Video — Mi extracción de referencia</div>
-    <div class="mp-hint">El shot 3 con solo el cuerpo</div>
-  </div>
-  <div class="media-placeholder media-placeholder--image">
-    <div class="mp-icon">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" /></svg>
-    </div>
-    <div class="mp-label">Imagen — El café utilizado</div>
-    <div class="mp-hint">Nombre, origen, fecha de tueste y parámetros usados</div>
-  </div>
-</div>
 
 ---
 

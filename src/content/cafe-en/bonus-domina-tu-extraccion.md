@@ -188,15 +188,6 @@ The **salami technique** (or salami shot) is the most revealing exercise you can
   <p class="video-caption">This video uses 12 cups switching every 5 seconds — finer resolution than the 4-cup exercise we do here, but useful to see the complete gradual shift of the extraction.</p>
 </div>
 
-<div class="media-grid media-grid--1">
-  <div class="media-placeholder media-placeholder--image">
-    <div class="mp-icon">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" /></svg>
-    </div>
-    <div class="mp-label">Image — The 4 salami cups</div>
-    <div class="mp-hint">Photo showing the color of each phase</div>
-  </div>
-</div>
 
 ### Why this matters
 
@@ -318,31 +309,6 @@ Here's one of the most counterintuitive techniques in espresso: you can make som
   </div>
 </div>
 
-### Rescue examples on video
-
-<div class="media-grid media-grid--3">
-  <div class="media-placeholder media-placeholder--video">
-    <div class="mp-icon">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="m15.75 10.5 4.72-4.72a.75.75 0 0 1 1.28.53v11.38a.75.75 0 0 1-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 0 0 2.25-2.25v-9a2.25 2.25 0 0 0-2.25-2.25h-9A2.25 2.25 0 0 0 2.25 7.5v9A2.25 2.25 0 0 0 4.5 18.75Z" /></svg>
-    </div>
-    <div class="mp-label">Video — Unmodified shot</div>
-    <div class="mp-hint">Commercial coffee without technique</div>
-  </div>
-  <div class="media-placeholder media-placeholder--video">
-    <div class="mp-icon">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="m15.75 10.5 4.72-4.72a.75.75 0 0 1 1.28.53v11.38a.75.75 0 0 1-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 0 0 2.25-2.25v-9a2.25 2.25 0 0 0-2.25-2.25h-9A2.25 2.25 0 0 0 2.25 7.5v9A2.25 2.25 0 0 0 4.5 18.75Z" /></svg>
-    </div>
-    <div class="mp-label">Video — Short ratio + cut</div>
-    <div class="mp-hint">The difference with 1:1.6 ratio and blonding cut</div>
-  </div>
-  <div class="media-placeholder media-placeholder--image">
-    <div class="mp-icon">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" /></svg>
-    </div>
-    <div class="mp-label">Image — Coffee used</div>
-    <div class="mp-hint">Name, origin, roast date and parameters</div>
-  </div>
-</div>
 
 ---
 
@@ -388,24 +354,6 @@ The **puck screen** is a thin perforated metal disc you place on top of the grou
 
 </details>
 
-### Visual comparison
-
-<div class="media-grid media-grid--2">
-  <div class="media-placeholder media-placeholder--image">
-    <div class="mp-icon">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" /></svg>
-    </div>
-    <div class="mp-label">Image — Double-wall basket</div>
-    <div class="mp-hint">Artificial crema vs. real flow</div>
-  </div>
-  <div class="media-placeholder media-placeholder--image">
-    <div class="mp-icon">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" /></svg>
-    </div>
-    <div class="mp-label">Image — Single wall + puck screen</div>
-    <div class="mp-hint">The setup and the result</div>
-  </div>
-</div>
 
 ---
 
@@ -421,24 +369,6 @@ This exercise integrates everything you learned in this bonus. You need 30–45 
 
 **Shot 4 (optional) — Commercial coffee application:** If you have dark or commercial coffee, apply the Part 3 strategy. Compare with shot 3.
 
-### Your reference extraction
-
-<div class="media-grid media-grid--2">
-  <div class="media-placeholder media-placeholder--video">
-    <div class="mp-icon">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="m15.75 10.5 4.72-4.72a.75.75 0 0 1 1.28.53v11.38a.75.75 0 0 1-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 0 0 2.25-2.25v-9a2.25 2.25 0 0 0-2.25-2.25h-9A2.25 2.25 0 0 0 2.25 7.5v9A2.25 2.25 0 0 0 4.5 18.75Z" /></svg>
-    </div>
-    <div class="mp-label">Video — My reference extraction</div>
-    <div class="mp-hint">Shot 3 — body only</div>
-  </div>
-  <div class="media-placeholder media-placeholder--image">
-    <div class="mp-icon">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" /></svg>
-    </div>
-    <div class="mp-label">Image — Coffee used</div>
-    <div class="mp-hint">Name, origin, roast date and parameters used</div>
-  </div>
-</div>
 
 ---
 

@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 title: 'V60'
 description: 'El dripper más técnico del mundo del café: la técnica Hoffmann, el método 4:6 de Kasuya, y cómo dominar las variables del Hario V60.'
 publishedDate: 2026-03-05

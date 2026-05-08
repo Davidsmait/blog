@@ -11,6 +11,7 @@ import BaseLayout, {
   type Props as BaseLayoutProps
 } from '@/layouts/BaseLayout.astro'
 import HeadingAnchorsPlugin from '@/plugins/HeadingAnchorsPlugin.astro'
+import HistoricalFiguresPlugin from '@/plugins/HistoricalFiguresPlugin.astro'
 import ScrollProgressPlugin from '@/plugins/ScrollProgressPlugin.astro'
 import { quizzes } from '@/data/quizzes'
 import { getCollection } from 'astro:content'
@@ -364,6 +365,7 @@ const diagram = diagramMap[post.slug] || null
 
   <ScrollProgressPlugin />
   <HeadingAnchorsPlugin />
+  <HistoricalFiguresPlugin lang={lang as 'es' | 'en'} />
 
   <!-- Mark lesson as read in roadmap cookie -->
   <div id="lesson-marker" data-lesson-slug={post.slug} style="display:none">

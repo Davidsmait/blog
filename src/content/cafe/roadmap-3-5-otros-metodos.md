@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 title: 'Otros métodos de preparación'
 description: 'French press, Clever Dripper, cold brew y sifón: cuándo usar cada método, sus fortalezas, limitaciones y recetas para dominarlos.'
 publishedDate: 2026-03-05

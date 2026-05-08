@@ -1,0 +1,675 @@
+---
+import { historicalFigures } from '@/data/historical-figures'
+
+export interface Props {
+  /** Language used to pick es/en bio copy. Defaults to 'es'. */
+  lang?: 'es' | 'en'
+}
+
+const { lang = 'es' } = Astro.props
+
+// i18n labels
+const labels =
+  lang === 'en'
+    ? { wikipedia: 'Wikipedia', close: 'Close', dismiss: 'Dismiss card' }
+    : { wikipedia: 'Wikipedia', close: 'Cerrar', dismiss: 'Cerrar tarjeta' }
+---
+
+<script
+  define:vars={{ figuresData: historicalFigures, lang, labels }}
+  is:inline
+>
+  /**
+   * Historical Figures Plugin
+   *
+   * - Scans .lesson-body for <span data-figure="ID">Name</span> triggers.
+   * - On desktop (≥1280px), renders a marginalia card next to the FIRST
+   *   occurrence of each figure, positioned absolutely in the right gutter.
+   * - On mobile (<1280px), every occurrence is tappable; tap inserts an
+   *   inline popover card right after the paragraph containing the trigger.
+   *   Tap close button or another figure to dismiss.
+   */
+  ;(function () {
+    const DESKTOP_BREAKPOINT = 1280
+
+    function md(text) {
+      // Minimal markdown-italic support (* or _) in bio strings.
+      return String(text).replace(/\*([^*]+)\*/g, '<em>$1</em>')
+    }
+
+    function escapeHtml(s) {
+      return String(s)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+    }
+
+    function buildCardHtml(fig, variant) {
+      const bio = fig[lang] || fig.es
+      const wikiUrl = (fig.wikiUrl && (fig.wikiUrl[lang] || fig.wikiUrl.en || fig.wikiUrl.es)) || ''
+      const imgAlt = escapeHtml(fig.image.alt)
+      const credit = fig.imageCredit ? `<span class="figure-credit">${escapeHtml(fig.imageCredit)}</span>` : ''
+      const wikiLink = wikiUrl
+        ? `<a class="figure-wiki" href="${escapeHtml(wikiUrl)}" target="_blank" rel="noopener noreferrer">${labels.wikipedia} <span aria-hidden="true">↗</span></a>`
+        : ''
+
+      const closeBtn =
+        variant === 'popover'
+          ? `<button class="figure-popover-close" type="button" aria-label="${escapeHtml(labels.dismiss)}">×</button>`
+          : ''
+
+      return `
+        ${closeBtn}
+        <picture class="figure-image">
+          <source srcset="${escapeHtml(fig.image.webp)}" type="image/webp">
+          <img src="${escapeHtml(fig.image.fallback)}" alt="${imgAlt}" loading="lazy" decoding="async">
+        </picture>
+        <div class="figure-text">
+          <div class="figure-name">${escapeHtml(fig.name)}</div>
+          <div class="figure-role">${escapeHtml(bio.role)}</div>
+          <div class="figure-bio">${md(bio.bio)}</div>
+          ${wikiLink}
+          ${credit}
+        </div>
+      `
+    }
+
+    function init() {
+      const main = document.querySelector('.lesson-main')
+      const article = main && main.querySelector('.lesson-body')
+      if (!article) return
+
+      const triggers = Array.from(article.querySelectorAll('[data-figure]'))
+      if (!triggers.length) return
+
+      // Ensure parent can host absolutely-positioned marginalia.
+      if (getComputedStyle(main).position === 'static') {
+        main.style.position = 'relative'
+      }
+
+      // Style triggers + handle first-occurrence tracking.
+      // Alternate sides: 1st first-occurrence → right, 2nd → left, 3rd → right…
+      const seen = new Set()
+      const marginaliaCards = [] // [{ trigger, card, fig, side }]
+      let firstOccurrenceIndex = 0
+      triggers.forEach((trigger) => {
+        const id = trigger.getAttribute('data-figure')
+        const fig = figuresData[id]
+        if (!fig) {
+          console.warn('[HistoricalFigures] No data for id:', id)
+          return
+        }
+
+        trigger.classList.add('figure-trigger')
+        trigger.setAttribute('role', 'button')
+        trigger.setAttribute('tabindex', '0')
+        trigger.setAttribute('aria-expanded', 'false')
+        trigger.setAttribute('aria-label', `${fig.name} — ${(fig[lang] || fig.es).role}`)
+
+        if (!seen.has(id)) {
+          seen.add(id)
+          const side = firstOccurrenceIndex % 2 === 0 ? 'right' : 'left'
+          firstOccurrenceIndex++
+          const card = document.createElement('aside')
+          card.className = `figure-marginalia figure-marginalia--${side}`
+          card.setAttribute('data-figure-card', id)
+          card.setAttribute('aria-hidden', 'true')
+          card.innerHTML = buildCardHtml(fig, 'marginalia')
+          main.appendChild(card)
+          marginaliaCards.push({ trigger, card, fig, side })
+        }
+      })
+
+      const CARD_GAP = 24
+      // Fade range (px). Card is fully visible at FADE_END+, invisible at FADE_START.
+      // Distance is measured from card.top to the bottom of the header.
+      const FADE_BAND = 140
+      const reducedMotion =
+        window.matchMedia &&
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+      function getHeaderOffset() {
+        const header = document.querySelector('header.sticky, header')
+        return header ? header.offsetHeight : 0
+      }
+
+      // smoothstep: gentle ease-in-out 0→1 used for scroll-driven fade
+      function smoothstep(t) {
+        if (t <= 0) return 0
+        if (t >= 1) return 1
+        return t * t * (3 - 2 * t)
+      }
+
+      // Mark each card "ready" after its entrance animation finishes,
+      // so JS-driven fade doesn't fight with the entrance keyframes.
+      marginaliaCards.forEach((entry) => {
+        const onEnd = () => {
+          entry.card.dataset.ready = '1'
+          // Immediately apply scroll state in case user already scrolled
+          updateHeaderOcclusion()
+        }
+        entry.card.addEventListener('animationend', onEnd, { once: true })
+        // Fallback: ensure it always becomes ready even if animationend never fires
+        setTimeout(onEnd, 1100)
+      })
+
+      // Position marginalia cards on desktop, with per-side collision avoidance.
+      function positionCards() {
+        const wide = window.innerWidth >= DESKTOP_BREAKPOINT
+        if (!wide) {
+          marginaliaCards.forEach(({ card }) => (card.style.display = 'none'))
+          return
+        }
+
+        // First pass: assign desired top from trigger position
+        marginaliaCards.forEach((entry) => {
+          entry.card.style.display = ''
+          const tr = entry.trigger.getBoundingClientRect()
+          const mr = main.getBoundingClientRect()
+          entry.desiredTop = Math.max(0, tr.top - mr.top - 4)
+        })
+
+        // Second pass: per side, sort by desired top and bump down on collision
+        ;['left', 'right'].forEach((side) => {
+          const sideCards = marginaliaCards
+            .filter((c) => c.side === side)
+            .sort((a, b) => a.desiredTop - b.desiredTop)
+          let cursor = 0
+          sideCards.forEach((entry, i) => {
+            const top = i === 0
+              ? entry.desiredTop
+              : Math.max(entry.desiredTop, cursor + CARD_GAP)
+            entry.card.style.top = `${top}px`
+            // Force reflow read of card height after positioning
+            cursor = top + entry.card.offsetHeight
+          })
+        })
+
+        updateHeaderOcclusion()
+      }
+
+      // Smooth scroll-driven fade as cards approach the sticky header.
+      // Each card's opacity + translateY + blur is interpolated over a
+      // FADE_BAND pixel range so it dissolves gracefully instead of snapping.
+      let scrollRaf = 0
+      function updateHeaderOcclusion() {
+        const headerH = getHeaderOffset()
+        marginaliaCards.forEach(({ card }) => {
+          if (!card.dataset.ready) return
+          const r = card.getBoundingClientRect()
+          // Distance from card top to header bottom; can be negative if card
+          // is already above the header.
+          const distance = r.top - headerH
+          // Map distance ∈ [0, FADE_BAND] → t ∈ [0, 1]
+          const t = smoothstep(distance / FADE_BAND)
+          const opacity = t
+          if (reducedMotion) {
+            // Hard cut for users who opted out of motion
+            card.style.opacity = t < 0.5 ? '0' : '1'
+            card.style.transform = ''
+            card.style.filter = ''
+            card.style.pointerEvents = t < 0.5 ? 'none' : ''
+            return
+          }
+          const translateY = (1 - t) * -10
+          const blur = (1 - t) * 4
+          card.style.opacity = opacity.toFixed(3)
+          card.style.transform = `translate3d(0, ${translateY.toFixed(2)}px, 0)`
+          card.style.filter = blur > 0.05 ? `blur(${blur.toFixed(2)}px)` : ''
+          card.style.pointerEvents = opacity < 0.05 ? 'none' : ''
+        })
+      }
+
+      function requestOcclusionUpdate() {
+        if (scrollRaf) return
+        scrollRaf = requestAnimationFrame(() => {
+          scrollRaf = 0
+          updateHeaderOcclusion()
+        })
+      }
+
+      positionCards()
+      let resizeT
+      window.addEventListener('resize', () => {
+        clearTimeout(resizeT)
+        resizeT = setTimeout(positionCards, 120)
+      })
+      window.addEventListener('load', positionCards)
+      window.addEventListener('scroll', requestOcclusionUpdate, { passive: true })
+      // Reposition after fonts settle (text reflow changes positions)
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(positionCards)
+      }
+      // Run once after a short delay to catch late layout shifts (images, etc.)
+      setTimeout(positionCards, 350)
+
+      // Mobile popover behaviour: insert/replace a card after the paragraph.
+      // Only one popover may exist in the DOM at any time; switching
+      // figures hard-removes the previous card to avoid duplicates.
+      let activePopover = null
+      let lastTapAt = 0
+
+      function clearAllPopovers() {
+        document
+          .querySelectorAll('.figure-popover')
+          .forEach((el) => el.remove())
+        // Also reset aria-expanded on all triggers
+        document
+          .querySelectorAll('[data-figure][aria-expanded="true"]')
+          .forEach((el) => el.setAttribute('aria-expanded', 'false'))
+        activePopover = null
+      }
+
+      function closePopover() {
+        if (!activePopover) return
+        const { card, trigger } = activePopover
+        trigger.setAttribute('aria-expanded', 'false')
+        // Capture before clearing the reference
+        activePopover = null
+        card.classList.add('figure-popover--closing')
+        const cleanup = () => {
+          if (card.parentNode) card.remove()
+        }
+        card.addEventListener('animationend', cleanup, { once: true })
+        setTimeout(cleanup, 320)
+      }
+
+      function openPopover(trigger) {
+        const id = trigger.getAttribute('data-figure')
+        const fig = figuresData[id]
+        if (!fig) return
+
+        // Toggle: same trigger tapped again → close and stop.
+        if (activePopover && activePopover.trigger === trigger) {
+          closePopover()
+          return
+        }
+
+        // Switching to a different trigger: hard-remove ANY existing
+        // popovers from the DOM (synchronously). This prevents the
+        // duplicate-cards bug when a previous close animation is still
+        // running while a new card is being inserted.
+        clearAllPopovers()
+
+        // Find the closest block-level container (p, li, etc.) to insert after.
+        let host = trigger.closest('p, li, blockquote, h2, h3, h4')
+        if (!host) host = trigger.parentElement
+
+        const card = document.createElement('aside')
+        card.className = 'figure-popover'
+        card.setAttribute('data-figure-card', id)
+        card.innerHTML = buildCardHtml(fig, 'popover')
+
+        host.parentNode.insertBefore(card, host.nextSibling)
+        trigger.setAttribute('aria-expanded', 'true')
+        activePopover = { card, trigger }
+
+        const closeBtn = card.querySelector('.figure-popover-close')
+        if (closeBtn) {
+          closeBtn.addEventListener('click', (e) => {
+            e.stopPropagation()
+            closePopover()
+          })
+        }
+      }
+
+      function handleTrigger(e) {
+        // On desktop the marginalia is already shown — keep clicks inert
+        // unless the user really wants the popover (e.g. small viewport).
+        if (window.innerWidth >= DESKTOP_BREAKPOINT) return
+        e.preventDefault()
+        // Debounce against duplicate touch/click events on mobile (some
+        // browsers fire both touchend AND click for the same tap).
+        const now = performance.now()
+        if (now - lastTapAt < 100) return
+        lastTapAt = now
+        openPopover(e.currentTarget)
+      }
+
+      triggers.forEach((trigger) => {
+        trigger.addEventListener('click', handleTrigger)
+        trigger.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault()
+            handleTrigger.call(trigger, {
+              currentTarget: trigger,
+              preventDefault: () => {}
+            })
+          }
+        })
+      })
+
+      // Dismiss popover when tapping outside
+      document.addEventListener('click', (e) => {
+        if (!activePopover) return
+        const t = e.target
+        if (
+          activePopover.card.contains(t) ||
+          activePopover.trigger.contains(t) ||
+          (t instanceof Element && t.hasAttribute('data-figure'))
+        ) {
+          return
+        }
+        closePopover()
+      })
+
+      // Re-flow when crossing the breakpoint
+      let wasWide = window.innerWidth >= DESKTOP_BREAKPOINT
+      window.addEventListener('resize', () => {
+        const isWide = window.innerWidth >= DESKTOP_BREAKPOINT
+        if (isWide !== wasWide) {
+          wasWide = isWide
+          if (isWide && activePopover) closePopover()
+          positionCards()
+        }
+      })
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init)
+    } else {
+      init()
+    }
+    document.addEventListener('astro:page-load', init)
+  })()
+</script>
+
+<style is:global>
+  /* ── Header full-viewport backdrop ──
+     The page-wrapper limits the header to lg:max-w-5xl (~1024px), so when the
+     viewport is wider, marginalia cards live in the gutter outside the header
+     and look like they're "next to" a cut-off header. We move the header
+     background + blur to a pseudo-element that extends to the viewport edges,
+     so the backdrop visually spans full width regardless of wrapper. */
+  body:has(.lesson-main .figure-marginalia) header.sticky.top-0 {
+    background: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+  body:has(.lesson-main .figure-marginalia) header.sticky.top-0::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: calc(50% - 50vw);
+    right: calc(50% - 50vw);
+    background: rgba(var(--accent-bg), 0.85);
+    backdrop-filter: blur(24px) saturate(1.05);
+    -webkit-backdrop-filter: blur(24px) saturate(1.05);
+    z-index: -1;
+    pointer-events: none;
+    /* Soft fade at the bottom edge so the header dissolves into content */
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      black 0,
+      black calc(100% - 6px),
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      to bottom,
+      black 0,
+      black calc(100% - 6px),
+      transparent 100%
+    );
+  }
+
+  /* ── Trigger (the inline name in prose) ── */
+  .lesson-body .figure-trigger {
+    position: relative;
+    cursor: help;
+    color: var(--color-accent);
+    font-weight: 550;
+    text-decoration: underline;
+    text-decoration-color: color-mix(
+      in srgb,
+      var(--color-accent) 30%,
+      transparent
+    );
+    text-decoration-style: dotted;
+    text-underline-offset: 4px;
+    text-decoration-thickness: 1px;
+    transition:
+      text-decoration-color 0.3s ease,
+      opacity 0.3s ease;
+    opacity: 0.95;
+  }
+  .lesson-body .figure-trigger:hover,
+  .lesson-body .figure-trigger:focus-visible {
+    text-decoration-color: var(--color-accent);
+    opacity: 1;
+    outline: none;
+  }
+  .lesson-body .figure-trigger:focus-visible {
+    border-radius: 3px;
+    box-shadow: 0 0 0 3px
+      color-mix(in srgb, var(--color-accent) 18%, transparent);
+  }
+
+  @media (max-width: 1279px) {
+    .lesson-body .figure-trigger {
+      cursor: pointer;
+    }
+  }
+
+  /* ── Desktop marginalia card ── */
+  .lesson-main .figure-marginalia {
+    position: absolute;
+    width: 220px;
+    z-index: 1; /* keep below sticky header (z-50) */
+    pointer-events: auto;
+    opacity: 0;
+    transform: translateY(8px);
+    will-change: opacity, transform, filter;
+    animation: figureMarginaliaIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: 0.15s;
+    /* After the entrance animation, JS sets opacity / transform / filter
+       inline to drive a scroll-linked fade. These short transitions
+       smooth the per-frame updates without lagging the scroll. */
+    transition:
+      top 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+      opacity 0.18s cubic-bezier(0.33, 1, 0.68, 1),
+      transform 0.25s cubic-bezier(0.33, 1, 0.68, 1),
+      filter 0.2s cubic-bezier(0.33, 1, 0.68, 1);
+  }
+
+  .lesson-main .figure-marginalia--right {
+    left: calc(100% + 2.5rem);
+    text-align: left;
+  }
+  .lesson-main .figure-marginalia--left {
+    right: calc(100% + 2.5rem);
+    text-align: left;
+  }
+
+  @keyframes figureMarginaliaIn {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (max-width: 1279px) {
+    .lesson-main .figure-marginalia {
+      display: none !important;
+    }
+  }
+
+  /* ── Image ── */
+  .figure-marginalia .figure-image,
+  .figure-popover .figure-image {
+    display: block;
+    overflow: hidden;
+    border-radius: 8px;
+    background: color-mix(in srgb, var(--color-accent) 5%, transparent);
+    border: 1px solid color-mix(in srgb, var(--color-accent) 8%, transparent);
+  }
+  .figure-marginalia .figure-image img,
+  .figure-popover .figure-image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    aspect-ratio: 4 / 5;
+    filter: grayscale(0.55) sepia(0.18) brightness(0.95) contrast(1.02);
+    transition: filter 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .figure-marginalia:hover .figure-image img,
+  .figure-popover:hover .figure-image img {
+    filter: grayscale(0.25) sepia(0.08) brightness(1) contrast(1.02);
+  }
+
+  /* ── Text block (shared) ── */
+  .figure-marginalia .figure-name,
+  .figure-popover .figure-name {
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-style: italic;
+    font-size: 1.0625rem;
+    line-height: 1.2;
+    margin-top: 0.7rem;
+    color: var(--color-accent);
+    letter-spacing: -0.005em;
+  }
+  .figure-popover .figure-name {
+    margin-top: 0;
+  }
+
+  .figure-marginalia .figure-role,
+  .figure-popover .figure-role {
+    margin-top: 0.3rem;
+    font-size: 0.6875rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    opacity: 0.42;
+    line-height: 1.5;
+  }
+
+  .figure-marginalia .figure-bio,
+  .figure-popover .figure-bio {
+    margin-top: 0.65rem;
+    font-size: 0.8125rem;
+    line-height: 1.6;
+    opacity: 0.62;
+  }
+  .figure-marginalia .figure-bio em,
+  .figure-popover .figure-bio em {
+    font-style: italic;
+    opacity: 0.85;
+  }
+
+  .figure-marginalia .figure-wiki,
+  .figure-popover .figure-wiki {
+    display: inline-block;
+    margin-top: 0.7rem;
+    font-size: 0.6875rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    opacity: 0.55;
+    text-decoration: none;
+    transition: opacity 0.3s ease;
+  }
+  .figure-marginalia .figure-wiki:hover,
+  .figure-popover .figure-wiki:hover {
+    opacity: 1;
+    text-decoration: none;
+  }
+
+  .figure-marginalia .figure-credit,
+  .figure-popover .figure-credit {
+    display: block;
+    margin-top: 0.85rem;
+    padding-top: 0.55rem;
+    border-top: 1px solid
+      color-mix(in srgb, var(--color-accent) 6%, transparent);
+    font-size: 0.625rem;
+    line-height: 1.5;
+    opacity: 0.3;
+    letter-spacing: 0.02em;
+  }
+
+  /* ── Mobile popover (inline card) ── */
+  .lesson-body + .figure-popover,
+  .figure-popover {
+    position: relative;
+    margin: 1.25rem 0 1.5rem;
+    padding: 1rem 1rem 1.1rem;
+    display: grid;
+    grid-template-columns: 88px 1fr;
+    gap: 1.1rem;
+    align-items: start;
+    background: color-mix(in srgb, var(--color-accent) 4%, transparent);
+    border: 1px solid color-mix(in srgb, var(--color-accent) 12%, transparent);
+    border-radius: 12px;
+    opacity: 0;
+    transform: translateY(-4px);
+    animation: figurePopoverIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  @keyframes figurePopoverIn {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .figure-popover.figure-popover--closing {
+    animation: figurePopoverOut 0.3s cubic-bezier(0.4, 0, 1, 1) forwards;
+  }
+  @keyframes figurePopoverOut {
+    to {
+      opacity: 0;
+      transform: translateY(-4px);
+    }
+  }
+
+  .figure-popover .figure-image {
+    width: 88px;
+    height: 110px;
+  }
+  .figure-popover .figure-image img {
+    aspect-ratio: 88 / 110;
+  }
+
+  .figure-popover-close {
+    position: absolute;
+    top: 0.4rem;
+    right: 0.45rem;
+    width: 26px;
+    height: 26px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: 0;
+    color: var(--color-accent);
+    font-size: 1.25rem;
+    line-height: 1;
+    opacity: 0.4;
+    cursor: pointer;
+    border-radius: 50%;
+    transition:
+      opacity 0.25s ease,
+      background 0.25s ease;
+  }
+  .figure-popover-close:hover {
+    opacity: 0.85;
+    background: color-mix(in srgb, var(--color-accent) 10%, transparent);
+  }
+
+  @media (min-width: 1280px) {
+    .figure-popover {
+      display: none !important;
+    }
+  }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .lesson-main .figure-marginalia,
+    .figure-popover {
+      animation: none;
+      opacity: 1;
+      transform: none;
+    }
+  }
+</style>
