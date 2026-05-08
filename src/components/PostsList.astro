@@ -4,16 +4,28 @@ import { toDateString } from '@/util'
 import { resolveTags } from '@/util/tags'
 import type { CollectionEntry } from 'astro:content'
 
-type PostEntry = CollectionEntry<'posts'> | CollectionEntry<'cafe'>
+type PostEntry =
+  | CollectionEntry<'posts'>
+  | CollectionEntry<'posts-en'>
+  | CollectionEntry<'cafe'>
 
 export interface Props {
   posts: PostEntry[]
   featured?: boolean
+  /** Locale used for date formatting. Defaults to 'es'. */
+  lang?: 'es' | 'en'
 }
 
-const { posts, featured = false } = Astro.props
+const { posts, featured = false, lang = 'es' } = Astro.props
 
 const sortedPosts = [...posts].sort((a, b) => b.data.publishedDate.getTime() - a.data.publishedDate.getTime())
+
+const collectionPath = (collection: PostEntry['collection']) =>
+  collection === 'cafe'
+    ? 'cafe'
+    : collection === 'posts-en'
+      ? 'en/posts'
+      : 'posts'
 ---
 
 <ul class="flex flex-col gap-0 p-0">
@@ -22,7 +34,7 @@ const sortedPosts = [...posts].sort((a, b) => b.data.publishedDate.getTime() - a
       <li class="reveal group list-none border-b border-accent/[0.08] last:border-0" style={`transition-delay: ${index * 0.08}s`}>
         <a
           class="flex flex-col gap-3 rounded-lg py-6 no-underline transition-all duration-500 hover:bg-accent/[0.03] sm:flex-row sm:items-start sm:gap-8 sm:px-4 sm:py-8"
-          href={`/${post.collection === 'cafe' ? 'cafe' : 'posts'}/${post.slug}`}
+          href={`/${collectionPath(post.collection)}/${post.slug}`}
           data-astro-prefetch
           data-cursor-hover
         >
@@ -41,7 +53,7 @@ const sortedPosts = [...posts].sort((a, b) => b.data.publishedDate.getTime() - a
                 {post.data.title}
               </h3>
               <time datetime={post.data.publishedDate.toISOString()} class="shrink-0 text-[11px] font-medium uppercase tracking-[0.15em] opacity-30">
-                {toDateString(post.data.publishedDate)}
+                {toDateString(post.data.publishedDate, lang)}
               </time>
             </div>
             <p class="m-0 mt-2 text-[13px] leading-relaxed opacity-40">

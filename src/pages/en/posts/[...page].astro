@@ -1,0 +1,67 @@
+---
+import Pagination from '@/components/Pagination.astro'
+import PostsList from '@/components/PostsList.astro'
+import PageLayout, {
+  type Props as PageLayoutProps
+} from '@/layouts/PageLayout.astro'
+import config from '@/theme.config'
+import { getEnPosts } from '@/util/posts'
+import type { GetStaticPaths, InferGetStaticPropsType } from 'astro'
+
+export const getStaticPaths = (async ({ paginate }) => {
+  const posts = await getEnPosts()
+
+  return paginate(posts, { pageSize: config.postsPerPage })
+}) satisfies GetStaticPaths
+
+type Props = InferGetStaticPropsType<typeof getStaticPaths>
+
+const { page } = Astro.props
+
+const frontmatter: PageLayoutProps['frontmatter'] = {
+  title: 'Blog — Web Development, TypeScript and Specialty Coffee',
+  description:
+    'Articles by David San Luis Aguirre on fullstack development, Angular, NestJS, TypeScript, AWS and specialty coffee.',
+  activeHeaderLink: 'Blog',
+  canonicalURL: new URL('/en/posts/1', Astro.site).toString()
+}
+
+const collectionPageSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: 'Blog — David San Luis Aguirre',
+  description: frontmatter.description,
+  url: new URL('/en/posts', Astro.site).href,
+  isPartOf: { '@id': 'https://davidsanluisaguirre.com/#website' },
+  author: { '@id': 'https://davidsanluisaguirre.com/#person' },
+  mainEntity: {
+    '@type': 'ItemList',
+    numberOfItems: page.data.length,
+    itemListElement: page.data.map((post, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      url: new URL(`/en/posts/${post.slug}`, Astro.site).href,
+      name: post.data.title
+    }))
+  }
+})
+---
+
+<PageLayout {frontmatter}>
+  <script type="application/ld+json" set:html={collectionPageSchema} />
+  <div class="reveal mb-10 sm:mb-16">
+    <div class="flex items-center gap-4 sm:gap-6">
+      <span class="font-serif text-[13px] italic opacity-20">(01)</span>
+      <h1
+        class="m-0 font-serif text-[clamp(2.5rem,6vw,4rem)] italic leading-[1] tracking-tight text-accent"
+      >
+        Blog
+      </h1>
+    </div>
+    <div class="hr-animated mt-3"></div>
+  </div>
+
+  <PostsList posts={page.data} lang="en" />
+
+  <Pagination slot="bottom" page={page} />
+</PageLayout>

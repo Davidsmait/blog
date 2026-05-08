@@ -4,12 +4,16 @@ import PageLayout, {
   type Props as PageLayoutProps
 } from '@/layouts/PageLayout.astro'
 import HeadingAnchorsPlugin from '@/plugins/HeadingAnchorsPlugin.astro'
+import HistoricalFiguresPlugin from '@/plugins/HistoricalFiguresPlugin.astro'
 import { toDateString } from '@/util'
 import { resolveTags } from '@/util/tags'
 import type { CollectionEntry } from 'astro:content'
 
 export interface Props {
-  post: CollectionEntry<'posts'> | CollectionEntry<'cafe'>
+  post:
+    | CollectionEntry<'posts'>
+    | CollectionEntry<'posts-en'>
+    | CollectionEntry<'cafe'>
 }
 
 const { post } = Astro.props
@@ -19,19 +23,27 @@ const {
   remarkPluginFrontmatter: { readingTime }
 } = await post.render()
 
+const isEnPost = post.collection === 'posts-en'
+const isCafe = post.collection === 'cafe'
+const lang: 'es' | 'en' = isEnPost ? 'en' : 'es'
+
+// URL prefix for the post (posts → /posts/, posts-en → /en/posts/, cafe → /cafe/)
+const collectionPath =
+  post.collection === 'posts-en' ? 'en/posts' : post.collection
+
 const frontmatter: PageLayoutProps['frontmatter'] = {
   ...post.data,
   openGraphImage:
-    post.data.openGraphImage || `/${post.collection}/${post.slug}.png`,
-  activeHeaderLink: post.collection === 'cafe' ? 'Café' : 'Blog',
+    post.data.openGraphImage || `/${collectionPath}/${post.slug}.png`,
+  activeHeaderLink: isCafe ? 'Café' : 'Blog',
   scrollProgress: true
 }
 
-const publishedStr = toDateString(post.data.publishedDate)
+const publishedStr = toDateString(post.data.publishedDate, lang)
 
-const postUrl = new URL(`/${post.collection}/${post.slug}`, Astro.site).href
+const postUrl = new URL(`/${collectionPath}/${post.slug}`, Astro.site).href
 const ogImageUrl = new URL(
-  post.data.openGraphImage || `/${post.collection}/${post.slug}.png`,
+  post.data.openGraphImage || `/${collectionPath}/${post.slug}.png`,
   Astro.site
 ).href
 
@@ -62,10 +74,11 @@ const blogPostingSchema = JSON.stringify({
 })
 
 // BreadcrumbList for blog posts
-const isCafe = post.collection === 'cafe'
 const sectionName = isCafe ? 'Café' : 'Blog'
-const sectionUrl = new URL(isCafe ? '/barista-roadmap' : '/posts', Astro.site)
-  .href
+const sectionUrl = new URL(
+  isCafe ? '/barista-roadmap' : isEnPost ? '/en/posts' : '/posts',
+  Astro.site
+).href
 
 const breadcrumbSchema = JSON.stringify({
   '@context': 'https://schema.org',
@@ -120,8 +133,11 @@ const breadcrumbSchema = JSON.stringify({
 
   <div class="hr-animated mb-8 sm:mb-12"></div>
 
-  <article class="reveal reveal-delay-1">
-    <Content />
-  </article>
+  <main class="figures-root">
+    <article class="reveal reveal-delay-1 figures-body">
+      <Content />
+    </article>
+  </main>
   <HeadingAnchorsPlugin />
+  <HistoricalFiguresPlugin {lang} />
 </PageLayout>

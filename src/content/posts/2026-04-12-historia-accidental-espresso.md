@@ -1,14 +1,11 @@
 ---
-title: 'Bonus: La historia accidental del espresso'
+title: 'La historia accidental del espresso'
 description: 'De la máquina de vapor de 1901 a la E61 de 1961: cómo inventos fallidos, accidentes de ingeniería y un barista terco crearon el espresso que hoy conocemos.'
 publishedDate: 2026-04-12
 tags:
   - espresso
   - historia
-  - bonus
-isBonus: true
-isPremium: false
-draft: false
+  - cafe
 ---
 
 Hay algo que pocas personas saben sobre el espresso: casi ninguno de sus elementos definitorios fue planeado. La crema, los 9 bares, la pre-infusión — todo surgió de accidentes, peleas de negocios y soluciones prácticas a problemas concretos. Esta es la historia real.

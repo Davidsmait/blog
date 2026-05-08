@@ -1,14 +1,11 @@
 ---
-title: 'Bonus: The Accidental History of Espresso'
+title: 'The Accidental History of Espresso'
 description: 'From the steam machine of 1901 to the E61 of 1961: how failed inventions, engineering accidents, and a stubborn barista created the espresso we know today.'
 publishedDate: 2026-04-12
 tags:
   - espresso
   - history
-  - bonus
-isBonus: true
-isPremium: false
-draft: false
+  - coffee
 ---
 
 There's something most people don't know about espresso: almost none of its defining elements were planned. The crema, the 9 bars, the pre-infusion — all of it emerged from accidents, business disputes, and practical solutions to concrete problems. This is the real story.

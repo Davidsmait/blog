@@ -1,14 +1,14 @@
 import type { HTMLAttributes } from 'astro/types'
 
-export const toDateString = (date: Date): string =>
-  date.toLocaleDateString('es-MX', {
+export const toDateString = (date: Date, lang: 'es' | 'en' = 'es'): string =>
+  date.toLocaleDateString(lang === 'en' ? 'en-US' : 'es-MX', {
     year: 'numeric',
     month: 'short',
     day: 'numeric'
   })
 
-export const toMonthString = (date: Date): string =>
-  date.toLocaleDateString('es-MX', {
+export const toMonthString = (date: Date, lang: 'es' | 'en' = 'es'): string =>
+  date.toLocaleDateString(lang === 'en' ? 'en-US' : 'es-MX', {
     year: 'numeric',
     month: 'long',
     day: undefined

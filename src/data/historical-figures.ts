@@ -1,5 +1,5 @@
 /**
- * Historical figures referenced in lessons (e.g., bonus-historia-espresso).
+ * Historical figures referenced in lessons and posts (e.g., the espresso history article).
  *
  * Used by HistoricalFiguresPlugin.astro to render marginalia cards on
  * desktop and tap-to-reveal cards on mobile.

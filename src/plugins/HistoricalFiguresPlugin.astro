@@ -76,8 +76,17 @@ const labels =
     }
 
     function init() {
-      const main = document.querySelector('.lesson-main')
-      const article = main && main.querySelector('.lesson-body')
+      // Supports two hosting contexts:
+      //  - Lessons: <main class="lesson-main"><article class="lesson-body">…
+      //  - Blog posts: <main class="figures-root"><article class="figures-body">…
+      // The figure-marginalia/popover CSS targets either set of classes via :is().
+      const main =
+        document.querySelector('.lesson-main') ||
+        document.querySelector('.figures-root')
+      const article =
+        main &&
+        (main.querySelector('.lesson-body') ||
+          main.querySelector('.figures-body'))
       if (!article) return
 
       const triggers = Array.from(article.querySelectorAll('[data-figure]'))
@@ -382,12 +391,12 @@ const labels =
      and look like they're "next to" a cut-off header. We move the header
      background + blur to a pseudo-element that extends to the viewport edges,
      so the backdrop visually spans full width regardless of wrapper. */
-  body:has(.lesson-main .figure-marginalia) header.sticky.top-0 {
+  body:has(:is(.lesson-main, .figures-root) .figure-marginalia) header.sticky.top-0 {
     background: transparent !important;
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
   }
-  body:has(.lesson-main .figure-marginalia) header.sticky.top-0::before {
+  body:has(:is(.lesson-main, .figures-root) .figure-marginalia) header.sticky.top-0::before {
     content: '';
     position: absolute;
     top: 0;
@@ -415,7 +424,7 @@ const labels =
   }
 
   /* ── Trigger (the inline name in prose) ── */
-  .lesson-body .figure-trigger {
+  :is(.lesson-body, .figures-body) .figure-trigger {
     position: relative;
     cursor: help;
     color: var(--color-accent);
@@ -434,26 +443,26 @@ const labels =
       opacity 0.3s ease;
     opacity: 0.95;
   }
-  .lesson-body .figure-trigger:hover,
-  .lesson-body .figure-trigger:focus-visible {
+  :is(.lesson-body, .figures-body) .figure-trigger:hover,
+  :is(.lesson-body, .figures-body) .figure-trigger:focus-visible {
     text-decoration-color: var(--color-accent);
     opacity: 1;
     outline: none;
   }
-  .lesson-body .figure-trigger:focus-visible {
+  :is(.lesson-body, .figures-body) .figure-trigger:focus-visible {
     border-radius: 3px;
     box-shadow: 0 0 0 3px
       color-mix(in srgb, var(--color-accent) 18%, transparent);
   }
 
   @media (max-width: 1279px) {
-    .lesson-body .figure-trigger {
+    :is(.lesson-body, .figures-body) .figure-trigger {
       cursor: pointer;
     }
   }
 
   /* ── Desktop marginalia card ── */
-  .lesson-main .figure-marginalia {
+  :is(.lesson-main, .figures-root) .figure-marginalia {
     position: absolute;
     width: 220px;
     z-index: 1; /* keep below sticky header (z-50) */
@@ -473,11 +482,11 @@ const labels =
       filter 0.2s cubic-bezier(0.33, 1, 0.68, 1);
   }
 
-  .lesson-main .figure-marginalia--right {
+  :is(.lesson-main, .figures-root) .figure-marginalia--right {
     left: calc(100% + 2.5rem);
     text-align: left;
   }
-  .lesson-main .figure-marginalia--left {
+  :is(.lesson-main, .figures-root) .figure-marginalia--left {
     right: calc(100% + 2.5rem);
     text-align: left;
   }
@@ -490,7 +499,7 @@ const labels =
   }
 
   @media (max-width: 1279px) {
-    .lesson-main .figure-marginalia {
+    :is(.lesson-main, .figures-root) .figure-marginalia {
       display: none !important;
     }
   }
@@ -589,7 +598,7 @@ const labels =
   }
 
   /* ── Mobile popover (inline card) ── */
-  .lesson-body + .figure-popover,
+  :is(.lesson-body, .figures-body) + .figure-popover,
   .figure-popover {
     position: relative;
     margin: 1.25rem 0 1.5rem;
@@ -665,7 +674,7 @@ const labels =
 
   /* Reduced motion */
   @media (prefers-reduced-motion: reduce) {
-    .lesson-main .figure-marginalia,
+    :is(.lesson-main, .figures-root) .figure-marginalia,
     .figure-popover {
       animation: none;
       opacity: 1;

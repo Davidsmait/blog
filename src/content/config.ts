@@ -1,19 +1,26 @@
 import config from '@/theme.config'
 import { defineCollection, z, type SchemaContext } from 'astro:content'
 
+const postsSchema = ({ image }: SchemaContext) =>
+  z.object({
+    title: z.string(),
+    author: z.string().default(config.author),
+    description: z.string(),
+    publishedDate: z.date(),
+    draft: z.boolean().optional().default(false),
+    canonicalURL: z.string().optional(),
+    openGraphImage: image().or(z.string()).optional(),
+    tags: z.array(z.string()).default([])
+  })
+
 const posts = defineCollection({
   type: 'content',
-  schema: ({ image }) =>
-    z.object({
-      title: z.string(),
-      author: z.string().default(config.author),
-      description: z.string(),
-      publishedDate: z.date(),
-      draft: z.boolean().optional().default(false),
-      canonicalURL: z.string().optional(),
-      openGraphImage: image().or(z.string()).optional(),
-      tags: z.array(z.string()).default([])
-    })
+  schema: postsSchema
+})
+
+const postsEn = defineCollection({
+  type: 'content',
+  schema: postsSchema
 })
 
 const cafeSchema = ({ image }: SchemaContext) =>
@@ -54,4 +61,10 @@ const projects = defineCollection({
     })
 })
 
-export const collections = { posts, cafe, 'cafe-en': cafeEn, projects }
+export const collections = {
+  posts,
+  'posts-en': postsEn,
+  cafe,
+  'cafe-en': cafeEn,
+  projects
+}

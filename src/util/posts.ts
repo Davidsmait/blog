@@ -1,8 +1,8 @@
 import { getCollection, type CollectionEntry } from 'astro:content'
 
-export const sortPosts = (
-  p1: CollectionEntry<'posts'>,
-  p2: CollectionEntry<'posts'>
+export const sortPosts = <C extends 'posts' | 'posts-en'>(
+  p1: CollectionEntry<C>,
+  p2: CollectionEntry<C>
 ) => p2.data.publishedDate.getTime() - p1.data.publishedDate.getTime()
 
 export const getPosts = async (
@@ -11,6 +11,26 @@ export const getPosts = async (
   includeDrafts = import.meta.env.DEV
 ) => {
   const posts = await getCollection('posts')
+
+  posts.sort(sortPosts)
+
+  return posts
+    .filter(
+      (p) =>
+        !tag || p.data.tags.some((t) => t.toLowerCase() === tag.toLowerCase())
+    )
+    .filter(
+      (p) => !author || p.data.author.toLowerCase() === author.toLowerCase()
+    )
+    .filter((p) => includeDrafts || !p.data.draft)
+}
+
+export const getEnPosts = async (
+  tag?: string,
+  author?: string,
+  includeDrafts = import.meta.env.DEV
+) => {
+  const posts = await getCollection('posts-en')
 
   posts.sort(sortPosts)
 
