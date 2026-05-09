@@ -10,7 +10,7 @@ david_sanluis@outlook.com · davidsanluisaguirre.com · github.com/Davidsmait ·
 
 Fullstack developer with 3 years 4 months building production web and mobile software. Primary stack TypeScript with Angular, NestJS and Prisma/PostgreSQL, complemented with Next.js, Supabase, Scala 3 (Akka HTTP) and Ionic/Capacitor.
 
-At QRSof I've led two products end-to-end: **Slird** (full 4-repo ecosystem — Scala backend, NFC mobile app, public landing at [slird.com](https://www.slird.com/), and NFC web viewer — ~614 personal commits, #1 contributor on all repos; product built to release-ready level, kept as internal asset by business decision, only the landing is live) and **CEN** (project initiator and lead contributor with ~70% of the code, 100+ signed builds in production on App Store and Google Play, 300+ active employees). Currently at **Grace AI** I'm top contributor on the Angular frontend (600+ commits) and active on the NestJS backend (controllers, DTOs, modules in admin/core) and the Prisma/PostgreSQL services layer.
+At QRSof I've led two products end-to-end: **Slird** (full 4-repo ecosystem — Scala backend, NFC mobile app, public landing at [slird.com](https://www.slird.com/), and NFC web viewer — ~614 personal commits, #1 contributor on all repos; product built to release-ready level, kept as internal asset by business decision, only the landing is live) and **CEN** (project initiator and lead contributor with ~70% of the code, 100+ signed builds in production on App Store and Google Play, ~300 active users with MAU sustained and 95.9% install base). Currently at **Grace AI** I'm top contributor on the Angular frontend (600+ commits) and active on the NestJS backend (controllers, DTOs, modules in admin/core) and the Prisma/PostgreSQL services layer.
 
 Alongside, I'm building **La Commune** — a POS + loyalty system for specialty coffee shops with Next.js + Supabase — combining AI-assisted development (Claude Code) with thorough manual auditing, testing and architecture decisions.
 
@@ -38,6 +38,7 @@ Alongside, I'm building **La Commune** — a POS + loyalty system for specialty 
 - Designed and implemented end-to-end **7 complete business modules**: dispatches (including despacho-libre and despacho-rework), incidents, surveys, kiosk mode, operations, and quiniela (last one shipped solo in Mar 2026).
 - **Offline-first architecture** with TypeORM over SQLite encrypted with SQLCipher, NgRx state management with custom Effects (DatabaseEffect, SurveyEffect, ResponsesEffect), and a custom backend sync service.
 - **Full release management:** 100+ signed builds shipped to iOS App Store and Google Play (versionCode 102), handling coordinated versioning across platforms and migration to Android SDK 35 + 16 KB page size support.
+- **Production metrics:** ~300 active users (MAU sustained), 95.9% install base, 300+ cumulative Android installs.
 - Integrated **10+ Capacitor plugins**: camera, barcode scanner, geolocation with permissions, network detection for offline sync, preferences, haptics, etc.
 - JWT authentication with `@auth0/angular-jwt`, route guards and HTTP interceptor for token refresh.
 - CI/CD in GitLab with dependency caching.
