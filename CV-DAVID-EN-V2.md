@@ -1,6 +1,6 @@
 # David San Luis Aguirre
 
-**Fullstack Developer | TypeScript · Angular · NestJS · AWS · Next.js**
+**Fullstack Developer | TypeScript · Angular · NestJS · Next.js · Scala 3**
 
 david_sanluis@outlook.com · davidsanluisaguirre.com · github.com/Davidsmait · linkedin.com/in/davidsanluisaguirre · Pachuca, Mexico · Available for remote
 
@@ -27,10 +27,10 @@ Alongside, I'm building **La Commune** — a POS + loyalty system for specialty 
 - **Top contributor on the Angular frontend** (600+ commits) across a multi-app monorepo: client frontend, admin panel and a shared component library (`grace-lib`).
 - **NestJS backend development:** 165+ files across `admin/` and `core/` modules — designed and implemented REST controllers, validated DTOs and module structure.
 - **Prisma/PostgreSQL services layer:** 200+ commits building TypeScript business-logic services (FormService, ModalityService, etc.) consumed across the API.
-- Integrated AWS services (Lambda, S3, Cognito) from both frontend and backend, in a multi-tenant LegalTech SaaS that automates OCR processing and LLM-driven legal drafting.
-- Cross-functional work with advanced backend, infrastructure, Python AI/ML workflow and product teams.
+- Multi-tenant SaaS with Keycloak authentication (JWT) and LLM-driven document processing.
+- Cross-functional work with advanced backend, infrastructure (AWS), Python AI/ML workflow and product teams.
 
-*Tech: Angular, TypeScript, RxJS, NgRx, Tailwind CSS, NestJS, Prisma, PostgreSQL, AWS (Lambda, S3, Cognito), LLM APIs, Swagger, Confluence, Jira.*
+*Tech: Angular, TypeScript, RxJS, NgRx, Tailwind CSS, NestJS, Prisma, PostgreSQL, Keycloak (JWT), LLM APIs, Swagger, Confluence, Jira.*
 
 #### CEN — Cross-Platform ERP Mobile App *(Mar 2024 – Present)*
 
@@ -99,7 +99,7 @@ Alongside, I'm building **La Commune** — a POS + loyalty system for specialty 
 | **Languages** | TypeScript, JavaScript, Scala, HTML, CSS |
 | **Frontend** | Angular, RxJS, NgRx, Next.js, React, Ionic, Capacitor, Tailwind CSS, Astro |
 | **Backend** | NestJS, Node.js, Scala 3 (Akka HTTP, Akka Streams, akka-actor-typed), Slick, Play Framework, REST APIs, Swagger |
-| **Cloud & data** | AWS (Lambda, S3, Cognito), Supabase (PostgreSQL, Auth, RLS, Edge Functions, Realtime), Prisma, PostgreSQL, SQLite, Docker |
+| **Cloud & data** | AWS ECR + Docker (Slird), Supabase (PostgreSQL, Auth, RLS, Edge Functions, Realtime), Prisma, PostgreSQL, SQLite, Firebase, Keycloak (JWT) |
 | **Mobile** | Ionic + Capacitor (iOS + Android), TypeORM + SQLite (offline-first), SQLCipher, NFC, App Store Connect, Google Play Console, release management |
 | **AI-assisted development** | Claude Code, LLM API integration, applied OCR, AI-assisted dev workflows with manual auditing |
 | **Testing & CI/CD** | Playwright, Vitest, GitHub Actions, Netlify deploys |
