@@ -12,7 +12,7 @@ Desarrollador fullstack con 3 años 4 meses construyendo software web y móvil e
 
 He liderado dos productos end-to-end en QRSof: **Slird** (ecosistema completo de 4 repos — backend Scala, app móvil con NFC, landing pública en [slird.com](https://www.slird.com/) y web viewer NFC — ~614 commits propios, todos como #1 contributor; producto release-ready, mantenido como activo interno por decisión de negocio, solo la landing está liberada) y **CEN** (iniciador y contributor principal con ~70% del código, +100 builds firmados en producción en App Store y Google Play, ~300 usuarios activos con MAU sostenido y 95.9% install base). Actualmente en **Grace AI** soy top contributor del frontend Angular (++600 commits) y desarrollo activamente en el backend NestJS (controllers, DTOs, módulos en admin/core) y en la capa de services con Prisma/PostgreSQL.
 
-En paralelo construyo **La Commune** — un sistema POS + loyalty para cafeterías de especialidad con Next.js + Supabase — combinando desarrollo asistido por IA (Claude Code) con auditoría manual exhaustiva, testing y decisiones de arquitectura.
+En paralelo construyo **La Commune** — un ecosistema de 2 apps (PWA de loyalty con Next.js 16 + React 19 y POS con Next.js 14 + React 18) que comparten Supabase para cafeterías de especialidad — combinando desarrollo asistido por IA (Claude Code) con auditoría manual exhaustiva, testing y decisiones de arquitectura.
 
 ---
 
@@ -64,16 +64,18 @@ En paralelo construyo **La Commune** — un sistema POS + loyalty para cafeterí
 
 ## Proyectos personales
 
-### La Commune — Sistema POS + Loyalty para Café de Especialidad
-*lacommune.netlify.app · en producción · 2026*
+### La Commune — Ecosistema POS + Loyalty para Café de Especialidad
+*lacommune.netlify.app · 2026 – presente · 2 aplicaciones que comparten base de datos Supabase*
 
-- Sistema completo POS + app de fidelidad para cafeterías de especialidad. PWA para clientes con tarjetas digitales y push notifications, y POS con 11 módulos para baristas (gestión de mesas, KDS, cobros con split, reportes, cortes de turno).
-- Combinación de desarrollo asistido por IA (Claude Code) con auditoría manual exhaustiva: 97 políticas RLS sobre 29 tablas, hashing bcrypt para PINs, separación estricta de ambientes dev/prod.
-- Sistema de Web Push notifications integrado con triggers PostgreSQL + Edge Functions de Supabase.
-- CI/CD con GitHub Actions: 84 tests unitarios + 61 E2E con Playwright. Deploys automáticos a Netlify.
-- Arquitectura realtime entre POS y app cliente, design system con 5 temas, costo mensual de infra: $0.
+- **PWA de Loyalty (cliente):** Next.js 16 + React 19 + Supabase. Tarjetas digitales de sellos, Web Push notifications nativas, escáner QR (ZXing) para baristas. En producción en lacommune.netlify.app desde enero 2026.
+- **Punto de Venta (POS):** Next.js 14 + React 18 + Supabase + Zustand. 11 módulos completos: mesas con drag & drop (@dnd-kit), menú, órdenes con folio automático, KDS con notificaciones sonoras, cobros con split de pagos, caja con corte de turno, reportes con gráficas (Recharts), usuarios con roles y PIN, fidelidad integrada con la PWA, inventario y design system con 5 temas. Construido solo desde cero en marzo 2026.
+- **Seguridad y datos compartidos:** 97 políticas RLS sobre 29 tablas comunes a ambas apps, hashing bcrypt para PINs, separación estricta de ambientes dev/prod.
+- **Realtime end-to-end:** cuando un barista agrega un sello desde el POS, el cliente lo ve en su PWA en 2-3 segundos vía Supabase Realtime + Edge Functions.
+- **Testing y CI/CD:** Vitest + Playwright para E2E (scripts para local y staging) en ambos repos; GitHub Actions con deploys automáticos a Netlify.
+- **Costo mensual de infra: $0** (Supabase + Netlify free tiers).
+- Combiné desarrollo asistido por IA (Claude Code) con auditoría manual exhaustiva, definición de arquitectura y decisiones de seguridad.
 
-*Tech: Next.js 14 (App Router), Supabase (PostgreSQL, Auth, RLS, Edge Functions, Realtime), TypeScript, Tailwind CSS, Zustand, Playwright, Vitest, Web Push, GitHub Actions, Netlify.*
+*Tech: Next.js 14/16 (App Router), React 18/19, Supabase (PostgreSQL, Auth, RLS, Edge Functions, Realtime), TypeScript, Tailwind CSS, Zustand, Radix UI, framer-motion, ZXing, @dnd-kit, Recharts, web-push, Zod, Playwright, Vitest, GitHub Actions, Netlify.*
 
 ### Blog técnico y Roadmap Barista de Especialidad
 *davidsanluisaguirre.com · 2024 – presente*
