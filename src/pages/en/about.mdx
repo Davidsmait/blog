@@ -405,10 +405,11 @@ activeHeaderLink: About
     <p class="about-title">Fullstack Developer · Angular · NestJS · TypeScript · AWS</p>
   </div>
   <p class="about-bio reveal reveal-delay-1">
-    Fullstack Developer with 3+ years (3y 4m) of experience. At Grace AI I work on the Angular frontend,
-    backend NestJS and AWS service integrations, and the user experience of a LegalTech SaaS platform.
-    I've shipped 2 cross-platform apps to the iOS App Store and Google Play, and I'm building La Commune —
-    a POS + loyalty system for specialty coffee shops — combining AI-assisted development with thorough auditing and testing.
+    Fullstack Developer with 3 years 4 months building production software.
+    Stack TypeScript with Angular, NestJS and Prisma/PostgreSQL, complemented with Next.js, Supabase, Scala and Ionic/Capacitor.
+    At Grace AI I'm a top contributor on the Angular frontend (600+ commits) and ship work on the NestJS backend and the Prisma services layer.
+    I've led two products end-to-end: Slird (~95% frontend + ~98% Scala backend, internal use) and CEN (~70% of the code, 100+ signed builds in production on App Store and Google Play).
+    Alongside, I'm building La Commune — a POS + loyalty system for specialty coffee shops — combining AI-assisted development with thorough manual auditing.
   </p>
 </div>
 
@@ -419,12 +420,12 @@ activeHeaderLink: About
     <span class="stat-label">Years of experience</span>
   </div>
   <div class="stat-card">
-    <span class="stat-number">500+</span>
-    <span class="stat-label">Users in production</span>
+    <span class="stat-number">3</span>
+    <span class="stat-label">Products in production</span>
   </div>
   <div class="stat-card">
-    <span class="stat-number">2</span>
-    <span class="stat-label">Apps in App Stores</span>
+    <span class="stat-number">100+</span>
+    <span class="stat-label">Signed builds shipped</span>
   </div>
   <div class="stat-card">
     <a href="https://github.com/Davidsmait" target="_blank" rel="noopener noreferrer" style="text-decoration:none;color:inherit;">
@@ -457,48 +458,59 @@ activeHeaderLink: About
 <div class="exp-list stagger-children">
   <div class="exp-card">
     <div class="exp-header">
-      <span class="exp-project">Grace AI — LegalTech SaaS Platform</span>
+      <span class="exp-project">Grace AI — AI-powered LegalTech SaaS Platform</span>
       <span class="exp-badge">Current project</span>
     </div>
-    <div class="exp-company">QRSof · Feb 2023 – Present · Remote</div>
+    <div class="exp-company">QRSof · Mar 2025 – Present · Remote</div>
     <div class="exp-desc">
-      Angular frontend and user experience of an AI-powered legal platform that automates document processing.
-      Integrations with the NestJS backend and AWS services (Lambda, S3, Cognito) within a multi-tenant architecture.
-      Cross-functional teamwork focused on UX and LLM API consumption.
+      Top contributor on the Angular frontend (600+ commits) across a multi-app monorepo: client,
+      admin and shared component library. Owner of full features end-to-end (virtual-assistant,
+      operations-container, validation, extraction, bank-representatives). Active development on
+      the NestJS backend — REST controllers, validated DTOs and modules across admin and core
+      domains — and on the Prisma/PostgreSQL services layer (FormService, ModalityService).
+      AWS integrations (Lambda, S3, Cognito) within a multi-tenant architecture.
     </div>
     <div class="exp-tech">
-      <span>Angular</span><span>NestJS</span><span>TypeScript</span><span>AWS</span><span>Prisma</span><span>PostgreSQL</span><span>LLM APIs</span>
+      <span>Angular 17</span><span>NestJS</span><span>TypeScript</span><span>Prisma</span><span>PostgreSQL</span><span>AWS</span><span>RxJS</span><span>NgRx</span><span>LLM APIs</span>
     </div>
   </div>
 
   <div class="exp-card">
     <div class="exp-header">
       <span class="exp-project">CEN — Cross-Platform Mobile ERP App</span>
-      <span class="exp-badge">Apr 2024 – Jun 2025</span>
+      <span class="exp-badge">Mar 2024 – Present</span>
     </div>
     <div class="exp-company">QRSof · Remote</div>
     <div class="exp-desc">
-      Built and published a complete ERP app on iOS App Store and Google Play for 300+ employees.
-      Offline-first architecture with SQLite and NgRx. Managed the full release cycle.
+      Project initiator and lead contributor (~70% of the code). End-to-end design of 7 business
+      modules: dispatches, despacho-libre, despacho-rework, incidents, surveys, kiosk and quiniela.
+      Offline-first architecture with TypeORM over encrypted SQLite (SQLCipher), NgRx with custom
+      Effects and a backend sync service. Full release management: 100+ signed builds shipped to
+      iOS App Store and Google Play, including Android SDK 35 and 16 KB page size migration.
     </div>
     <div class="exp-tech">
-      <span>Angular</span><span>Ionic</span><span>SQLite</span><span>NgRx</span><span>Capacitor</span><span>iOS</span><span>Android</span>
+      <span>Angular 17</span><span>Ionic 8</span><span>Capacitor 6</span><span>TypeScript</span><span>NgRx</span><span>TypeORM</span><span>SQLite</span><span>SQLCipher</span><span>JWT</span><span>GitLab CI</span>
     </div>
   </div>
 
   <div class="exp-card">
     <div class="exp-header">
-      <span class="exp-project">Slird — Professional NFC Networking</span>
-      <span class="exp-badge">Apr 2023 – Sep 2024</span>
+      <span class="exp-project">Slird — NFC Professional Networking Platform</span>
+      <span class="exp-badge">Mar 2023 – Nov 2024</span>
     </div>
     <div class="exp-company">QRSof · Remote</div>
     <div class="exp-desc">
-      Fullstack platform that digitized professional networking with NFC technology.
-      Frontend with Angular/Ionic, backend with Scala (Akka HTTP + Slick).
-      Built a component library that reduced frontend development effort by 70%.
+      End-to-end lead developer of the Slird ecosystem (4 repos, ~614 commits): multi-module
+      Scala 3 backend (~98%), Angular/Ionic mobile app with NFC (~95%), landing at
+      <a href="https://www.slird.com/" target="_blank" rel="noopener noreferrer">slird.com</a>
+      with Vite + React 18 + Tailwind (~85%), and NFC web viewer (~85%). The product was built
+      to release-ready level but, by business decision, remains an internal QRSof asset; only
+      the slird.com landing is public. Backend with Clean Architecture (api/business/data/ws/app),
+      Akka HTTP + Slick + PostgreSQL. Migrated from Scala 2.13 to Scala 3.7. 7 reusable components
+      that reduced frontend dev time by 70%.
     </div>
     <div class="exp-tech">
-      <span>Angular</span><span>Ionic</span><span>Scala</span><span>Akka HTTP</span><span>Play Framework</span><span>PostgreSQL</span><span>NFC</span>
+      <span>Angular 17</span><span>Ionic 7</span><span>Capacitor 6</span><span>NFC</span><span>Vite</span><span>React 18</span><span>Tailwind</span><span>Scala 3</span><span>Akka HTTP</span><span>Slick</span><span>PostgreSQL</span><span>Firebase</span>
     </div>
   </div>
 </div>
