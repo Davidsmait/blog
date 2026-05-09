@@ -91,7 +91,7 @@ Alongside, I'm building **La Commune** — a 2-app ecosystem (Loyalty PWA with N
 ## Education
 
 **Instituto Tecnológico de Pachuca** · Computer Systems Engineering · 2017 – 2021
-*Coursework completed without formal degree · Formation complemented with professional experience and continuous self-directed learning.*
+*Coursework not completed · Complemented with professional experience and continuous self-directed learning.*
 
 ---
 

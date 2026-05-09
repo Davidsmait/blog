@@ -91,7 +91,7 @@ En paralelo construyo **La Commune** — un ecosistema de 2 apps (PWA de loyalty
 ## Educación
 
 **Instituto Tecnológico de Pachuca** · Ingeniería en Sistemas Computacionales · 2017 – 2021
-*Estudios concluidos sin titulación · Formación complementada con experiencia profesional y aprendizaje autodidacta continuo.*
+*Estudios truncos · Formación complementada con experiencia profesional y aprendizaje autodidacta continuo.*
 
 ---
 
