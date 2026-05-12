@@ -2,6 +2,7 @@
 title: 'Milk for latte art: putting the 1:1 hypothesis to the test'
 description: 'After testing several Mexican milk brands I noticed a pattern: when protein matches fat, the figure survives. When it doesn''t, it fades. Here''s what the science says and why Voble collapses where Alpura holds.'
 publishedDate: 2026-05-10
+draft: true
 tags:
   - milk
   - latte-art

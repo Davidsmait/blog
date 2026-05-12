@@ -2,6 +2,7 @@
 title: 'Leche para latte art: la hipótesis del 1:1 puesta a prueba'
 description: 'Después de probar varias leches mexicanas noté un patrón: cuando la proteína iguala a la grasa, la figura sobrevive. Cuando no, se desvanece. Esto es lo que dice la ciencia y por qué Voble colapsa donde Alpura aguanta.'
 publishedDate: 2026-05-10
+draft: true
 tags:
   - leche
   - latte-art
