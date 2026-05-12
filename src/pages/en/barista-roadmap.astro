@@ -39,13 +39,16 @@ const phases = [
     desc: 'Shot anatomy, dial-in, pressure, temperature, diagnosis and maintenance.',
     totalLessons: 5,
     eta: 'Week of April 21'
-  },
-  {
-    num: 3,
-    title: 'Pour-over & filter methods',
-    desc: 'Pouring principles, Chemex, V60, Aeropress and other brewing methods.',
-    totalLessons: 5
   }
+  // Phase 3 (Pour-over & filter methods) temporarily hidden while content is validated.
+  // To republish: uncomment the block and remove `draft: true` from the 5 lessons in
+  // src/content/cafe-en/roadmap-3-*.md and their Spanish mirrors in src/content/cafe/.
+  // {
+  //   num: 3,
+  //   title: 'Pour-over & filter methods',
+  //   desc: 'Pouring principles, Chemex, V60, Aeropress and other brewing methods.',
+  //   totalLessons: 5
+  // }
 ]
 
 const plannedLessons: Record<number, string[]> = {}

@@ -35,13 +35,16 @@ const phases = [
     desc: 'Anatomía del shot, dial-in, presión, temperatura, diagnóstico y mantenimiento.',
     totalLessons: 5,
     eta: 'Semana del 21 de abril'
-  },
-  {
-    num: 3,
-    title: 'Pour-over y métodos de filtrado',
-    desc: 'Principios del vertido, Chemex, V60, Aeropress y otros métodos de preparación.',
-    totalLessons: 5
   }
+  // Fase 3 (Pour-over y métodos de filtrado) oculta temporalmente mientras se valida el contenido.
+  // Para republicar: descomentar el bloque y quitar `draft: true` de las 5 lecciones en
+  // src/content/cafe/roadmap-3-*.md y sus mirrors en src/content/cafe-en/.
+  // {
+  //   num: 3,
+  //   title: 'Pour-over y métodos de filtrado',
+  //   desc: 'Principios del vertido, Chemex, V60, Aeropress y otros métodos de preparación.',
+  //   totalLessons: 5
+  // }
 ]
 
 const plannedLessons: Record<number, string[]> = {}

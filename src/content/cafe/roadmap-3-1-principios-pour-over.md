@@ -1,5 +1,5 @@
 ---
-draft: false
+draft: true
 title: 'Principios del pour-over'
 description: 'La ciencia detrás del café vertido: bloom, agitación, bypass, flujo laminar y cómo controlar cada variable para extracciones consistentes.'
 publishedDate: 2026-03-05

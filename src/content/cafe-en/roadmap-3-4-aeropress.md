@@ -2,6 +2,7 @@
 title: 'Aeropress'
 description: 'The most versatile and portable coffee method: standard technique, inverted method, championship recipes, and why Aeropress is the perfect lab for experimenting.'
 publishedDate: 2026-03-05
+draft: true
 tags:
   - filtration
   - aeropress

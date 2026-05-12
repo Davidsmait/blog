@@ -2,6 +2,7 @@
 title: 'Other Brewing Methods'
 description: 'French press, Clever Dripper, cold brew, and siphon: when to use each method, their strengths, limitations, and recipes to master them.'
 publishedDate: 2026-03-05
+draft: true
 tags:
   - filtration
   - french-press

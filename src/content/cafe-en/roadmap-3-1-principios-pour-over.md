@@ -2,6 +2,7 @@
 title: 'Principles of Pour-Over'
 description: 'The science behind poured coffee: bloom, agitation, bypass, laminar flow, and how to control each variable for consistent extractions.'
 publishedDate: 2026-03-05
+draft: true
 tags:
   - filtration
   - pour-over
