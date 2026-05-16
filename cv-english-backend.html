@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>David San Luis Aguirre — Backend-Focused Fullstack Developer</title>
+<style>
+  @page { size: Letter; margin: 1.4cm 1.6cm; }
+  * { box-sizing: border-box; }
+  body {
+    font-family: -apple-system, "Helvetica Neue", Arial, sans-serif;
+    font-size: 10pt;
+    line-height: 1.42;
+    color: #1a1a1a;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 28px 32px;
+  }
+  h1 {
+    font-size: 24pt;
+    margin: 0 0 3px 0;
+    font-weight: 700;
+    color: #111;
+    letter-spacing: -0.5px;
+  }
+  .subtitle {
+    font-size: 10.5pt;
+    color: #3a6fb5;
+    margin-bottom: 4px;
+    font-weight: 500;
+  }
+  .contact {
+    font-size: 9pt;
+    color: #555;
+    margin-bottom: 14px;
+  }
+  h2 {
+    font-size: 11pt;
+    color: #3a6fb5;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    border-bottom: 1px solid #d0d7e0;
+    padding-bottom: 3px;
+    margin: 14px 0 8px 0;
+    font-weight: 700;
+  }
+  h3 {
+    font-size: 10.5pt;
+    margin: 10px 0 1px 0;
+    font-weight: 700;
+    color: #111;
+  }
+  h3 .meta {
+    font-weight: 400;
+    color: #666;
+    font-style: italic;
+    font-size: 9.5pt;
+  }
+  h4 {
+    font-size: 10pt;
+    margin: 8px 0 3px 0;
+    font-weight: 600;
+    color: #222;
+  }
+  h4 .tag {
+    color: #3a6fb5;
+    font-weight: 600;
+    font-size: 9pt;
+  }
+  p { margin: 0 0 6px 0; }
+  ul {
+    margin: 3px 0 6px 0;
+    padding-left: 18px;
+  }
+  li { margin-bottom: 2px; }
+  strong { color: #0d2c54; }
+  .tech {
+    font-style: italic;
+    color: #666;
+    font-size: 9pt;
+    margin-top: 2px;
+  }
+  .skills-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .skills-table td {
+    padding: 2.5px 8px 2.5px 0;
+    vertical-align: top;
+    font-size: 9.5pt;
+  }
+  .skills-table td:first-child {
+    font-weight: 600;
+    color: #3a6fb5;
+    width: 140px;
+    white-space: nowrap;
+  }
+  a { color: #3a6fb5; text-decoration: none; }
+  .summary { font-size: 9.8pt; line-height: 1.5; }
+</style>
+</head>
+<body>
+
+<h1>David San Luis Aguirre</h1>
+<div class="subtitle">Backend-Focused Fullstack Developer · TypeScript · NestJS · Next.js · AWS</div>
+<div class="contact">
+  david_sanluis@outlook.com · davidsanluisaguirre.com · github.com/Davidsmait · linkedin.com/in/davidsanluisaguirre · Pachuca, Mexico · Available for remote
+</div>
+
+<h2>Professional Summary</h2>
+<p class="summary">Fullstack developer with <strong>3 years 4 months</strong> shipping production web and mobile software. Core stack: TypeScript with NestJS and Prisma/PostgreSQL on the backend, complemented with Next.js, Supabase, and Angular. At QRSof I led two products end-to-end (Slird and CEN) and currently work on Grace AI, where I'm <strong>top contributor on the Angular frontend (600+ commits)</strong> and active on the NestJS backend (controllers, DTOs, modules) and the Prisma services layer. In parallel I build <strong>La Commune</strong>, a 2-app ecosystem (Loyalty PWA + POS) sharing a Supabase backend, which I own end-to-end including schema design, 97 RLS policies, Edge Functions, and security audits. Daily user of AI-assisted development (Claude Code, Cursor) with thorough manual auditing. Comfortable in async-first remote environments.</p>
+
+<h2>Professional Experience</h2>
+
+<h3>QRSof — Software Development Company <span class="meta">| Fullstack Developer | Feb 2023 – Present | Hidalgo, Mexico (Remote)</span></h3>
+
+<h4>Grace AI — LegalTech SaaS Platform <span class="tag">(Mar 2025 – Present)</span></h4>
+<ul>
+  <li><strong>Top contributor on the Angular frontend (600+ commits)</strong> across a multi-app monorepo: client frontend, admin panel, and shared component library (<code>grace-lib</code>).</li>
+  <li><strong>NestJS backend development:</strong> 165+ files across <code>admin/</code> and <code>core/</code> modules — REST controllers, validated DTOs, module structure.</li>
+  <li><strong>Prisma/PostgreSQL services layer:</strong> 200+ commits building TypeScript business-logic services consumed across the API.</li>
+  <li>Multi-tenant SaaS with Keycloak (JWT) authentication and LLM-driven document processing (OCR + AI legal drafts).</li>
+  <li>Frontend integration with AWS services (consumption of Lambda, S3, Cognito) and cross-functional work with backend, infrastructure, and product teams.</li>
+</ul>
+<div class="tech">Tech: Angular, TypeScript, RxJS, NgRx, Tailwind, NestJS, Prisma, PostgreSQL, Keycloak (JWT), LLM APIs, Swagger, Confluence, Jira.</div>
+
+<h4>CEN — Cross-Platform ERP Mobile App <span class="tag">(Mar 2024 – Present)</span></h4>
+<ul>
+  <li><strong>Project initiator and lead contributor (~70% of the code, 277/395 commits).</strong></li>
+  <li>Designed and shipped end-to-end <strong>7 complete business modules</strong>: dispatches (including despacho-libre and despacho-rework), incidents, surveys, kiosk mode, operations, and quiniela (last one shipped solo in March 2026).</li>
+  <li><strong>Offline-first architecture</strong> with TypeORM over SQLite encrypted with SQLCipher, NgRx with custom Effects (DatabaseEffect, SurveyEffect, ResponsesEffect), and a custom backend sync service.</li>
+  <li><strong>Full release management:</strong> 100+ signed builds shipped to iOS App Store and Google Play (versionCode 102), handling coordinated versioning across platforms and migration to Android SDK 35 + 16 KB page size support.</li>
+  <li><strong>Production metrics:</strong> ~300 MAU sustained, 95.9% install base, 300+ cumulative Android installs.</li>
+  <li>Integrated <strong>10+ Capacitor plugins</strong> (camera, barcode scanner, geolocation with permissions, network detection, preferences, haptics, etc.) and JWT auth with <code>@auth0/angular-jwt</code>, route guards, and HTTP interceptor for token refresh.</li>
+  <li>CI/CD in GitLab with dependency caching.</li>
+</ul>
+<div class="tech">Tech: Angular 17, Ionic 8, Capacitor 6, TypeScript, NgRx, TypeORM, SQLite, SQLCipher, JWT, GitLab CI, iOS, Android native (Gradle, Xcode, Podfile).</div>
+
+<h4>Slird — NFC Professional Networking Platform <span class="tag">(Mar 2023 – Nov 2024)</span></h4>
+<ul>
+  <li><strong>End-to-end lead developer of the entire 4-repo ecosystem — ~614 personal commits, #1 contributor on all repos.</strong> Built to release-ready level; by business decision, kept as internal QRSof asset (only the public landing at <a href="https://www.slird.com/">slird.com</a> is live).</li>
+  <li><strong>Backend (~98% of repo, 210/214 commits):</strong> Multi-module backend with Clean Architecture (api, business, data, ws, app), Slick over PostgreSQL, JWT (nimbus-jose), Firebase Admin SDK for push notifications, Swagger. Containerized with Docker (base <code>amazoncorretto:21-alpine</code>) and deployed via <strong>AWS ECR (us-west-2)</strong>.</li>
+  <li><strong>Mobile app (~95% of repo, 310/326 commits):</strong> Angular 17 + Ionic 7 + Capacitor 6 signed for iOS and Android, with custom NFC integration, Apple Sign In, Google Auth, Push Notifications, and Firebase Dynamic Links. <strong>7 reusable components that reduced frontend dev time by 70%.</strong></li>
+  <li><strong>Public landing (~85%):</strong> Vite + React 18 + TypeScript + Tailwind + Swiper.</li>
+  <li><strong>NFC web viewer (~85%):</strong> Website that opens in the prospect's browser when tapping the NFC card — no app install required.</li>
+</ul>
+<div class="tech">Tech: Angular 17, Ionic 7, Capacitor 6, NFC, TypeScript, Vite, React 18, Tailwind, PostgreSQL, JWT (nimbus), Firebase Admin, AWS ECR, Docker, GitLab CI.</div>
+
+<h4>Software Developer Intern <span class="tag">(Feb 2023 – Aug 2023)</span></h4>
+<ul>
+  <li>Ramped up on Angular and TypeScript through internal projects, contributing to internal codebases and proof-of-concept applications.</li>
+  <li>Collaborated with senior developers on code reviews, best practices, and agile workflows.</li>
+</ul>
+
+<h2>Personal Projects</h2>
+
+<h4>La Commune — POS + Loyalty Ecosystem for Specialty Coffee <span class="tag">· lacommune.netlify.app · 2026 – Present</span></h4>
+<ul>
+  <li><strong>2 apps sharing a Supabase backend</strong> that I designed and own end-to-end:</li>
+  <li><strong>Loyalty PWA (customer):</strong> Next.js 16 + React 19 + Supabase. Digital stamp cards, native Web Push notifications, QR scanner (ZXing) for baristas. Live at lacommune.netlify.app since January 2026.</li>
+  <li><strong>Point of Sale (POS):</strong> Next.js 14 + React 18 + Supabase + Zustand. <strong>11 complete modules</strong>: tables with drag &amp; drop (@dnd-kit), menu, orders with auto folio, KDS with sound notifications, split-payment checkout, cash register with shift close-outs, reports with charts (Recharts), users with roles &amp; PIN, integrated loyalty, inventory, and a 5-theme design system. Built solo from scratch in March 2026.</li>
+  <li><strong>Security &amp; shared data:</strong> 97 RLS policies across 29 tables shared between both apps, bcrypt-hashed PINs, strict dev/prod environment separation, complete security audit.</li>
+  <li><strong>End-to-end realtime:</strong> when a barista adds a stamp from the POS, the customer sees it in their PWA within 2-3 seconds via Supabase Realtime + Edge Functions.</li>
+  <li><strong>Testing &amp; CI/CD:</strong> Vitest + Playwright (59 unit + 37 E2E tests) with scripts for local and staging; GitHub Actions with automated deploys to Netlify.</li>
+  <li><strong>Monthly infrastructure cost: $0</strong> (Supabase + Netlify free tiers).</li>
+  <li>Combined AI-assisted development (Claude Code) with thorough manual auditing, architecture decisions, and security choices.</li>
+</ul>
+<div class="tech">Tech: Next.js 14/16 (App Router), React 18/19, Supabase (PostgreSQL, Auth, RLS, Edge Functions, Realtime), TypeScript, Tailwind, Zustand, Radix UI, framer-motion, ZXing, @dnd-kit, Recharts, web-push, Zod, Playwright, Vitest, GitHub Actions, Netlify.</div>
+
+<h4>Technical Blog &amp; Specialty Coffee Barista Roadmap <span class="tag">· davidsanluisaguirre.com · 2024 – Present</span></h4>
+<ul>
+  <li>Personal technical blog and <strong>bilingual (ES/EN) educational platform</strong> built with Astro 5 + MDX + Tailwind. Schema.org Course on every lesson, cookie-based progress tracking, dynamic hreflang for ES/EN parity.</li>
+  <li>Open, free curriculum on specialty coffee: <strong>9 phases planned, 3 published (14 lessons)</strong> based on SCA, Scott Rao, and Jonathan Gagné.</li>
+  <li>Interactive quizzes, 5 composable SVG diagrams, own <strong>Wikidata entry (Q138853693)</strong>.</li>
+</ul>
+<div class="tech">Tech: Astro 5, MDX, Tailwind, TypeScript, Schema.org, Netlify.</div>
+
+<h2>Education</h2>
+<p><strong>Instituto Tecnológico de Pachuca</strong> · Computer Systems Engineering · 2017 – 2021<br>
+<span style="color:#666; font-style: italic; font-size: 9.5pt;">Coursework completed without final degree · Complemented with professional experience and continuous self-directed learning.</span></p>
+
+<h2>Technical Skills</h2>
+<table class="skills-table">
+  <tr><td>Languages</td><td>TypeScript, JavaScript, HTML, CSS, SQL</td></tr>
+  <tr><td>Backend</td><td>NestJS, Node.js, REST APIs, Swagger, Multi-tenant architecture</td></tr>
+  <tr><td>Frontend</td><td>Angular, RxJS, NgRx, Next.js, React, Ionic, Capacitor, Tailwind, Astro</td></tr>
+  <tr><td>Cloud &amp; Data</td><td>AWS (ECR, Lambda, S3, Cognito — consumption), Supabase (PostgreSQL, Auth, RLS, Edge Functions, Realtime), Prisma, PostgreSQL, SQLite, Firebase, Keycloak (JWT), Docker</td></tr>
+  <tr><td>Mobile</td><td>Ionic + Capacitor (iOS + Android), TypeORM + SQLite (offline-first), SQLCipher, NFC, App Store Connect, Google Play Console, release management</td></tr>
+  <tr><td>AI-assisted dev</td><td>Claude Code, Cursor, LLM API integration, OCR, AI workflows with manual auditing</td></tr>
+  <tr><td>Testing &amp; CI/CD</td><td>Playwright, Vitest, GitHub Actions, GitLab CI, Netlify deploys</td></tr>
+  <tr><td>Tools</td><td>Git, Jira, Confluence, Bruno, Xcode, Android Studio, DBeaver, IntelliJ IDEA</td></tr>
+  <tr><td>Architecture</td><td>Multi-tenant SaaS, offline-first, PWA, Clean Architecture, MVC, multi-app monorepos</td></tr>
+  <tr><td>Methodologies</td><td>Scrum, Agile, code review, async-first remote work</td></tr>
+</table>
+
+<h2>Languages</h2>
+<p style="margin-bottom: 0;">
+  <strong>Spanish:</strong> Native &nbsp;·&nbsp;
+  <strong>English:</strong> Technical reading &amp; listening B2 · conversational intermediate (B1) · actively improving
+</p>
+
+<h2>Links</h2>
+<p style="margin-bottom: 0; font-size: 9.5pt;">
+  Blog: <a href="https://davidsanluisaguirre.com">davidsanluisaguirre.com</a> &nbsp;·&nbsp;
+  GitHub: <a href="https://github.com/Davidsmait">github.com/Davidsmait</a> (56+ public repos) &nbsp;·&nbsp;
+  LinkedIn: <a href="https://linkedin.com/in/davidsanluisaguirre">linkedin.com/in/davidsanluisaguirre</a> &nbsp;·&nbsp;
+  La Commune (live): <a href="https://lacommune.netlify.app">lacommune.netlify.app</a> &nbsp;·&nbsp;
+  CEN on Google Play
+</p>
+
+</body>
+</html>
