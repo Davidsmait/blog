@@ -12,7 +12,6 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
-
 # environment variables
 .env
 .env.production
@@ -26,59 +25,14 @@ pnpm-debug.log*
 # Local Netlify folder
 .netlify
 
+# Carpeta privada con todas las notas, auditorías, planes, drafts viejos y
+# material de producción (ver _personal/README.md)
+_personal/
+
 # Borradores privados — solo README/template públicos, contenido es privado
 drafts/*
 !drafts/README.md
 !drafts/.gitkeep
-linkedin-optimization-david.md
-/script-negociacion-salario.md
-linkedin-posts-plan.md
-SEO-AUDIT-2026.md
-SEO-PERFILES-Y-CONTENIDO.md
-pizarra-barista-roadmap.html
-linkedin-post-roadmap.md
-linkedin-roadmap-card.png
-linkedin-post-copiar.txt
-linkedin-roadmap-fase1.png
-linkedin-carousel-fase1.pdf
-scripts/linkedin-carousel-screenshots.mjs
-.gitignore
-scripts/linkedin-carousel-pdf.py
-scripts/carousel-slides/
-linkedin-post-fase1.txt
-guia-publicacion-roadmap.docx
-VALIDACION-2-1-ANATOMIA-ESPRESSO.md
-RESUMEN-CAMBIOS-FASE-2-1.txt
-INVESTIGACION-CORAZON-ESPRESSO.md
-RESUMEN-FASES-ESPRESSO-AGREGADAS.md
-RESUMEN-FINAL-SESION-FASE-2-1.md
-PROPUESTA-BONUS-GRUPO-2-ESPRESSO.md
-tech-specs-roadmapbarista.docx
-spinoff-mockups/leccion-mockup.html
-.gitignore
-spinoff-mockups/landing.html
-PLAN-INGRESOS-DAVID-2026.md
-PLAN-A-EMPLEO-MX-DAVID.md
-.gitignore
-ANALISIS-LINKEDIN-DAVID.md
-ANALISIS-CV-DAVID.md
-AUDITORIA-Y-OPORTUNIDADES-2026.md
-ANALISIS-LINKEDIN-DAVID-V2.md
-ANALISIS-CEN-MURI-DAVID.md
-ANALISIS-SLIRD-DAVID.md
-LINKEDIN-COPY-PASTE-FINAL.md
-LINKEDIN-ACCIONES-DAVID.md
-LINKEDIN-COPY-PASTE-BILINGUE.md
-PLAN-A-EJECUCION-DETALLADA.md
-EMPRESAS-Y-VACANTES-DAVID.md
-_gen_pdf_bctec.mjs
+
+# Archivos especiales del sitio que no van a producción
 public/files/David_San_Luis_Aguirre_CV_BCTecnologia.pdf
-aplicaciones/PREP-ENTREVISTA-BCTEC.md
-aplicaciones/MENSAJE-APLICACION-BCTEC.md
-aplicaciones/ESTRATEGIA-APLICACION-BCTEC.md
-aplicaciones/David_San_Luis_Aguirre_CV_BCTecnologia.pdf
-aplicaciones/CV-DAVID-ES-BCTEC.md
-reporte-vacantes-2026-05-18.md
-reporte-vacantes-complementario-2026-05-18.md
-tarea-vacantes-calidad-de-vida.md
-reporte-vacantes-calidad-de-vida-2026-05-20.md
