@@ -8,6 +8,7 @@ type PostEntry =
   | CollectionEntry<'posts'>
   | CollectionEntry<'posts-en'>
   | CollectionEntry<'cafe'>
+  | CollectionEntry<'ensayos'>
 
 export interface Props {
   posts: PostEntry[]
@@ -18,20 +19,27 @@ export interface Props {
 
 const { posts, featured = false, lang = 'es' } = Astro.props
 
-const sortedPosts = [...posts].sort((a, b) => b.data.publishedDate.getTime() - a.data.publishedDate.getTime())
+const sortedPosts = [...posts].sort(
+  (a, b) => b.data.publishedDate.getTime() - a.data.publishedDate.getTime()
+)
 
 const collectionPath = (collection: PostEntry['collection']) =>
   collection === 'cafe'
     ? 'cafe'
     : collection === 'posts-en'
       ? 'en/posts'
-      : 'posts'
+      : collection === 'ensayos'
+        ? 'ensayos'
+        : 'posts'
 ---
 
 <ul class="flex flex-col gap-0 p-0">
   {
     sortedPosts.map((post, index) => (
-      <li class="reveal group list-none border-b border-accent/[0.08] last:border-0" style={`transition-delay: ${index * 0.08}s`}>
+      <li
+        class="reveal group list-none border-b border-accent/[0.08] last:border-0"
+        style={`transition-delay: ${index * 0.08}s`}
+      >
         <a
           class="flex flex-col gap-3 rounded-lg py-6 no-underline transition-all duration-500 hover:bg-accent/[0.03] sm:flex-row sm:items-start sm:gap-8 sm:px-4 sm:py-8"
           href={`/${collectionPath(post.collection)}/${post.slug}`}
@@ -39,33 +47,38 @@ const collectionPath = (collection: PostEntry['collection']) =>
           data-cursor-hover
         >
           {/* Counter */}
-          <span class="section-number shrink-0 pt-1 hidden sm:block">
+          <span class="section-number hidden shrink-0 pt-1 sm:block">
             ({String(index + 1).padStart(2, '0')})
           </span>
 
           {/* Content */}
           <div class="flex-1">
             <div class="flex flex-col justify-between gap-2 sm:flex-row sm:items-start">
-              <h3 class:list={[
-                'm-0 font-display font-semibold tracking-tight-brand text-accent transition-opacity duration-500 group-hover:opacity-70',
-                featured && index === 0 ? 'text-xl sm:text-2xl' : 'text-lg'
-              ]}>
+              <h3
+                class:list={[
+                  'm-0 font-display font-semibold tracking-tight-brand text-accent transition-opacity duration-500 group-hover:opacity-70',
+                  featured && index === 0 ? 'text-xl sm:text-2xl' : 'text-lg'
+                ]}
+              >
                 {post.data.title}
               </h3>
-              <time datetime={post.data.publishedDate.toISOString()} class="shrink-0 text-[11px] font-medium uppercase tracking-[0.15em] opacity-30">
+              <time
+                datetime={post.data.publishedDate.toISOString()}
+                class="shrink-0 text-[11px] font-medium uppercase tracking-[0.15em] opacity-30"
+              >
                 {toDateString(post.data.publishedDate, lang)}
               </time>
             </div>
             <p class="m-0 mt-2 text-[13px] leading-relaxed opacity-40">
               {post.data.description}
             </p>
-            <div class="mt-3 pointer-events-none">
+            <div class="pointer-events-none mt-3">
               <TagsBar tags={resolveTags(post.data.tags)} maxVisible={3} />
             </div>
           </div>
 
           {/* Arrow — appears on hover */}
-          <span class="hidden shrink-0 text-sm opacity-0 transition-all duration-500 group-hover:opacity-50 group-hover:translate-x-1 sm:block">
+          <span class="hidden shrink-0 text-sm opacity-0 transition-all duration-500 group-hover:translate-x-1 group-hover:opacity-50 sm:block">
             &rarr;
           </span>
         </a>

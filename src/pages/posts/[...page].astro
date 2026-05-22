@@ -63,5 +63,31 @@ const collectionPageSchema = JSON.stringify({
 
   <PostsList posts={page.data} />
 
+  {/* Link sutil hacia /ensayos — solo en la última página de paginación */}
+  {
+    page.lastPage === page.currentPage && (
+      <div class="reveal mt-16 border-t border-accent/[0.08] pt-8 sm:mt-20 sm:pt-12">
+        <a
+          href="/ensayos"
+          class="group flex items-baseline gap-3 no-underline opacity-50 transition-opacity duration-500 hover:opacity-100"
+          data-astro-prefetch
+          data-cursor-hover
+        >
+          <span class="font-serif text-[13px] italic opacity-60">
+            ¿Buscas algo menos técnico?
+          </span>
+          <span class="font-serif text-[13px] italic text-accent">Ensayos</span>
+          <span class="text-sm opacity-40 transition-transform duration-500 group-hover:translate-x-1">
+            &rarr;
+          </span>
+        </a>
+        <p class="m-0 mt-2 max-w-[50ch] text-[12px] leading-relaxed opacity-30">
+          Espacio personal donde escribo sobre filosofía, ideología y
+          experiencias. Sin SEO ni métricas — solo lo que me hace pensar.
+        </p>
+      </div>
+    )
+  }
+
   <Pagination slot="bottom" page={page} />
 </PageLayout>

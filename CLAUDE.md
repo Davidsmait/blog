@@ -172,6 +172,45 @@ Other pages reference these via `{ "@id": ".../#person" }` instead of duplicatin
 - Editorial link style: serif italic + number + description + arrow slide on hover
 - CV buttons: subtle border, fill-up animation on hover, not pill/rounded
 
+## Sistema de Borradores y Ensayos
+
+David tiene un espacio personal separado del contenido técnico. Dos componentes:
+
+### `drafts/` (carpeta privada en raíz del repo)
+- **Fuera** de `src/content/` — Astro NO la procesa, NUNCA se publica
+- En `.gitignore` por defecto (solo `README.md` y `.gitkeep` se versionan)
+- Cada `.md` tiene frontmatter: `title`, `slug`, `status` (`idea`/`outline`/`draft`/`ready`/`archived`), `tags`, `targetSection` (`ensayos`/`posts`/`cafe`), `createdAt`, `updatedAt`
+- `drafts/INDEX.md` es el registro central — siempre actualizar `updatedAt` y la línea del índice cuando se modifica un borrador
+
+### `src/content/ensayos/` (sección publicada)
+- Colección Astro registrada en `src/content/config.ts`
+- Schema similar a `posts` + campos `mood` y `contentWarning`
+- Solo español por ahora (no bilingüe)
+- Rutas: `/ensayos` (listado) y `/ensayos/<slug>` (detalle)
+- Layout: reutiliza `PostLayout.astro` con `isEnsayo` flag
+- NO está en el navbar — discoverable desde About page o búsqueda
+
+### Flujo
+```
+idea suelta → drafts/<slug>.md (status: idea)
+            → status: outline (esqueleto)
+            → status: draft (prosa terminada)
+            → status: ready
+            → [usuario dice "publica el borrador X"]
+            → src/content/ensayos/<slug>.md
+```
+
+### Reglas críticas
+1. **NUNCA publicar un borrador sin permiso explícito** del usuario. "Publica el borrador X" o "mueve a ensayos el borrador X" son los únicos triggers válidos.
+2. Al **capturar una idea**, ANEXAR al final de la sección `## Notas e ideas` con timestamp, NO reescribir el borrador.
+3. Al **promover** a `ensayos/`: validar el frontmatter, agregar `publishedDate` (hoy), eliminar campos privados (`status`, `createdAt`, `updatedAt`), y mover el archivo. Actualizar INDEX.md a "archivado" o eliminar la línea.
+4. **Fuzzy match** al detectar "agregar al borrador de X": comparar X contra los títulos en INDEX.md. Si no hay match claro, preguntar antes de crear nuevo.
+
+### Skill global asociada
+- Nombre: `draft-capture`
+- Triggers: "idea de borrador", "se me ocurrió algo para...", "anota para el borrador de...", "guarda esta idea", "agrega al borrador X"
+- Se instala como skill global en `~/.claude/skills/` (no project-scoped)
+
 ## Lesson Content Guidelines
 - **Validate all technical claims** against SCA standards, Barista Hustle, and specialty coffee sources before publishing
 - **Quiz coverage:** every major concept in a lesson should have a quiz question — if a section teaches something actionable (like WDT), add a quiz for it

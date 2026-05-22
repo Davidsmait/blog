@@ -14,6 +14,7 @@ export interface Props {
     | CollectionEntry<'posts'>
     | CollectionEntry<'posts-en'>
     | CollectionEntry<'cafe'>
+    | CollectionEntry<'ensayos'>
 }
 
 const { post } = Astro.props
@@ -25,17 +26,20 @@ const {
 
 const isEnPost = post.collection === 'posts-en'
 const isCafe = post.collection === 'cafe'
+const isEnsayo = post.collection === 'ensayos'
 const lang: 'es' | 'en' = isEnPost ? 'en' : 'es'
 
-// URL prefix for the post (posts → /posts/, posts-en → /en/posts/, cafe → /cafe/)
+// URL prefix for the post (posts → /posts/, posts-en → /en/posts/, cafe → /cafe/, ensayos → /ensayos/)
 const collectionPath =
   post.collection === 'posts-en' ? 'en/posts' : post.collection
+
+const activeHeaderLink = isCafe ? 'Café' : isEnsayo ? 'Ensayos' : 'Blog'
 
 const frontmatter: PageLayoutProps['frontmatter'] = {
   ...post.data,
   openGraphImage:
     post.data.openGraphImage || `/${collectionPath}/${post.slug}.png`,
-  activeHeaderLink: isCafe ? 'Café' : 'Blog',
+  activeHeaderLink,
   scrollProgress: true
 }
 
@@ -74,9 +78,15 @@ const blogPostingSchema = JSON.stringify({
 })
 
 // BreadcrumbList for blog posts
-const sectionName = isCafe ? 'Café' : 'Blog'
+const sectionName = isCafe ? 'Café' : isEnsayo ? 'Ensayos' : 'Blog'
 const sectionUrl = new URL(
-  isCafe ? '/barista-roadmap' : isEnPost ? '/en/posts' : '/posts',
+  isCafe
+    ? '/barista-roadmap'
+    : isEnsayo
+      ? '/ensayos'
+      : isEnPost
+        ? '/en/posts'
+        : '/posts',
   Astro.site
 ).href
 

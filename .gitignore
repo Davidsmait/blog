@@ -25,6 +25,11 @@ pnpm-debug.log*
 
 # Local Netlify folder
 .netlify
+
+# Borradores privados — solo README/template públicos, contenido es privado
+drafts/*
+!drafts/README.md
+!drafts/.gitkeep
 linkedin-optimization-david.md
 /script-negociacion-salario.md
 linkedin-posts-plan.md
@@ -76,3 +81,4 @@ aplicaciones/CV-DAVID-ES-BCTEC.md
 reporte-vacantes-2026-05-18.md
 reporte-vacantes-complementario-2026-05-18.md
 tarea-vacantes-calidad-de-vida.md
+reporte-vacantes-calidad-de-vida-2026-05-20.md

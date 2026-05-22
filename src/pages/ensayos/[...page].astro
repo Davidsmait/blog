@@ -1,0 +1,86 @@
+---
+import Pagination from '@/components/Pagination.astro'
+import PostsList from '@/components/PostsList.astro'
+import PageLayout, {
+  type Props as PageLayoutProps
+} from '@/layouts/PageLayout.astro'
+import config from '@/theme.config'
+import { getEnsayos } from '@/util/ensayos'
+import type { GetStaticPaths, InferGetStaticPropsType } from 'astro'
+
+export const getStaticPaths = (async ({ paginate }) => {
+  const ensayos = await getEnsayos()
+
+  return paginate(ensayos, { pageSize: config.postsPerPage })
+}) satisfies GetStaticPaths
+
+type Props = InferGetStaticPropsType<typeof getStaticPaths>
+
+const { page } = Astro.props
+
+const frontmatter: PageLayoutProps['frontmatter'] = {
+  title: 'Ensayos — Filosofía, café y código',
+  description:
+    'Espacio personal de David San Luis Aguirre. Reflexiones sobre filosofía, ideología, programación y la vida del barista. Aquí escribo lo que me hace pensar, no lo que me hace SEO.',
+  activeHeaderLink: 'Ensayos',
+  canonicalURL: new URL('/ensayos/1', Astro.site).toString()
+}
+
+const collectionPageSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: 'Ensayos — David San Luis Aguirre',
+  description: frontmatter.description,
+  url: new URL('/ensayos', Astro.site).href,
+  isPartOf: { '@id': 'https://davidsanluisaguirre.com/#website' },
+  author: { '@id': 'https://davidsanluisaguirre.com/#person' },
+  mainEntity: {
+    '@type': 'ItemList',
+    numberOfItems: page.data.length,
+    itemListElement: page.data.map((post, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      url: new URL(`/ensayos/${post.slug}`, Astro.site).href,
+      name: post.data.title
+    }))
+  }
+})
+---
+
+<PageLayout {frontmatter}>
+  <script type="application/ld+json" set:html={collectionPageSchema} />
+  <div class="reveal mb-10 sm:mb-16">
+    <div class="flex items-center gap-4 sm:gap-6">
+      <span class="font-serif text-[13px] italic opacity-20">(03)</span>
+      <h1
+        class="m-0 font-serif text-[clamp(2.5rem,6vw,4rem)] italic leading-[1] tracking-tight text-accent"
+      >
+        Ensayos
+      </h1>
+    </div>
+    <div class="hr-animated mt-3"></div>
+    <p
+      class="reveal-delay-1 mt-6 max-w-[60ch] font-serif text-[15px] italic leading-relaxed opacity-60 sm:text-[17px]"
+    >
+      Espacio personal. Aquí escribo sobre lo que me importa aunque no le
+      importe a nadie más: filosofía, ideología, experiencias, contradicciones.
+      No es portafolio, no es marketing, no es SEO. Es solo yo intentando
+      entender en voz alta.
+    </p>
+  </div>
+
+  {
+    page.data.length === 0 ? (
+      <div class="reveal-delay-2 opacity-50">
+        <p class="font-serif italic">
+          Todavía no hay ensayos publicados. Vuelve pronto, o no — yo seguiré
+          escribiendo igual.
+        </p>
+      </div>
+    ) : (
+      <PostsList posts={page.data} />
+    )
+  }
+
+  <Pagination slot="bottom" page={page} />
+</PageLayout>

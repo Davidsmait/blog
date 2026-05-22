@@ -61,10 +61,37 @@ const projects = defineCollection({
     })
 })
 
+// Ensayos: sección personal (filosofía, experiencias, opinión, ideología).
+// Vive separada de /posts/ para que reclutadores que solo quieren ver
+// contenido técnico no la abran por accidente, y para que el lector que sí
+// está interesado sepa que entra a un espacio más íntimo.
+const ensayosSchema = ({ image }: SchemaContext) =>
+  z.object({
+    title: z.string(),
+    author: z.string().default(config.author),
+    description: z.string(),
+    publishedDate: z.date(),
+    draft: z.boolean().optional().default(false),
+    canonicalURL: z.string().optional(),
+    openGraphImage: image().or(z.string()).optional(),
+    tags: z.array(z.string()).default([]),
+    // Campos específicos de ensayos:
+    mood: z
+      .enum(['reflexivo', 'critico', 'personal', 'filosofico', 'biografico'])
+      .optional(),
+    contentWarning: z.string().optional() // p. ej. "política", "salud mental"
+  })
+
+const ensayos = defineCollection({
+  type: 'content',
+  schema: ensayosSchema
+})
+
 export const collections = {
   posts,
   'posts-en': postsEn,
   cafe,
   'cafe-en': cafeEn,
-  projects
+  projects,
+  ensayos
 }
