@@ -36,3 +36,12 @@ drafts/*
 
 # Archivos especiales del sitio que no van a producción
 public/files/David_San_Luis_Aguirre_CV_BCTecnologia.pdf
+
+# Material privado de búsqueda de empleo (reportes y vacantes) — no va al repo
+reportes/
+reporte-vacantes-*.md
+vacantes-*.md
+
+# Temporales y settings locales
+_tmp_filtered.json
+.claude/settings.local.json
