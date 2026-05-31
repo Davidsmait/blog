@@ -84,13 +84,35 @@ No-one's first batch goes by the book. And that's exactly why it's worth telling
 
 Before that, the dough was sticky and spread out all over the counter. I thought it needed more flour, but no: it was a well-hydrated dough, and adding flour would only have dried it out. The **slap & fold** technique (lift, slap, fold) plus a bench scraper to unstick it saved the day.
 
+![Sticky dough spread across the kitchen counter](/images/roles-canela/masa-pegajosa.jpg)
+
+*The sticky dough spread across the counter. It looked like a mistake, but it was a well-hydrated dough — slap & fold saved it, not flour.*
+
 **The night changed the plan.** I made these with my girlfriend, and she doesn't usually stay up late. I would've held out to shape the rolls before fridging them, but that came up and I had to solve it on the spot: put the whole dough in the fridge **as a block** and shape the next day. Funny thing is, that improvisation turned out to be a real bakery technique (cold bulk fermentation). It worked… almost.
+
+![Cinnamon roll dough shaped into a smooth ball after degassing](/images/roles-canela/masa-bola-lisa.jpg)
+
+*After the rescue: the degassed dough, shaped into a smooth ball, ready to roll out.*
 
 **The catch: I over-fermented it.** Between putting it in at 11:30 pm and baking past 1 pm, it was about 13 hours. When I pulled it from the fridge it **smelled strongly of beer**. It cracked me up — I even started wondering whether bakers grow to love or hate actual beer from smelling it so much. That aroma is alcohol: the yeast got greedy. You rescue it by **degassing** the dough (pressing it to push out the gas and the smell), and whatever aroma is left bakes off in the oven.
 
+![Cinnamon rolls shaped and cut on a tray](/images/roles-canela/rolls-formados.jpg)
+
+*The rolls shaped and cut, ready for the fridge.*
+
 **The oven and the substitutes.** Countertop electric oven, **BAKE at 350 °F**. I didn't have heavy cream, so I improvised the bath with **evaporated milk + a teaspoon of melted butter**. And when the top started browning with no foil on hand, the fix was to lower the rack.
 
-**The verdict: 80/100.** They didn't come out café-grade — they barely browned on top and felt a little firm/dry (blame the over-fermentation, baking them spread apart, and a couple extra minutes). I also found them **a bit too sweet**: I think the filling sugar got concentrated. But you know what? They were good. I ate them happy, I felt proud, and yes — **I'd do it again**, now with the adjustments I learned. For a first try, rescuing a dough that was half ruined, I'll sign off on 80 out of 100.
+**The first-batch verdict: 80/100.** They didn't come out café-grade — they barely browned on top and felt a little firm/dry (blame the over-fermentation, baking them spread apart, and a couple extra minutes). I also found them **a bit too sweet**: I think the filling sugar got concentrated. But you know what? They were good. I ate them happy, I felt proud, and yes — **I'd do it again**, now with the adjustments I learned. For a first try, rescuing a dough that was half ruined, I'll sign off on 80 out of 100.
+
+![First batch of cinnamon rolls fresh out of the oven](/images/roles-canela/rolls-horneados.jpg)
+
+*First batch fresh out of the oven: golden in the layers, ready to glaze.*
+
+**The second batch was a different story.** These were the rolls I'd already shaped and left in the fridge; I baked them the next day, a Sunday morning. They lost some of their shape in there (the dough was slack from the over-fermentation), but this time I baked them **together** and with the **full cream bath** — all 60 g of evaporated milk with the 10 g of butter. And for some reason they came out **much better**: softer, moister, much closer to café-grade. I'd give these a **9 / 9.5 out of 10** — highly similar to a café's, though still not nailing the exact flavor or style. The takeaway proved itself: the **full cream bath** and **baking them together** really do move the needle.
+
+![Second batch of rolls bunched together with the evaporated-milk bath before baking](/images/roles-canela/rolls-bano-crema.jpg)
+
+*Second batch: bunched together with the evaporated-milk bath before baking. These came out better.*
 
 ## Questions that came up (beginner FAQ)
 

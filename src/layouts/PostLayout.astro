@@ -151,3 +151,25 @@ const breadcrumbSchema = JSON.stringify({
   <HeadingAnchorsPlugin />
   <HistoricalFiguresPlugin {lang} />
 </PageLayout>
+
+<style>
+  /* Imágenes dentro del contenido del post: responsivas y a un tamaño razonable */
+  .figures-body :global(img) {
+    display: block;
+    width: auto;
+    height: auto;
+    max-width: min(100%, 460px);
+    max-height: 620px;
+    margin: 1.75rem auto 0.4rem;
+    border-radius: 12px;
+  }
+
+  /* Pie de foto: un párrafo que solo contiene texto en cursiva */
+  .figures-body :global(p:has(> em:only-child)) {
+    text-align: center;
+    font-size: 0.85rem;
+    line-height: 1.4;
+    opacity: 0.65;
+    margin-top: 0;
+  }
+</style>

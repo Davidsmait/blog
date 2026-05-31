@@ -84,13 +84,35 @@ No salió de manual. Y por eso vale contarlo.
 
 Antes de eso la masa se me quedó pegajosa y desparramada en la mesa. Pensé que le faltaba harina, pero no: era una masa bien hidratada, y echarle harina solo la habría resecado. La salvó la técnica **slap & fold** (levantar, azotar, doblar) y una raspa para despegarla.
 
+![Masa pegajosa y desparramada sobre la mesa de la cocina](/images/roles-canela/masa-pegajosa.jpg)
+
+*La masa pegajosa y desparramada. Parecía un error, pero era una masa bien hidratada — la salvó el slap & fold, no la harina.*
+
 **La noche cambió el plan.** Esto lo hice con mi novia, y ella no suele desvelarse. Yo hubiera aguantado a formar los rolls antes de meterlos al refri, pero surgió ese inconveniente y tuve que resolver en el momento: meter la masa entera **en bloque** al refrigerador y formar al día siguiente. Lo curioso es que esa improvisación resultó ser una técnica de panadería de verdad (fermentación en bloque en frío). Salió bien… casi.
+
+![Masa de roles de canela hecha una bola lisa tras desgasarla](/images/roles-canela/masa-bola-lisa.jpg)
+
+*Después del rescate: la masa desgasada, hecha bola lisa y lista para formar.*
 
 **El detalle: se me pasó de fermentación.** Entre que la metí a las 11:30 pm y la horneé pasada la 1 pm, fueron como 13 horas. Al sacarla del refri **olía fuerte a cerveza**. Me dio risa — hasta me puse a pensar si a los panaderos les gusta o les choca la cerveza de verdad, de tanto olerla. Ese aroma es alcohol: la levadura se pasó de comelona. Se rescata **desgasando** la masa (aplastarla para sacar el gas y el olor) y lo que quede de aroma se evapora en el horno.
 
+![Roles de canela ya formados y cortados sobre una charola](/images/roles-canela/rolls-formados.jpg)
+
+*Los rolls ya formados y cortados, listos para el refrigerador.*
+
 **El horno y los sustitutos.** Horno eléctrico de mesa, modo **BAKE a 350 °F**. No tenía crema para batir, así que improvisé el baño con **leche evaporada + una cucharadita de mantequilla derretida**. Y cuando el tope empezó a dorar sin tener aluminio a la mano, la salida fue bajar la rejilla.
 
-**El veredicto: 80/100.** No me quedaron de cafetería — doraron poco arriba y los sentí algo firmes/secos (culpa de la sobre-fermentación, de hornearlos separados y de un par de minutos de más). También los noté **algo dulces**: creo que se me concentró el azúcar del relleno. Pero ¿saben qué? Quedaron ricos. Me los comí feliz, me dio orgullo, y sí — **lo vuelvo a hacer**, ahora con los ajustes que aprendí. Para ser la primera vez y rescatando una masa medio echada a perder, 80 sobre 100 lo firmo.
+**El veredicto de la primera tanda: 80/100.** No me quedaron de cafetería — doraron poco arriba y los sentí algo firmes/secos (culpa de la sobre-fermentación, de hornearlos separados y de un par de minutos de más). También los noté **algo dulces**: creo que se me concentró el azúcar del relleno. Pero ¿saben qué? Quedaron ricos. Me los comí feliz, me dio orgullo, y sí — **lo vuelvo a hacer**, ahora con los ajustes que aprendí. Para ser la primera vez y rescatando una masa medio echada a perder, 80 sobre 100 lo firmo.
+
+![Primera tanda de roles de canela recién salida del horno](/images/roles-canela/rolls-horneados.jpg)
+
+*Primera tanda recién horneada: doradas en las capas, listas para glasear.*
+
+**La segunda tanda fue otra historia.** Eran los rolls que ya había formado y dejado en el refri; los horneé al día siguiente, un domingo en la mañana. Perdieron un poco la forma ahí dentro (la masa estaba floja por la sobre-fermentación), pero esta vez los horneé **juntos** y con **todo el baño de crema** —los 60 g de leche evaporada completos con los 10 g de mantequilla. Y por alguna razón quedaron **mucho más buenos**: más suaves, más húmedos, mucho más cerca de los de cafetería. A estos les doy un **9 / 9.5 sobre 10** — altamente parecidos a los de un café, aunque todavía sin clavar el sabor ni el estilo idénticos. La moraleja se confirmó sola: el **baño de crema completo** y **hornearlos juntos** sí mueven la aguja.
+
+![Segunda tanda de roles acomodados juntos con el baño de leche evaporada antes de hornear](/images/roles-canela/rolls-bano-crema.jpg)
+
+*Segunda tanda: acomodados juntos con el baño de leche evaporada antes de hornear. Estos quedaron mejores.*
 
 ## Preguntas que surgieron (FAQ para principiantes)
 
