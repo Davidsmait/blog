@@ -16,6 +16,10 @@ Spoiler: los míos no me quedaron igual. Pero quedaron ricos, y en el camino ent
 
 **La respuesta corta:** masa enriquecida de verdad y, sobre todo, **fermentación en frío toda la noche**. Empezamos por ahí — el cambio de mayor impacto con menos esfuerzo.
 
+![Roles de canela caseros glaseados con queso crema](/images/roles-canela/rolls-glaseados-1.jpg)
+
+*El resultado: roles de canela recién horneados y bañados en glaseado de queso crema.*
+
 ## La fermentación overnight (el secreto)
 
 Fermentación en frío (*cold proof* o *retardo*) significa formar los rolls hoy y meterlos al refrigerador 12-18 horas antes de hornear. El frío no detiene la levadura, solo la frena. Mientras la masa duerme en el refri pasan dos cosas.
@@ -113,6 +117,10 @@ Antes de eso la masa se me quedó pegajosa y desparramada en la mesa. Pensé que
 ![Segunda tanda de roles acomodados juntos con el baño de leche evaporada antes de hornear](/images/roles-canela/rolls-bano-crema.jpg)
 
 *Segunda tanda: acomodados juntos con el baño de leche evaporada antes de hornear. Estos quedaron mejores.*
+
+![Close-up de un rol de canela con glaseado de queso crema entre las capas](/images/roles-canela/rolls-glaseados-2.jpg)
+
+*De cerca: el glaseado de queso crema cayendo entre las capas. No de cafetería perfecta, pero un 9.5 que me hizo muy feliz.*
 
 ## Preguntas que surgieron (FAQ para principiantes)
 

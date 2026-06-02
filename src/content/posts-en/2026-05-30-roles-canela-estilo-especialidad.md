@@ -16,6 +16,10 @@ Spoiler: mine didn't come out the same. But they were tasty, and along the way I
 
 **The short answer:** a genuinely enriched dough and, above all, **overnight cold fermentation**. We start there — the highest-impact change for the least effort.
 
+![Homemade cinnamon rolls glazed with cream cheese](/images/roles-canela/rolls-glaseados-1.jpg)
+
+*The result: cinnamon rolls fresh out of the oven, covered in cream cheese glaze.*
+
 ## Overnight fermentation (the secret)
 
 Cold fermentation (*cold proof* or *retarding*) means shaping the rolls today and putting them in the fridge 12-18 hours before baking. Cold doesn't stop the yeast, it just slows it down. While the dough sleeps in the fridge, two things happen.
@@ -113,6 +117,10 @@ Before that, the dough was sticky and spread out all over the counter. I thought
 ![Second batch of rolls bunched together with the evaporated-milk bath before baking](/images/roles-canela/rolls-bano-crema.jpg)
 
 *Second batch: bunched together with the evaporated-milk bath before baking. These came out better.*
+
+![Close-up of a cinnamon roll with cream cheese glaze settling into the layers](/images/roles-canela/rolls-glaseados-2.jpg)
+
+*Close up: the cream cheese glaze settling into the layers. Not perfect café-grade, but a 9.5 that made me really happy.*
 
 ## Questions that came up (beginner FAQ)
 
