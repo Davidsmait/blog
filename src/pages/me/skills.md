@@ -1,109 +1,40 @@
 ---
 layout: '@/layouts/PageLayout.astro'
-title: Skills deseadas 
+title: Skills
 ---
 
-# Ideas para Enriquecer  Página Personal
+# Stack y experiencia
 
-## 1. Liderazgo Técnico & Colaboración
-### 👥 Mentoría de equipos:
-"Capacitación de 3 equipos junior en buenas prácticas (GitFlow, Code Reviews), incrementando productividad en 25% mediante pair programming estructurado"
+Desarrollador fullstack mid-level con 3+ años construyendo software en producción. Trabajo principalmente en TypeScript (Angular, NestJS, Next.js) y en 2026 sumé Go para backends y microservicios.
 
-### 🤝 Stakeholder alignment:
-"Traducción de requerimientos de negocio a especificaciones técnicas con UX/Product Managers, priorizando features con impacto real (aumento de 15% en retención de usuarios)"
+## Stack técnico
 
----
+- **Lenguajes:** TypeScript, JavaScript, Go, HTML, CSS. (Scala 3 en proyectos previos.)
+- **Frontend:** Angular, RxJS, NgRx, Next.js, React, Ionic, Capacitor, Tailwind CSS, Zustand, Astro.
+- **Backend:** NestJS, Node.js, Go (Gin, pgx, golang-migrate, JWT/JWKS), APIs REST, arquitectura hexagonal, Prisma.
+- **Datos y cloud:** PostgreSQL, Supabase (Auth, RLS, Edge Functions, Realtime), SQLite, Docker, Keycloak (JWT), AWS S3 (en el backend Go de Slird).
+- **Mobile:** Ionic + Capacitor (iOS + Android), offline-first con TypeORM + SQLite cifrada (SQLCipher), NFC, release management en App Store y Google Play.
+- **Testing y CI/CD:** Playwright, Vitest, GitHub Actions, GitLab CI, Netlify.
+- **Desarrollo asistido por IA:** Claude Code y Cursor como herramienta, con revisión, refactor y auditoría manual de todo lo que llega a producción.
 
-## 2. Casos de Éxito con Problema-Solución-Impacto
-### 🚨 Challenge:
-"Latencias críticas (>5s) en API de pagos durante peak hours"
+## Proyectos
 
-### ⚙️ Solución:
-"Re-architectura con Redis Cluster + optimización de queries usando Slick 3.0 (batch inserts)"
+### Grace AI — SaaS LegalTech (2025 al presente)
+Uno de los principales contributors del frontend Angular (700+ commits) en un monorepo multi-app. Features de punta a punta (formularios dinámicos, extracción, validación), desarrollo en el backend NestJS y capa de services con Prisma/PostgreSQL. Arquitectura multi-tenant con Keycloak (JWT).
 
-### 📈 Impacto:
-"Reducción del 92% en tiempos de respuesta (promedio 450ms) y ahorro de $3.5K/mes en costos cloud"
+### CEN — ERP móvil (2024 al presente)
+Lo inicié desde cero; contributor principal (~68% del código). Offline-first, 7 módulos de negocio diseñados de punta a punta, 100+ builds firmados en App Store y Google Play, migraciones de plataforma (Android SDK 35, soporte de 16 KB page size).
 
----
+### Slird — plataforma de networking con NFC (2023–2024, rebuild 2026)
+Lead developer del ecosistema (4 repos). En 2026 lo reescribí completo yo solo: backend de Scala 3 → Go y app de Angular/Ionic → React + Capacitor, con builds firmados de iOS y Android.
 
-## 3. Contribuciones a Comunidad Técnica
-### 📚 Blogging especializado:
-"Artículos técnicos en Medium sobre Akka Cluster Sharding (2.5K+ claps) y optimización de builds en entornos CI/CD"
+### La Commune — POS + fidelidad para café de especialidad (proyecto propio)
+PWA + POS con 11 módulos en producción sobre Next.js y Supabase: 97 políticas RLS en 29 tablas, Web Push, sincronización en tiempo real y CI/CD automatizado a Netlify. Todas las decisiones de arquitectura, datos y seguridad son mías.
 
-### 🎤 Tech speaker:
-"Charla en MeetupBA 2023: 'Domain Modeling anti-patterns en sistemas Scala' (4.8/5 rating en Encuestas)"
+## Idiomas
 
-### 🛠️ Open Source:
-"Mantenimiento de librería ionic-http-interceptors en GitHub (120+ stars, 15 contributors)"
+Español nativo. Inglés B1 (conversacional; leo y escribo documentación técnica sin problema).
 
----
+## Educación
 
-## 4. Stack Técnico Detallado
-
-**Deep Tech Arsenal**:
-- ▸ Mobile: `Ionic 7` | `Capacitor` | `NgRx` | `Jest + Cypress`
-- ▸ Backend: `Scala 3` | `Akka Typed` | `ZIO` | `PostgreSQL + Slick`
-- ▸ DevOps: `GitLab CI` | `Docker + K8s` | `Grafana/Prometheus` | `AWS ECS Fargate`
-- ▸ QA Automation: `Playwright` | `Postman Newman` | `OWASP ZAP`
-
----
-
-## 5. Proyectos Flagship (con storytelling)
-
-### 💼 Fintech para Neobank:
-"Lideré el módulo de transferencias internacionales (SWIFT/SEPA) integrando Temporal.io para manejo de transacciones atómicas, procesando $2M+ mensuales con 0% errores en prod"
-
-### 🏥 HealthTech IoT:
-"Arquitectura edge computing para procesar datos de wearables médicos (1M+ dispositivos), usando Apache Kafka + TimescaleDB para análisis en tiempo real"
-
----
-
-## 6. Filosofía de Desarrollo
-
-### 🔄 "Code as Craftsmanship":
-"Defensor de Clean Code con enfoque en deuda técnica preventiva: Refactoring proactivo usando métricas de SonarQube y trunk-based development"
-
-### 🌱 Ethical Tech Advocate:
-"Implementación de Privacy by Design en apps móviles (GDPR compliance) usando encriptación AES-256 + biometric auth"
-
----
-
-## 7. Adaptabilidad & Aprendizaje Continuo
-
-### 📊 Certificaciones estratégicas:
-"AWS Certified Developer + Scala Professional Certification (Lightbend Academy)"
-
-### 🧪 Tech Radar Personal:
-"Experimentando con Tauri para reemplazar Electron y Kotlin Multiplatform para lógica compartida móvil"
-
----
-
-## 8. Visión Estratégica
-
-### 🚀 Meta profesional:
-"Especializarme en arquitecturas Serverless para sistemas geo-distribuidos, combinando Cloudflare Workers con WebAssembly"
-
-### 🌍 Impacto social:
-"Colaboración pro-bono con ONGs: Desarrollo de app para monitoreo de agua potable en comunidades rurales usando Flutter + Firebase"
-
----
-
-## Formato de Presentación Innovador
-
-### ✅ Tabla de Densidad Tecnológica:
-
-| Habilidad          | Nivel | Último Uso | Caso de Uso                  |
-|--------------------|-------|------------|------------------------------|
-| Akka Cluster       | 🔴🔴🔴⚪⚪ | 2024       | Sistema de notificaciones en tiempo real |
-| Ionic Performance  | 🔴🔴🔴🔴⚪ | 2024       | Lazy loading imágenes + Web Workers |
-
----
-
-### Tips adicionales:
-- Incluye screenshots de dashboards de métricas que hayas creado (ej: Grafana)
-- Agrega quotes de colegas/clientes ("Su dominio de Akka nos permitió escalar sin reinventar la rueda..." - CTO CompanyX)
-- Muestra tu workflow con diagramas hechos en Excalidraw/Miro
-
----
-
-¿Quieres que desarrolle más algún bloque en particular? ¿O prefieres ideas para adaptar esto a formato visual/portfolio?
+Ingeniería en Sistemas Computacionales — Instituto Tecnológico de Pachuca (2017–2021).
