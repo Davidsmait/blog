@@ -29,6 +29,11 @@ export default defineThemeConfig({
       label: 'Instagram'
     },
     {
+      icon: 'tabler--id-badge',
+      href: 'https://torre.ai/davidsanluisaguirre',
+      label: 'Torre'
+    },
+    {
       icon: 'tabler--mail',
       href: 'mailto:david_sanluis@outlook.com',
       label: 'Email'
