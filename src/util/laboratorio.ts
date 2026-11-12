@@ -1,7 +1,8 @@
 /**
- * Laboratorio de café: lectura en build de las pruebas marcadas como públicas.
- * Única puerta: RPC `public.lab_publico()` en Supabase. Sin env vars o con error
- * de red devuelve [] para que el build nunca se rompa.
+ * Laboratorio de café: historial de pruebas leído en vivo desde Supabase.
+ * Única puerta: RPC `public.lab_publico()` (todas las pruebas; `destacada` marca
+ * las mejores). Se llama desde el navegador, así que la página se actualiza sin
+ * deploy. Con error de red devuelve [].
  */
 
 export interface Vertido {
@@ -14,6 +15,8 @@ export interface PruebaPublica {
   id: string
   fecha: string
   titulo: string | null
+  destacada: boolean
+  prueba_padre_id: string | null
   metodo: 'espresso' | 'chemex' | 'prensa_francesa' | 'v60' | 'aeropress' | 'otro'
   familia: 'espresso' | 'filtrado'
   metodo_equipo: string | null
@@ -30,6 +33,7 @@ export interface PruebaPublica {
   extraccion_s: number | null
   presion_bar: number | null
   vertidos: Vertido[]
+  agua_receta: string | null
   dias_desde_tueste: number | null
   cafe: {
     nombre: string | null
@@ -46,8 +50,10 @@ export interface PruebaPublica {
     final: number | null
     descriptores: string[]
     calificacion: number | null
+    veredicto: 'repetir' | 'ajustar' | 'descartar' | null
   }
   notas: string | null
+  cambio_siguiente: string | null
 }
 
 export const METODO_LABEL: Record<PruebaPublica['metodo'], string> = {
@@ -59,9 +65,10 @@ export const METODO_LABEL: Record<PruebaPublica['metodo'], string> = {
   otro: 'Otro'
 }
 
-export async function getPruebasPublicas(): Promise<PruebaPublica[]> {
-  const url = import.meta.env.SUPABASE_URL
-  const key = import.meta.env.SUPABASE_ANON_KEY
+export async function getPruebasPublicas(
+  url: string | undefined = import.meta.env.SUPABASE_URL,
+  key: string | undefined = import.meta.env.SUPABASE_ANON_KEY
+): Promise<PruebaPublica[]> {
   if (!url || !key) return []
 
   try {
@@ -71,7 +78,8 @@ export async function getPruebasPublicas(): Promise<PruebaPublica[]> {
         apikey: key,
         'Content-Type': 'application/json'
       },
-      body: '{}'
+      body: '{}',
+      cache: 'no-store'
     })
     if (!res.ok) {
       console.warn(`[laboratorio] lab_publico respondió ${res.status}`)

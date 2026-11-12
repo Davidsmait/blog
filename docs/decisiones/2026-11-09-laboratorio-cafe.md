@@ -20,3 +20,7 @@
 - ¿Se adoptan los criterios extra propuestos (leche, consistencia, ventana de molienda, frescura, cata a ciegas)? — depende de: David.
 - Lectura pública desde el blog: exponer schema `lab` en la Data API con RLS de solo lectura vs. vista acotada / service key solo en el build de Netlify — decisión técnica para write-a-prd.
 - Fotos de bolsas: ¿guardar la imagen (Storage) o solo los datos extraídos? — depende de: David.
+
+## Cambio 12-nov-2026 (petición de David)
+- Historial público: `/cafe/laboratorio` muestra TODAS las pruebas (historial) y, arriba, las destacadas. La columna `publica` ahora significa "destacada"; `public.lab_publico()` devuelve todas con el campo `destacada`.
+- En vivo, sin deploy: la página pide el historial desde el navegador a la RPC con la publishable key (pública por diseño). Netlify solo inyecta URL y key en build.

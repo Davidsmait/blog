@@ -1,139 +1,273 @@
 ---
 import PageLayout from '../../layouts/PageLayout.astro'
-import { getPruebasPublicas, METODO_LABEL } from '@/util/laboratorio'
 
-const pruebas = await getPruebasPublicas()
-
-const fmtFecha = (iso: string) =>
-  new Date(iso).toLocaleDateString('es-MX', {
-    day: 'numeric',
-    month: 'short',
-    year: 'numeric',
-    timeZone: 'America/Mexico_City'
-  })
-
-const atributos = [
-  ['acidez', 'Acidez'],
-  ['dulzor', 'Dulzor'],
-  ['cuerpo', 'Cuerpo'],
-  ['amargor', 'Amargor'],
-  ['final', 'Final']
-] as const
+// Las credenciales son públicas por diseño (publishable key). Se leen en build
+// y viajan al navegador, que pide el historial en vivo: no hace falta deploy.
+const supabaseUrl = import.meta.env.SUPABASE_URL ?? ''
+const supabaseKey = import.meta.env.SUPABASE_ANON_KEY ?? ''
 ---
 
 <PageLayout
   frontmatter={{
     title: 'Laboratorio de Café — Mis pruebas',
     description:
-      'Bitácora pública de pruebas de café de especialidad: recetas de espresso y filtrado con molienda, ratio, tiempos, vertidos y evaluación al estilo SCA.',
+      'Historial de mis pruebas de café de especialidad: espresso y filtrado con molienda, ratio, tiempos, vertidos y cata en dos capas al estilo SCA.',
     activeHeaderLink: 'Café'
   }}
 >
-  <div class="lab-page">
+  <div class="lab-page" id="lab" data-url={supabaseUrl} data-key={supabaseKey}>
     <div class="lab-header">
       <span class="lab-label">Laboratorio</span>
       <h1 class="lab-title">Mis pruebas de café</h1>
       <p class="lab-sub">
-        Recetas que funcionaron, con todos sus números. Evaluación en dos capas:
-        intensidad de 1 a 5 y calificación de 6 a 10 al estilo SCA.
+        Cada taza que preparo, con todos sus números: lo que salió bien y lo que
+        no. Evaluación en dos capas: intensidad de 1 a 5 y calificación de 6 a 10
+        al estilo SCA.
       </p>
     </div>
 
-    {
-      pruebas.length === 0 ? (
-        <p class="lab-empty">
-          Todavía no hay pruebas publicadas. Las primeras vienen pronto.
-        </p>
-      ) : (
-        <div class="lab-grid">
-          {pruebas.map((p) => (
-            <article class="lab-card">
-              <header class="lab-card-head">
-                <span class="lab-chip">{METODO_LABEL[p.metodo]}</span>
-                {p.evaluacion.calificacion !== null && (
-                  <span class="lab-score">{p.evaluacion.calificacion}</span>
-                )}
-              </header>
-              <h2 class="lab-card-title">{p.titulo ?? p.cafe.nombre ?? 'Prueba'}</h2>
-              <p class="lab-meta">
-                {[p.cafe.tostador, p.cafe.origen, p.cafe.proceso, p.cafe.variedad]
-                  .filter(Boolean)
-                  .join(' · ')}
-              </p>
-              <dl class="lab-receta">
-                <div><dt>Dosis</dt><dd>{p.dosis_g} g</dd></div>
-                {p.ratio !== null && (
-                  <div><dt>Ratio</dt><dd>1:{p.ratio}</dd></div>
-                )}
-                {p.molienda !== null && (
-                  <div><dt>Molienda</dt><dd>{p.molienda}{p.molino ? ` (${p.molino})` : ''}</dd></div>
-                )}
-                {p.temp_c !== null && (
-                  <div><dt>Agua</dt><dd>{p.temp_c} °C</dd></div>
-                )}
-                {p.tiempo_total_s !== null && (
-                  <div><dt>Tiempo</dt><dd>{p.tiempo_total_s} s</dd></div>
-                )}
-                {p.familia === 'espresso' && p.preinfusion_total_s !== null && (
-                  <div>
-                    <dt>Preinfusión</dt>
-                    <dd>{p.preinfusion_agua_s ?? '—'} s agua · bomba en {p.preinfusion_total_s} s</dd>
-                  </div>
-                )}
-                {p.presion_bar !== null && (
-                  <div><dt>Presión</dt><dd>{p.presion_bar} bar</dd></div>
-                )}
-                {p.dias_desde_tueste !== null && (
-                  <div><dt>Tueste</dt><dd>{p.dias_desde_tueste} días</dd></div>
-                )}
-              </dl>
-              {p.vertidos.length > 0 && (
-                <ol class="lab-vertidos">
-                  {p.vertidos.map((v) => (
-                    <li>
-                      <span>{v.t_s} s</span> {v.g} g{v.tipo ? ` · ${v.tipo}` : ''}
-                    </li>
-                  ))}
-                </ol>
-              )}
-              <div class="lab-eval">
-                {atributos.map(([k, label]) =>
-                  p.evaluacion[k] !== null ? (
-                    <div class="lab-bar">
-                      <span>{label}</span>
-                      <span class="lab-bar-track">
-                        <span
-                          class="lab-bar-fill"
-                          style={`width:${(Number(p.evaluacion[k]) / 5) * 100}%`}
-                        />
-                      </span>
-                    </div>
-                  ) : null
-                )}
-              </div>
-              {p.evaluacion.descriptores.length > 0 && (
-                <p class="lab-desc">{p.evaluacion.descriptores.join(', ')}</p>
-              )}
-              {p.notas && <p class="lab-notas">{p.notas}</p>}
-              <footer class="lab-fecha">{fmtFecha(p.fecha)}</footer>
-            </article>
-          ))}
-        </div>
-      )
-    }
+    <p class="lab-estado" id="lab-estado">Cargando pruebas…</p>
+
+    <section class="lab-section" id="lab-destacadas" hidden>
+      <h2 class="lab-section-title">Destacadas</h2>
+      <div class="lab-grid" id="lab-destacadas-grid"></div>
+    </section>
+
+    <section class="lab-section" id="lab-historial" hidden>
+      <h2 class="lab-section-title">
+        Historial <span class="lab-count" id="lab-count"></span>
+      </h2>
+      <div class="lab-list" id="lab-historial-list"></div>
+    </section>
   </div>
 </PageLayout>
 
-<style>
+<script>
+  import {
+    getPruebasPublicas,
+    METODO_LABEL,
+    type PruebaPublica
+  } from '@/util/laboratorio'
+
+  const VEREDICTO: Record<string, string> = {
+    repetir: 'Repetir',
+    ajustar: 'Ajustar',
+    descartar: 'Descartar'
+  }
+  const ATRIBUTOS = [
+    ['acidez', 'Acidez'],
+    ['dulzor', 'Dulzor'],
+    ['cuerpo', 'Cuerpo'],
+    ['amargor', 'Amargor'],
+    ['final', 'Final']
+  ] as const
+
+  // Construcción con textContent: nunca se inyecta HTML desde los datos.
+  function h(tag: string, cls?: string, text?: string | number | null) {
+    const el = document.createElement(tag)
+    if (cls) el.className = cls
+    if (text !== undefined && text !== null) el.textContent = String(text)
+    return el
+  }
+
+  const fmtFecha = (iso: string) =>
+    new Date(iso).toLocaleDateString('es-MX', {
+      day: 'numeric',
+      month: 'short',
+      year: 'numeric',
+      timeZone: 'America/Mexico_City'
+    })
+
+  function receta(p: PruebaPublica) {
+    const dl = h('dl', 'lab-receta')
+    const add = (dt: string, dd: string | null) => {
+      if (dd === null) return
+      const row = h('div')
+      row.append(h('dt', undefined, dt), h('dd', undefined, dd))
+      dl.append(row)
+    }
+    add('Dosis', `${p.dosis_g} g`)
+    if (p.familia === 'espresso' && p.rendimiento_g !== null)
+      add('Rendimiento', `${p.rendimiento_g} g`)
+    if (p.agua_g !== null) add('Agua', `${p.agua_g} g`)
+    add('Ratio', p.ratio !== null ? `1:${p.ratio}` : null)
+    add(
+      'Molienda',
+      p.molienda !== null
+        ? `${p.molienda}${p.molino ? ` · ${p.molino}` : ''}`
+        : null
+    )
+    add('Temperatura', p.temp_c !== null ? `${p.temp_c} °C` : null)
+    add('Tiempo total', p.tiempo_total_s !== null ? `${p.tiempo_total_s} s` : null)
+    if (p.familia === 'espresso' && p.preinfusion_total_s !== null)
+      add(
+        'Preinfusión',
+        `${p.preinfusion_agua_s ?? '—'} s agua · bomba en ${p.preinfusion_total_s} s`
+      )
+    add('Extracción', p.extraccion_s !== null ? `${p.extraccion_s} s` : null)
+    add('Presión', p.presion_bar !== null ? `${p.presion_bar} bar` : null)
+    add('Agua usada', p.agua_receta)
+    add(
+      'Desde tueste',
+      p.dias_desde_tueste !== null ? `${p.dias_desde_tueste} días` : null
+    )
+    return dl
+  }
+
+  function evaluacion(p: PruebaPublica) {
+    const wrap = h('div', 'lab-eval')
+    for (const [k, label] of ATRIBUTOS) {
+      const v = p.evaluacion[k]
+      if (v === null) continue
+      const bar = h('div', 'lab-bar')
+      const track = h('span', 'lab-bar-track')
+      const fill = h('span', 'lab-bar-fill')
+      fill.style.width = `${(Number(v) / 5) * 100}%`
+      track.append(fill)
+      bar.append(h('span', undefined, label), track, h('span', 'lab-bar-num', v))
+      wrap.append(bar)
+    }
+    return wrap
+  }
+
+  function cuerpo(p: PruebaPublica) {
+    const frag = document.createDocumentFragment()
+    frag.append(receta(p))
+    if (p.vertidos.length > 0) {
+      const ol = h('ol', 'lab-vertidos')
+      for (const v of p.vertidos) {
+        const li = h('li')
+        li.append(
+          h('span', undefined, `${v.t_s} s`),
+          document.createTextNode(` ${v.g} g${v.tipo ? ` · ${v.tipo}` : ''}`)
+        )
+        ol.append(li)
+      }
+      frag.append(ol)
+    }
+    frag.append(evaluacion(p))
+    if (p.evaluacion.descriptores.length > 0)
+      frag.append(h('p', 'lab-desc', p.evaluacion.descriptores.join(', ')))
+    if (p.notas) frag.append(h('p', 'lab-notas', p.notas))
+    if (p.cambio_siguiente) {
+      const sig = h('p', 'lab-siguiente')
+      sig.append(
+        h('strong', undefined, 'Siguiente cambio: '),
+        document.createTextNode(p.cambio_siguiente)
+      )
+      frag.append(sig)
+    }
+    return frag
+  }
+
+  function encabezado(p: PruebaPublica) {
+    const head = h('div', 'lab-card-head')
+    const left = h('div', 'lab-head-left')
+    left.append(
+      h('span', 'lab-chip', METODO_LABEL[p.metodo] ?? p.metodo),
+      h('span', 'lab-fecha', fmtFecha(p.fecha))
+    )
+    const right = h('div', 'lab-head-right')
+    if (p.evaluacion.veredicto)
+      right.append(
+        h(
+          'span',
+          `lab-veredicto lab-veredicto--${p.evaluacion.veredicto}`,
+          VEREDICTO[p.evaluacion.veredicto]
+        )
+      )
+    if (p.evaluacion.calificacion !== null)
+      right.append(h('span', 'lab-score', Number(p.evaluacion.calificacion)))
+    head.append(left, right)
+    return head
+  }
+
+  function subtitulo(p: PruebaPublica) {
+    return [p.cafe.tostador, p.cafe.origen, p.cafe.proceso, p.cafe.variedad]
+      .filter(Boolean)
+      .join(' · ')
+  }
+
+  function tarjetaDestacada(p: PruebaPublica) {
+    const card = h('article', 'lab-card')
+    card.append(
+      encabezado(p),
+      h('h3', 'lab-card-title', p.titulo ?? p.cafe.nombre ?? 'Prueba'),
+      h('p', 'lab-meta', subtitulo(p)),
+      cuerpo(p)
+    )
+    return card
+  }
+
+  function filaHistorial(p: PruebaPublica) {
+    const item = h('details', 'lab-item')
+    const sum = h('summary', 'lab-item-summary')
+    sum.append(encabezado(p))
+    const t = h('div', 'lab-item-title')
+    t.append(
+      h('span', 'lab-item-name', p.titulo ?? p.cafe.nombre ?? 'Prueba'),
+      h(
+        'span',
+        'lab-item-receta',
+        [
+          `${p.dosis_g} g`,
+          p.ratio !== null ? `1:${p.ratio}` : null,
+          p.tiempo_total_s !== null ? `${p.tiempo_total_s} s` : null
+        ]
+          .filter(Boolean)
+          .join(' · ')
+      )
+    )
+    sum.append(t)
+    const body = h('div', 'lab-item-body')
+    body.append(h('p', 'lab-meta', subtitulo(p)), cuerpo(p))
+    item.append(sum, body)
+    return item
+  }
+
+  async function cargar() {
+    const root = document.getElementById('lab')
+    const estado = document.getElementById('lab-estado')
+    if (!root || !estado) return
+
+    const pruebas = await getPruebasPublicas(
+      root.dataset.url || undefined,
+      root.dataset.key || undefined
+    )
+    if (pruebas.length === 0) {
+      estado.textContent = 'Todavía no hay pruebas registradas.'
+      return
+    }
+    estado.hidden = true
+
+    const destacadas = pruebas.filter((p) => p.destacada)
+    if (destacadas.length > 0) {
+      const grid = document.getElementById('lab-destacadas-grid')
+      grid?.replaceChildren(...destacadas.map(tarjetaDestacada))
+      document.getElementById('lab-destacadas')?.removeAttribute('hidden')
+    }
+
+    const list = document.getElementById('lab-historial-list')
+    list?.replaceChildren(...pruebas.map(filaHistorial))
+    const count = document.getElementById('lab-count')
+    if (count)
+      count.textContent = `${pruebas.length} ${pruebas.length === 1 ? 'prueba' : 'pruebas'}`
+    document.getElementById('lab-historial')?.removeAttribute('hidden')
+  }
+
+  cargar()
+</script>
+
+<style is:global>
   .lab-page {
     max-width: 60rem;
     margin: 0 auto;
     padding: 2rem 1rem 4rem;
   }
-  .lab-header {
+  .lab-page .lab-header {
     margin-bottom: 2rem;
   }
-  .lab-label {
+  .lab-page .lab-label {
     display: inline-block;
     font-size: 0.625rem;
     font-weight: 600;
@@ -143,129 +277,221 @@ const atributos = [
     opacity: 0.6;
     margin-bottom: 0.75rem;
   }
-  .lab-title {
+  .lab-page .lab-title {
     font-family: var(--font-display, 'Instrument Serif', serif);
     font-size: clamp(1.75rem, 4vw, 2.5rem);
     font-weight: 400;
     line-height: 1.15;
     margin: 0;
   }
-  .lab-sub {
+  .lab-page .lab-sub {
     font-size: 0.875rem;
     opacity: 0.6;
     margin-top: 0.5rem;
     max-width: 40rem;
   }
-  .lab-empty {
+  .lab-page .lab-estado {
     opacity: 0.6;
     font-style: italic;
   }
-  .lab-grid {
+  .lab-page .lab-section {
+    margin-bottom: 2.5rem;
+  }
+  .lab-page .lab-section-title {
+    font-family: var(--font-display, 'Instrument Serif', serif);
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin: 0 0 1rem;
+  }
+  .lab-page .lab-count {
+    font-family: inherit;
+    font-size: 0.8rem;
+    opacity: 0.5;
+    margin-left: 0.5rem;
+  }
+  .lab-page .lab-grid {
     display: grid;
     grid-template-columns: 1fr;
     gap: 1.25rem;
   }
   @media (min-width: 720px) {
-    .lab-grid {
+    .lab-page .lab-grid {
       grid-template-columns: repeat(2, 1fr);
     }
   }
-  .lab-card {
+  .lab-page .lab-card,
+  .lab-page .lab-item {
     border: 1px solid color-mix(in srgb, currentcolor 12%, transparent);
     border-radius: 0.75rem;
+  }
+  .lab-page .lab-card {
     padding: 1.25rem;
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
   }
-  .lab-card-head {
+  .lab-page .lab-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .lab-page .lab-item-summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 1rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+  .lab-page .lab-item-summary::-webkit-details-marker {
+    display: none;
+  }
+  .lab-page .lab-item[open] .lab-item-summary {
+    border-bottom: 1px solid color-mix(in srgb, currentcolor 8%, transparent);
+  }
+  .lab-page .lab-item-title {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.25rem 0.75rem;
+  }
+  .lab-page .lab-item-name {
+    font-family: var(--font-display, 'Instrument Serif', serif);
+    font-size: 1.2rem;
+  }
+  .lab-page .lab-item-receta {
+    font-size: 0.8rem;
+    opacity: 0.6;
+    font-variant-numeric: tabular-nums;
+  }
+  .lab-page .lab-item-body {
+    padding: 1rem 1.25rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .lab-page .lab-card-head {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 0.75rem;
   }
-  .lab-chip {
+  .lab-page .lab-head-left,
+  .lab-page .lab-head-right {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .lab-page .lab-chip {
     font-size: 0.7rem;
     font-weight: 600;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--color-accent);
   }
-  .lab-score {
+  .lab-page .lab-fecha,
+  .lab-page .lab-meta {
+    font-size: 0.8rem;
+    opacity: 0.6;
+    margin: 0;
+  }
+  .lab-page .lab-veredicto {
+    font-size: 0.7rem;
+    padding: 0.1rem 0.5rem;
+    border-radius: 999px;
+    border: 1px solid color-mix(in srgb, currentcolor 20%, transparent);
+  }
+  .lab-page .lab-veredicto--repetir {
+    border-color: color-mix(in srgb, var(--color-accent) 60%, transparent);
+    color: var(--color-accent);
+  }
+  .lab-page .lab-veredicto--descartar {
+    opacity: 0.6;
+  }
+  .lab-page .lab-score {
     font-family: var(--font-display, 'Instrument Serif', serif);
-    font-size: 1.75rem;
+    font-size: 1.6rem;
     line-height: 1;
     color: var(--color-accent);
   }
-  .lab-card-title {
+  .lab-page .lab-card-title {
     font-family: var(--font-display, 'Instrument Serif', serif);
     font-size: 1.35rem;
     font-weight: 400;
     margin: 0;
   }
-  .lab-meta,
-  .lab-fecha {
-    font-size: 0.8rem;
-    opacity: 0.6;
-    margin: 0;
-  }
-  .lab-receta {
+  .lab-page .lab-receta {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 0.5rem 1rem;
     margin: 0;
     font-size: 0.85rem;
   }
-  .lab-receta dt {
+  @media (min-width: 720px) {
+    .lab-page .lab-item-body .lab-receta {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+  .lab-page .lab-receta dt {
     font-size: 0.65rem;
     text-transform: uppercase;
     letter-spacing: 0.08em;
     opacity: 0.5;
   }
-  .lab-receta dd {
+  .lab-page .lab-receta dd {
     margin: 0;
+    padding: 0;
     font-variant-numeric: tabular-nums;
   }
-  .lab-vertidos {
+  .lab-page .lab-vertidos {
     margin: 0;
     padding-left: 1.1rem;
     font-size: 0.8rem;
     font-variant-numeric: tabular-nums;
   }
-  .lab-vertidos span {
+  .lab-page .lab-vertidos span {
     opacity: 0.6;
   }
-  .lab-eval {
+  .lab-page .lab-eval {
     display: flex;
     flex-direction: column;
     gap: 0.3rem;
     font-size: 0.75rem;
+    max-width: 28rem;
   }
-  .lab-bar {
+  .lab-page .lab-bar {
     display: grid;
-    grid-template-columns: 4.5rem 1fr;
+    grid-template-columns: 4.5rem 1fr 1rem;
     align-items: center;
     gap: 0.5rem;
   }
-  .lab-bar-track {
+  .lab-page .lab-bar-num {
+    opacity: 0.6;
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+  }
+  .lab-page .lab-bar-track {
     height: 0.35rem;
     border-radius: 999px;
     background: color-mix(in srgb, currentcolor 10%, transparent);
     overflow: hidden;
   }
-  .lab-bar-fill {
+  .lab-page .lab-bar-fill {
     display: block;
     height: 100%;
     border-radius: 999px;
     background: var(--color-accent);
   }
-  .lab-desc {
+  .lab-page .lab-desc {
     font-size: 0.85rem;
     font-style: italic;
     margin: 0;
   }
-  .lab-notas {
+  .lab-page .lab-notas,
+  .lab-page .lab-siguiente {
     font-size: 0.85rem;
     margin: 0;
     opacity: 0.85;
+    line-height: 1.55;
   }
 </style>
