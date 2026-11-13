@@ -29,7 +29,8 @@ const supabaseKey = import.meta.env.SUPABASE_ANON_KEY ?? ''
     <p class="lab-estado" id="lab-estado">Cargando pruebas…</p>
 
     <section class="lab-section" id="lab-destacadas" hidden>
-      <h2 class="lab-section-title">Destacadas</h2>
+      <h2 class="lab-section-title">Destacados</h2>
+      <p class="lab-section-sub">La mejor calificación de cada método.</p>
       <div class="lab-grid" id="lab-destacadas-grid"></div>
     </section>
 
@@ -37,6 +38,7 @@ const supabaseKey = import.meta.env.SUPABASE_ANON_KEY ?? ''
       <h2 class="lab-section-title">
         Historial <span class="lab-count" id="lab-count"></span>
       </h2>
+      <div class="lab-filtros" id="lab-filtros" role="group" aria-label="Filtrar por método"></div>
       <div class="lab-list" id="lab-historial-list"></div>
     </section>
   </div>
@@ -130,7 +132,7 @@ const supabaseKey = import.meta.env.SUPABASE_ANON_KEY ?? ''
     return wrap
   }
 
-  function cuerpo(p: PruebaPublica) {
+  function cuerpo(p: PruebaPublica, compacto = false) {
     const frag = document.createDocumentFragment()
     frag.append(receta(p))
     if (p.vertidos.length > 0) {
@@ -148,6 +150,7 @@ const supabaseKey = import.meta.env.SUPABASE_ANON_KEY ?? ''
     frag.append(evaluacion(p))
     if (p.evaluacion.descriptores.length > 0)
       frag.append(h('p', 'lab-desc', p.evaluacion.descriptores.join(', ')))
+    if (compacto) return frag
     if (p.notas) frag.append(h('p', 'lab-notas', p.notas))
     if (p.cambio_siguiente) {
       const sig = h('p', 'lab-siguiente')
@@ -178,6 +181,7 @@ const supabaseKey = import.meta.env.SUPABASE_ANON_KEY ?? ''
       )
     if (p.evaluacion.calificacion !== null)
       right.append(h('span', 'lab-score', Number(p.evaluacion.calificacion)))
+    else right.append(h('span', 'lab-sin-calificar', 'Sin calificar'))
     head.append(left, right)
     return head
   }
@@ -191,10 +195,11 @@ const supabaseKey = import.meta.env.SUPABASE_ANON_KEY ?? ''
   function tarjetaDestacada(p: PruebaPublica) {
     const card = h('article', 'lab-card')
     card.append(
+      h('span', 'lab-badge', `Mejor ${(METODO_LABEL[p.metodo] ?? p.metodo).toLowerCase()}`),
       encabezado(p),
       h('h3', 'lab-card-title', p.titulo ?? p.cafe.nombre ?? 'Prueba'),
       h('p', 'lab-meta', subtitulo(p)),
-      cuerpo(p)
+      cuerpo(p, true)
     )
     return card
   }
@@ -225,6 +230,57 @@ const supabaseKey = import.meta.env.SUPABASE_ANON_KEY ?? ''
     return item
   }
 
+  // Mejor prueba calificada de cada método (empate: la más reciente).
+  // Una prueba marcada a mano como destacada (publica = true) también entra.
+  function elegirDestacados(pruebas: PruebaPublica[]) {
+    const mejor = new Map<string, PruebaPublica>()
+    for (const p of pruebas) {
+      const c = p.evaluacion.calificacion
+      if (c === null) continue
+      const actual = mejor.get(p.metodo)
+      if (!actual || Number(c) > Number(actual.evaluacion.calificacion))
+        mejor.set(p.metodo, p)
+    }
+    const ids = new Set([...mejor.values()].map((p) => p.id))
+    for (const p of pruebas) if (p.destacada) ids.add(p.id)
+    return pruebas
+      .filter((p) => ids.has(p.id))
+      .sort(
+        (a, b) =>
+          Number(b.evaluacion.calificacion ?? 0) -
+          Number(a.evaluacion.calificacion ?? 0)
+      )
+  }
+
+  function pintarFiltros(pruebas: PruebaPublica[], alElegir: (m: string) => void) {
+    const cont = document.getElementById('lab-filtros')
+    if (!cont) return
+    const conteo = new Map<string, number>()
+    for (const p of pruebas) conteo.set(p.metodo, (conteo.get(p.metodo) ?? 0) + 1)
+    const opciones: [string, string, number][] = [
+      ['todos', 'Todos', pruebas.length],
+      ...[...conteo.entries()]
+        .sort((a, b) => b[1] - a[1])
+        .map(
+          ([m, n]) =>
+            [m, METODO_LABEL[m as PruebaPublica['metodo']] ?? m, n] as [string, string, number]
+        )
+    ]
+    const botones = opciones.map(([valor, label, n]) => {
+      const b = h('button', 'lab-filtro') as HTMLButtonElement
+      b.type = 'button'
+      b.dataset.metodo = valor
+      b.setAttribute('aria-pressed', String(valor === 'todos'))
+      b.append(document.createTextNode(label), h('span', 'lab-filtro-n', n))
+      b.addEventListener('click', () => {
+        for (const x of botones) x.setAttribute('aria-pressed', String(x === b))
+        alElegir(valor)
+      })
+      return b
+    })
+    cont.replaceChildren(...botones)
+  }
+
   async function cargar() {
     const root = document.getElementById('lab')
     const estado = document.getElementById('lab-estado')
@@ -240,7 +296,7 @@ const supabaseKey = import.meta.env.SUPABASE_ANON_KEY ?? ''
     }
     estado.hidden = true
 
-    const destacadas = pruebas.filter((p) => p.destacada)
+    const destacadas = elegirDestacados(pruebas)
     if (destacadas.length > 0) {
       const grid = document.getElementById('lab-destacadas-grid')
       grid?.replaceChildren(...destacadas.map(tarjetaDestacada))
@@ -248,10 +304,16 @@ const supabaseKey = import.meta.env.SUPABASE_ANON_KEY ?? ''
     }
 
     const list = document.getElementById('lab-historial-list')
-    list?.replaceChildren(...pruebas.map(filaHistorial))
     const count = document.getElementById('lab-count')
-    if (count)
-      count.textContent = `${pruebas.length} ${pruebas.length === 1 ? 'prueba' : 'pruebas'}`
+    const pintarHistorial = (metodo: string) => {
+      const visibles =
+        metodo === 'todos' ? pruebas : pruebas.filter((p) => p.metodo === metodo)
+      list?.replaceChildren(...visibles.map(filaHistorial))
+      if (count)
+        count.textContent = `${visibles.length} ${visibles.length === 1 ? 'prueba' : 'pruebas'}`
+    }
+    pintarFiltros(pruebas, pintarHistorial)
+    pintarHistorial('todos')
     document.getElementById('lab-historial')?.removeAttribute('hidden')
   }
 
@@ -302,6 +364,64 @@ const supabaseKey = import.meta.env.SUPABASE_ANON_KEY ?? ''
     font-size: 1.5rem;
     font-weight: 400;
     margin: 0 0 1rem;
+  }
+  .lab-page .lab-section-sub {
+    font-size: 0.8rem;
+    opacity: 0.55;
+    margin: -0.6rem 0 1rem;
+  }
+  .lab-page .lab-badge {
+    align-self: flex-start;
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.55rem;
+    border-radius: 999px;
+    color: var(--color-accent);
+    background: color-mix(in srgb, var(--color-accent) 12%, transparent);
+  }
+  .lab-page .lab-filtros {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: -0.25rem 0 1rem;
+  }
+  .lab-page .lab-filtro {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font: inherit;
+    font-size: 0.8rem;
+    padding: 0.35rem 0.8rem;
+    border-radius: 999px;
+    border: 1px solid color-mix(in srgb, currentcolor 18%, transparent);
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+    transition: background-color 0.15s, border-color 0.15s;
+  }
+  .lab-page .lab-filtro:hover {
+    border-color: color-mix(in srgb, currentcolor 35%, transparent);
+  }
+  .lab-page .lab-filtro[aria-pressed='true'] {
+    border-color: var(--color-accent);
+    background: color-mix(in srgb, var(--color-accent) 12%, transparent);
+    color: var(--color-accent);
+  }
+  .lab-page .lab-filtro:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+  .lab-page .lab-filtro-n {
+    font-size: 0.7rem;
+    opacity: 0.6;
+    font-variant-numeric: tabular-nums;
+  }
+  .lab-page .lab-sin-calificar {
+    font-size: 0.7rem;
+    opacity: 0.45;
+    font-style: italic;
   }
   .lab-page .lab-count {
     font-family: inherit;
